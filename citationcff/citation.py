@@ -14,15 +14,18 @@ class Citation:
 
     def retrieve_file(self):
 
-        regexp = re.compile(r"^(?P<baseurl>https://github\.com)/(?P<user>[^/\n]*)/(?P<repo>[^/\n]*)(/(?P<branch>[^/\n]*))?",
-            re.IGNORECASE)
+        regexp = re.compile("^" +
+                            "(?P<baseurl>https://github\.com)/" +
+                            "(?P<user>[^/\n]*)/" +
+                            "(?P<repo>[^/\n]*)" +
+                            "(/(?P<branch>[^/\n]*))?", re.IGNORECASE)
         matched = re.match(regexp, self.url).groupdict()
 
         self.file_url = "/".join([self.baseurl,
                                   matched["user"],
                                   matched["repo"],
                                   matched["branch"] if matched["branch"] is not None else "master",
-                                           "CITATION"])
+                                  "CITATION"])
 
         r = requests.get(self.file_url)
         if r.ok:
@@ -38,14 +41,14 @@ class Citation:
         def get_author_string():
             arr = list()
             for author in self.as_yaml["authors"]:
-                s = list()
+                authors = list()
                 if "given-names" in author:
-                    s.append(author["given-names"])
+                    authors.append(author["given-names"])
                 if "name-particle" in author:
-                    s.append(author["name-particle"])
+                    authors.append(author["name-particle"])
                 if "family-names" in author:
-                    s.append(author["family-names"])
-                arr.append(" " * 12 + " ".join(s))
+                    authors.append(author["family-names"])
+                arr.append(" " * 12 + " ".join(authors))
             return " and\n".join(arr) + "\n"
 
         width = 8

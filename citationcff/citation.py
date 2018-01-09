@@ -5,14 +5,17 @@ import re
 
 class Citation:
 
-    def __init__(self, url):
+    def __init__(self, url, instantiate_empty=False):
         self.url = url
         self.baseurl = "https://raw.githubusercontent.com"
         self.file = None
         self.file_url = None
         self.as_yaml = None
+        if not instantiate_empty:
+            self._retrieve_file()
+            self._parse_yaml()
 
-    def retrieve_file(self):
+    def _retrieve_file(self):
 
         regexp = re.compile("^" +
                             "(?P<baseurl>https://github\.com)/" +
@@ -33,7 +36,7 @@ class Citation:
         else:
             raise Warning("status not 200 OK")
 
-    def parse_yaml(self):
+    def _parse_yaml(self):
         self.as_yaml = yaml.safe_load(self.file)
 
     def as_bibtex(self):

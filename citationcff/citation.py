@@ -57,7 +57,7 @@ class Citation:
         width = 8
         s = ""
         s += "@misc{"
-        s += "your_ref,\n"
+        s += "YourReferenceHere,\n"
         s += "author".ljust(width, " ") + " = {\n"
         s += get_author_string()
         s += " " * 11 + "},\n"
@@ -79,5 +79,66 @@ class Citation:
         pass
 
     def as_enw(self):
-        pass
 
+        def construct_author_string():
+            names = list()
+            for author in self.as_yaml["authors"]:
+                name = ""
+                if "name-particle" in author:
+                    name += author["name-particle"] + " "
+                if "family-names" in author:
+                    name += author["family-names"]
+                if "given-names" in author:
+                    name += ", " + author["given-names"]
+                names.append(name)
+            return " & ".join(names)
+
+        def construct_keywords_string():
+            if "keywords" in self.as_yaml:
+                return ", ".join(["\"" + keyword + "\"" for keyword in self.as_yaml["keywords"]])
+            else:
+                return ""
+
+        s = ""
+        s += "%0\n"
+        s += "%0 Generic\n"
+        s += "%A " + construct_author_string() + "\n"
+        s += "%D " + str(self.as_yaml["date-released"].year) + "\n"
+        s += "%T " + self.as_yaml["title"] + "\n"
+        s += "%E\n"
+        s += "%B \n"
+        s += "%C\n"
+        s += "%I GitHub repository\n"
+        s += "%V \n"
+        s += "%6\n"
+        s += "%N \n"
+        s += "%P \n"
+        s += "%& \n"
+        s += "%Y \n"
+        s += "%S \n"
+        s += "%7\n"
+        s += "%8 " + str(self.as_yaml["date-released"].month) + "\n"
+        s += "%9\n"
+        s += "%? \n"
+        s += "%! \n"
+        s += "%Z \n"
+        s += "%@ \n"
+        s += "%(\n"
+        s += "%)\n"
+        s += "%*\n"
+        s += "%L\n"
+        s += "%M\n"
+        s += "\n"
+        s += "\n"
+        s += "%2 \n"
+        s += "%3 \n"
+        s += "%4 \n"
+        s += "%# \n"
+        s += "%$ \n"
+        s += "%F YourReferenceHere\n"
+        s += "%K " + construct_keywords_string() + "\n"
+        s += "%X \n"
+        s += "%Z \n"
+        s += "%U " + self.as_yaml["repository"] + "\n"
+
+        return s

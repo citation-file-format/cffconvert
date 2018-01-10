@@ -25,6 +25,12 @@ class CitationTest(unittest.TestCase):
         bibtex_str = self.citation.as_bibtex()
         self.assertEqual("@misc", bibtex_str[:5])
 
+    def test_printing_as_enw(self):
+        self.citation._retrieve_file()
+        self.citation._parse_yaml()
+        enw_str = self.citation.as_enw()
+        self.assertTrue("%I GitHub repository" in enw_str)
+
 
 if __name__ == "__main__":
     unittest.main()

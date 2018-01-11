@@ -9,7 +9,7 @@ class Citation:
         self.url = url
         self.baseurl = "https://raw.githubusercontent.com"
         self.file_url = None
-        self.file = None
+        self.file_contents = None
         self.as_yaml = None
         if not instantiate_empty:
             self._retrieve_file()
@@ -37,7 +37,7 @@ class Citation:
             raise Warning("status not 200 OK")
 
     def _parse_yaml(self):
-        self.as_yaml = yaml.safe_load(self.file)
+        self.as_yaml = yaml.safe_load(self.file_contents)
 
     def as_bibtex(self):
 

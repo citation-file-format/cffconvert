@@ -6,21 +6,27 @@ from citationcff.citation import Citation
 class CitationTest(unittest.TestCase):
 
     def setUp(self):
-        url = "not used in unit testing"
+        url = "https://github.com/NLeSC/mcfly"
         self.citation = Citation(url, instantiate_empty=True)
-        fixture = os.path.join("fixtures", "citation-mcfly-1")
+        fixture = os.path.join("fixtures", "mcfly-citation-1")
         with open(fixture) as f:
             self.citation.file_contents = f.read()
         self.citation.file_url = "not used in unit testing"
         self.citation._parse_yaml()
 
     def test_printing_as_bibtex(self):
-        bibtex_str = self.citation.as_bibtex()
-        self.assertEqual("@misc", bibtex_str[:5])
+        fixture = os.path.join("fixtures", "mcfly-bibtex-1")
+        with open(fixture) as f:
+            expected_bibtex = f.read()
+        actual_bibtex = self.citation.as_bibtex()
+        self.assertEqual(expected_bibtex, actual_bibtex)
 
     def test_printing_as_enw(self):
-        enw_str = self.citation.as_enw()
-        self.assertTrue("%I GitHub repository" in enw_str)
+        fixture = os.path.join("fixtures", "mcfly-endnote-1")
+        with open(fixture) as f:
+            expected_endnote = f.read()
+        actual_endnote = self.citation.as_enw()
+        self.assertEqual(expected_endnote, actual_endnote)
 
 
 if __name__ == "__main__":

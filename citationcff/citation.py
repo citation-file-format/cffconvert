@@ -8,8 +8,8 @@ class Citation:
     def __init__(self, url, instantiate_empty=False):
         self.url = url
         self.baseurl = "https://raw.githubusercontent.com"
-        self.file = None
         self.file_url = None
+        self.file = None
         self.as_yaml = None
         if not instantiate_empty:
             self._retrieve_file()

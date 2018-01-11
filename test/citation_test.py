@@ -5,29 +5,53 @@ from citationcff.citation import Citation
 class CitationTest(unittest.TestCase):
 
     def setUp(self):
-        url = "https://github.com/jspaaks/trellis"
+        url = "not used in unit testing"
         self.citation = Citation(url, instantiate_empty=True)
-
-    def test_retrieving_a_url(self):
-        self.assertTrue(self.citation.file is None)
-        self.citation._retrieve_file()
-        self.assertFalse(self.citation.file is None)
-
-    def test_parsing_yaml(self):
-        self.citation._retrieve_file()
-        self.assertTrue(self.citation.as_yaml is None)
+        self.citation.file_url = "not used in unit testing"
+        self.citation.file = """# YAML 1.2
+--- 
+authors: 
+  - 
+    affiliation: "Netherlands eScience Center"
+    family-names: Kuppevelt
+    given-names: Dafne
+    name-particle: van
+  - 
+    affiliation: "Netherlands eScience Center"
+    family-names: Meijer
+    given-names: Christiaan
+  - 
+    affiliation: "Netherlands eScience Center"
+    family-names: Hees
+    given-names: Vincent
+    name-particle: van
+  - 
+    affiliation: "Netherlands eScience Center"
+    family-names: Kuzak
+    given-names: Mateusz
+    orcid: "https://orcid.org/0000-0003-0087-6021"
+cff-version: "1.0.3"
+commit: 95c5a7f76525655562baeca0af8d334d1796bf57
+date-released: 2017-04-06
+doi: 10.5281/zenodo.495345
+keywords: 
+  - "machine learning"
+  - "deep learning"
+  - "time series"
+  - "automatic classification"
+license: Apache-2.0
+message: "If you use this software, please cite it using these metadata."
+repository: "https://github.com/NLeSC/mcfly"
+title: mcfly
+version: "1.0.1"
+"""
         self.citation._parse_yaml()
-        self.assertFalse(self.citation.as_yaml is None)
 
     def test_printing_as_bibtex(self):
-        self.citation._retrieve_file()
-        self.citation._parse_yaml()
         bibtex_str = self.citation.as_bibtex()
         self.assertEqual("@misc", bibtex_str[:5])
 
     def test_printing_as_enw(self):
-        self.citation._retrieve_file()
-        self.citation._parse_yaml()
         enw_str = self.citation.as_enw()
         self.assertTrue("%I GitHub repository" in enw_str)
 

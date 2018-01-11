@@ -75,8 +75,46 @@ class Citation:
 
         return s
 
-    def as_csl(self):
-        pass
+    def as_ris(self):
+        def construct_author_string():
+            names = list()
+            for author in self.as_yaml["authors"]:
+                name = "AU  - "
+                if "name-particle" in author:
+                    name += author["name-particle"] + " "
+                if "family-names" in author:
+                    name += author["family-names"]
+                if "given-names" in author:
+                    name += ", " + author["given-names"]
+                name += "\n"
+                names.append(name)
+            return "".join(names)
+
+        def construct_keywords_string():
+            names = list()
+            for keyword in self.as_yaml["keywords"]:
+                names.append("KW  - " + keyword + "\n")
+            return "".join(names)
+
+        def construct_date_string():
+            return "PY  - " + \
+                   str(self.as_yaml["date-released"].year) + "/" +\
+                   str(self.as_yaml["date-released"].month).rjust(2,"0") + "/" +\
+                   str(self.as_yaml["date-released"].day).rjust(2, "0") + "\n"
+
+        s = ""
+        s += "TY  - COMP\n"
+        s += construct_author_string()
+        s += "DO  - " + self.as_yaml["doi"] + "\n"
+        s += construct_keywords_string()
+        s += "M3  - software\n"
+        s += "PB  - GitHub Inc.\n"
+        s += "PP  - San Francisco, USA\n"
+        s +=  construct_date_string()
+        s += "T1  - " + self.as_yaml["title"] + "\n"
+        s += "UR  - " + self.as_yaml["repository"] + "\n"
+        s += "ER  -\n"
+        return s
 
     def as_enw(self):
 

@@ -1,5 +1,6 @@
 import unittest
 import os
+import io
 from citationcff.citation import Citation
 
 
@@ -27,6 +28,13 @@ class CitationTest(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
+
+    def test_printing_as_ris(self):
+        fixture = os.path.join("fixtures", "mcfly-ris-1")
+        with open(fixture) as f:
+            expected_ris = f.read()
+        actual_ris = self.citation.as_ris()
+        self.assertEqual(expected_ris, actual_ris)
 
 
 if __name__ == "__main__":

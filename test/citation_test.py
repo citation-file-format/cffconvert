@@ -1,6 +1,5 @@
 import unittest
 import os
-import io
 from citationcff.citation import Citation
 
 

@@ -28,7 +28,7 @@ class Citation:
                                   matched["user"],
                                   matched["repo"],
                                   matched["branch"] if matched["branch"] is not None else "master",
-                                  "CITATION"])
+                                  "CITATION.cff"])
 
         r = requests.get(self.file_url)
         if r.ok:

@@ -32,7 +32,7 @@ class Citation:
 
         r = requests.get(self.file_url)
         if r.ok:
-            self.file = r.text
+            self.file_contents = r.text
         else:
             raise Warning("status not 200 OK")
 

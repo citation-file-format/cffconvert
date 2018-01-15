@@ -6,7 +6,7 @@ from citationcff.citation import Citation
 class CitationTest(unittest.TestCase):
 
     def setUp(self):
-        url = "https://github.com/NLeSC/mcfly"
+        url = "not used in unit testing"
         self.citation = Citation(url, instantiate_empty=True)
         fixture = os.path.join("fixtures", "mcfly-citation-1")
         with open(fixture) as f:

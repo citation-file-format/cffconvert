@@ -7,13 +7,20 @@ class Citation:
 
     def __init__(self, url, instantiate_empty=False):
         self.url = url
-        self.baseurl = "https://raw.githubusercontent.com"
+        self.baseurl = None
         self.file_url = None
         self.file_contents = None
         self.as_yaml = None
         if not instantiate_empty:
+            self._get_baseurl()
             self._retrieve_file()
             self._parse_yaml()
+
+    def _get_baseurl(self):
+        if self.url[0:18] == "https://github.com":
+            self.baseurl = "https://raw.githubusercontent.com"
+        else:
+            raise Exception("Only GitHub is supported at the moment.")
 
     def _retrieve_file(self):
 

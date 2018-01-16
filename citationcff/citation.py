@@ -77,7 +77,7 @@ class Citation:
         s += "doi".ljust(width, " ") + " = {"
         s += self.as_yaml["doi"] + "},\n"
         s += "url".ljust(width, " ") + " = {"
-        s += self.as_yaml["repository"] + "}\n"
+        s += self.as_yaml["repository-code"] + "}\n"
         s += "}\n"
 
         return s
@@ -119,7 +119,7 @@ class Citation:
         s += "PP  - San Francisco, USA\n"
         s +=  construct_date_string()
         s += "T1  - " + self.as_yaml["title"] + "\n"
-        s += "UR  - " + self.as_yaml["repository"] + "\n"
+        s += "UR  - " + self.as_yaml["repository-code"] + "\n"
         s += "ER  -\n"
         return s
 
@@ -184,6 +184,6 @@ class Citation:
         s += "%K " + construct_keywords_string() + "\n"
         s += "%X\n"
         s += "%Z\n"
-        s += "%U " + self.as_yaml["repository"] + "\n"
+        s += "%U " + self.as_yaml["repository-code"] + "\n"
 
         return s

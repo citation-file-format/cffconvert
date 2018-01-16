@@ -4,7 +4,7 @@ authors:
   -
     affiliation: "Netherlands eScience Center"
     family-names: Spaaks
-    given-names: Jurriaan
+    given-names: Jurriaan H.
   -
     affiliation: "Netherlands eScience Center"
     family-names: Klaver
@@ -18,6 +18,6 @@ keywords:
   - "citationcff"
 license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
-repository: "https://github.com/citationcff/citationcff"
+repository-code: "https://github.com/citationcff/citationcff"
 title: citationcff
 version: "1.0.0"

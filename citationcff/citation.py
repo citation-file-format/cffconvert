@@ -58,6 +58,8 @@ class Citation:
                     authors.append(author["name-particle"])
                 if "family-names" in author:
                     authors.append(author["family-names"])
+                if "name-suffix" in author:
+                    authors.append(author["name-suffix"])
                 arr.append(" " * 12 + " ".join(authors))
             return " and\n".join(arr) + "\n"
 
@@ -91,6 +93,8 @@ class Citation:
                     name += author["name-particle"] + " "
                 if "family-names" in author:
                     name += author["family-names"]
+                if "name-suffix" in author:
+                    name += author["name-suffix"]
                 if "given-names" in author:
                     name += ", " + author["given-names"]
                 name += "\n"
@@ -133,6 +137,8 @@ class Citation:
                     name += author["name-particle"] + " "
                 if "family-names" in author:
                     name += author["family-names"]
+                if "name-suffix" in author:
+                    name += author["name-suffix"]
                 if "given-names" in author:
                     name += ", " + author["given-names"]
                 names.append(name)

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/citationcff/citationcff.svg?branch=master)](https://travis-ci.org/citationcff/citationcff)
+
 # citationcff
 
 read [CFF formatted CITATION](https://github.com/citation-file-format) file from a GitHub

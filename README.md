@@ -27,8 +27,8 @@ pip install -r requirements.txt
 # (from the project root)
 
 # run unit tests
-python -m unittest discover -s livetest -p "*_test.py"
+pytest test/
 
 # run tests against live system (GitHub)
-python -m unittest discover -s livetest -p "*_test.py"
+pytest livetest/
 ```

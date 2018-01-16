@@ -4,3 +4,4 @@ idna==2.6
 PyYAML==3.12
 requests==2.18.4
 urllib3==1.22
+pytest==3.3.2

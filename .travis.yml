@@ -1,6 +1,4 @@
 --- 
-before_script: 
-  - "pip install -r requirements.txt"
 dist: trusty
 language: python
 notifications: 

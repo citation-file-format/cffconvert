@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/citationcff/citationcff.svg?branch=master)](https://travis-ci.org/citationcff/citationcff)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1162058.svg)](https://doi.org/10.5281/zenodo.1162058)
+
 
 # citationcff
 

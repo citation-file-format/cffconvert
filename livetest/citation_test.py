@@ -1,6 +1,6 @@
 import unittest
 import os
-from citationcff.citation import Citation
+from cff_converter_python import Citation
 
 
 class CitationTest(unittest.TestCase):

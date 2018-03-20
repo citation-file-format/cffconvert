@@ -6,16 +6,16 @@ from setuptools import setup, find_packages
 __version = '1.0.0'
 
 setup(
-    name='citationcff',
+    name='cff-converter-python',
     version=__version,
     description='Read CFF formatted CITATION file from a GitHub url and convert it to BibTex, EndNote, and RIS',
     author='Jurriaan Spaaks',
     author_email='j.spaaks@esciencecenter.nl',
     license='Apache 2.0',
-    url='https://github.com/citationcff/citationcff',
-    download_url='https://github.com/citationcff/citationcff/archive/%s.tar.gz' % __version,
+    url='https://github.com/citation-file-format/cff-converter-python',
+    download_url='https://github.com/citation-file-format/cff-converter-python/archive/%s.tar.gz' % __version,
     include_package_data=True,
-    keywords=['citation', 'cff', 'citationcff', 'bibliography'],
+    keywords=['citation', 'cff', 'CITATION.cff', 'bibliography'],
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.4',

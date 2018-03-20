@@ -41,7 +41,7 @@ class Citation:
         if r.ok:
             self.file_contents = r.text
         else:
-            raise Warning("status not 200 OK")
+            raise Warning("status not '200 OK'")
 
     def _parse_yaml(self):
         self.as_yaml = yaml.safe_load(self.file_contents)

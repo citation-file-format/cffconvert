@@ -1,11 +1,11 @@
 [![Build Status](https://travis-ci.org/citationcff/citationcff.svg?branch=master)](https://travis-ci.org/citationcff/citationcff)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1162058.svg)](https://doi.org/10.5281/zenodo.1162058)
-[![Research Software Directory](https://img.shields.io/badge/rsd-cff-converter-python-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
+[![Research Software Directory](https://img.shields.io/badge/rsd-cff--converter--python-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
 
 
 # cff-converter-python
 
-read [CFF formatted CITATION](https://github.com/citation-file-format) file from a GitHub
+Read [CFF formatted CITATION](https://github.com/citation-file-format) file from a GitHub
 url and convert it to BibTex, EndNote, and RIS. Does not support the full
 [CFF spec](https://citation-file-format.github.io/assets/pdf/cff-specifications-1.0.3.pdf) yet.
 

@@ -196,6 +196,15 @@ class Citation:
 
     def as_codemeta(self):
 
+        def resolve_spdx_license(spdx_license_code):
+            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json"
+            r = requests.get(licenses_url)
+            if r.ok:
+                data = r.json()
+                return [license["seeAlso"][0] for license in data["licenses"] if license["licenseId"] == spdx_license_code][0]
+            else:
+                raise Warning("status not '200 OK'")
+
         def convert(author):
             author_str = ''
             author_str += '{\n'
@@ -217,7 +226,7 @@ class Citation:
         s += '    "datePublished": "{0}",\n'.format(self.as_yaml["date-released"])
         s += '    "author": [{0}],\n'.format(", ".join([convert(author) for author in self.as_yaml["authors"]]))
         s += '    "keywords": [{0}],\n'.format(", ".join(['"{0}"'.format(kw) for kw in self.as_yaml["keywords"]]))
-        s += '    "license": "http://www.apache.org/licenses/LICENSE-2.0",\n'
+        s += '    "license": "{0}",\n'.format(resolve_spdx_license(self.as_yaml["license"]))
         s += '    "version": "{0}",\n'.format(self.as_yaml["version"])
         s += '    "identifier": "https://doi.org/{0}",\n'.format(self.as_yaml["doi"])
         s += '    "name": "{0}"\n'.format(self.as_yaml["title"])

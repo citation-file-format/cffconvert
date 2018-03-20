@@ -11,6 +11,7 @@ authors:
     given-names: Tom
 cff-version: "1.0.3"
 date-released: 2018-01-16
+doi: 10.5281/zenodo.1162057
 keywords:
   - "citation"
   - "bibliography"

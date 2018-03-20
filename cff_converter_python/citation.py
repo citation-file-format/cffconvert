@@ -193,3 +193,35 @@ class Citation:
         s += "%U " + self.as_yaml["repository-code"] + "\n"
 
         return s
+
+    def as_codemeta(self):
+
+        def convert(author):
+            author_str = ''
+            author_str += '{\n'
+            author_str += '        "@type": "Person",\n'
+            author_str += '        "givenName": "{0}",\n'.format(author["given-names"])
+            author_str += '        "familyName": "{0}",\n'.format(author["family-names"])
+            author_str += '        "affiliation": {\n'
+            author_str += '            "@type": "Organization",\n'
+            author_str += '            "legalName": "{0}"\n'.format(author["affiliation"])
+            author_str += '        }\n'
+            author_str += '    }'
+            return author_str
+
+        s = ''
+        s += '{\n'
+        s += '    "@context": "http://schema.org",\n'
+        s += '    "@type": "SoftwareSourceCode",\n'
+        s += '    "codeRepository": "{0}",\n'.format(self.as_yaml["repository-code"])
+        s += '    "datePublished": "{0}",\n'.format(self.as_yaml["date-released"])
+        s += '    "author": [{0}],\n'.format(", ".join([convert(author) for author in self.as_yaml["authors"]]))
+        s += '    "keywords": [{0}],\n'.format(", ".join(['"{0}"'.format(kw) for kw in self.as_yaml["keywords"]]))
+        s += '    "license": "http://www.apache.org/licenses/LICENSE-2.0",\n'
+        s += '    "version": "{0}",\n'.format(self.as_yaml["version"])
+        s += '    "identifier": "https://doi.org/{0}",\n'.format(self.as_yaml["doi"])
+        s += '    "name": "{0}"\n'.format(self.as_yaml["title"])
+        s += '}\n'
+
+        return s
+

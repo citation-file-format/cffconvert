@@ -16,6 +16,13 @@ class CitationTest(unittest.TestCase):
         actual_bibtex = self.citation.as_bibtex()
         self.assertEqual(expected_bibtex, actual_bibtex)
 
+    def test_printing_as_codemeta(self):
+        fixture = os.path.join("fixtures", "cff-converter-python-codemeta-1")
+        with open(fixture) as f:
+            expected_codemeta = f.read()
+        actual_codemeta = self.citation.as_codemeta()
+        self.assertEqual(expected_codemeta, actual_codemeta)
+
     def test_printing_as_enw(self):
         fixture = os.path.join("fixtures", "cff-converter-python-endnote-1")
         with open(fixture) as f:

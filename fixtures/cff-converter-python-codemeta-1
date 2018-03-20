@@ -1,0 +1,28 @@
+{
+    "@context": "http://schema.org",
+    "@type": "SoftwareSourceCode",
+    "codeRepository": "https://github.com/citation-file-format/cff-converter-python",
+    "datePublished": "2018-01-16",
+    "author": [{
+        "@type": "Person",
+        "givenName": "Jurriaan H.",
+        "familyName": "Spaaks",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }, {
+        "@type": "Person",
+        "givenName": "Tom",
+        "familyName": "Klaver",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }],
+    "keywords": ["citation", "bibliography", "cff", "CITATION.cff"],
+    "license": "http://www.apache.org/licenses/LICENSE-2.0",
+    "version": "1.0.0",
+    "identifier": "https://doi.org/10.5281/zenodo.1162057",
+    "name": "cff-converter-python"
+}

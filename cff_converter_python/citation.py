@@ -98,7 +98,7 @@ class Citation:
                 if "family-names" in author:
                     name += author["family-names"]
                 if "name-suffix" in author:
-                    name += author["name-suffix"]
+                    name += " " + author["name-suffix"]
                 if "given-names" in author:
                     name += ", " + author["given-names"]
                 name += "\n"
@@ -119,16 +119,43 @@ class Citation:
 
         s = ""
         s += "TY  - COMP\n"
-        s += construct_author_string()
-        s += "DO  - " + self.as_yaml["doi"] + "\n"
-        s += construct_keywords_string()
+
+        if "authors" in self.as_yaml:
+            s += construct_author_string()
+        else:
+            s += "AU  -\n"
+
+        if "doi" in self.as_yaml:
+            s += "DO  - " + self.as_yaml["doi"] + "\n"
+        else:
+            s += "DO  -\n"
+
+        if "keywords" in self.as_yaml:
+            s += construct_keywords_string()
+        else:
+            s += "KW  -\n"
+
         s += "M3  - software\n"
         s += "PB  - GitHub Inc.\n"
         s += "PP  - San Francisco, USA\n"
-        s +=  construct_date_string()
-        s += "T1  - " + self.as_yaml["title"] + "\n"
-        s += "UR  - " + self.as_yaml["repository-code"] + "\n"
+
+        if "date-released" in self.as_yaml:
+            s += construct_date_string()
+        else:
+            s += "PY  -\n"
+
+        if "title" in self.as_yaml:
+            s += "T1  - " + self.as_yaml["title"] + "\n"
+        else:
+            s += "T1  -\n"
+
+        if "repository-code" in self.as_yaml:
+            s += "UR  - " + self.as_yaml["repository-code"] + "\n"
+        else:
+            s += "UR  -\n"
+
         s += "ER  -\n"
+
         return s
 
     def as_enw(self):

@@ -76,12 +76,11 @@ class CitationTest2(unittest.TestCase):
         self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
-        pass
-        # fixture = os.path.join("fixtures", "ris-2")
-        # with open(fixture) as f:
-        #     expected_ris = f.read()
-        # actual_ris = self.citation.as_ris()
-        # self.assertEqual(expected_ris, actual_ris)
+        fixture = os.path.join("fixtures", "ris-2")
+        with open(fixture) as f:
+            expected_ris = f.read()
+        actual_ris = self.citation.as_ris()
+        self.assertEqual(expected_ris, actual_ris)
 
 
 class CitationTest3(unittest.TestCase):
@@ -117,12 +116,11 @@ class CitationTest3(unittest.TestCase):
         self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
-        pass
-        # fixture = os.path.join("fixtures", "ris-3")
-        # with open(fixture) as f:
-        #     expected_ris = f.read()
-        # actual_ris = self.citation.as_ris()
-        # self.assertEqual(expected_ris, actual_ris)
+        fixture = os.path.join("fixtures", "ris-3")
+        with open(fixture) as f:
+            expected_ris = f.read()
+        actual_ris = self.citation.as_ris()
+        self.assertEqual(expected_ris, actual_ris)
 
 
 if __name__ == "__main__":

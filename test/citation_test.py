@@ -69,12 +69,11 @@ class CitationTest2(unittest.TestCase):
         self.assertEqual(expected_codemeta, actual_codemeta)
 
     def test_printing_as_enw(self):
-        pass
-        # fixture = os.path.join("fixtures", "endnote-2")
-        # with open(fixture) as f:
-        #     expected_endnote = f.read()
-        # actual_endnote = self.citation.as_enw()
-        # self.assertEqual(expected_endnote, actual_endnote)
+        fixture = os.path.join("fixtures", "endnote-2")
+        with open(fixture) as f:
+            expected_endnote = f.read()
+        actual_endnote = self.citation.as_enw()
+        self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
         pass
@@ -111,12 +110,11 @@ class CitationTest3(unittest.TestCase):
         self.assertEqual(expected_codemeta, actual_codemeta)
 
     def test_printing_as_enw(self):
-        pass
-        # fixture = os.path.join("fixtures", "endnote-3")
-        # with open(fixture) as f:
-        #     expected_endnote = f.read()
-        # actual_endnote = self.citation.as_enw()
-        # self.assertEqual(expected_endnote, actual_endnote)
+        fixture = os.path.join("fixtures", "endnote-3")
+        with open(fixture) as f:
+            expected_endnote = f.read()
+        actual_endnote = self.citation.as_enw()
+        self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
         pass

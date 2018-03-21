@@ -142,24 +142,34 @@ class Citation:
                 if "family-names" in author:
                     name += author["family-names"]
                 if "name-suffix" in author:
-                    name += author["name-suffix"]
+                    name += " " + author["name-suffix"]
                 if "given-names" in author:
                     name += ", " + author["given-names"]
                 names.append(name)
             return " & ".join(names)
 
         def construct_keywords_string():
-            if "keywords" in self.as_yaml:
-                return ", ".join(["\"" + keyword + "\"" for keyword in self.as_yaml["keywords"]])
-            else:
-                return ""
+            return ", ".join(["\"" + keyword + "\"" for keyword in self.as_yaml["keywords"]])
 
         s = ""
         s += "%0\n"
         s += "%0 Generic\n"
-        s += "%A " + construct_author_string() + "\n"
-        s += "%D " + str(self.as_yaml["date-released"].year) + "\n"
-        s += "%T " + self.as_yaml["title"] + "\n"
+
+        if "authors" in self.as_yaml:
+            s += "%A " + construct_author_string() + "\n"
+        else:
+            s += "%A\n"
+
+        if "date-released" in self.as_yaml:
+            s += "%D " + str(self.as_yaml["date-released"].year) + "\n"
+        else:
+            s += "%D\n"
+
+        if "title" in self.as_yaml:
+            s += "%T " + self.as_yaml["title"] + "\n"
+        else:
+            s += "%T\n"
+
         s += "%E\n"
         s += "%B\n"
         s += "%C\n"
@@ -172,7 +182,11 @@ class Citation:
         s += "%Y\n"
         s += "%S\n"
         s += "%7\n"
-        s += "%8 " + str(self.as_yaml["date-released"].month) + "\n"
+        if "date-released" in self.as_yaml:
+            s += "%8 " + str(self.as_yaml["date-released"].month) + "\n"
+        else:
+            s += "%8\n"
+
         s += "%9\n"
         s += "%?\n"
         s += "%!\n"
@@ -191,10 +205,17 @@ class Citation:
         s += "%#\n"
         s += "%$\n"
         s += "%F YourReferenceHere\n"
-        s += "%K " + construct_keywords_string() + "\n"
+        if "keywords" in self.as_yaml:
+            s += "%K " + construct_keywords_string() + "\n"
+        else:
+            s += "%K\n"
+
         s += "%X\n"
         s += "%Z\n"
-        s += "%U " + self.as_yaml["repository-code"] + "\n"
+        if "repository-code" in self.as_yaml:
+            s += "%U " + self.as_yaml["repository-code"] + "\n"
+        else:
+            s += "%U\n"
 
         return s
 

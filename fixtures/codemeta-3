@@ -1,0 +1,42 @@
+{
+    "@context": "http://schema.org",
+    "@type": "SoftwareSourceCode",
+    "codeRepository": "https://github.com/NLeSC/mcfly",
+    "author": [{
+        "@type": "Person",
+        "givenName": "Dafne",
+        "familyName": "van Kuppevelt",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }, {
+        "@type": "Person",
+        "givenName": "Christiaan",
+        "familyName": "Meijer",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }, {
+        "@type": "Person",
+        "givenName": "Vincent",
+        "familyName": "van Hees",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }, {
+        "@type": "Person",
+        "givenName": "Mateusz",
+        "familyName": "Kuzak",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }],
+    "keywords": ["machine learning", "deep learning", "time series", "automatic classification"],
+    "license": "http://www.apache.org/licenses/LICENSE-2.0",
+    "version": "1.0.1",
+    "name": "mcfly"
+}

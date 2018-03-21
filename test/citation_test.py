@@ -55,12 +55,11 @@ class CitationTest2(unittest.TestCase):
         self.citation._parse_yaml()
 
     def test_printing_as_bibtex(self):
-        pass
-        # fixture = os.path.join("fixtures", "bibtex-2")
-        # with open(fixture) as f:
-        #     expected_bibtex = f.read()
-        # actual_bibtex = self.citation.as_bibtex()
-        # self.assertEqual(expected_bibtex, actual_bibtex)
+        fixture = os.path.join("fixtures", "bibtex-2")
+        with open(fixture) as f:
+            expected_bibtex = f.read()
+        actual_bibtex = self.citation.as_bibtex()
+        self.assertEqual(expected_bibtex, actual_bibtex)
 
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "codemeta-2")
@@ -98,12 +97,11 @@ class CitationTest3(unittest.TestCase):
         self.citation._parse_yaml()
 
     def test_printing_as_bibtex(self):
-        pass
-        # fixture = os.path.join("fixtures", "bibtex-2")
-        # with open(fixture) as f:
-        #     expected_bibtex = f.read()
-        # actual_bibtex = self.citation.as_bibtex()
-        # self.assertEqual(expected_bibtex, actual_bibtex)
+        fixture = os.path.join("fixtures", "bibtex-3")
+        with open(fixture) as f:
+            expected_bibtex = f.read()
+        actual_bibtex = self.citation.as_bibtex()
+        self.assertEqual(expected_bibtex, actual_bibtex)
 
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "codemeta-3")
@@ -114,7 +112,7 @@ class CitationTest3(unittest.TestCase):
 
     def test_printing_as_enw(self):
         pass
-        # fixture = os.path.join("fixtures", "endnote-2")
+        # fixture = os.path.join("fixtures", "endnote-3")
         # with open(fixture) as f:
         #     expected_endnote = f.read()
         # actual_endnote = self.citation.as_enw()
@@ -122,7 +120,7 @@ class CitationTest3(unittest.TestCase):
 
     def test_printing_as_ris(self):
         pass
-        # fixture = os.path.join("fixtures", "ris-2")
+        # fixture = os.path.join("fixtures", "ris-3")
         # with open(fixture) as f:
         #     expected_ris = f.read()
         # actual_ris = self.citation.as_ris()

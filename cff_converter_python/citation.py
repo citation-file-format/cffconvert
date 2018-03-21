@@ -61,26 +61,30 @@ class Citation:
                 if "name-suffix" in author:
                     authors.append(author["name-suffix"])
                 arr.append(" " * 12 + " ".join(authors))
-            return " and\n".join(arr) + "\n"
+            return " and\n".join(arr)
 
-        width = 8
         s = ""
         s += "@misc{"
-        s += "YourReferenceHere,\n"
-        s += "author".ljust(width, " ") + " = {\n"
-        s += get_author_string()
-        s += " " * 11 + "},\n"
-        s += "title".ljust(width, " ") + " = {"
-        s += self.as_yaml["title"] + "},\n"
-        s += "month".ljust(width, " ") + " = {"
-        s += str(self.as_yaml["date-released"].month) + "},\n"
-        s += "year".ljust(width, " ") + " = {"
-        s += str(self.as_yaml["date-released"].year) + "},\n"
-        s += "doi".ljust(width, " ") + " = {"
-        s += self.as_yaml["doi"] + "},\n"
-        s += "url".ljust(width, " ") + " = {"
-        s += self.as_yaml["repository-code"] + "}\n"
-        s += "}\n"
+        s += "YourReferenceHere"
+        if "authors" in self.as_yaml:
+            s += ",\nauthor = {\n"
+            s += get_author_string()
+            s += "\n         }"
+        if "title" in self.as_yaml:
+            s += ",\ntitle  = {"
+            s += self.as_yaml["title"] + "}"
+        if "date-released" in self.as_yaml:
+            s += ",\nmonth  = {"
+            s += str(self.as_yaml["date-released"].month) + "}"
+            s += ",\nyear   = {"
+            s += str(self.as_yaml["date-released"].year) + "}"
+        if "doi" in self.as_yaml:
+            s += ",\ndoi    = {"
+            s += self.as_yaml["doi"] + "}"
+        if "repository-code" in self.as_yaml:
+            s += ",\nurl    = {"
+            s += self.as_yaml["repository-code"] + "}"
+        s += "\n}\n"
 
         return s
 

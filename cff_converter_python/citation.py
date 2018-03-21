@@ -249,7 +249,8 @@ class Citation:
     def as_codemeta(self):
 
         def resolve_spdx_license(spdx_license_code):
-            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json"
+            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data" + \
+                           "/b541ee8a345aa93b70a08765c7bf5e423bb4d558/json/licenses.json"
             r = requests.get(licenses_url)
             if r.ok:
                 data = r.json()

@@ -206,31 +206,48 @@ class Citation:
                 raise Warning("status not '200 OK'")
 
         def convert(author):
+
+            family_names = list()
+            for name_part in ["name-particle", "family-names", "name-suffix"]:
+                if name_part in author.keys() and author[name_part] is not "":
+                    family_names.append(author[name_part])
+
             author_str = ''
             author_str += '{\n'
-            author_str += '        "@type": "Person",\n'
-            author_str += '        "givenName": "{0}",\n'.format(author["given-names"])
-            author_str += '        "familyName": "{0}",\n'.format(author["family-names"])
-            author_str += '        "affiliation": {\n'
-            author_str += '            "@type": "Organization",\n'
-            author_str += '            "legalName": "{0}"\n'.format(author["affiliation"])
-            author_str += '        }\n'
-            author_str += '    }'
+            author_str += '        "@type": "Person"'
+            if "given-names" in author:
+                author_str += ',\n        "givenName": "{0}"'.format(author["given-names"])
+            author_str += ',\n        "familyName": "{0}"'.format(" ".join(family_names))
+            if "affiliation" in author:
+                author_str += ',\n'
+                author_str += '        "affiliation": {\n'
+                author_str += '            "@type": "Organization",\n'
+                author_str += '            "legalName": "{0}"\n'.format(author["affiliation"])
+                author_str += '        }'
+            author_str += '\n    }'
             return author_str
 
         s = ''
         s += '{\n'
         s += '    "@context": "http://schema.org",\n'
-        s += '    "@type": "SoftwareSourceCode",\n'
-        s += '    "codeRepository": "{0}",\n'.format(self.as_yaml["repository-code"])
-        s += '    "datePublished": "{0}",\n'.format(self.as_yaml["date-released"])
-        s += '    "author": [{0}],\n'.format(", ".join([convert(author) for author in self.as_yaml["authors"]]))
-        s += '    "keywords": [{0}],\n'.format(", ".join(['"{0}"'.format(kw) for kw in self.as_yaml["keywords"]]))
-        s += '    "license": "{0}",\n'.format(resolve_spdx_license(self.as_yaml["license"]))
-        s += '    "version": "{0}",\n'.format(self.as_yaml["version"])
-        s += '    "identifier": "https://doi.org/{0}",\n'.format(self.as_yaml["doi"])
-        s += '    "name": "{0}"\n'.format(self.as_yaml["title"])
-        s += '}\n'
+        s += '    "@type": "SoftwareSourceCode"'
+        if "repository-code" in self.as_yaml:
+            s += ',\n    "codeRepository": "{0}"'.format(self.as_yaml["repository-code"])
+        if "date-released" in self.as_yaml:
+            s += ',\n    "datePublished": "{0}"'.format(self.as_yaml["date-released"])
+        if "authors" in self.as_yaml:
+            s += ',\n    "author": [{0}]'.format(", ".join([convert(author) for author in self.as_yaml["authors"]]))
+        if "keywords" in self.as_yaml:
+            s += ',\n    "keywords": [{0}]'.format(", ".join(['"{0}"'.format(kw) for kw in self.as_yaml["keywords"]]))
+        if "license" in self.as_yaml:
+            s += ',\n    "license": "{0}"'.format(resolve_spdx_license(self.as_yaml["license"]))
+        if "version" in self.as_yaml:
+            s += ',\n    "version": "{0}"'.format(self.as_yaml["version"])
+        if "doi" in self.as_yaml:
+            s += ',\n    "identifier": "https://doi.org/{0}"'.format(self.as_yaml["doi"])
+        if "title" in self.as_yaml:
+            s += ',\n    "name": "{0}"'.format(self.as_yaml["title"])
+        s += '\n}\n'
 
         return s
 

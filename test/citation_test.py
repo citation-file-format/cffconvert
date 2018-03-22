@@ -123,5 +123,22 @@ class CitationTest3(unittest.TestCase):
         self.assertEqual(expected_ris, actual_ris)
 
 
+class CitationTest4(unittest.TestCase):
+
+    def setUp(self):
+        url = "not used in unit testing"
+        self.citation = Citation(url, instantiate_empty=True)
+        fixture = os.path.join("fixtures", "citationcff-4")
+        with open(fixture) as f:
+            self.citation.file_contents = f.read()
+        self.citation.file_url = "not used in unit testing"
+
+    def test_conversion_to_yaml(self):
+        with self.assertRaises(Exception) as context:
+            self.citation._parse_yaml()
+
+        self.assertTrue('Provided CITATION.cff does not seem valid YAML.' in str(context.exception))
+
+
 if __name__ == "__main__":
     unittest.main()

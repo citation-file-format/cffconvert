@@ -20,7 +20,7 @@ class Citation:
         if self.url[0:18] == "https://github.com":
             self.baseurl = "https://raw.githubusercontent.com"
         else:
-            raise Exception("Only GitHub is supported at the moment.")
+            raise Exception("Only 'https://github.com' URLs are supported at the moment.")
 
     def _retrieve_file(self):
 
@@ -29,22 +29,30 @@ class Citation:
                             "(?P<user>[^/\n]*)/" +
                             "(?P<repo>[^/\n]*)" +
                             "(/(?P<branch>[^/\n]*))?", re.IGNORECASE)
-        matched = re.match(regexp, self.url).groupdict()
+
+        matched = re.match(regexp, self.url)
+        if matched is None:
+            raise Exception("Error extracting (user|organization) and/or repository " +\
+                            "information from the provided URL ({0}).".format(self.url))
+        else:
+            url_parts = matched.groupdict()
 
         self.file_url = "/".join([self.baseurl,
-                                  matched["user"],
-                                  matched["repo"],
-                                  matched["branch"] if matched["branch"] is not None else "master",
+                                  url_parts["user"],
+                                  url_parts["repo"],
+                                  url_parts["branch"] if url_parts["branch"] is not None else "master",
                                   "CITATION.cff"])
 
         r = requests.get(self.file_url)
         if r.ok:
             self.file_contents = r.text
         else:
-            raise Warning("status not '200 OK'")
+            raise Exception("Error requesting file: {0}".format(self.file_url))
 
     def _parse_yaml(self):
         self.as_yaml = yaml.safe_load(self.file_contents)
+        if not isinstance(self.as_yaml, dict):
+            raise Exception("Provided CITATION.cff does not seem valid YAML.")
 
     def as_bibtex(self):
 

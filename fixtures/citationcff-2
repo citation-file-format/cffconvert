@@ -1,11 +1,11 @@
 # YAML 1.2
----
-authors:
-  -
-    family-names: Fernández de Córdoba
+--- 
+authors: 
+  - 
+    family-names: "Fernández de Córdoba"
     given-names: Gonzalo
     name-suffix: Jr.
 cff-version: "1.0.3"
 message: "Example data from the CITATION.cff spec 1.0.3"
-title: example title
+title: "example title"
 version: "1.0.0"

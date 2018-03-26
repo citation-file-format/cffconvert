@@ -1,7 +1,14 @@
 import requests
 import yaml
 import re
+import json
+from datetime import datetime, date
 
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, (datetime, date)):
+            return o.isoformat()
+        return o.__dict__
 
 class Citation:
 
@@ -53,7 +60,10 @@ class Citation:
         self.as_yaml = yaml.safe_load(self.file_contents)
         if not isinstance(self.as_yaml, dict):
             raise Exception("Provided CITATION.cff does not seem valid YAML.")
-
+    
+    def as_json(self):
+        return JSONEncoder().encode(self.as_yaml)
+    
     def as_bibtex(self):
 
         def get_author_string():

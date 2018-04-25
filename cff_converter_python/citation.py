@@ -33,9 +33,9 @@ class Citation:
 
         regexp = re.compile("^" +
                             "(?P<baseurl>https://github\.com)/" +
-                            "(?P<user>[^/\n]*)/" +
+                            "(?P<org>[^/\n]*)/" +
                             "(?P<repo>[^/\n]*)" +
-                            "(/(?P<branch>[^/\n]*))?", re.IGNORECASE)
+                            "(/tree/(?P<label>[^/\n]*))?", re.IGNORECASE)
 
         matched = re.match(regexp, self.url)
         if matched is None:
@@ -45,9 +45,9 @@ class Citation:
             url_parts = matched.groupdict()
 
         self.file_url = "/".join([self.baseurl,
-                                  url_parts["user"],
+                                  url_parts["org"],
                                   url_parts["repo"],
-                                  url_parts["branch"] if url_parts["branch"] is not None else "master",
+                                  url_parts["label"] if url_parts["label"] is not None else "master",
                                   "CITATION.cff"])
 
         r = requests.get(self.file_url)

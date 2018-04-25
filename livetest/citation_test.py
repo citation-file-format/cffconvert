@@ -3,7 +3,7 @@ import os
 from cff_converter_python import Citation
 
 
-class CitationTest1(unittest.TestCase):
+class CitationTestUrlHasOrgRepoOnly(unittest.TestCase):
 
     def setUp(self):
         # https://github.com/<org>/<repo>
@@ -39,7 +39,7 @@ class CitationTest1(unittest.TestCase):
         self.assertEqual(expected_ris, actual_ris)
 
 
-class CitationTest2(unittest.TestCase):
+class CitationTestUrlHasOrgRepoTreeSha(unittest.TestCase):
 
     def setUp(self):
         # https://github.com/<org>/<repo>/tree/<sha>
@@ -76,7 +76,7 @@ class CitationTest2(unittest.TestCase):
         self.assertEqual(expected_ris, actual_ris)
 
 
-class CitationTest3(unittest.TestCase):
+class CitationTestUrlHasOrgRepoOrgRepoTreeTag(unittest.TestCase):
 
     def setUp(self):
         # https://github.com/<org>/<repo>/tree/<tagname>
@@ -112,7 +112,7 @@ class CitationTest3(unittest.TestCase):
         self.assertEqual(expected_ris, actual_ris)
 
 
-class CitationTest4(unittest.TestCase):
+class CitationTestOrgRepoTreeBranch(unittest.TestCase):
 
     def setUp(self):
         # https://github.com/<org>/<repo>/tree/<branchname>

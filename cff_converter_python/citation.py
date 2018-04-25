@@ -4,30 +4,40 @@ import re
 import json
 from datetime import datetime, date
 
+
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, (datetime, date)):
             return o.isoformat()
         return o.__dict__
 
+
 class Citation:
 
-    def __init__(self, url, instantiate_empty=False):
+    def __init__(self, url, instantiate_empty=False, override=None):
         self.url = url
         self.baseurl = None
         self.file_url = None
         self.file_contents = None
         self.as_yaml = None
+        self.override = override
         if not instantiate_empty:
             self._get_baseurl()
             self._retrieve_file()
             self._parse_yaml()
+            self._override_suspect_keys()
 
     def _get_baseurl(self):
         if self.url[0:18] == "https://github.com":
             self.baseurl = "https://raw.githubusercontent.com"
         else:
             raise Exception("Only 'https://github.com' URLs are supported at the moment.")
+
+    def _override_suspect_keys(self):
+        if self.override is not None and type(self.override) is dict:
+            for key in self.override.keys():
+                self.as_yaml[key] = self.override[key]
+                self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
 
     def _retrieve_file(self):
 

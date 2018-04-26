@@ -14,18 +14,20 @@ class JSONEncoder(json.JSONEncoder):
 
 class Citation:
 
-    def __init__(self, url, instantiate_empty=False, override=None):
+    def __init__(self, url, instantiate_empty=False, override=None, remove=None):
         self.url = url
         self.baseurl = None
         self.file_url = None
         self.file_contents = None
         self.as_yaml = None
         self.override = override
+        self.remove = remove
         if not instantiate_empty:
             self._get_baseurl()
             self._retrieve_file()
             self._parse_yaml()
             self._override_suspect_keys()
+            self._remove_suspect_keys()
 
     def _get_baseurl(self):
         if self.url[0:18] == "https://github.com":
@@ -37,6 +39,12 @@ class Citation:
         if self.override is not None and type(self.override) is dict:
             for key in self.override.keys():
                 self.as_yaml[key] = self.override[key]
+                self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
+
+    def _remove_suspect_keys(self):
+        if self.remove is not None and type(self.remove) is list:
+            for key in self.remove:
+                del(self.as_yaml[key])
                 self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
 
     def _retrieve_file(self):

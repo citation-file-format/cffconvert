@@ -1,0 +1,27 @@
+{
+    "@context": "http://schema.org",
+    "@type": "SoftwareSourceCode",
+    "codeRepository": "https://github.com/NLeSC/spot",
+    "author": [{
+        "@type": "Person",
+        "givenName": "Jisk",
+        "familyName": "Attema",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }, {
+        "@type": "Person",
+        "givenName": "Faruk",
+        "familyName": "Diblen",
+        "affiliation": {
+            "@type": "Organization",
+            "legalName": "Netherlands eScience Center"
+        }
+    }],
+    "keywords": ["visualization", "big data", "visual data analytics", "multi-dimensional data"],
+    "license": "http://www.apache.org/licenses/LICENSE-2.0",
+    "version": "0.1.0",
+    "identifier": "https://doi.org/10.5281/zenodo.1003346",
+    "name": "spot"
+}

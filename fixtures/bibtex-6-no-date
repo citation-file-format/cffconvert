@@ -1,0 +1,9 @@
+@misc{YourReferenceHere,
+author = {
+            Jisk Attema and
+            Faruk Diblen
+         },
+title  = {spot},
+doi    = {10.5281/zenodo.1003346},
+url    = {https://github.com/NLeSC/spot}
+}

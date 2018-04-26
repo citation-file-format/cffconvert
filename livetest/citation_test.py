@@ -1,6 +1,6 @@
 import unittest
 import os
-import yaml
+import datetime
 from cff_converter_python import Citation
 
 
@@ -194,7 +194,10 @@ class CitationTestOverride(unittest.TestCase):
     def setUp(self):
         # with override
         url = "https://github.com/citation-file-format/cff-converter-python"
-        override = yaml.safe_load('doi: "thebestdoi.23678237"\ndate-released: 2018-03-05')
+        override = {
+            "doi": "thebestdoi.23678237",
+            "date-released": datetime.datetime.strptime("2018-03-05", "%Y-%m-%d").date()
+        }
         self.citation = Citation(url, override=override)
 
     def test_printing_as_bibtex(self):

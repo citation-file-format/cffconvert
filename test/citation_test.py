@@ -1,5 +1,6 @@
 import unittest
 import os
+import datetime
 from cff_converter_python import Citation
 
 
@@ -138,6 +139,52 @@ class CitationTest4(unittest.TestCase):
             self.citation._parse_yaml()
 
         self.assertTrue('Provided CITATION.cff does not seem valid YAML.' in str(context.exception))
+
+
+class CitationTestOverride(unittest.TestCase):
+
+    def setUp(self):
+        # with override
+        url = "not used in unit testing"
+        override = {
+            "doi": "thebestdoi.23678237",
+            "date-released": datetime.datetime.strptime("2018-03-05", "%Y-%m-%d").date()
+        }
+        self.citation = Citation(url, instantiate_empty=True, override=override)
+        fixture = os.path.join("fixtures", "citationcff-1")
+        with open(fixture) as f:
+            self.citation.file_contents = f.read()
+        self.citation.file_url = "not used in unit testing"
+        self.citation._parse_yaml()
+        self.citation._override_suspect_keys()
+
+    def test_printing_as_bibtex(self):
+        fixture = os.path.join("fixtures", "bibtex-5")
+        with open(fixture) as f:
+            expected_bibtex = f.read()
+        actual_bibtex = self.citation.as_bibtex()
+        self.assertEqual(expected_bibtex, actual_bibtex)
+
+    def test_printing_as_codemeta(self):
+        fixture = os.path.join("fixtures", "codemeta-5")
+        with open(fixture) as f:
+            expected_codemeta = f.read()
+        actual_codemeta = self.citation.as_codemeta()
+        self.assertEqual(expected_codemeta, actual_codemeta)
+
+    def test_printing_as_enw(self):
+        fixture = os.path.join("fixtures", "endnote-5")
+        with open(fixture) as f:
+            expected_endnote = f.read()
+        actual_endnote = self.citation.as_enw()
+        self.assertEqual(expected_endnote, actual_endnote)
+
+    def test_printing_as_ris(self):
+        fixture = os.path.join("fixtures", "ris-5")
+        with open(fixture) as f:
+            expected_ris = f.read()
+        actual_ris = self.citation.as_ris()
+        self.assertEqual(expected_ris, actual_ris)
 
 
 if __name__ == "__main__":

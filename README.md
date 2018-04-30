@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master)](https://travis-ci.org/citation-file-format/cff-converter-python)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg)](https://doi.org/10.5281/zenodo.1162057)
 [![Research Software Directory](https://img.shields.io/badge/rsd-cff--converter--python-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
-
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1811/badge)](https://bestpractices.coreinfrastructure.org/projects/1811)
 
 # cff-converter-python
 

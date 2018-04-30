@@ -44,8 +44,9 @@ class Citation:
     def _remove_suspect_keys(self):
         if self.remove is not None and type(self.remove) is list:
             for key in self.remove:
-                del(self.as_yaml[key])
-                self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
+                if key in self.as_yaml:
+                    del(self.as_yaml[key])
+                    self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
 
     def _retrieve_file(self):
 

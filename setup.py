@@ -7,6 +7,11 @@ __version = '1.0.0'
 
 setup(
     name='cffconvert',
+    py_modules=["cffconvert"],
+    entry_points="""
+        [console_scripts]
+        cffconvert=cffconvert:cli
+    """,
     version=__version,
     description='Read CFF formatted CITATION file from a GitHub url and convert it to BibTeX, EndNote, RIS, Codemeta,' +
                 ' Zenodo.json, and plain JSON',
@@ -32,7 +37,7 @@ setup(
         'Topic :: Scientific/Engineering',
     ],
     packages=find_packages(),
-    install_requires=['PyYAML>=3.12', 'requests>=2.18.4', 'urllib3>=1.22'],
+    install_requires=['PyYAML>=3.12', 'requests>=2.18.4', 'urllib3>=1.22', 'Click'],
     setup_requires=['pytest', 'pytest-runner'],
     tests_require=['pytest', 'pytest-runner'],
     long_description="""

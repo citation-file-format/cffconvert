@@ -372,9 +372,7 @@ class Citation:
             d["description"] = self.as_yaml["abstract"]
 
         if "authors" in self.as_yaml:
-            d["metadata"] = {
-                "creators": construct_authors_arr()
-            }
+            d["creators"] = construct_authors_arr()
 
         if "keywords" in self.as_yaml:
             d["keywords"] = self.as_yaml["keywords"]

@@ -1,7 +1,7 @@
 import unittest
 import os
 import datetime
-from cff_converter_python import Citation
+from cffconvert import Citation
 
 
 class CitationTest1(unittest.TestCase):

@@ -6,10 +6,11 @@ from setuptools import setup, find_packages
 __version = '1.0.0'
 
 setup(
-    name='cff-converter-python',
+    name='cffconvert',
     version=__version,
-    description='Read CFF formatted CITATION file from a GitHub url and convert it to BibTex, EndNote, and RIS',
-    author='Jurriaan Spaaks',
+    description='Read CFF formatted CITATION file from a GitHub url and convert it to BibTeX, EndNote, RIS, Codemeta,' +
+                ' Zenodo.json, and plain JSON',
+    author='Jurriaan H. Spaaks',
     author_email='j.spaaks@esciencecenter.nl',
     license='Apache 2.0',
     url='https://github.com/citation-file-format/cff-converter-python',
@@ -35,8 +36,13 @@ setup(
     setup_requires=['pytest', 'pytest-runner'],
     tests_require=['pytest', 'pytest-runner'],
     long_description="""
-Read CFF formatted CITATION file from a GitHub url and convert it to BibTex, EndNote, and RIS
----------------------------------------------
+Read CFF formatted CITATION file from a GitHub url and convert it to various formats. Currently supported export formats are
+- BibTeX
+- EndNote
+- RIS
+- codemeta
+- plain JSON
+- Zenodo JSON
 
-Does not support the full CFF spec yet."""
+``cffconvert`` does not support the full CFF spec yet."""
 )

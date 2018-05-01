@@ -1,6 +1,6 @@
 import unittest
 import os
-from cff_converter_python import Citation
+from cffconvert import Citation
 
 
 class CitationTestUrlHasOrgRepoOnly(unittest.TestCase):

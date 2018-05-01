@@ -1,11 +1,16 @@
 {
-    "@context": "http://schema.org",
+    "@context": [
+        "https://doi.org/10.5063/schema/codemeta-2.0",
+        "http://schema.org"
+    ],
     "@type": "SoftwareSourceCode",
-    "author": [{
-        "@type": "Person",
-        "givenName": "Gonzalo",
-        "familyName": "Fernández de Córdoba Jr."
-    }],
-    "version": "1.0.0",
-    "name": "example title"
+    "author": [
+        {
+            "@type": "Person",
+            "familyName": "Fernández de Córdoba Jr.",
+            "givenName": "Gonzalo"
+        }
+    ],
+    "name": "example title",
+    "version": "1.0.0"
 }

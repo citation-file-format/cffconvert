@@ -1,4 +1,23 @@
 {
+    "creators": [
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "van Kuppevelt, Dafne"
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Meijer, Christiaan"
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "van Hees, Vincent"
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Kuzak, Mateusz",
+            "orcid": "https://orcid.org/0000-0003-0087-6021"
+        }
+    ],
     "keywords": [
         "machine learning",
         "deep learning",
@@ -7,27 +26,6 @@
     ],
     "license": {
         "id": "Apache-2.0"
-    },
-    "metadata": {
-        "creators": [
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "van Kuppevelt, Dafne"
-            },
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Meijer, Christiaan"
-            },
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "van Hees, Vincent"
-            },
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Kuzak, Mateusz",
-                "orcid": "https://orcid.org/0000-0003-0087-6021"
-            }
-        ]
     },
     "title": "mcfly"
 }

@@ -63,7 +63,7 @@ class Citation:
 
         matched = re.match(regexp, self.url)
         if matched is None:
-            raise Exception("Error extracting (user|organization) and/or repository " +\
+            raise Exception("Error extracting (user|organization) and/or repository " +
                             "information from the provided URL ({0}).".format(self.url))
         else:
             url_parts = matched.groupdict()
@@ -130,55 +130,66 @@ class Citation:
             r = requests.get(licenses_url)
             if r.ok:
                 data = r.json()
-                return [license["seeAlso"][0] for license in data["licenses"] if license["licenseId"] == spdx_license_code][0]
+                return [spdx_license for spdx_license in data["licenses"]
+                        if spdx_license["licenseId"] == spdx_license_code][0]["seeAlso"][0]
             else:
                 raise Warning("status not '200 OK'")
 
-        def convert(author):
+        def construct_authors_arr():
 
-            family_names = list()
-            for name_part in ["name-particle", "family-names", "name-suffix"]:
-                if name_part in author.keys() and author[name_part] is not "":
-                    family_names.append(author[name_part])
+            authors = list()
+            for read_author in self.as_yaml["authors"]:
+                write_author = dict()
+                write_author["@type"] = "Person"
 
-            author_str = ''
-            author_str += '{\n'
-            author_str += '        "@type": "Person"'
-            if "given-names" in author:
-                author_str += ',\n        "givenName": "{0}"'.format(author["given-names"])
-            author_str += ',\n        "familyName": "{0}"'.format(" ".join(family_names))
-            if "affiliation" in author:
-                author_str += ',\n'
-                author_str += '        "affiliation": {\n'
-                author_str += '            "@type": "Organization",\n'
-                author_str += '            "legalName": "{0}"\n'.format(author["affiliation"])
-                author_str += '        }'
-            author_str += '\n    }'
-            return author_str
+                if "given-names" in read_author:
+                    write_author["givenName"] = read_author["given-names"]
 
-        s = ''
-        s += '{\n'
-        s += '    "@context": "http://schema.org",\n'
-        s += '    "@type": "SoftwareSourceCode"'
+                family_name = ""
+                if "name-particle" in read_author:
+                    family_name += read_author["name-particle"] + " "
+                if "family-names" in read_author:
+                    family_name += read_author["family-names"]
+                if "name-suffix" in read_author:
+                    family_name += " " + read_author["name-suffix"]
+                write_author["familyName"] = family_name
+
+                if "orcid" in read_author:
+                    write_author["@id"] = read_author["orcid"]
+
+                if "affiliation" in read_author:
+                    write_author["affiliation"] = {
+                        "@type": "Organization",
+                        "legalName": read_author["affiliation"]
+                    }
+
+                authors.append(write_author)
+            return authors
+
+        d = dict()
+        d["@context"] = [
+            "https://doi.org/10.5063/schema/codemeta-2.0",
+            "http://schema.org"
+        ]
+        d["@type"] = "SoftwareSourceCode"
         if "repository-code" in self.as_yaml:
-            s += ',\n    "codeRepository": "{0}"'.format(self.as_yaml["repository-code"])
+            d["codeRepository"] = self.as_yaml["repository-code"]
         if "date-released" in self.as_yaml:
-            s += ',\n    "datePublished": "{0}"'.format(self.as_yaml["date-released"])
+            d["datePublished"] = self.as_yaml["date-released"].isoformat()
         if "authors" in self.as_yaml:
-            s += ',\n    "author": [{0}]'.format(", ".join([convert(author) for author in self.as_yaml["authors"]]))
+            d["author"] = construct_authors_arr()
         if "keywords" in self.as_yaml:
-            s += ',\n    "keywords": [{0}]'.format(", ".join(['"{0}"'.format(kw) for kw in self.as_yaml["keywords"]]))
+            d["keywords"] = self.as_yaml["keywords"]
         if "license" in self.as_yaml:
-            s += ',\n    "license": "{0}"'.format(resolve_spdx_license(self.as_yaml["license"]))
+            d["license"] = resolve_spdx_license(self.as_yaml["license"])
         if "version" in self.as_yaml:
-            s += ',\n    "version": "{0}"'.format(self.as_yaml["version"])
+            d["version"] = self.as_yaml["version"]
         if "doi" in self.as_yaml:
-            s += ',\n    "identifier": "https://doi.org/{0}"'.format(self.as_yaml["doi"])
+            d["identifier"] = "https://doi.org/{0}".format(self.as_yaml["doi"])
         if "title" in self.as_yaml:
-            s += ',\n    "name": "{0}"'.format(self.as_yaml["title"])
-        s += '\n}\n'
+            d["name"] = self.as_yaml["title"]
 
-        return s
+        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
 
     def as_enw(self):
 

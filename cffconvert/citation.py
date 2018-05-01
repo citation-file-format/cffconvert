@@ -15,13 +15,13 @@ class JSONEncoder(json.JSONEncoder):
 class Citation:
 
     def __init__(self, url, instantiate_empty=False, override=None, remove=None):
-        self.url = url
-        self.baseurl = None
-        self.file_url = None
-        self.file_contents = None
         self.as_yaml = None
+        self.baseurl = None
+        self.file_contents = None
+        self.file_url = None
         self.override = override
         self.remove = remove
+        self.url = url
         if not instantiate_empty:
             self._get_baseurl()
             self._retrieve_file()
@@ -40,6 +40,11 @@ class Citation:
             for key in self.override.keys():
                 self.as_yaml[key] = self.override[key]
                 self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
+
+    def _parse_yaml(self):
+        self.as_yaml = yaml.safe_load(self.file_contents)
+        if not isinstance(self.as_yaml, dict):
+            raise Exception("Provided CITATION.cff does not seem valid YAML.")
 
     def _remove_suspect_keys(self):
         if self.remove is not None and type(self.remove) is list:
@@ -75,14 +80,6 @@ class Citation:
         else:
             raise Exception("Error requesting file: {0}".format(self.file_url))
 
-    def _parse_yaml(self):
-        self.as_yaml = yaml.safe_load(self.file_contents)
-        if not isinstance(self.as_yaml, dict):
-            raise Exception("Provided CITATION.cff does not seem valid YAML.")
-    
-    def as_json(self):
-        return JSONEncoder().encode(self.as_yaml)
-    
     def as_bibtex(self):
 
         def get_author_string():
@@ -125,73 +122,62 @@ class Citation:
 
         return s
 
-    def as_ris(self):
-        def construct_author_string():
-            names = list()
-            for author in self.as_yaml["authors"]:
-                name = "AU  - "
-                if "name-particle" in author:
-                    name += author["name-particle"] + " "
-                if "family-names" in author:
-                    name += author["family-names"]
-                if "name-suffix" in author:
-                    name += " " + author["name-suffix"]
-                if "given-names" in author:
-                    name += ", " + author["given-names"]
-                name += "\n"
-                names.append(name)
-            return "".join(names)
 
-        def construct_keywords_string():
-            names = list()
-            for keyword in self.as_yaml["keywords"]:
-                names.append("KW  - " + keyword + "\n")
-            return "".join(names)
+    def as_codemeta(self):
 
-        def construct_date_string():
-            return "PY  - " + \
-                   str(self.as_yaml["date-released"].year) + "/" +\
-                   str(self.as_yaml["date-released"].month).rjust(2,"0") + "/" +\
-                   str(self.as_yaml["date-released"].day).rjust(2, "0") + "\n"
+        def resolve_spdx_license(spdx_license_code):
+            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data" + \
+                           "/b541ee8a345aa93b70a08765c7bf5e423bb4d558/json/licenses.json"
+            r = requests.get(licenses_url)
+            if r.ok:
+                data = r.json()
+                return [license["seeAlso"][0] for license in data["licenses"] if license["licenseId"] == spdx_license_code][0]
+            else:
+                raise Warning("status not '200 OK'")
 
-        s = ""
-        s += "TY  - COMP\n"
+        def convert(author):
 
-        if "authors" in self.as_yaml:
-            s += construct_author_string()
-        else:
-            s += "AU  -\n"
+            family_names = list()
+            for name_part in ["name-particle", "family-names", "name-suffix"]:
+                if name_part in author.keys() and author[name_part] is not "":
+                    family_names.append(author[name_part])
 
-        if "doi" in self.as_yaml:
-            s += "DO  - " + self.as_yaml["doi"] + "\n"
-        else:
-            s += "DO  -\n"
+            author_str = ''
+            author_str += '{\n'
+            author_str += '        "@type": "Person"'
+            if "given-names" in author:
+                author_str += ',\n        "givenName": "{0}"'.format(author["given-names"])
+            author_str += ',\n        "familyName": "{0}"'.format(" ".join(family_names))
+            if "affiliation" in author:
+                author_str += ',\n'
+                author_str += '        "affiliation": {\n'
+                author_str += '            "@type": "Organization",\n'
+                author_str += '            "legalName": "{0}"\n'.format(author["affiliation"])
+                author_str += '        }'
+            author_str += '\n    }'
+            return author_str
 
-        if "keywords" in self.as_yaml:
-            s += construct_keywords_string()
-        else:
-            s += "KW  -\n"
-
-        s += "M3  - software\n"
-        s += "PB  - GitHub Inc.\n"
-        s += "PP  - San Francisco, USA\n"
-
-        if "date-released" in self.as_yaml:
-            s += construct_date_string()
-        else:
-            s += "PY  -\n"
-
-        if "title" in self.as_yaml:
-            s += "T1  - " + self.as_yaml["title"] + "\n"
-        else:
-            s += "T1  -\n"
-
+        s = ''
+        s += '{\n'
+        s += '    "@context": "http://schema.org",\n'
+        s += '    "@type": "SoftwareSourceCode"'
         if "repository-code" in self.as_yaml:
-            s += "UR  - " + self.as_yaml["repository-code"] + "\n"
-        else:
-            s += "UR  -\n"
-
-        s += "ER  -\n"
+            s += ',\n    "codeRepository": "{0}"'.format(self.as_yaml["repository-code"])
+        if "date-released" in self.as_yaml:
+            s += ',\n    "datePublished": "{0}"'.format(self.as_yaml["date-released"])
+        if "authors" in self.as_yaml:
+            s += ',\n    "author": [{0}]'.format(", ".join([convert(author) for author in self.as_yaml["authors"]]))
+        if "keywords" in self.as_yaml:
+            s += ',\n    "keywords": [{0}]'.format(", ".join(['"{0}"'.format(kw) for kw in self.as_yaml["keywords"]]))
+        if "license" in self.as_yaml:
+            s += ',\n    "license": "{0}"'.format(resolve_spdx_license(self.as_yaml["license"]))
+        if "version" in self.as_yaml:
+            s += ',\n    "version": "{0}"'.format(self.as_yaml["version"])
+        if "doi" in self.as_yaml:
+            s += ',\n    "identifier": "https://doi.org/{0}"'.format(self.as_yaml["doi"])
+        if "title" in self.as_yaml:
+            s += ',\n    "name": "{0}"'.format(self.as_yaml["title"])
+        s += '\n}\n'
 
         return s
 
@@ -283,61 +269,75 @@ class Citation:
 
         return s
 
-    def as_codemeta(self):
+    def as_json(self):
+        return JSONEncoder().encode(self.as_yaml)
 
-        def resolve_spdx_license(spdx_license_code):
-            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data" + \
-                           "/b541ee8a345aa93b70a08765c7bf5e423bb4d558/json/licenses.json"
-            r = requests.get(licenses_url)
-            if r.ok:
-                data = r.json()
-                return [license["seeAlso"][0] for license in data["licenses"] if license["licenseId"] == spdx_license_code][0]
-            else:
-                raise Warning("status not '200 OK'")
+    def as_ris(self):
+        def construct_author_string():
+            names = list()
+            for author in self.as_yaml["authors"]:
+                name = "AU  - "
+                if "name-particle" in author:
+                    name += author["name-particle"] + " "
+                if "family-names" in author:
+                    name += author["family-names"]
+                if "name-suffix" in author:
+                    name += " " + author["name-suffix"]
+                if "given-names" in author:
+                    name += ", " + author["given-names"]
+                name += "\n"
+                names.append(name)
+            return "".join(names)
 
-        def convert(author):
+        def construct_keywords_string():
+            names = list()
+            for keyword in self.as_yaml["keywords"]:
+                names.append("KW  - " + keyword + "\n")
+            return "".join(names)
 
-            family_names = list()
-            for name_part in ["name-particle", "family-names", "name-suffix"]:
-                if name_part in author.keys() and author[name_part] is not "":
-                    family_names.append(author[name_part])
+        def construct_date_string():
+            return "PY  - " + \
+                   str(self.as_yaml["date-released"].year) + "/" +\
+                   str(self.as_yaml["date-released"].month).rjust(2,"0") + "/" +\
+                   str(self.as_yaml["date-released"].day).rjust(2, "0") + "\n"
 
-            author_str = ''
-            author_str += '{\n'
-            author_str += '        "@type": "Person"'
-            if "given-names" in author:
-                author_str += ',\n        "givenName": "{0}"'.format(author["given-names"])
-            author_str += ',\n        "familyName": "{0}"'.format(" ".join(family_names))
-            if "affiliation" in author:
-                author_str += ',\n'
-                author_str += '        "affiliation": {\n'
-                author_str += '            "@type": "Organization",\n'
-                author_str += '            "legalName": "{0}"\n'.format(author["affiliation"])
-                author_str += '        }'
-            author_str += '\n    }'
-            return author_str
+        s = ""
+        s += "TY  - COMP\n"
 
-        s = ''
-        s += '{\n'
-        s += '    "@context": "http://schema.org",\n'
-        s += '    "@type": "SoftwareSourceCode"'
-        if "repository-code" in self.as_yaml:
-            s += ',\n    "codeRepository": "{0}"'.format(self.as_yaml["repository-code"])
-        if "date-released" in self.as_yaml:
-            s += ',\n    "datePublished": "{0}"'.format(self.as_yaml["date-released"])
         if "authors" in self.as_yaml:
-            s += ',\n    "author": [{0}]'.format(", ".join([convert(author) for author in self.as_yaml["authors"]]))
-        if "keywords" in self.as_yaml:
-            s += ',\n    "keywords": [{0}]'.format(", ".join(['"{0}"'.format(kw) for kw in self.as_yaml["keywords"]]))
-        if "license" in self.as_yaml:
-            s += ',\n    "license": "{0}"'.format(resolve_spdx_license(self.as_yaml["license"]))
-        if "version" in self.as_yaml:
-            s += ',\n    "version": "{0}"'.format(self.as_yaml["version"])
+            s += construct_author_string()
+        else:
+            s += "AU  -\n"
+
         if "doi" in self.as_yaml:
-            s += ',\n    "identifier": "https://doi.org/{0}"'.format(self.as_yaml["doi"])
+            s += "DO  - " + self.as_yaml["doi"] + "\n"
+        else:
+            s += "DO  -\n"
+
+        if "keywords" in self.as_yaml:
+            s += construct_keywords_string()
+        else:
+            s += "KW  -\n"
+
+        s += "M3  - software\n"
+        s += "PB  - GitHub Inc.\n"
+        s += "PP  - San Francisco, USA\n"
+
+        if "date-released" in self.as_yaml:
+            s += construct_date_string()
+        else:
+            s += "PY  -\n"
+
         if "title" in self.as_yaml:
-            s += ',\n    "name": "{0}"'.format(self.as_yaml["title"])
-        s += '\n}\n'
+            s += "T1  - " + self.as_yaml["title"] + "\n"
+        else:
+            s += "T1  -\n"
+
+        if "repository-code" in self.as_yaml:
+            s += "UR  - " + self.as_yaml["repository-code"] + "\n"
+        else:
+            s += "UR  -\n"
+
+        s += "ER  -\n"
 
         return s
-

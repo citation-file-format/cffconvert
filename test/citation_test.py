@@ -43,6 +43,13 @@ class CitationTest1(unittest.TestCase):
         actual_ris = self.citation.as_ris()
         self.assertEqual(expected_ris, actual_ris)
 
+    def test_printing_as_zenodojson(self):
+        fixture = os.path.join("fixtures", "zenodojson-1")
+        with open(fixture) as f:
+            expected_zenodojson = f.read()
+        actual_zenodojson = self.citation.as_zenodojson()
+        self.assertEqual(expected_zenodojson, actual_zenodojson)
+
 
 class CitationTest2(unittest.TestCase):
 
@@ -83,6 +90,13 @@ class CitationTest2(unittest.TestCase):
         actual_ris = self.citation.as_ris()
         self.assertEqual(expected_ris, actual_ris)
 
+    def test_printing_as_zenodojson(self):
+        fixture = os.path.join("fixtures", "zenodojson-2")
+        with open(fixture) as f:
+            expected_zenodojson = f.read()
+        actual_zenodojson = self.citation.as_zenodojson()
+        self.assertEqual(expected_zenodojson, actual_zenodojson)
+
 
 class CitationTest3(unittest.TestCase):
 
@@ -122,6 +136,13 @@ class CitationTest3(unittest.TestCase):
             expected_ris = f.read()
         actual_ris = self.citation.as_ris()
         self.assertEqual(expected_ris, actual_ris)
+
+    def test_printing_as_zenodojson(self):
+        fixture = os.path.join("fixtures", "zenodojson-3")
+        with open(fixture) as f:
+            expected_zenodojson = f.read()
+        actual_zenodojson = self.citation.as_zenodojson()
+        self.assertEqual(expected_zenodojson, actual_zenodojson)
 
 
 class CitationTest4(unittest.TestCase):

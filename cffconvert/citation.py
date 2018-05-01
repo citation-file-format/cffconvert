@@ -122,7 +122,6 @@ class Citation:
 
         return s
 
-
     def as_codemeta(self):
 
         def resolve_spdx_license(spdx_license_code):
@@ -341,3 +340,49 @@ class Citation:
         s += "ER  -\n"
 
         return s
+
+    def as_zenodojson(self):
+
+        def construct_authors_arr():
+
+            authors = list()
+            for author in self.as_yaml["authors"]:
+                name = ""
+                if "name-particle" in author:
+                    name += author["name-particle"] + " "
+                if "family-names" in author:
+                    name += author["family-names"]
+                if "name-suffix" in author:
+                    name += " " + author["name-suffix"]
+                if "given-names" in author:
+                    name += ", " + author["given-names"]
+
+                author2 = {"name": name}
+                if "orcid" in author:
+                    author2["orcid"] = author["orcid"]
+
+                if "affiliation" in author:
+                    author2["affiliation"] = author["affiliation"]
+
+                authors.append(author2)
+            return authors
+
+        d = dict()
+        if "abstract" in self.as_yaml:
+            d["description"] = self.as_yaml["abstract"]
+
+        if "authors" in self.as_yaml:
+            d["metadata"] = {
+                "creators": construct_authors_arr()
+            }
+
+        if "keywords" in self.as_yaml:
+            d["keywords"] = self.as_yaml["keywords"]
+
+        if "license" in self.as_yaml:
+            d["license"] = {"id": self.as_yaml["license"]}
+
+        if "title" in self.as_yaml:
+            d["title"] = self.as_yaml["title"]
+
+        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)

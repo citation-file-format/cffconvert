@@ -3,13 +3,41 @@
 [![Research Software Directory](https://img.shields.io/badge/rsd-cff--converter--python-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1811/badge)](https://bestpractices.coreinfrastructure.org/projects/1811)
 
-# cff-converter-python
+# cffconvert
 
 Read [CFF formatted CITATION](https://github.com/citation-file-format) file from a GitHub
-url and convert it to BibTex, EndNote, and RIS. Does not support the full
+url and convert it to various formats, such as:
+
+1. BibTeX
+1. EndNote
+1. RIS
+1. codemeta
+1. plain JSON
+1. Zenodo JSON
+
+Supported types of GitHub URL:
+
+1. ``https://github.com/<org>/<repo>``
+1. ``https://github.com/<org>/<repo>/tree/<sha>``
+1. ``https://github.com/<org>/<repo>/tree/<tagname>``
+1. ``https://github.com/<org>/<repo>/tree/<branchname>``
+
+``cffconvert`` does not support the full
 [CFF spec](https://citation-file-format.github.io/assets/pdf/cff-specifications-1.0.3.pdf) yet.
 
-# Install
+
+
+# For users
+
+## Install
+
+```bash
+pip install git+https://github.com/citation-file-format/cff-converter-python.git
+```
+
+# For developers
+
+## Install
 
 ```bash
 # get a copy of the cff-converter-python software
@@ -24,7 +52,8 @@ source ./.venv35/bin/activate
 pip install -r requirements.txt
 ```
 
-# Running tests
+
+## Running tests
 
 ```bash
 # (from the project root)

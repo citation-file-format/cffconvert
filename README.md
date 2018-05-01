@@ -15,6 +15,13 @@ url and convert it to various formats, such as:
 1. plain JSON
 1. Zenodo JSON
 
+Supported types of GitHub URL:
+
+1. ``https://github.com/<org>/<repo>``
+1. ``https://github.com/<org>/<repo>/tree/<sha>``
+1. ``https://github.com/<org>/<repo>/tree/<tagname>``
+1. ``https://github.com/<org>/<repo>/tree/<branchname>``
+
 ``cffconvert`` does not support the full
 [CFF spec](https://citation-file-format.github.io/assets/pdf/cff-specifications-1.0.3.pdf) yet.
 

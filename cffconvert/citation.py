@@ -14,17 +14,38 @@ class JSONEncoder(json.JSONEncoder):
 
 class Citation:
 
-    def __init__(self, url, instantiate_empty=False, override=None, remove=None):
-        self.as_yaml = None
+    def __init__(self, url=None, cffstr=None, ignore_suspect_keys=False, override=None, remove=None, suspect_keys=None,
+                 instantiate_empty=False):
+
+        def xor(condition1, condition2):
+            conditions = [condition1, condition2]
+            return False in conditions and True in conditions
+
+        if not xor(url is None, cffstr is None):
+            raise ValueError("You should specify either \'url\' or \'cffstr\'.")
+
+        self.url = url
+        self.cffstr = cffstr
+        self.yaml = None
         self.baseurl = None
-        self.file_contents = None
         self.file_url = None
         self.override = override
         self.remove = remove
-        self.url = url
+        self.ignore_suspect_keys = ignore_suspect_keys
+        if suspect_keys is None:
+            self.suspect_keys = ["doi", "version", "date-released", "commit"]
+        else:
+            if isinstance(suspect_keys, list):
+                self.suspect_keys = suspect_keys
+            else:
+                raise ValueError("Provided argument \'suspect_keys\' should be instance of list.")
+
         if not instantiate_empty:
-            self._get_baseurl()
-            self._retrieve_file()
+            if self.cffstr is None:
+                # still have to retrieve the cff string
+                self._get_baseurl()
+                self._retrieve_file()
+
             self._parse_yaml()
             self._override_suspect_keys()
             self._remove_suspect_keys()
@@ -35,23 +56,31 @@ class Citation:
         else:
             raise Exception("Only 'https://github.com' URLs are supported at the moment.")
 
+    def _key_should_be_included(self, key):
+        if not self.ignore_suspect_keys:
+            return key in self.yaml
+        elif key in self.suspect_keys:
+            return False
+        else:
+            return key in self.yaml
+
     def _override_suspect_keys(self):
         if self.override is not None and type(self.override) is dict:
             for key in self.override.keys():
-                self.as_yaml[key] = self.override[key]
-                self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
+                self.yaml[key] = self.override[key]
+                self.cffstr = yaml.safe_dump(self.yaml, default_flow_style=False)
 
     def _parse_yaml(self):
-        self.as_yaml = yaml.safe_load(self.file_contents)
-        if not isinstance(self.as_yaml, dict):
-            raise Exception("Provided CITATION.cff does not seem valid YAML.")
+        self.yaml = yaml.safe_load(self.cffstr)
+        if not isinstance(self.yaml, dict):
+            raise ValueError("Provided CITATION.cff does not seem valid YAML.")
 
     def _remove_suspect_keys(self):
         if self.remove is not None and type(self.remove) is list:
             for key in self.remove:
-                if key in self.as_yaml:
-                    del(self.as_yaml[key])
-                    self.file_contents = yaml.safe_dump(self.as_yaml, default_flow_style=False)
+                if key in self.yaml:
+                    del(self.yaml[key])
+                    self.cffstr = yaml.safe_dump(self.yaml, default_flow_style=False)
 
     def _retrieve_file(self):
 
@@ -76,7 +105,7 @@ class Citation:
 
         r = requests.get(self.file_url)
         if r.ok:
-            self.file_contents = r.text
+            self.cffstr = r.text
         else:
             raise Exception("Error requesting file: {0}".format(self.file_url))
 
@@ -84,7 +113,7 @@ class Citation:
 
         def get_author_string():
             arr = list()
-            for author in self.as_yaml["authors"]:
+            for author in self.yaml["authors"]:
                 authors = list()
                 if "given-names" in author:
                     authors.append(author["given-names"])
@@ -100,27 +129,30 @@ class Citation:
         s = ""
         s += "@misc{"
         s += "YourReferenceHere"
-        if "authors" in self.as_yaml:
+        if self._key_should_be_included("authors"):
             s += ",\nauthor = {\n"
             s += get_author_string()
             s += "\n         }"
-        if "title" in self.as_yaml:
+        if self._key_should_be_included("title"):
             s += ",\ntitle  = {"
-            s += self.as_yaml["title"] + "}"
-        if "date-released" in self.as_yaml:
+            s += self.yaml["title"] + "}"
+        if self._key_should_be_included("date-released"):
             s += ",\nmonth  = {"
-            s += str(self.as_yaml["date-released"].month) + "}"
+            s += str(self.yaml["date-released"].month) + "}"
             s += ",\nyear   = {"
-            s += str(self.as_yaml["date-released"].year) + "}"
-        if "doi" in self.as_yaml:
+            s += str(self.yaml["date-released"].year) + "}"
+        if self._key_should_be_included("doi"):
             s += ",\ndoi    = {"
-            s += self.as_yaml["doi"] + "}"
-        if "repository-code" in self.as_yaml:
+            s += self.yaml["doi"] + "}"
+        if self._key_should_be_included("repository-code"):
             s += ",\nurl    = {"
-            s += self.as_yaml["repository-code"] + "}"
+            s += self.yaml["repository-code"] + "}"
         s += "\n}\n"
 
         return s
+
+    def as_cff(self, indent=4, sort_keys=True, ensure_ascii=False):
+        return json.dumps(self.yaml, sort_keys=sort_keys, indent=indent, ensure_ascii=ensure_ascii)
 
     def as_codemeta(self):
 
@@ -138,7 +170,7 @@ class Citation:
         def construct_authors_arr():
 
             authors = list()
-            for read_author in self.as_yaml["authors"]:
+            for read_author in self.yaml["authors"]:
                 write_author = dict()
                 write_author["@type"] = "Person"
 
@@ -172,22 +204,22 @@ class Citation:
             "http://schema.org"
         ]
         d["@type"] = "SoftwareSourceCode"
-        if "repository-code" in self.as_yaml:
-            d["codeRepository"] = self.as_yaml["repository-code"]
-        if "date-released" in self.as_yaml:
-            d["datePublished"] = self.as_yaml["date-released"].isoformat()
-        if "authors" in self.as_yaml:
+        if self._key_should_be_included("repository-code"):
+            d["codeRepository"] = self.yaml["repository-code"]
+        if self._key_should_be_included("date-released"):
+            d["datePublished"] = self.yaml["date-released"].isoformat()
+        if self._key_should_be_included("authors"):
             d["author"] = construct_authors_arr()
-        if "keywords" in self.as_yaml:
-            d["keywords"] = self.as_yaml["keywords"]
-        if "license" in self.as_yaml:
-            d["license"] = resolve_spdx_license(self.as_yaml["license"])
-        if "version" in self.as_yaml:
-            d["version"] = self.as_yaml["version"]
-        if "doi" in self.as_yaml:
-            d["identifier"] = "https://doi.org/{0}".format(self.as_yaml["doi"])
-        if "title" in self.as_yaml:
-            d["name"] = self.as_yaml["title"]
+        if self._key_should_be_included("keywords"):
+            d["keywords"] = self.yaml["keywords"]
+        if self._key_should_be_included("license"):
+            d["license"] = resolve_spdx_license(self.yaml["license"])
+        if self._key_should_be_included("version"):
+            d["version"] = self.yaml["version"]
+        if self._key_should_be_included("doi"):
+            d["identifier"] = "https://doi.org/{0}".format(self.yaml["doi"])
+        if self._key_should_be_included("title"):
+            d["name"] = self.yaml["title"]
 
         return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
 
@@ -195,7 +227,7 @@ class Citation:
 
         def construct_author_string():
             names = list()
-            for author in self.as_yaml["authors"]:
+            for author in self.yaml["authors"]:
                 name = ""
                 if "name-particle" in author:
                     name += author["name-particle"] + " "
@@ -209,24 +241,24 @@ class Citation:
             return " & ".join(names)
 
         def construct_keywords_string():
-            return ", ".join(["\"" + keyword + "\"" for keyword in self.as_yaml["keywords"]])
+            return ", ".join(["\"" + keyword + "\"" for keyword in self.yaml["keywords"]])
 
         s = ""
         s += "%0\n"
         s += "%0 Generic\n"
 
-        if "authors" in self.as_yaml:
+        if self._key_should_be_included("authors"):
             s += "%A " + construct_author_string() + "\n"
         else:
             s += "%A\n"
 
-        if "date-released" in self.as_yaml:
-            s += "%D " + str(self.as_yaml["date-released"].year) + "\n"
+        if self._key_should_be_included("date-released"):
+            s += "%D " + str(self.yaml["date-released"].year) + "\n"
         else:
             s += "%D\n"
 
-        if "title" in self.as_yaml:
-            s += "%T " + self.as_yaml["title"] + "\n"
+        if self._key_should_be_included("title"):
+            s += "%T " + self.yaml["title"] + "\n"
         else:
             s += "%T\n"
 
@@ -242,8 +274,8 @@ class Citation:
         s += "%Y\n"
         s += "%S\n"
         s += "%7\n"
-        if "date-released" in self.as_yaml:
-            s += "%8 " + str(self.as_yaml["date-released"].month) + "\n"
+        if self._key_should_be_included("date-released"):
+            s += "%8 " + str(self.yaml["date-released"].month) + "\n"
         else:
             s += "%8\n"
 
@@ -265,27 +297,27 @@ class Citation:
         s += "%#\n"
         s += "%$\n"
         s += "%F YourReferenceHere\n"
-        if "keywords" in self.as_yaml:
+        if self._key_should_be_included("keywords"):
             s += "%K " + construct_keywords_string() + "\n"
         else:
             s += "%K\n"
 
         s += "%X\n"
         s += "%Z\n"
-        if "repository-code" in self.as_yaml:
-            s += "%U " + self.as_yaml["repository-code"] + "\n"
+        if self._key_should_be_included("repository-code"):
+            s += "%U " + self.yaml["repository-code"] + "\n"
         else:
             s += "%U\n"
 
         return s
 
     def as_json(self):
-        return JSONEncoder().encode(self.as_yaml)
+        return JSONEncoder().encode(self.yaml)
 
     def as_ris(self):
         def construct_author_string():
             names = list()
-            for author in self.as_yaml["authors"]:
+            for author in self.yaml["authors"]:
                 name = "AU  - "
                 if "name-particle" in author:
                     name += author["name-particle"] + " "
@@ -301,30 +333,30 @@ class Citation:
 
         def construct_keywords_string():
             names = list()
-            for keyword in self.as_yaml["keywords"]:
+            for keyword in self.yaml["keywords"]:
                 names.append("KW  - " + keyword + "\n")
             return "".join(names)
 
         def construct_date_string():
             return "PY  - " + \
-                   str(self.as_yaml["date-released"].year) + "/" +\
-                   str(self.as_yaml["date-released"].month).rjust(2,"0") + "/" +\
-                   str(self.as_yaml["date-released"].day).rjust(2, "0") + "\n"
+                   str(self.yaml["date-released"].year) + "/" +\
+                   str(self.yaml["date-released"].month).rjust(2,"0") + "/" +\
+                   str(self.yaml["date-released"].day).rjust(2, "0") + "\n"
 
         s = ""
         s += "TY  - COMP\n"
 
-        if "authors" in self.as_yaml:
+        if self._key_should_be_included("authors"):
             s += construct_author_string()
         else:
             s += "AU  -\n"
 
-        if "doi" in self.as_yaml:
-            s += "DO  - " + self.as_yaml["doi"] + "\n"
+        if self._key_should_be_included("doi"):
+            s += "DO  - " + self.yaml["doi"] + "\n"
         else:
             s += "DO  -\n"
 
-        if "keywords" in self.as_yaml:
+        if self._key_should_be_included("keywords"):
             s += construct_keywords_string()
         else:
             s += "KW  -\n"
@@ -333,18 +365,18 @@ class Citation:
         s += "PB  - GitHub Inc.\n"
         s += "PP  - San Francisco, USA\n"
 
-        if "date-released" in self.as_yaml:
+        if self._key_should_be_included("date-released"):
             s += construct_date_string()
         else:
             s += "PY  -\n"
 
-        if "title" in self.as_yaml:
-            s += "T1  - " + self.as_yaml["title"] + "\n"
+        if self._key_should_be_included("title"):
+            s += "T1  - " + self.yaml["title"] + "\n"
         else:
             s += "T1  -\n"
 
-        if "repository-code" in self.as_yaml:
-            s += "UR  - " + self.as_yaml["repository-code"] + "\n"
+        if self._key_should_be_included("repository-code"):
+            s += "UR  - " + self.yaml["repository-code"] + "\n"
         else:
             s += "UR  -\n"
 
@@ -357,7 +389,7 @@ class Citation:
         def construct_authors_arr():
 
             authors = list()
-            for author in self.as_yaml["authors"]:
+            for author in self.yaml["authors"]:
                 name = ""
                 if "name-particle" in author:
                     name += author["name-particle"] + " "
@@ -378,20 +410,32 @@ class Citation:
                 authors.append(author2)
             return authors
 
-        d = dict()
-        if "abstract" in self.as_yaml:
-            d["description"] = self.as_yaml["abstract"]
+        if self.ignore_suspect_keys is False and len(self.suspect_keys) > 0:
+            print("Note: suspect keys will be included in the output.")
 
-        if "authors" in self.as_yaml:
+        d = dict()
+        if self._key_should_be_included("abstract"):
+            d["description"] = self.yaml["abstract"]
+
+        if self._key_should_be_included("authors"):
             d["creators"] = construct_authors_arr()
 
-        if "keywords" in self.as_yaml:
-            d["keywords"] = self.as_yaml["keywords"]
+        if self._key_should_be_included("date-released"):
+            d["publication_date"] = self.yaml["date-released"].isoformat()
 
-        if "license" in self.as_yaml:
-            d["license"] = {"id": self.as_yaml["license"]}
+        if self._key_should_be_included("doi"):
+            d["doi"] = self.yaml["doi"]
 
-        if "title" in self.as_yaml:
-            d["title"] = self.as_yaml["title"]
+        if self._key_should_be_included("keywords"):
+            d["keywords"] = self.yaml["keywords"]
+
+        if self._key_should_be_included("license"):
+            d["license"] = {"id": self.yaml["license"]}
+
+        if self._key_should_be_included("title"):
+            d["title"] = self.yaml["title"]
+
+        if self._key_should_be_included("version"):
+            d["version"] = self.yaml["version"]
 
         return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)

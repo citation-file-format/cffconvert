@@ -9,6 +9,7 @@
             "name": "Klaver, Tom"
         }
     ],
+    "doi": "10.5281/zenodo.1162057",
     "keywords": [
         "citation",
         "bibliography",
@@ -18,5 +19,7 @@
     "license": {
         "id": "Apache-2.0"
     },
-    "title": "cff-converter-python"
+    "publication_date": "2018-01-16",
+    "title": "cff-converter-python",
+    "version": "1.0.0"
 }

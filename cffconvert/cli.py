@@ -16,10 +16,9 @@ from cffconvert import Citation
                                                           "tree/master\'")
 @click.option("--validate", "-v", is_flag=True, default=False, help="Validate the CITATION.cff found at the URL or " +
                                                                     "supplied through '--infile'")
-@click.option("--ignore-suspect-keys", "-ig", type=bool, default=False, help="If True, ignore any keys from CITATIO" +
-                                                                             "N.cff that are likely out of date, " +
-                                                                             "such as \'commit\', \'date-released\'," +
-                                                                             " \'doi\', and \'version\'.")
+@click.option("--ignore-suspect-keys", "-ig", is_flag=True, default=False,
+              help="If True, ignore any keys from CITATION.cff that are likely out of date, such as \'commit\', " +
+                   "\'date-released\', \'doi\', and \'version\'.")
 @click.option("--verbose", "-v", is_flag=True, default=False, help="Provide feedback on what was entered.")
 def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbose):
 

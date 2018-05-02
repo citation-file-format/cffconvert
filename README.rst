@@ -44,13 +44,36 @@ See ``cffconvert``'s options:
 
     cffconvert --help
 
-Example usage, retrieve CITATION.cff from URL, output as bibtex:
+Shows:
 
 .. code:: bash
 
-    cffconvert https://github.com/citation-file-format/cff-converter-python/tree/master out.txt bibtex
+    Usage: cffconvert [OPTIONS]
 
-Contents of ``out.txt``:
+    Options:
+      -if, --infile TEXT              Path to the CITATION.cff input file.
+      -of, --outfile TEXT             Path to the output file.
+      -f, --outputformat TEXT         Output format: bibtex|codemeta|endnote|ris|zenodo  [required]
+      -u, --url TEXT                  URL of the repo containing the CITATION.cff (currently only github.com is supported;
+                                      may include branch name, commit sha, tag name). For example:
+                                      'https://github.com/citation-file-format/cff-converter-python' or
+                                      'https://github.com/citation-file-format/cff-converter-python/tree/master'
+      -v, --validate                  Validate the CITATION.cff found at the URL or supplied through '--infile'
+      -ig, --ignore-suspect-keys BOOLEAN
+                                      If True, ignore any keys from CITATION.cff that are likely out of date, such as
+                                      'commit', 'date-released', 'doi', and 'version'.
+      -v, --verbose                   Provide feedback on what was entered.
+      --help                          Show this message and exit.
+
+
+Example usage, retrieve CITATION.cff from URL with ``curl``, output as BibTeX:
+
+.. code:: bash
+
+    curl https://raw.githubusercontent.com/citation-file-format/cff-converter-python/44a8ad35d94dd50a8b5924d8d26402ae0d162189/CITATION.cff > CITATION.cff
+    cffconvert -f bibtex
+
+Results in:
 
 .. code:: bash
 
@@ -66,12 +89,11 @@ Contents of ``out.txt``:
     url    = {https://github.com/citation-file-format/cff-converter-python}
     }
 
-Example usage, retrieve CITATION.cff from URL, output as
-``codemeta.json``:
+Example usage, let ``cffconvert`` retrieve CITATION.cff from URL, output as ``codemeta.json``:
 
 .. code:: bash
 
-    cffconvert https://github.com/citation-file-format/cff-converter-python/tree/master codemeta.json codemeta
+    cffconvert -f codemeta -u https://github.com/citation-file-format/cff-converter-python/tree/master -of codemeta.json
 
 Contents of file ``codemeta.json``:
 
@@ -116,6 +138,44 @@ Contents of file ``codemeta.json``:
         "name": "cff-converter-python",
         "version": "1.0.0"
     }
+
+
+Convert the contents of a local file ``CITATION.cff`` into the format used by ``.zenodo.json`` files (see
+`Zenodo's API docs <http://developers.zenodo.org/#representation>`__), while ignoring any keys that are likely out of date:
+
+.. code:: bash
+
+    cffconvert -f zenodo --ignore-suspect-keys
+
+Results in (note absence of ``date-released``, ``doi``, and ``version``):
+
+.. code:: bash
+
+    {
+        "creators": [
+            {
+                "affiliation": "Netherlands eScience Center",
+                "name": "Spaaks, Jurriaan H."
+            },
+            {
+                "affiliation": "Netherlands eScience Center",
+                "name": "Klaver, Tom"
+            }
+        ],
+        "keywords": [
+            "citation",
+            "bibliography",
+            "cff",
+            "CITATION.cff"
+        ],
+        "license": {
+            "id": "Apache-2.0"
+        },
+        "title": "cff-converter-python"
+    }
+
+
+
 
 For developers
 ==============

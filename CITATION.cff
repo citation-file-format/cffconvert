@@ -9,8 +9,12 @@ authors:
     affiliation: "Netherlands eScience Center"
     family-names: Klaver
     given-names: Tom
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Verhoeven
+    given-names: Stefan
 cff-version: "1.0.3"
-date-released: 2018-01-16
+date-released: 2018-05-03
 doi: 10.5281/zenodo.1162057
 keywords:
   - "citation"
@@ -20,5 +24,5 @@ keywords:
 license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/citation-file-format/cff-converter-python"
-title: cff-converter-python
-version: "1.0.0"
+title: cffconvert
+version: "0.0.3"

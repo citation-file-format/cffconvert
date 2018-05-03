@@ -27,5 +27,6 @@
     "license": {
         "id": "Apache-2.0"
     },
-    "title": "mcfly"
+    "title": "mcfly",
+    "version": "1.0.1"
 }

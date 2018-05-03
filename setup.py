@@ -40,7 +40,7 @@ setup(
         'Topic :: Scientific/Engineering',
     ],
     packages=find_packages(),
-    install_requires=['PyYAML>=3.12', 'requests>=2.18.4', 'urllib3>=1.22', 'Click'],
+    install_requires=['PyYAML==3.12', 'requests==2.18.4', 'urllib3==1.22', 'click==6.7'],
     setup_requires=['pytest', 'pytest-runner'],
     tests_require=['pytest', 'pytest-runner'],
     long_description=long_description

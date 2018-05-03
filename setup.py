@@ -16,7 +16,7 @@ setup(
         cffconvert=cffconvert:cli
     """,
     version=__version,
-    description='Read CFF formatted CITATION file from a GitHub url or local' +
+    description='Read CFF formatted CITATION file from a GitHub url or local ' +
                 'file and convert it to BibTeX, EndNote, RIS, Codemeta, ' +
                 '.zenodo.json, or plain JSON',
     author='Jurriaan H. Spaaks',

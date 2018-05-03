@@ -9,6 +9,10 @@ authors:
     affiliation: "Netherlands eScience Center"
     family-names: Klaver
     given-names: Tom
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Verhoeven
+    given-names: Stefan
 cff-version: "1.0.3"
 date-released: 2018-01-16
 doi: 10.5281/zenodo.1162057

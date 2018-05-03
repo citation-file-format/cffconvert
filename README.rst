@@ -209,6 +209,26 @@ Running tests
     # run tests against live system (GitHub)
     pytest livetest/
 
+Making a release
+----------------
+
+.. code:: bash
+
+    # register with PyPI test instance https://test.pypi.org
+
+    # I did the following in a virtual env
+
+    # make a source distribution:
+    python setup.py sdist
+    # install the 'upload to pypi/testpypi tool' aka twine
+    pip install twine
+    # upload the contents of the source distribtion we just made
+    twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+    # checking the package
+    # pip install --index-url https://test.pypi.org/simple/ cffconvert
+
+
 .. |Build Status| image:: https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master
    :target: https://travis-ci.org/citation-file-format/cff-converter-python
 .. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg

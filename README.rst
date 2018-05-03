@@ -33,7 +33,7 @@ Install
 
 .. code:: bash
 
-    pip install git+https://github.com/citation-file-format/cff-converter-python.git
+    pip install cffconvert
 
 Command line interface
 ----------------------

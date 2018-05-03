@@ -3,7 +3,7 @@
 
 from setuptools import setup, find_packages
 
-__version = '1.0.0'
+__version = '0.0.2'
 
 setup(
     name='cffconvert',
@@ -13,8 +13,9 @@ setup(
         cffconvert=cffconvert:cli
     """,
     version=__version,
-    description='Read CFF formatted CITATION file from a GitHub url and convert it to BibTeX, EndNote, RIS, Codemeta,' +
-                ' Zenodo.json, and plain JSON',
+    description='Read CFF formatted CITATION file from a GitHub url or local' +
+                'file and convert it to BibTeX, EndNote, RIS, Codemeta, ' +
+                '.zenodo.json, or plain JSON',
     author='Jurriaan H. Spaaks',
     author_email='j.spaaks@esciencecenter.nl',
     license='Apache 2.0',

@@ -1,4 +1,4 @@
-|Build Status| |DOI| |Research Software Directory| |CII Best Practices|
+|Build Status| |DOI| |PyPI badge| |Research Software Directory| |CII Best Practices|
 
 cffconvert
 ==========
@@ -233,6 +233,8 @@ Making a release
    :target: https://travis-ci.org/citation-file-format/cff-converter-python
 .. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg
    :target: https://doi.org/10.5281/zenodo.1162057
+.. |PyPi Badge| image:: https://img.shields.io/pypi/v/cffconvert.svg?colorB=blue 
+   :target: https://pypi.python.org/pypi/cffconvert/   
 .. |Research Software Directory| image:: https://img.shields.io/badge/rsd-cffconvert-00a3e3.svg
    :target: https://www.research-software.nl/software/cff-converter-python
 .. |CII Best Practices| image:: https://bestpractices.coreinfrastructure.org/projects/1811/badge

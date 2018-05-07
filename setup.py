@@ -34,7 +34,7 @@ setup(
     author_email='j.spaaks@esciencecenter.nl',
     license='Apache 2.0',
     url='https://github.com/citation-file-format/cff-converter-python',
-    download_url='https://github.com/citation-file-format/cff-converter-python/archive/%s.tar.gz' % __version,
+    download_url='https://github.com/citation-file-format/cff-converter-python/archive/%s.tar.gz' % get_version(),
     include_package_data=True,
     keywords=['citation', 'cff', 'CITATION.cff', 'bibliography'],
     classifiers=[

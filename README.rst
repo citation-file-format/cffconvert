@@ -227,7 +227,9 @@ Making a release
 
     # checking the package
     # pip install --index-url https://test.pypi.org/simple/ cffconvert
-
+    
+    # check that the package works as it should when installed from pypitest
+    twine upload dist/*
 
 .. |Build Status| image:: https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master
    :target: https://travis-ci.org/citation-file-format/cff-converter-python

@@ -9,7 +9,13 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-script: 
+script:
+    # Command to run tests, e.g. python setup.py test
   - "pytest test/"
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -X
 sudo: false
+
+addons:
+  sonarcloud:
+    organization: citation-file-format
 

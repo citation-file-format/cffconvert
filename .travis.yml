@@ -1,4 +1,7 @@
 --- 
+addons: 
+  sonarcloud: 
+    organization: citation-file-format
 dist: trusty
 language: python
 notifications: 
@@ -9,13 +12,7 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-script:
-    # Command to run tests, e.g. python setup.py test
+script: 
   - "pytest test/"
-  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -X
+  - "sonar-scanner -Dsonar.login=$SONAR_TOKEN -X"
 sudo: false
-
-addons:
-  sonarcloud:
-    organization: citation-file-format
-

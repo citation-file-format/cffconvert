@@ -161,8 +161,10 @@ class Citation:
             r = requests.get(licenses_url)
             if r.ok:
                 data = r.json()
-                return [spdx_license for spdx_license in data["licenses"]
-                        if spdx_license["licenseId"] == spdx_license_code][0]["seeAlso"][0]
+                for license in data["licenses"]:
+                    if license["licenseId"] == spdx_license_code:
+                        return license["seeAlso"][0]
+                raise ValueError("Provided license {0} not in list of licenses".format(spdx_license_code))
             else:
                 raise Warning("status not '200 OK'")
 

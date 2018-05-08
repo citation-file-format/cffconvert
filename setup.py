@@ -2,11 +2,22 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
+from distutils.util import convert_path
 
-__version = '0.0.3'
 
-with open("README.rst", 'r') as f:
-    long_description = f.read()
+def get_readme():
+    with open("README.rst", 'r') as f:
+        return f.read()
+
+
+def get_version():
+    # https://stackoverflow.com/questions/2058802/how-can-i-get-the-version-defined-in-setup-py-setuptools-in
+    # -my-package#answer-24517154
+    version_namespace = {}
+    version_path = convert_path('cffconvert/version.py')
+    with open(version_path) as version_file:
+        exec(version_file.read(), version_namespace)
+    return version_namespace["__version__"]
 
 setup(
     name='cffconvert',
@@ -15,7 +26,7 @@ setup(
         [console_scripts]
         cffconvert=cffconvert:cli
     """,
-    version=__version,
+    version=get_version(),
     description='Read CFF formatted CITATION file from a GitHub url or local ' +
                 'file and convert it to BibTeX, EndNote, RIS, Codemeta, ' +
                 '.zenodo.json, or plain JSON',
@@ -23,7 +34,7 @@ setup(
     author_email='j.spaaks@esciencecenter.nl',
     license='Apache 2.0',
     url='https://github.com/citation-file-format/cff-converter-python',
-    download_url='https://github.com/citation-file-format/cff-converter-python/archive/%s.tar.gz' % __version,
+    download_url='https://github.com/citation-file-format/cff-converter-python/archive/%s.tar.gz' % get_version(),
     include_package_data=True,
     keywords=['citation', 'cff', 'CITATION.cff', 'bibliography'],
     classifiers=[
@@ -43,5 +54,5 @@ setup(
     install_requires=['PyYAML==3.12', 'requests==2.18.4', 'urllib3==1.22', 'click==6.7'],
     setup_requires=['pytest', 'pytest-runner'],
     tests_require=['pytest', 'pytest-runner'],
-    long_description=long_description
+    long_description=get_readme()
 )

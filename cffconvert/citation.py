@@ -83,7 +83,6 @@ class Citation:
                     self.cffstr = yaml.safe_dump(self.yaml, default_flow_style=False)
 
     def _retrieve_file(self):
-
         regexp = re.compile("^" +
                             "(?P<baseurl>https://github\.com)/" +
                             "(?P<org>[^/\n]*)/" +

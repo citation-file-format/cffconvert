@@ -5,8 +5,20 @@ from setuptools import setup, find_packages
 from distutils.util import convert_path
 
 
+def get_install_dependencies():
+    with open("requirements.txt", "r") as f:
+        lines = f.readlines()
+    return [line.rstrip('\n') for line in lines]
+
+
+def get_test_dependencies():
+    with open("requirements-dev.txt", "r") as f:
+        lines = f.readlines()
+    return [line.rstrip('\n') for line in lines]
+
+
 def get_readme():
-    with open("README.rst", 'r') as f:
+    with open("README.rst", "r") as f:
         return f.read()
 
 
@@ -51,8 +63,6 @@ setup(
         'Topic :: Scientific/Engineering',
     ],
     packages=find_packages(),
-    install_requires=['PyYAML==3.12', 'requests==2.18.4', 'urllib3==1.22', 'click==6.7'],
-    setup_requires=['pytest', 'pytest-runner'],
-    tests_require=['pytest', 'pytest-runner'],
+    install_requires=get_install_dependencies() + get_test_dependencies(),
     long_description=get_readme()
 )

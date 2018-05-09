@@ -7,7 +7,7 @@ from cffconvert import Citation
 class CitationTest1(unittest.TestCase):
 
     def setUp(self):
-        fixture = os.path.join("fixtures", "1", "citation.cff")
+        fixture = os.path.join("fixtures", "1", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
@@ -51,7 +51,7 @@ class CitationTest1(unittest.TestCase):
 class CitationTest2(unittest.TestCase):
 
     def setUp(self):
-        fixture = os.path.join("fixtures", "2", "citation.cff")
+        fixture = os.path.join("fixtures", "2", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
@@ -95,7 +95,7 @@ class CitationTest2(unittest.TestCase):
 class CitationTest3(unittest.TestCase):
 
     def setUp(self):
-        fixture = os.path.join("fixtures", "3", "citation.cff")
+        fixture = os.path.join("fixtures", "3", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
@@ -139,7 +139,7 @@ class CitationTest3(unittest.TestCase):
 class CitationTest4(unittest.TestCase):
 
     def setUp(self):
-        fixture = os.path.join("fixtures", "4", "citation.cff")
+        fixture = os.path.join("fixtures", "4", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, instantiate_empty=True)
@@ -159,7 +159,7 @@ class CitationTestOverride(unittest.TestCase):
             "doi": "thebestdoi.23678237",
             "date-released": datetime.datetime.strptime("2018-03-05", "%Y-%m-%d").date()
         }
-        fixture = os.path.join("fixtures", "1", "citation.cff")
+        fixture = os.path.join("fixtures", "1", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, instantiate_empty=True, override=override)
@@ -200,7 +200,7 @@ class CitationTestRemoveSuspectKeyDate(unittest.TestCase):
     def setUp(self):
         # with removal of suspect key "date-released"
         remove = ["date-released"]
-        fixture = os.path.join("fixtures", "6", "citation.cff")
+        fixture = os.path.join("fixtures", "6", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, instantiate_empty=True, remove=remove)
@@ -241,7 +241,7 @@ class CitationTestIgnoreSuspectKeyDate(unittest.TestCase):
     def setUp(self):
         # ignore suspect key "date-released"
         suspect_keys = ["date-released"]
-        fixture = os.path.join("fixtures", "6", "citation.cff")
+        fixture = os.path.join("fixtures", "6", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
@@ -280,7 +280,7 @@ class CitationTestRemoveSuspectKeyDoi(unittest.TestCase):
     def setUp(self):
         # with removal of suspect key "doi"
         remove = ["doi"]
-        fixture = os.path.join("fixtures", "6", "citation.cff")
+        fixture = os.path.join("fixtures", "6", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, instantiate_empty=True, remove=remove)
@@ -321,7 +321,7 @@ class CitationTestIgnoreSuspectKeyDoi(unittest.TestCase):
     def setUp(self):
         # ignore suspect key "doi"
         suspect_keys = ["doi"]
-        fixture = os.path.join("fixtures", "6", "citation.cff")
+        fixture = os.path.join("fixtures", "6", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
@@ -360,7 +360,7 @@ class CitationTestRemoveSuspectKeyVersion(unittest.TestCase):
     def setUp(self):
         # with removal of suspect key "version"
         remove = ["version"]
-        fixture = os.path.join("fixtures", "6", "citation.cff")
+        fixture = os.path.join("fixtures", "6", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, instantiate_empty=True, remove=remove)
@@ -401,7 +401,7 @@ class CitationTestIgnoreSuspectKeyVersion(unittest.TestCase):
     def setUp(self):
         # ignore suspect key "version"
         suspect_keys = ["version"]
-        fixture = os.path.join("fixtures", "6", "citation.cff")
+        fixture = os.path.join("fixtures", "6", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
@@ -439,7 +439,7 @@ class CitationTestIgnoreAllSuspectKeys(unittest.TestCase):
 
     def setUp(self):
         # ignore all suspect keys
-        fixture = os.path.join("fixtures", "6", "citation.cff")
+        fixture = os.path.join("fixtures", "6", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True)
@@ -478,7 +478,7 @@ class CitationTestRemoveNonExistentKey(unittest.TestCase):
     def setUp(self):
         # trying to remove a key that doesn't exist
         remove = ["hjjshbdjsu3933"]
-        fixture = os.path.join("fixtures", "1", "citation.cff")
+        fixture = os.path.join("fixtures", "1", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, instantiate_empty=True, remove=remove)
@@ -519,7 +519,7 @@ class CitationTestIgnoreNonExistentKey(unittest.TestCase):
     def setUp(self):
         # trying to ignore a key that doesn't exist
         suspect_keys = ["hjjshbdjsu3933"]
-        fixture = os.path.join("fixtures", "1", "citation.cff")
+        fixture = os.path.join("fixtures", "1", "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)

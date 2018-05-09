@@ -1,4 +1,12 @@
-|Build Status| |DOI| |PyPI badge| |Research Software Directory| |CII Best Practices| |SonarCloud Quality Gate|
+Badges
+======
+
+- |Zenodo DOI|
+- |Travis build status|
+- |PyPI badge|
+- |CII Best Practices|
+- |SonarCloud Quality Gate|
+- |Research Software Directory|
 
 cffconvert
 ==========
@@ -231,9 +239,9 @@ Making a release
     # check that the package works as it should when installed from pypitest
     twine upload dist/*
 
-.. |Build Status| image:: https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master
+.. |Travis build status| image:: https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master
    :target: https://travis-ci.org/citation-file-format/cff-converter-python
-.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg
+.. |Zenodo DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg
    :target: https://doi.org/10.5281/zenodo.1162057
 .. |PyPi Badge| image:: https://img.shields.io/pypi/v/cffconvert.svg?colorB=blue 
    :target: https://pypi.python.org/pypi/cffconvert/   

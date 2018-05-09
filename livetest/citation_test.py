@@ -5,147 +5,55 @@ from cffconvert import Citation
 
 class CitationTestUrlHasOrgRepoOnly(unittest.TestCase):
 
-    def setUp(self):
+    def test_retrieval_of_latest_master(self):
         # https://github.com/<org>/<repo>
         url = "https://github.com/citation-file-format/cff-converter-python"
-        self.citation = Citation(url=url)
-
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "1", "bibtex.bib")
+        citation = Citation(url=url)
+        fixture = os.path.join("fixtures", "7", "CITATION.cff")
         with open(fixture) as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture) as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture) as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_ris(self):
-        fixture = os.path.join("fixtures", "1", "ris.txt")
-        with open(fixture) as f:
-            expected_ris = f.read()
-        actual_ris = self.citation.as_ris()
-        self.assertEqual(expected_ris, actual_ris)
+            expected_cffstr = f.read()
+        actual_cffstr = citation.cffstr
+        self.assertEqual(expected_cffstr, actual_cffstr)
 
 
 class CitationTestUrlHasOrgRepoTreeSha(unittest.TestCase):
 
-    def setUp(self):
+    def test_retrieval_via_sha(self):
         # https://github.com/<org>/<repo>/tree/<sha>
         url = "https://github.com/citation-file-format/cff-converter-python/tree/" + \
               "b7505591cf421ab33156ec0bffb0af43fd7d2cd1"
-        self.citation = Citation(url=url)
-
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "1", "bibtex.bib")
+        citation = Citation(url=url)
+        fixture = os.path.join("fixtures", "1", "CITATION.cff")
         with open(fixture) as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture) as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture) as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_ris(self):
-        fixture = os.path.join("fixtures", "1", "ris.txt")
-        with open(fixture) as f:
-            expected_ris = f.read()
-        actual_ris = self.citation.as_ris()
-        self.assertEqual(expected_ris, actual_ris)
+            expected_cffstr = f.read()
+        actual_cffstr = citation.cffstr
+        self.assertEqual(expected_cffstr, actual_cffstr)
 
 
 class CitationTestUrlHasOrgRepoOrgRepoTreeTag(unittest.TestCase):
 
-    def setUp(self):
+    def test_retrieval_via_tag(self):
         # https://github.com/<org>/<repo>/tree/<tagname>
         url = "https://github.com/citation-file-format/cff-converter-python/tree/0.0.1"
-        self.citation = Citation(url=url)
-
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "1", "bibtex.bib")
+        citation = Citation(url=url)
+        fixture = os.path.join("fixtures", "1", "CITATION.cff")
         with open(fixture) as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture) as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture) as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_ris(self):
-        fixture = os.path.join("fixtures", "1", "ris.txt")
-        with open(fixture) as f:
-            expected_ris = f.read()
-        actual_ris = self.citation.as_ris()
-        self.assertEqual(expected_ris, actual_ris)
+            expected_cffstr = f.read()
+        actual_cffstr = citation.cffstr
+        self.assertEqual(expected_cffstr, actual_cffstr)
 
 
 class CitationTestOrgRepoTreeBranch(unittest.TestCase):
 
-    def setUp(self):
+    def test_retrieval_via_branchname(self):
         # https://github.com/<org>/<repo>/tree/<branchname>
         url = "https://github.com/citation-file-format/cff-converter-python/tree/master"
-        self.citation = Citation(url=url)
-
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "1", "bibtex.bib")
+        citation = Citation(url=url)
+        fixture = os.path.join("fixtures", "7", "CITATION.cff")
         with open(fixture) as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture) as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture) as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_ris(self):
-        fixture = os.path.join("fixtures", "1", "ris.txt")
-        with open(fixture) as f:
-            expected_ris = f.read()
-        actual_ris = self.citation.as_ris()
-        self.assertEqual(expected_ris, actual_ris)
+            expected_cffstr = f.read()
+        actual_cffstr = citation.cffstr
+        self.assertEqual(expected_cffstr, actual_cffstr)
 
 
 class CitationTestInvalidInput(unittest.TestCase):

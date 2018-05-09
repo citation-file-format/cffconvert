@@ -14,7 +14,7 @@ authors:
     family-names: Verhoeven
     given-names: Stefan
 cff-version: "1.0.3"
-date-released: 2018-05-03
+date-released: 2018-05-09
 doi: 10.5281/zenodo.1162057
 keywords:
   - "citation"
@@ -25,4 +25,4 @@ license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/citation-file-format/cff-converter-python"
 title: cffconvert
-version: "0.0.3"
+version: "0.0.4"

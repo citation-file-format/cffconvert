@@ -15,7 +15,7 @@ class JSONEncoder(json.JSONEncoder):
 class Citation:
 
     def __init__(self, url=None, cffstr=None, ignore_suspect_keys=False, override=None, remove=None, suspect_keys=None,
-                 instantiate_empty=False):
+                 instantiate_empty=False, validate=False):
 
         def xor(condition1, condition2):
             conditions = [condition1, condition2]
@@ -32,6 +32,7 @@ class Citation:
         self.override = override
         self.remove = remove
         self.ignore_suspect_keys = ignore_suspect_keys
+        self.validate = validate
         if suspect_keys is None:
             self.suspect_keys = ["doi", "version", "date-released", "commit"]
         else:
@@ -45,6 +46,9 @@ class Citation:
                 # still have to retrieve the cff string
                 self._get_baseurl()
                 self._retrieve_file()
+
+            if self.validate:
+                self._validate()
 
             self._parse_yaml()
             self._override_suspect_keys()
@@ -107,6 +111,14 @@ class Citation:
             self.cffstr = r.text
         else:
             raise Exception("Error requesting file: {0}".format(self.file_url))
+
+    def _validate(self):
+        cff_version = ""
+        schema_urls = {
+            "1.0.1": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.1/CFF-Core/schema.yaml",
+            "1.0.2": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.2/CFF-Core/schema.yaml",
+            "1.0.3": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.3/CFF-Core/schema.yaml",
+        }
 
     def as_bibtex(self):
 

@@ -34,7 +34,7 @@
         }
     ],
     "codeRepository": "https://github.com/citation-file-format/cff-converter-python",
-    "datePublished": "2018-05-03",
+    "datePublished": "2018-05-09",
     "identifier": "https://doi.org/10.5281/zenodo.1162057",
     "keywords": [
         "citation",
@@ -44,5 +44,5 @@
     ],
     "license": "http://www.apache.org/licenses/LICENSE-2.0",
     "name": "cffconvert",
-    "version": "0.0.3"
+    "version": "0.0.4"
 }

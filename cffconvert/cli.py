@@ -40,14 +40,6 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
         click.echo("{0} = {1}".format("verbose", verbose))
         click.echo("{0} = {1}".format("version", version))
 
-    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "zenodo"]
-    if outputformat not in acceptable_output_formats:
-        raise ValueError("'--outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats)))
-
-    if validate:
-        # TODO still have to implement validation of the CFF
-        print("Still have to implement validation of the CFF")
-
     if infile is None and url is None:
         infile = "CITATION.cff"
     elif infile is not None and url is not None:
@@ -65,8 +57,17 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
     suspect_keys = None
 
     citation = Citation(url=url, cffstr=cffstr, ignore_suspect_keys=ignore_suspect_keys, override=override,
-                        remove=remove, suspect_keys=suspect_keys)
-    if outputformat == "bibtex":
+                        remove=remove, suspect_keys=suspect_keys, validate=validate)
+
+    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "zenodo"]
+    if validate:
+        pass
+    elif outputformat not in acceptable_output_formats:
+        raise ValueError("'--outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats)))
+
+    if outputformat is None:
+        return
+    elif outputformat == "bibtex":
         outstr = citation.as_bibtex()
     elif outputformat == "codemeta":
         outstr = citation.as_codemeta()

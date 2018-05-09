@@ -61,7 +61,7 @@ class CliTests(unittest.TestCase):
         self.assertTrue(result.exception.strerror.startswith("No such file or directory"))
 
 
-class CliTestsPrintingFromLocalCffFile(unittest.TestCase):
+class CliTestsFromLocalCffFile(unittest.TestCase):
 
     def setUp(self):
         self.runner = CliRunner()
@@ -152,6 +152,40 @@ class CliTestsPrintingFromLocalCffFile(unittest.TestCase):
                 f.write(cff_contents)
             result = self.runner.invoke(cffconvert_cli, ["-f", "zenodo"])
             actual_output = result.output
+
+        self.assertTrue(result.exit_code == 0)
+        self.assertEqual(expected_output, actual_output)
+
+    def test_validating_a_local_valid_cff_file(self):
+        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
+        with open(fixture_cff, "r") as f:
+            cff_contents = f.read()
+
+        with self.runner.isolated_filesystem():
+            with open("CITATION.cff", "w") as f:
+                f.write(cff_contents)
+            result = self.runner.invoke(cffconvert_cli, ["--validate"])
+            actual_output = result.output
+
+        expected_output = "\n"
+
+        self.assertTrue(result.exit_code == 0)
+        self.assertEqual(expected_output, actual_output)
+
+    def test_validating_a_local_invalid_cff_file(self):
+        # this fixture has an invalid date (string instead of a Date object)
+        fixture_cff = os.path.join("fixtures", "8", "CITATION.cff")
+        with open(fixture_cff, "r") as f:
+            cff_contents = f.read()
+
+        with self.runner.isolated_filesystem():
+            with open("CITATION.cff", "w") as f:
+                f.write(cff_contents)
+            result = self.runner.invoke(cffconvert_cli, ["--validate"])
+            actual_output = result.output
+
+        # this is the feedback that pykwalifire gives when there is a date error:
+        expected_output = "\n[\'%Y-%m-%d\']\n"
 
         self.assertTrue(result.exit_code == 0)
         self.assertEqual(expected_output, actual_output)

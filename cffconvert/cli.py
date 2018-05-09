@@ -26,7 +26,7 @@ from cffconvert import version as cffconvert_version
               help="Print version and exit.")
 def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbose, version):
 
-    if version:
+    if version is True:
         print("{0}".format(cffconvert_version.__version__))
         return
 
@@ -38,6 +38,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
         click.echo("{0} = {1}".format("validate", validate))
         click.echo("{0} = {1}".format("ignore_suspect_keys", ignore_suspect_keys))
         click.echo("{0} = {1}".format("verbose", verbose))
+        click.echo("{0} = {1}".format("version", version))
 
     acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "zenodo"]
     if outputformat not in acceptable_output_formats:

@@ -3,6 +3,8 @@ import yaml
 import re
 import json
 from datetime import datetime, date
+import tempfile
+from pykwalifire.core import Core
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -33,6 +35,7 @@ class Citation:
         self.remove = remove
         self.ignore_suspect_keys = ignore_suspect_keys
         self.validate = validate
+        self.schema = None
         if suspect_keys is None:
             self.suspect_keys = ["doi", "version", "date-released", "commit"]
         else:
@@ -113,12 +116,35 @@ class Citation:
             raise Exception("Error requesting file: {0}".format(self.file_url))
 
     def _validate(self):
-        cff_version = ""
+        regexp = re.compile("^cff-version: (['|\"])?(?P<semver>[\d\.]*)(['\"])?\s*$")
+
+        for line in self.cffstr.split("\n"):
+            matched = re.match(regexp, line)
+            if matched is not None:
+                semver = matched.groupdict()["semver"]
         schema_urls = {
             "1.0.1": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.1/CFF-Core/schema.yaml",
             "1.0.2": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.2/CFF-Core/schema.yaml",
             "1.0.3": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.3/CFF-Core/schema.yaml",
         }
+        print()
+        r = requests.get(schema_urls[semver])
+        r.raise_for_status()
+        self.schema = r.text
+
+        with tempfile.TemporaryDirectory():
+            with open("data.yaml", "w") as f:
+                f.write(self.cffstr)
+            with open("schema.yaml", "w") as f:
+                f.write(self.schema)
+
+            c = Core(source_file="data.yaml", schema_files=["schema.yaml"])
+            try:
+                c.validate(raise_exception=True)
+            except Exception as e:
+                pass
+
+        return self
 
     def as_bibtex(self):
 

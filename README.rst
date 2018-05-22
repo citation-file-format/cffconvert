@@ -57,23 +57,22 @@ Shows:
 
 .. code:: bash
 
-    Usage: cffconvert [OPTIONS]
+Usage: cffconvert [OPTIONS]
 
     Options:
-      -if, --infile TEXT              Path to the CITATION.cff input file.
-      -of, --outfile TEXT             Path to the output file.
-      -f, --outputformat TEXT         Output format: bibtex|codemeta|endnote|ris|zenodo  [required]
-      -u, --url TEXT                  URL of the repo containing the CITATION.cff (currently only github.com is supported;
-                                      may include branch name, commit sha, tag name). For example:
-                                      'https://github.com/citation-file-format/cff-converter-python' or
-                                      'https://github.com/citation-file-format/cff-converter-python/tree/master'
-      -v, --validate                  Validate the CITATION.cff found at the URL or supplied through '--infile'
-      -ig, --ignore-suspect-keys BOOLEAN
-                                      If True, ignore any keys from CITATION.cff that are likely out of date, such as
-                                      'commit', 'date-released', 'doi', and 'version'.
-      -v, --verbose                   Provide feedback on what was entered.
-      --help                          Show this message and exit.
-
+      -if, --infile TEXT          Path to the CITATION.cff input file.
+      -of, --outfile TEXT         Path to the output file.
+      -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|ris|zenodo
+      -u, --url TEXT              URL of the repo containing the CITATION.cff (currently only github.com is supported; may
+                                  include branch name, commit sha, tag name). For example: 'https://github.com/citation-
+                                  file-format/cff-converter-python' or 'https://github.com/citation-file-format/cff-
+                                  converter-python/tree/master'
+      --validate                  Validate the CITATION.cff found at the URL or supplied through '--infile'
+      -ig, --ignore-suspect-keys  If True, ignore any keys from CITATION.cff that are likely out of date, such as
+                                  'commit', 'date-released', 'doi', and 'version'.
+      --verbose                   Provide feedback on what was entered.
+      --version                   Print version and exit.
+      --help                      Show this message and exit.
 
 Example usage, retrieve CITATION.cff from URL with ``curl``, output as BibTeX:
 
@@ -132,10 +131,19 @@ Contents of file ``codemeta.json``:
                 },
                 "familyName": "Klaver",
                 "givenName": "Tom"
+            },
+            {
+                "@type": "Person",
+                "affiliation": {
+                    "@type": "Organization",
+                    "legalName": "Netherlands eScience Center"
+                },
+                "familyName": "Verhoeven",
+                "givenName": "Stefan"
             }
         ],
         "codeRepository": "https://github.com/citation-file-format/cff-converter-python",
-        "datePublished": "2018-01-16",
+        "datePublished": "2018-05-22",
         "identifier": "https://doi.org/10.5281/zenodo.1162057",
         "keywords": [
             "citation",
@@ -144,8 +152,8 @@ Contents of file ``codemeta.json``:
             "CITATION.cff"
         ],
         "license": "http://www.apache.org/licenses/LICENSE-2.0",
-        "name": "cff-converter-python",
-        "version": "1.0.0"
+        "name": "cffconvert",
+        "version": "0.0.4"
     }
 
 
@@ -169,6 +177,10 @@ Results in (note absence of ``date-released``, ``doi``, and ``version``):
             {
                 "affiliation": "Netherlands eScience Center",
                 "name": "Klaver, Tom"
+            },
+            {
+                "affiliation": "Netherlands eScience Center",
+                "name": "Verhoeven, Stefan"
             }
         ],
         "keywords": [
@@ -180,10 +192,8 @@ Results in (note absence of ``date-released``, ``doi``, and ``version``):
         "license": {
             "id": "Apache-2.0"
         },
-        "title": "cff-converter-python"
+        "title": "cffconvert"
     }
-
-
 
 
 For developers
@@ -204,6 +214,10 @@ Install
     source ./.venv35/bin/activate
     # install any packages that cff-converter-python needs
     pip install -r requirements.txt
+    # install any packages used for development such as for testing
+    pip install -r requirements-dev.txt
+    # install the cffconvert package using symlinks
+    pip install --editable .
 
 Running tests
 -------------
@@ -218,10 +232,18 @@ Running tests
     # run tests against live system (GitHub)
     pytest livetest/
 
+
+For maintainers
+==============
+
 Making a release
 ----------------
 
 .. code:: bash
+
+    # make sure the release notes are up to date
+
+    # run the live tests and unit tests, make sure they pass
 
     # register with PyPI test instance https://test.pypi.org
 
@@ -238,6 +260,8 @@ Making a release
     # pip install --index-url https://test.pypi.org/simple/ cffconvert
     
     # check that the package works as it should when installed from pypitest
+
+    # FINAL STEP: upload to PyPI
     twine upload dist/*
 
 .. |Travis build status| image:: https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master

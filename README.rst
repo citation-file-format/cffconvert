@@ -153,7 +153,7 @@ Contents of file ``codemeta.json``:
         ],
         "license": "http://www.apache.org/licenses/LICENSE-2.0",
         "name": "cffconvert",
-        "version": "0.0.4"
+        "version": "0.0.5"
     }
 
 

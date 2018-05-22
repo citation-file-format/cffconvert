@@ -234,7 +234,7 @@ Running tests
 
 
 For maintainers
-==============
+===============
 
 Making a release
 ----------------

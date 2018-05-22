@@ -57,7 +57,7 @@ Shows:
 
 .. code:: bash
 
-Usage: cffconvert [OPTIONS]
+    Usage: cffconvert [OPTIONS]
 
     Options:
       -if, --infile TEXT          Path to the CITATION.cff input file.

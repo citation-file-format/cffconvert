@@ -13,6 +13,10 @@ authors:
     affiliation: "Netherlands eScience Center"
     family-names: Verhoeven
     given-names: Stefan
+  -
+    family-names: Druskat
+    given-names: Stephan
+    orcid: https://orcid.org/0000-0003-4925-7248
 cff-version: "1.0.3"
 date-released: 2018-05-22
 doi: 10.5281/zenodo.1162057

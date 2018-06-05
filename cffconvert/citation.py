@@ -1,3 +1,4 @@
+import os
 import requests
 import yaml
 import re
@@ -132,13 +133,16 @@ class Citation:
         r.raise_for_status()
         self.schema = r.text
 
-        with tempfile.TemporaryDirectory():
-            with open("data.yaml", "w") as f:
+        with tempfile.TemporaryDirectory() as tmpdir:
+
+            datafile = os.path.join(tmpdir, "data.yaml")
+            schemafile = os.path.join(tmpdir, "schema.yaml")
+            with open(datafile, "w") as f:
                 f.write(self.cffstr)
-            with open("schema.yaml", "w") as f:
+            with open(schemafile, "w") as f:
                 f.write(self.schema)
 
-            c = Core(source_file="data.yaml", schema_files=["schema.yaml"])
+            c = Core(source_file=datafile, schema_files=[schemafile])
             try:
                 c.validate(raise_exception=True)
             except Exception as e:

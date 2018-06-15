@@ -242,10 +242,7 @@ class Citation:
             return authors
 
         d = dict()
-        d["@context"] = [
-            "https://doi.org/10.5063/schema/codemeta-2.0",
-            "http://schema.org"
-        ]
+        d["@context"] = "http://schema.org"
         d["@type"] = "SoftwareSourceCode"
         if self._key_should_be_included("repository-code"):
             d["codeRepository"] = self.yaml["repository-code"]

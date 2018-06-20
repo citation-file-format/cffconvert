@@ -117,7 +117,7 @@ class Citation:
             raise Exception("Error requesting file: {0}".format(self.file_url))
 
     def _validate(self):
-        regexp = re.compile("^\s{0,}cff-version: (['|\"])?(?P<semver>[\d\.]*)(['\"])?\s*$")
+        regexp = re.compile("^cff-version: (['|\"])?(?P<semver>[\d\.]*)(['\"])?\s*$")
         semver = None
         for line in self.cffstr.split("\n"):
             matched = re.match(regexp, line)

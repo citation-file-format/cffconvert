@@ -156,7 +156,6 @@ Contents of file ``codemeta.json``:
         "version": "0.0.5"
     }
 
-
 Convert the contents of a local file ``CITATION.cff`` into the format used by ``.zenodo.json`` files (see
 `Zenodo's API docs <http://developers.zenodo.org/#representation>`__), while ignoring any keys that are likely out of date:
 

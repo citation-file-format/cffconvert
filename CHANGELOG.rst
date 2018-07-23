@@ -1,3 +1,11 @@
+1.0.0
+=====
+
+- first stable release
+- solved bug
+  https://github.com/citation-file-format/cff-converter-python/issues/59
+  (cffconvert creates local file ``data.yaml`` and ``schema.yaml`` on validate)
+
 0.0.5
 =====
 

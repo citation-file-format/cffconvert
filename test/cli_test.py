@@ -31,7 +31,7 @@ class CliTests(unittest.TestCase):
     def test_printing_of_version(self):
         result = self.runner.invoke(cffconvert_cli, ["--version"])
         self.assertTrue(result.exit_code == 0)
-        self.assertEqual(result.output, "0.0.5\n")
+        self.assertEqual(result.output, "1.0.0\n")
 
     def test_printing_when_verbose(self):
         result = self.runner.invoke(cffconvert_cli, ["--verbose"])

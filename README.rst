@@ -40,9 +40,42 @@ For users
 Install
 -------
 
+There are a few options:
+
+**Option 1 (preferred): install in user space.**
+
+Ensure that the user space directory ``~/.local/bin/`` is on the ``PATH``.
+
 .. code:: bash
 
+    pip3 install --user cffconvert
+
+
+**Option 2 (not preferred): install in virtual environment**
+
+.. code:: bash
+
+    virtualenv -p /usr/bin/python3.5 myvenv3
+    source myvenv3/bin/activate
+    pip3 install cffconvert
+
+**Option 3 (not preferred): install globally**
+
+Note: this option needs sudo rights.
+
+.. code:: bash
+
+    sudo -H pip3 install cffconvert
+
+**Option 4 (not preferred): install with conda**
+
+See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment
+
+.. code:: bash
+
+    conda install pip
     pip install cffconvert
+
 
 Command line interface
 ----------------------

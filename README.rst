@@ -44,7 +44,7 @@ There are a few options:
 
 **Option 1 (preferred): install in user space.**
 
-(ensure that the user space directory ``~/.local/bin/`` is on the ``PATH``)
+Ensure that the user space directory ``~/.local/bin/`` is on the ``PATH``.
 
 .. code:: bash
 
@@ -59,7 +59,9 @@ There are a few options:
     source myvenv3/bin/activate
     pip3 install cffconvert
 
-**Option 3 (not preferred): install globally (needs sudo rights)**
+**Option 3 (not preferred): install globally**
+
+Note: this option needs sudo rights.
 
 .. code:: bash
 

@@ -73,7 +73,8 @@ See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-t
 
 .. code:: bash
 
-    conda install cffconvert
+    conda install pip3
+    pip3 install cffconvert
 
 
 Command line interface

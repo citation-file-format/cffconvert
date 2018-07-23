@@ -67,7 +67,7 @@ Note: this option needs sudo rights.
 
     sudo -H pip3 install cffconvert
 
-**Option 4 (not preferred, untested): install with conda**
+**Option 4 (not preferred): install with conda**
 
 See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment
 

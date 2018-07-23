@@ -40,9 +40,42 @@ For users
 Install
 -------
 
+There are a few options:
+
+**Option 1 (preferred): install in user space.**
+
+Ensure that the user space directory ``~/.local/bin/`` is on the ``PATH``.
+
 .. code:: bash
 
+    pip3 install --user cffconvert
+
+
+**Option 2 (not preferred): install in virtual environment**
+
+.. code:: bash
+
+    virtualenv -p /usr/bin/python3.5 myvenv3
+    source myvenv3/bin/activate
+    pip3 install cffconvert
+
+**Option 3 (not preferred): install globally**
+
+Note: this option needs sudo rights.
+
+.. code:: bash
+
+    sudo -H pip3 install cffconvert
+
+**Option 4 (not preferred): install with conda**
+
+See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment
+
+.. code:: bash
+
+    conda install pip
     pip install cffconvert
+
 
 Command line interface
 ----------------------
@@ -156,7 +189,6 @@ Contents of file ``codemeta.json``:
         "version": "0.0.5"
     }
 
-
 Convert the contents of a local file ``CITATION.cff`` into the format used by ``.zenodo.json`` files (see
 `Zenodo's API docs <http://developers.zenodo.org/#representation>`__), while ignoring any keys that are likely out of date:
 
@@ -245,10 +277,24 @@ Making a release
 
     # run the live tests and unit tests, make sure they pass
 
+    # git push everything, merge into master as appropriate
+
+    # verify that everything has been pushed and merged by testing as follows
+    cd $(mktemp -d)
+    git clone https://github.com/citation-file-format/cff-converter-python.git
+    cd cff-converter-python
+    virtualenv -p /usr/bin/python3.5 myvenv3
+    source myvenv3/bin/activate
+    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
+    pytest test/
+    pytest livetest/
+
     # register with PyPI test instance https://test.pypi.org
 
-    # I did the following in a virtual env
-
+    # remove these directories if you have them
+    rm -rf dist
+    rm -rf cffconvert-egg.info
     # make a source distribution:
     python setup.py sdist
     # install the 'upload to pypi/testpypi tool' aka twine
@@ -257,7 +303,7 @@ Making a release
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
     # checking the package
-    # pip install --index-url https://test.pypi.org/simple/ cffconvert
+    # pip install --user --index-url https://test.pypi.org/simple/ cffconvert
     
     # check that the package works as it should when installed from pypitest
 

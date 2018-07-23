@@ -277,10 +277,24 @@ Making a release
 
     # run the live tests and unit tests, make sure they pass
 
+    # git push everything, merge into master as appropriate
+
+    # verify that everything has been pushed and merged by testing as follows
+    cd $(mktemp -d)
+    git clone https://github.com/citation-file-format/cff-converter-python.git
+    cd cff-converter-python
+    virtualenv -p /usr/bin/python3.5 myvenv3
+    source myvenv3/bin/activate
+    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
+    pytest test/
+    pytest livetest/
+
     # register with PyPI test instance https://test.pypi.org
 
-    # I did the following in a virtual env
-
+    # remove these directories if you have them
+    rm -rf dist
+    rm -rf cffconvert-egg.info
     # make a source distribution:
     python setup.py sdist
     # install the 'upload to pypi/testpypi tool' aka twine

@@ -303,7 +303,7 @@ Making a release
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
     # checking the package
-    # pip install --index-url https://test.pypi.org/simple/ cffconvert
+    # pip install --user --index-url https://test.pypi.org/simple/ cffconvert
     
     # check that the package works as it should when installed from pypitest
 

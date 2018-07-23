@@ -167,7 +167,7 @@ class CliTestsFromLocalCffFile(unittest.TestCase):
             result = self.runner.invoke(cffconvert_cli, ["--validate"])
             actual_output = result.output
 
-        expected_output = "\n"
+        expected_output = ""
 
         self.assertTrue(result.exit_code == 0)
         self.assertEqual(expected_output, actual_output)
@@ -185,7 +185,7 @@ class CliTestsFromLocalCffFile(unittest.TestCase):
             actual_output = result.output
 
         # this is the feedback that pykwalifire gives when there is a date error:
-        expected_output = "\n[\'%Y-%m-%d\']\n"
+        expected_output = "[\'%Y-%m-%d\']\n"
 
         self.assertTrue(result.exit_code == 0)
         self.assertEqual(expected_output, actual_output)

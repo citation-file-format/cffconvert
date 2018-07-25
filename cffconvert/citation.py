@@ -124,14 +124,12 @@ class Citation:
             if matched is not None:
                 semver = matched.groupdict()["semver"]
                 break
-        schema_urls = {
-            "1.0.1": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.1/CFF-Core/schema.yaml",
-            "1.0.2": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.2/CFF-Core/schema.yaml",
-            "1.0.3": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.3/CFF-Core/schema.yaml",
-        }
+
         if semver is None:
             raise ValueError("Unable to identify the schema version. Does the CFF include the 'cff-version' key?")
-        r = requests.get(schema_urls[semver])
+        schema_url = "https://raw.githubusercontent.com/citation-file-format/" +\
+                     "schema/{0}/CFF-Core/schema.yaml".format(semver)
+        r = requests.get(schema_url)
         r.raise_for_status()
         self.schema = r.text
 

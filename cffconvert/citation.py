@@ -445,7 +445,7 @@ class Citation:
 
                 author2 = {"name": name}
                 if "orcid" in author:
-                    author2["orcid"] = author["orcid"]
+                    author2["orcid"] = author["orcid"].replace('https://orcid.org/', '')
 
                 if "affiliation" in author:
                     author2["affiliation"] = author["affiliation"]

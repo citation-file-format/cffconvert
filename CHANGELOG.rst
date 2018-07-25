@@ -1,3 +1,8 @@
+1.0.1
+=====
+
+- fixed bug https://github.com/citation-file-format/cff-converter-python/issues/73 (orcid format in zenodo export)
+
 1.0.0
 =====
 

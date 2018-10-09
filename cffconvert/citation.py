@@ -1,3 +1,4 @@
+import sys
 import os
 import requests
 import yaml
@@ -454,7 +455,7 @@ class Citation:
             return authors
 
         if self.ignore_suspect_keys is False and len(self.suspect_keys) > 0:
-            print("Note: suspect keys will be included in the output.")
+            print("Note: suspect keys will be included in the output.", file=sys.stderr)
 
         d = dict()
         if self._key_should_be_included("abstract"):

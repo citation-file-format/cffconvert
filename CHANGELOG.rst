@@ -1,3 +1,8 @@
+1.0.2
+=====
+
+- fixed bug https://github.com/citation-file-format/cff-converter-python/issues/82 (warnings on stdout)
+
 1.0.1
 =====
 

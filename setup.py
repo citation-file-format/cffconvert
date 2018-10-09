@@ -50,7 +50,6 @@ setup(
     include_package_data=True,
     keywords=['citation', 'cff', 'CITATION.cff', 'bibliography'],
     classifiers=[
-        'Programming Language :: Python',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',

@@ -1,3 +1,8 @@
+1.0.3
+=====
+
+- security bugfix by updating requests from 2.18.4 to 2.20.0
+
 1.0.2
 =====
 

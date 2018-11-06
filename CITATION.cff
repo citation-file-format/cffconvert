@@ -5,6 +5,7 @@ authors:
     affiliation: "Netherlands eScience Center"
     family-names: Spaaks
     given-names: Jurriaan H.
+    orcid: https://orcid.org/0000-0002-7064-4069
   -
     affiliation: "Netherlands eScience Center"
     family-names: Klaver
@@ -13,6 +14,7 @@ authors:
     affiliation: "Netherlands eScience Center"
     family-names: Verhoeven
     given-names: Stefan
+    orcid: https://orcid.org/0000-0002-5821-2060
   -
     affiliation: "Humboldt-Universität zu Berlin"
     family-names: Druskat

@@ -6,6 +6,7 @@
     "@type": "SoftwareSourceCode",
     "author": [
         {
+            "@id": "https://orcid.org/0000-0002-7064-4069",
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
@@ -24,6 +25,7 @@
             "givenName": "Tom"
         },
         {
+            "@id": "https://orcid.org/0000-0002-5821-2060",
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
@@ -44,7 +46,7 @@
         }
     ],
     "codeRepository": "https://github.com/citation-file-format/cff-converter-python",
-    "datePublished": "2018-10-09",
+    "datePublished": "2018-11-06",
     "identifier": "https://doi.org/10.5281/zenodo.1162057",
     "keywords": [
         "citation",

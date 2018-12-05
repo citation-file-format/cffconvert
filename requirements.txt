@@ -1,4 +1,7 @@
 click==6.7
-PyYAML==3.12
 requests==2.20.0
 pykwalifire==2.0.1
+
+# use highest version of ruamel.yaml that is consistent with the 
+# dependency of pykwalifire:
+ruamel.yaml==0.11.15

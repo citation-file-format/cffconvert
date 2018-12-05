@@ -1,7 +1,7 @@
 import sys
 import os
 import requests
-import yaml
+import ruamel.yaml as yaml
 import re
 import json
 from datetime import datetime, date

@@ -1,3 +1,8 @@
+1.0.4
+=====
+
+- replaced PyYAML dependency with ruamel.yaml
+
 1.0.3
 =====
 

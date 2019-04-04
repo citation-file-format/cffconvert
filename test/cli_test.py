@@ -172,24 +172,6 @@ class CliTestsFromLocalCffFile(unittest.TestCase):
         self.assertTrue(result.exit_code == 0)
         self.assertEqual(expected_output, actual_output)
 
-    def test_validating_a_local_invalid_cff_file(self):
-        # this fixture has an invalid date (string instead of a Date object)
-        fixture_cff = os.path.join("fixtures", "8", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["--validate"])
-            actual_output = result.output
-
-        # this is the feedback that pykwalifire gives when there is a date error:
-        expected_output = "[\'%Y-%m-%d\']\n"
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
 
 if __name__ == "__main__":
     unittest.main()

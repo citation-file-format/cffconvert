@@ -6,7 +6,7 @@ import re
 import json
 from datetime import datetime, date
 import tempfile
-from pykwalifire.core import Core
+from pykwalify.core import Core
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -83,6 +83,9 @@ class Citation:
         self.yaml = yaml.safe_load(self.cffstr)
         if not isinstance(self.yaml, dict):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")
+        # correct dates that have been entered as strings in the YAML:
+        if 'date-released' in self.yaml.keys() and isinstance(self.yaml['date-released'], str):
+            self.yaml['date-released'] = datetime.strptime(self.yaml['date-released'], '%Y-%m-%d')
 
     def _remove_suspect_keys(self):
         if self.remove is not None and type(self.remove) is list:

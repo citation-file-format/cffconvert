@@ -16,14 +16,6 @@ class ConsistencyTests(unittest.TestCase):
         # this uses the version information provided by the user through setup.py
         self.expected_version = expected_version
 
-    def test_version_number_codemeta(self):
-        # codemeta content should have the same semver as setup.py / version.py
-        fixture = os.path.join("codemeta.json")
-        with open(fixture, "r") as f:
-            codemeta_contents = f.read()
-        actual_version = json.loads(codemeta_contents)["version"]
-        self.assertEqual(self.expected_version, actual_version)
-
     def test_version_number_cff(self):
         # CITATION.cff content should have the same semver as setup.py / version.py
         fixture = os.path.join("CITATION.cff")

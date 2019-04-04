@@ -1,3 +1,13 @@
+1.1.0
+=====
+
+- replaced pykwalifire with its parent pykwalify
+- now works for python 3.7 (refs #80)
+- not using PyYAML anymore (but it still comes along with pykwalify for some reason)
+- added a function that can be used as Google Cloud function
+- hopefully fixed parsing of strings that should have been entered as dates (the new validator does
+  not find that offensive, hence I had to fix it myself)
+
 1.0.4
 =====
 

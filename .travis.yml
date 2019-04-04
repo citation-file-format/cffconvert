@@ -2,7 +2,7 @@
 addons: 
   sonarcloud: 
     organization: citation-file-format
-dist: trusty
+dist: xenial
 language: python
 notifications: 
   email: 

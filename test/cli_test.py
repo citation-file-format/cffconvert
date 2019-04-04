@@ -172,5 +172,6 @@ class CliTestsFromLocalCffFile(unittest.TestCase):
         self.assertTrue(result.exit_code == 0)
         self.assertEqual(expected_output, actual_output)
 
+
 if __name__ == "__main__":
     unittest.main()

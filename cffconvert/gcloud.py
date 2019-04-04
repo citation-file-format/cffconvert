@@ -23,8 +23,6 @@ def cffconvert(request):
 
     outstr = ''
 
-    request_json = request.get_json()
-
     if request.args:
 
         if 'cffstr' in request.args:

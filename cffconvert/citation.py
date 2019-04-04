@@ -6,7 +6,7 @@ import re
 import json
 from datetime import datetime, date
 import tempfile
-from pykwalifire.core import Core
+from pykwalify.core import Core
 
 
 class JSONEncoder(json.JSONEncoder):

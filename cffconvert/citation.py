@@ -19,7 +19,7 @@ class JSONEncoder(json.JSONEncoder):
 class Citation:
 
     def __init__(self, url=None, cffstr=None, ignore_suspect_keys=False, override=None, remove=None, suspect_keys=None,
-                 instantiate_empty=False, validate=False):
+                 instantiate_empty=False, validate=False, raise_exception=False):
 
         def xor(condition1, condition2):
             conditions = [condition1, condition2]
@@ -37,6 +37,7 @@ class Citation:
         self.remove = remove
         self.ignore_suspect_keys = ignore_suspect_keys
         self.validate = validate
+        self.raise_exception = raise_exception
         self.schema = None
         if suspect_keys is None:
             self.suspect_keys = ["doi", "version", "date-released", "commit"]
@@ -147,10 +148,7 @@ class Citation:
                 f.write(self.schema)
 
             c = Core(source_file=datafile, schema_files=[schemafile])
-            try:
-                c.validate(raise_exception=True)
-            except Exception as e:
-                pass
+            c.validate(raise_exception=self.raise_exception)
 
         return self
 

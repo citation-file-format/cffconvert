@@ -90,11 +90,9 @@ Really, all it does is get any supplied URL parameters, and use them as if they 
 
     cffconvert --version
     
-on the command line, now you enter 
-
-    https://us-central1-cffconvert.cloudfunctions.net/cffconvert?version
-
-To get the equivalent result.
+on the command line, now you enter
+https://us-central1-cffconvert.cloudfunctions.net/cffconvert?version
+to get the equivalent result.
 
 Similarly, if you'd normally do 
 
@@ -102,17 +100,11 @@ Similarly, if you'd normally do
 
     cffconvert --url https://github.com/xenon-middleware/xenon --outputformat cff
 
-on the command line, the Google Cloud Function equivalent would be:
-
-.. code:: bash
-
-    https://us-central1-cffconvert.cloudfunctions.net/cffconvert?url=https://github.com/xenon-middleware/xenon&outputformat=cff
+on the command line, the Google Cloud Function equivalent would be
+https://us-central1-cffconvert.cloudfunctions.net/cffconvert?url=https://github.com/xenon-middleware/xenon&outputformat=cff
 
 To learn more about the other options, check 
-
-.. code:: bash
-
-    https://us-central1-cffconvert.cloudfunctions.net/cffconvert?verbose 
+https://us-central1-cffconvert.cloudfunctions.net/cffconvert?verbose 
 
 
 Command line interface

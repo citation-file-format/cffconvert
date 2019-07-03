@@ -76,7 +76,7 @@ See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-t
     conda install pip
     pip install cffconvert
 
-**Option 5: use ``cffconvert`` as a Google Cloud Function**
+**Option 5 (experimental): use ``cffconvert`` as a Google Cloud Function**
 
 ``cffconvert`` comes with  `an interface </cffconvert/gcloud.py>`_ for running as a Google Cloud Function. We set it up here
 https://us-central1-cffconvert.cloudfunctions.net/cffconvert .

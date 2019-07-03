@@ -78,8 +78,8 @@ See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-t
 
 **Option 5: use ``cffconvert`` as a Google Cloud Function**
 
-``cffconvert`` comes with an interface for running as a Google Cloud Function. We set it up here
-https://us-central1-cffconvert.cloudfunctions.net/cffconvert
+``cffconvert`` comes with  `an interface </cffconvert/gcloud.py>`_ for running as a Google Cloud Function. We set it up here
+https://us-central1-cffconvert.cloudfunctions.net/cffconvert .
 
 Really, all that does is get any supplied URL parameters, and use them as if they had been entered as command line arguments. For example, if you'd do 
 

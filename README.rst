@@ -76,6 +76,44 @@ See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-t
     conda install pip
     pip install cffconvert
 
+**Option 5: use cffconvert as a Google Cloud Function**
+
+``cffconvert`` comes with an interface for running as a Google Cloud function. We set it up here
+
+.. code:: bash
+
+    https://us-central1-cffconvert.cloudfunctions.net/cffconvert
+
+Really, all it does is get any supplied URL parameters, and use them as if they had been entered as command line arguments. For example, if you'd do 
+
+.. code:: bash
+
+    cffconvert --version
+    
+on the command line, now you enter 
+
+    https://us-central1-cffconvert.cloudfunctions.net/cffconvert?version
+
+To get the equivalent result.
+
+Similarly, if you'd normally do 
+
+.. code:: bash
+
+    cffconvert --url https://github.com/xenon-middleware/xenon --outputformat cff
+
+on the command line, the Google Cloud Function equivalent would be:
+
+.. code:: bash
+
+    https://us-central1-cffconvert.cloudfunctions.net/cffconvert?url=https://github.com/xenon-middleware/xenon&outputformat=cff
+
+To learn more about the other options, check 
+
+.. code:: bash
+
+    https://us-central1-cffconvert.cloudfunctions.net/cffconvert?verbose 
+
 
 Command line interface
 ----------------------

@@ -77,6 +77,13 @@ See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-t
     pip install cffconvert
 
 
+**Option 5 (not preferred): install with setup.py in the user environment**
+
+.. code:: bash
+
+    python setup.py install --user
+
+
 Command line interface
 ----------------------
 

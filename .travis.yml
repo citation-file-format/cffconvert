@@ -9,10 +9,10 @@ notifications:
     on_failure: change
     on_succes: never
 python: 
-  - "3.4"
   - "3.5"
   - "3.6"
   - "3.7"
+  - "nightly"
 install:
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt

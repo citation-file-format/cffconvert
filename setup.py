@@ -67,6 +67,8 @@ setup(
         'Topic :: Utilities'
     ],
     packages=find_packages(),
-    install_requires=get_install_dependencies() + get_test_dependencies(),
+    install_requires=get_install_dependencies(),
+    setup_requires=get_test_dependencies(),
+    tests_require=get_test_dependencies(),
     long_description=get_readme()
 )

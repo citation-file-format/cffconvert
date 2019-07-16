@@ -104,6 +104,13 @@ To learn more about the other options, check
 https://us-central1-cffconvert.cloudfunctions.net/cffconvert?verbose 
 
 
+**Option 5 (not preferred): install with setup.py in the user environment**
+
+.. code:: bash
+
+    python setup.py install --user
+
+
 Command line interface
 ----------------------
 

@@ -1,3 +1,8 @@
+1.2.0
+=====
+
+- corrected an error where cffconvert could not raise an error during validation (https://github.com/citation-file-format/cff-converter-python/issues/94).
+
 1.1.0
 =====
 

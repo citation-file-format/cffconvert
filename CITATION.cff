@@ -21,7 +21,7 @@ authors:
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
 cff-version: "1.0.3"
-date-released: 2019-06-25
+date-released: 2019-07-16
 doi: 10.5281/zenodo.1162057
 keywords:
   - "citation"
@@ -32,4 +32,4 @@ license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/citation-file-format/cff-converter-python"
 title: cffconvert
-version: "1.2.0"
+version: "1.2.1"

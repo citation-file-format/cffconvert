@@ -11,6 +11,12 @@ def get_install_dependencies():
     return [line.rstrip('\n') for line in lines]
 
 
+def get_test_dependencies():
+    with open("requirements-dev.txt", "r") as f:
+        lines = f.readlines()
+    return [line.rstrip('\n') for line in lines]
+
+
 def get_readme():
     with open("README.rst", "r") as f:
         return f.read()
@@ -62,5 +68,7 @@ setup(
     ],
     packages=find_packages(),
     install_requires=get_install_dependencies(),
+    setup_requires=get_test_dependencies(),
+    tests_require=get_test_dependencies(),
     long_description=get_readme()
 )

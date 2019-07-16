@@ -1,3 +1,8 @@
+1.2.1
+=====
+
+- setup.py no longer includes test dependencies as install dependencies
+
 1.2.0
 =====
 

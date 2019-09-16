@@ -25,10 +25,10 @@ combinations of arguments as query parameters in the URL (see examples
 below).
 
 <h2>Authorized arguments</h2>
-<pre>
-?verbose
-</pre>
-Try adding '?verbose' to the URL to see which arguments exist
+
+Try adding <a href="?verbose"><span
+style="font-family:monospace">?verbose</span></a> to the URL to see which
+arguments exist.
 
 <h2>Converting from a GitHub URL</h2>
 

@@ -5,11 +5,42 @@ from cffconvert import version as cffconvert_version
 
 def get_help_text():
     return """<!DOCTYPE html>
-<html lang="en">
-<head>
+    <html lang="en">
+    <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <style>
+    body {
+       font-family: 'Roboto', sans-serif;
+       line-height: 1.6em;
+       width: 60em;
+       background-color: #2f4f4f;
+       color: #f0ffff;
+       font-size: large;
+    }
+
+    body a {
+       color: #7fffd4;
+       text-decoration: none;
+    }
+
+    body a:hover {
+       color: #7fffd4;
+       text-decoration: underline;
+    }
+
+    body a:visited {
+       color: #3fd6cf;
+       text-decoration: none;
+    }
+
+    .code {
+       font-family: 'Ubuntu Mono', monospace;
+    }
+    </style>
     <title>cffconvert</title>
-</head>
+    </head>
 <body>
 
 

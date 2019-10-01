@@ -1,3 +1,8 @@
+1.3.0
+=====
+
+- added schema.org converter method
+
 1.2.2
 =====
 

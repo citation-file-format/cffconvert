@@ -359,6 +359,74 @@ class Citation:
     def as_json(self):
         return JSONEncoder().encode(self.yaml)
 
+    def as_schema_dot_org(self):
+
+        def resolve_spdx_license(spdx_license_code):
+            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data" + \
+                           "/b541ee8a345aa93b70a08765c7bf5e423bb4d558/json/licenses.json"
+            r = requests.get(licenses_url)
+            if r.ok:
+                data = r.json()
+                for license in data["licenses"]:
+                    if license["licenseId"] == spdx_license_code:
+                        return license["seeAlso"][0]
+                raise ValueError("Provided license {0} not in list of licenses".format(spdx_license_code))
+            else:
+                raise Warning("status not '200 OK'")
+
+        def construct_authors_arr():
+
+            authors = list()
+            for read_author in self.yaml["authors"]:
+                write_author = dict()
+                write_author["@type"] = "Person"
+
+                if "given-names" in read_author:
+                    write_author["givenName"] = read_author["given-names"]
+
+                family_name = ""
+                if "name-particle" in read_author:
+                    family_name += read_author["name-particle"] + " "
+                if "family-names" in read_author:
+                    family_name += read_author["family-names"]
+                if "name-suffix" in read_author:
+                    family_name += " " + read_author["name-suffix"]
+                write_author["familyName"] = family_name
+
+                if "orcid" in read_author:
+                    write_author["@id"] = read_author["orcid"]
+
+                if "affiliation" in read_author:
+                    write_author["affiliation"] = {
+                        "@type": "Organization",
+                        "legalName": read_author["affiliation"]
+                    }
+
+                authors.append(write_author)
+            return authors
+
+        d = dict()
+        d["@context"] = "https://schema.org"
+        d["@type"] = "SoftwareSourceCode"
+        if self._key_should_be_included("repository-code"):
+            d["codeRepository"] = self.yaml["repository-code"]
+        if self._key_should_be_included("date-released"):
+            d["datePublished"] = self.yaml["date-released"].isoformat()
+        if self._key_should_be_included("authors"):
+            d["author"] = construct_authors_arr()
+        if self._key_should_be_included("keywords"):
+            d["keywords"] = self.yaml["keywords"]
+        if self._key_should_be_included("license"):
+            d["license"] = resolve_spdx_license(self.yaml["license"])
+        if self._key_should_be_included("version"):
+            d["version"] = self.yaml["version"]
+        if self._key_should_be_included("doi"):
+            d["identifier"] = "https://doi.org/{0}".format(self.yaml["doi"])
+        if self._key_should_be_included("title"):
+            d["name"] = self.yaml["title"]
+
+        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
+
     def as_ris(self):
         def construct_author_string():
             names = list()

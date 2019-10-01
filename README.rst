@@ -18,10 +18,11 @@ url and convert it to various formats, such as:
 
 1. BibTeX
 2. EndNote
-3. RIS
-4. codemeta
-5. plain JSON
-6. Zenodo JSON
+3. codemeta
+4. plain JSON
+5. schema.org
+6. RIS
+7. Zenodo JSON
 
 Supported types of GitHub URL:
 
@@ -127,7 +128,7 @@ Shows:
     Options:
       -if, --infile TEXT          Path to the CITATION.cff input file.
       -of, --outfile TEXT         Path to the output file.
-      -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|ris|zenodo
+      -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|schema.org|ris|zenodo
       -u, --url TEXT              URL of the repo containing the CITATION.cff (currently only github.com is supported; may
                                   include branch name, commit sha, tag name). For example: 'https://github.com/citation-
                                   file-format/cff-converter-python' or 'https://github.com/citation-file-format/cff-

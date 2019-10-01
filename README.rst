@@ -61,6 +61,22 @@ Really, all the Google Cloud interface does is get any supplied URL parameters,
 and use them as if they had been entered as command line arguments. For more
 detailed explanation and examples, see https://bit.ly/cffconvert.
 
+On Google Cloud Function, set ``requirements.txt`` to:
+
+.. code::
+
+    Flask
+    cffconvert
+
+and use the following as ``main.py``:
+
+.. code:: python
+
+    from cffconvert.gcloud import cffconvert
+
+    def main(request):
+       return cffconvert(request)
+
 **Option 3 (not preferred): install in virtual environment**
 
 .. code:: bash

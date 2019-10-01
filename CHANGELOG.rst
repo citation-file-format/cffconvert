@@ -1,3 +1,8 @@
+1.2.2
+=====
+
+- added documentation for the Google Cloud Function interface
+
 1.2.1
 =====
 

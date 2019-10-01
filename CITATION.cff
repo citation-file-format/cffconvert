@@ -1,5 +1,6 @@
 # YAML 1.2
 ---
+abstract: "Command line program to convert from Citation File Format to various other formats such as BibTeX, EndNote, RIS, schema.org, and .zenodo.json."
 authors:
   -
     affiliation: "Netherlands eScience Center"

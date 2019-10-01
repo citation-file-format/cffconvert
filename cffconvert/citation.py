@@ -96,8 +96,8 @@ class Citation:
                     self.cffstr = yaml.safe_dump(self.yaml, default_flow_style=False)
 
     def _retrieve_file(self):
-        regexp = re.compile("^" +
-                            "(?P<baseurl>https://github\.com)/" +
+        regexp = re.compile(r"^" +
+                            "(?P<baseurl>https://github.com)/" +
                             "(?P<org>[^/\n]*)/" +
                             "(?P<repo>[^/\n]*)" +
                             "(/tree/(?P<label>[^/\n]*))?", re.IGNORECASE)
@@ -122,7 +122,7 @@ class Citation:
             raise Exception("Error requesting file: {0}".format(self.file_url))
 
     def _validate(self):
-        regexp = re.compile("^cff-version: (['|\"])?(?P<semver>[\d\.]*)(['\"])?\s*$")
+        regexp = re.compile(r"^cff-version: (['|\"])?(?P<semver>[\d\.]*)(['\"])?\s*$")
         semver = None
         for line in self.cffstr.split("\n"):
             matched = re.match(regexp, line)

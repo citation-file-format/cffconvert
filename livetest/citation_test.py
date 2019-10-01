@@ -27,7 +27,7 @@ class CitationTestUrlHasOrgRepoTreeSha(unittest.TestCase):
         self.assertEqual(expected_cffstr, actual_cffstr)
 
 
-class CitationTestUrlHasOrgRepoOrgRepoTreeTag(unittest.TestCase):
+class CitationTestUrlHasOrgRepoTreeTag(unittest.TestCase):
 
     def test_retrieval_via_tag(self):
         # https://github.com/<org>/<repo>/tree/<tagname>

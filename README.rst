@@ -50,8 +50,18 @@ Ensure that the user space directory ``~/.local/bin/`` is on the ``PATH``.
 
     pip3 install --user cffconvert
 
+**Option 2: use ``cffconvert`` as a Google Cloud Function**
 
-**Option 2 (not preferred): install in virtual environment**
+``cffconvert`` comes with  `an interface </cffconvert/gcloud.py>`_ for running
+as a Google Cloud Function. We set it up here https://bit.ly/cffconvert for the
+time being / as long as we have enough credits on the Google Cloud Function
+platform.
+
+Really, all the Google Cloud interface does is get any supplied URL parameters,
+and use them as if they had been entered as command line arguments. For more
+detailed explanation and examples, see https://bit.ly/cffconvert.
+
+**Option 3 (not preferred): install in virtual environment**
 
 .. code:: bash
 
@@ -59,7 +69,7 @@ Ensure that the user space directory ``~/.local/bin/`` is on the ``PATH``.
     source myvenv3/bin/activate
     pip3 install cffconvert
 
-**Option 3 (not preferred): install globally**
+**Option 4 (not preferred): install globally**
 
 Note: this option needs sudo rights.
 
@@ -67,7 +77,7 @@ Note: this option needs sudo rights.
 
     sudo -H pip3 install cffconvert
 
-**Option 4 (not preferred): install with conda**
+**Option 5 (not preferred): install with conda**
 
 See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment
 
@@ -76,35 +86,7 @@ See https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-t
     conda install pip
     pip install cffconvert
 
-**Option 5 (experimental): use cffconvert as a Google Cloud Function**
-
-``cffconvert`` comes with  `an interface </cffconvert/gcloud.py>`_ for running as a Google Cloud Function. We set it up here
-https://us-central1-cffconvert.cloudfunctions.net/cffconvert for the time being / as long as we have enough credits on the Google Cloud Function platform.
-
-Really, all that does is get any supplied URL parameters, and use them as if they had been entered as command line arguments. For example, if you'd do 
-
-.. code:: bash
-
-    cffconvert --version
-    
-on the command line, now you enter
-https://us-central1-cffconvert.cloudfunctions.net/cffconvert?version
-to get the equivalent result.
-
-Similarly, if you'd normally do 
-
-.. code:: bash
-
-    cffconvert --url https://github.com/xenon-middleware/xenon --outputformat cff
-
-on the command line, the Google Cloud Function equivalent would be
-https://us-central1-cffconvert.cloudfunctions.net/cffconvert?url=https://github.com/xenon-middleware/xenon&outputformat=cff
-
-To learn more about the other options, check 
-https://us-central1-cffconvert.cloudfunctions.net/cffconvert?verbose 
-
-
-**Option 5 (not preferred): install with setup.py in the user environment**
+**Option 6 (not preferred): install with setup.py in the user environment**
 
 .. code:: bash
 

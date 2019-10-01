@@ -50,8 +50,8 @@ style="font-family:monospace"><a
 href="https://pypi.org/project/cffconvert/">cffconvert</a></span>.
 
 With this page, you can read a CFF formatted CITATION file from a supplied
-string or a GitHub url, and convert it to BibTeX, EndNote, RIS, Codemeta,
-.zenodo.json, or plain JSON. The way to do that is by supplying various
+string or a GitHub url, and convert it to BibTeX, EndNote, Codemeta, RIS, schema.org,
+plain JSON, Zenodo JSON. The way to do that is by supplying various
 combinations of arguments as query parameters in the URL (see examples 
 below).
 
@@ -73,6 +73,7 @@ convert to various other formats, as follows.
 <ul>
 <li><a href="?url=https://github.com/citation-file-format/cff-converter-python&outputformat=codemeta"><span style="font-family:monospace">?url=https://github.com/citation-file-format/cff-converter-python&outputformat=codemeta</span></a></li>
 <li><a href="?url=https://github.com/citation-file-format/cff-converter-python&outputformat=endnote"><span style="font-family:monospace">?url=https://github.com/citation-file-format/cff-converter-python&outputformat=endnote</span></a></li>
+<li><a href="?url=https://github.com/citation-file-format/cff-converter-python&outputformat=schema.org"><span style="font-family:monospace">?url=https://github.com/citation-file-format/cff-converter-python&outputformat=schema.org</span></a></li>
 <li><a href="?url=https://github.com/citation-file-format/cff-converter-python&outputformat=ris"><span style="font-family:monospace">?url=https://github.com/citation-file-format/cff-converter-python&outputformat=ris</span></a></li>
 <li><a href="?url=https://github.com/citation-file-format/cff-converter-python&outputformat=zenodo"><span style="font-family:monospace">?url=https://github.com/citation-file-format/cff-converter-python&outputformat=zenodo</span></a></li>
 </ul>
@@ -202,7 +203,7 @@ def cffconvert(request):
             outstr += "\n\nError: " + str(e)
         return Response(outstr, mimetype='text/plain')
 
-    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "zenodo"]
+    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
     if validate:
         pass
     elif outputformat not in acceptable_output_formats:
@@ -213,15 +214,17 @@ def cffconvert(request):
         return
     elif outputformat == "bibtex":
         outstr += citation.as_bibtex()
+    elif outputformat == "cff":
+        outstr += citation.cffstr
     elif outputformat == "codemeta":
         outstr += citation.as_codemeta()
     elif outputformat == "endnote":
         outstr += citation.as_enw()
     elif outputformat == "ris":
         outstr += citation.as_ris()
+    elif outputformat == "schema.org":
+        outstr += citation.as_schema_dot_org()
     elif outputformat == "zenodo":
         outstr += citation.as_zenodojson()
-    elif outputformat == "cff":
-        outstr += citation.cffstr
 
     return Response(outstr, mimetype='text/plain')

@@ -59,7 +59,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
     citation = Citation(url=url, cffstr=cffstr, ignore_suspect_keys=ignore_suspect_keys, override=override,
                         remove=remove, suspect_keys=suspect_keys, validate=validate)
 
-    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "zenodo"]
+    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo"]
     if validate:
         pass
     elif outputformat not in acceptable_output_formats:
@@ -69,16 +69,18 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
         return
     elif outputformat == "bibtex":
         outstr = citation.as_bibtex()
+    elif outputformat == "cff":
+        outstr = citation.cffstr
     elif outputformat == "codemeta":
         outstr = citation.as_codemeta()
     elif outputformat == "endnote":
         outstr = citation.as_enw()
     elif outputformat == "ris":
         outstr = citation.as_ris()
+    elif outputformat == "schema.org":
+        outstr = citation.as_schema_dot_org()
     elif outputformat == "zenodo":
         outstr = citation.as_zenodojson()
-    elif outputformat == "cff":
-        outstr = citation.cffstr
 
     if outfile is None:
         print(outstr)

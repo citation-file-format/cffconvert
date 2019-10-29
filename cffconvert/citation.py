@@ -132,6 +132,11 @@ class Citation:
 
         if semver is None:
             raise ValueError("Unable to identify the schema version. Does the CFF include the 'cff-version' key?")
+        # Hard-coded fix for https://github.com/citation-file-format/cff-converter-python/issues/106.
+        # 1.0.3-1 schema will be the last one using pykwalifire/schema.yaml, therefore
+        # this hard-coded fix is acceptable.
+        elif semver == '1.0.3':
+            semver = '1.0.3-1'
         schema_url = "https://raw.githubusercontent.com/citation-file-format/" +\
                      "schema/{0}/CFF-Core/schema.yaml".format(semver)
         r = requests.get(schema_url)

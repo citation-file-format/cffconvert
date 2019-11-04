@@ -14,5 +14,4 @@ install:
 script:
 #- pytest --cov=./cffconvert --cov-report=xml test/
 #- pytest livetest/
-- sonar-scanner
 sudo: false

@@ -20,8 +20,8 @@ install:
   - pip install -r requirements-dev.txt
 script: 
     # run the unit tests, with test coverage calculation
-  - "pytest --cov=./cffconvert --cov-report=xml test/"
+#  - "pytest --cov=./cffconvert --cov-report=xml test/"
     # also run the live tests, without test coverage calculation
-  - "pytest livetest/"
-  - "sonar-scanner -X"
+#  - "pytest livetest/"
+  - "sonar-scanner"
 sudo: false

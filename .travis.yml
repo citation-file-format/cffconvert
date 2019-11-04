@@ -1,9 +1,4 @@
-addons:
-  sonarcloud:
-    organization: citation-file-format
-    token:
-      secure: "GJcp2AULQntm1kPDrrLhIxMeOOsi2xilsO2LMEMQ4kCfNM4Gv5tjFqqS1Fc3LAiTUkmBgEmWs+uWe+JbxhR2h4aWsbCCvLCE9g9M+WP11LpcfsrRo55q4lKK3EzNaiK4YBRAFLpNkkxnfg2+Y1j8b/ADXwCjwgPB9NwWvbVJJR+rUDPMR1I7qoCuJcXS5Jc1zUKQTAqjnw0JM9q8skXdxwXknoL5NGuZMeN1BVN7kQGAKMeUvDIG9CFfCpQAeZYhAUEsyZMrnJoO+Iwc39PYRetjQpNEJAf/xBHvGhjogwYmQBbb6ubGAMGm35Re1cRdCQ219Jgm47zf3vYUfFjga+xcz/RG5NV9hpjaHGoh3ulsagHYlXdHgQ94rdA+HucVEmjtnmKTmTCbvgGWX0huTHjD4VYGhJhpyH3E6PT4z4K31PY29DTvcpsopwHxN4Fn0VXzLDNj3sfx4QqoVj1+HIPlZW2r9L9QGxzdGjmYmeR0lBZuKR3hamTs1+Yf5VcyhoHQOajOtMJbXpailC2ALY/+1HomLR4dIubevFZ9B3ufcbPzUNhvrk/oZmje/3yYPY9vq5L6i9f/89vepdsFGrAS3yC6TU/qMg5iO6EIPxI4TqNPR92p7aR0VqIMLhQdJCJu9DAk11ugQE2YElau1mtZiRT/9FNhINZVEYDBze0="
-dist: trusty
+dist: xenial
 language: python
 notifications:
   email:
@@ -12,7 +7,7 @@ notifications:
 python:
   - "3.5"
   - "3.6"
-#  - "3.7"
+  - "3.7"
   - "nightly"
 install:
   - pip install -r requirements.txt
@@ -22,7 +17,7 @@ script:
   - "pytest --cov=./cffconvert --cov-report=xml test/"
   # also run the live tests, without test coverage calculation
   - "pytest livetest/"
-  - sonar-scanner -Dsonar.login=$SONARCLOUD_TOKEN -X
+  - sonar-scanner
 sudo: false
 
 # "sonar-scanner -Dsonar.login=$SONAR_TOKEN -X"

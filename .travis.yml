@@ -1,14 +1,15 @@
---- 
-addons: 
-  sonarcloud: 
+addons:
+  sonarcloud:
     organization: citation-file-format
+    token:
+      secure: lTSNS2RBNkF+pWQbLu9FvV7xUv9bR4rpEr+iBYdoRgxKv2+ZYd/Xgc8EOqMNZHO2rLmx6iBXK9c8NN/fpSgQx85JXSYztHJrHMWlLSYZ45H/MvkuT7oUMDenDO6s7yUbfdeeuDxlgg+Fum0jL5eZoGsgd/WR+lJmzQbWC3BCHhrrlpo3a0/n77sASm/Z18JDTv+kmlo9lDyHFZSrrpWX7aLj2b70Q7t+ByBUmDmPzGTgR6Bz1gu/y+h+KLIS3+hsstIHRBldQ39P4W7ifXzpdli6PvADsUWGA1Pb0JfTCCagGrCv1c+sgipQzA5wLU7sRdHVOnCLIVa9kThjB/CronA8G0vN711t5osIr+7ScNp5ZH7Hd66W/YzxmmGEMqcrsAQlSxzYAl1XNu6nKnEYnecuP9yt0FQGmiGIwlfJQp+/LrJZMAiYaahXHftQtKug7F2LkKlo+0V5Sl5Nf5hAEubwEWB0PubYwGC/sNiGNqGupqiffJlTjnqWF/q4oitOqmx/sxmywk1YE30u2kc4B0guCLKa0M7kNtLC4lgZnqpcvNpG8PpnhgVkV/ywOqk/xQfz/2dfO9tpnSTRbSqWitomWpIGos+HYXwNGUs0DC1IzTu4lpbcqFt6f0TrNnaGecijjmDFdDPQ6fx8wiXmOT6fBWS+TbtMEX14rdRuND4=
 dist: xenial
 language: python
-notifications: 
-  email: 
+notifications:
+  email:
     on_failure: change
     on_succes: never
-python: 
+python:
   - "3.5"
   - "3.6"
   - "3.7"
@@ -16,12 +17,12 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt
-script: 
-    # run the unit tests, with test coverage calculation
+script:
+  - # run the unit tests, with test coverage calculation
   - "pytest --cov=./cffconvert --cov-report=xml test/"
-    # also run the live tests, without test coverage calculation
+  - # also run the live tests, without test coverage calculation
   - "pytest livetest/"
-    # had sonarcloud.io generate a token, added the token as environmental
-    # variable SONAR_TOKEN to the configuration on travis-ci.org
-  - "sonar-scanner -Dsonar.login=$SONAR_TOKEN -X"
+  - sonar-scanner
 sudo: false
+
+# "sonar-scanner -Dsonar.login=$SONAR_TOKEN -X"

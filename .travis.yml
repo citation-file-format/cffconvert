@@ -2,8 +2,6 @@
 addons: 
   sonarcloud: 
     organization: citation-file-format
-    token:
-      secure: "ZXnzagOHIA1Xodp9eP5Dcql+Y1LVZ7Ka+FNHJuULxlg+GDhyJ0XgFGvrWVGnkxjWTwFfM7Ctm2zdWzC+vD4fdBwgYYSU+8NexCuj+kg99khPq6IEI/TlgsFMQeQCWXc7LdjFslfunlX/wGv6rFAbIc8AlPXZV6DtuztiYie/bJf4gWJ4LlDho1nvpG5QlT46cdUdJC75eLTuQB9+/o+PVTCPcRMZpNzul0WyqJi7sxZDsnvtnkrhpja3d4Sosx7HTCVjX88LsXD4tg4C3lZ7nwP5PxmvpM8jnUQaVLg90DUPQg14B9CZiRA5mj17gDE+LLOyMgAML5L3yt3iY/0DbdJTyYLXoZ66nXmDeTRxJRuLpkk2X+ugbGqFQNgk6jzD0GSeZTlx0H7hAIedeLUrvClw3Em1QZUrtTlY9dQ5rsqwzD/VS52HXloP0AWVRr8TYd/2Ty+aYzuABqbo4bscIw4B9TbpIFcg6Q6q9YmuBadh7ODNgTe09KWZLbWXAsAfbnx63kkylxwQOxC1meaR6PnNpFirJpVxRQd8CscwO9Mp0MYyotIuEk66WLF64ar1kwpGk16JZqkUY2g99JATsSEfB8xQ3PQWoHHurnjxbGRpxXedgMIhBf46TSb7oa5m0ZiXPokezzmwtXKo5IQpxFKNINNDyxjwrtz4y9wbUzc="
 dist: xenial
 language: python
 notifications: 
@@ -23,5 +21,5 @@ script:
 #  - "pytest --cov=./cffconvert --cov-report=xml test/"
     # also run the live tests, without test coverage calculation
 #  - "pytest livetest/"
-  - "sonar-scanner"
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN -X
 sudo: false

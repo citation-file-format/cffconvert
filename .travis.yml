@@ -2,7 +2,7 @@
 addons: 
   sonarcloud: 
     organization: citation-file-format
-dist: xenial
+dist: trusty
 language: python
 notifications: 
   email: 
@@ -10,9 +10,9 @@ notifications:
     on_succes: never
 python: 
   - "3.5"
-  - "3.6"
-  - "3.7"
-  - "nightly"
+#  - "3.6"
+#  - "3.7"
+#  - "nightly"
 install:
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt

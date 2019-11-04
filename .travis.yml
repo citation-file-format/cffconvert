@@ -17,7 +17,7 @@ install:
 - pip install -r requirements.txt
 - pip install -r requirements-dev.txt
 script:
-- pytest --cov=./cffconvert --cov-report=xml test/
-- pytest livetest/
+#- pytest --cov=./cffconvert --cov-report=xml test/
+#- pytest livetest/
 - sonar-scanner -X
 sudo: false

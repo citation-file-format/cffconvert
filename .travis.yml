@@ -22,7 +22,7 @@ script:
   - "pytest --cov=./cffconvert --cov-report=xml test/"
   - # also run the live tests, without test coverage calculation
   - "pytest livetest/"
-  - sonar-scanner
+  - sonar-scanner -Dsonar.login=$SONARCLOUD_TOKEN -X
 sudo: false
 
 # "sonar-scanner -Dsonar.login=$SONAR_TOKEN -X"

@@ -1,9 +1,4 @@
-addons:
-  sonarcloud:
-    organization: citation-file-format
-    token:
-      secure: "VQWgBCAJ7zPnPF89qboG/+4WMIsp5Q/vEd62cao9lDom9dZPfN6EA+IHuRR50a9mUsfLEKVYHzg+uW4oe/zVrMEvC52M1gR5gdly9AMbV0z7eJenw9s3srPcaqFXU4iR+OtGMHI2u8KE5w6itVp4pXc2RJDh8I9IYCbrX5SQWmytBS1SeUL52p03jfoVGtvbv6fDZ2JdOVuaOYcnK+ielEBwGYFJB+yZokmUoe1qIt1zzlextnMq1VFvxiSiLJ8ARpyNDOn1R7N0w1qIf0Upfse7fpv8fjAKdNFelvhhHviaPRgI5rTzLlGZVa/JN1VHtUSr0GUVPtxk1NUQRB6t2s91eTxWxsStEoDms5LCJlMySoLTjg5uolWo8p6Uwx4ao2qoBXMEbDgSDOF11Pil8CDTtxzYTvzaffx6QoX8MtQrtRsbkbkS3iGdKIPpFLLESJm1svR98wSJjy81dLmCb3C2AJAxnwIZkyBH9W9GVtP02A6f+1IiE+4uZ3HYV2KLtio8mItsrn+5QcnfrVz+IxvB8sYWeKPtC8n3HOpj50WeDoy7QmgF76Xc3JUZS1fMm3dR2+7gtSJqSJ8ZJGYslkvTZBg2CT/sa/HL5diZN/Glc9LKB1FS3aiQJGXaFl9TaWPKN0u/b/lhRq17ABmBZzDD17Mi2QFrlTgikRIGXwo="
-dist: trusty
+dist: xenial
 language: python
 notifications:
   email:
@@ -19,5 +14,5 @@ install:
 script:
 #- pytest --cov=./cffconvert --cov-report=xml test/
 #- pytest livetest/
-- sonar-scanner -X
+- sonar-scanner
 sudo: false

@@ -1,7 +1,33 @@
 1.3.1
 =====
 
-- 'cff-version' is now interpreted as 1.0.3-1 (the latest schema version that implements the spec 1.0.3). This will fix some problems with the list of SPDX license abbreviations.
+- 'cff-version' is now interpreted as 1.0.3-1 (the latest schema version that implements the spec 1.0.3). This will fix some problems with the list of SPDX license abbreviations. These additional licenses should now work:
+   - ``AGPL-3.0-only``
+   - ``AGPL-3.0-or-later``
+   - ``BSD-1-Clause``
+   - ``BSD-2-Clause-Patent``
+   - ``CDLA-Permissive-1.0``
+   - ``CDLA-Sharing-1.0``
+   - ``EPL-2.0``
+   - ``EUPL-1.2``
+   - ``GFDL-1.1-only``
+   - ``GFDL-1.1-or-later``
+   - ``GFDL-1.2-only``
+   - ``GFDL-1.2-or-later``
+   - ``GFDL-1.3-only``
+   - ``GFDL-1.3-or-later``
+   - ``GPL-1.0-only``
+   - ``GPL-1.0-or-later``
+   - ``GPL-2.0-only``
+   - ``GPL-2.0-or-later``
+   - ``GPL-3.0-only``
+   - ``GPL-3.0-or-later``
+   - ``LGPL-2.0-only``
+   - ``LGPL-2.0-or-later``
+   - ``LGPL-2.1-only``
+   - ``LGPL-2.1-or-later``
+   - ``LGPL-3.0-only``
+   - ``LGPL-3.0-or-later``
 
 1.3.0
 =====

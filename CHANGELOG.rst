@@ -1,3 +1,8 @@
+1.3.1
+=====
+
+- 'cff-version' is now interpreted as 1.0.3-1 (the latest schema version that implements the spec 1.0.3). This will fix some problems with the list of SPDX license abbreviations.
+
 1.3.0
 =====
 

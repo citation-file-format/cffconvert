@@ -343,7 +343,6 @@ Making a release
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
     # checking the package
-    # pip install --user --no-cache-dir --index-url https://test.pypi.org/simple/ cffconvert
     python3.6 -m pip -v install --user --no-cache-dir \
     --index-url https://test.pypi.org/simple/ \
     --extra-index-url https://pypi.org/simple cffconvert

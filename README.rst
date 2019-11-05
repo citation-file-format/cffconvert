@@ -325,8 +325,8 @@ Making a release
     cd cff-converter-python
     python3 -m virtualenv -p /usr/bin/python3.6 venv36
     source venv36/bin/activate
-    pip install -r requirements.txt
-    pip install -r requirements-dev.txt
+    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements-dev.txt
     pytest test/
     pytest livetest/
 

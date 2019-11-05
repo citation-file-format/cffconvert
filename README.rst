@@ -344,6 +344,9 @@ Making a release
 
     # checking the package
     # pip install --user --no-cache-dir --index-url https://test.pypi.org/simple/ cffconvert
+    python3.6 -m pip -v install --user --no-cache-dir \
+    --index-url https://test.pypi.org/simple/ \
+    --extra-index-url https://pypi.org/simple cffconvert
     
     # check that the package works as it should when installed from pypitest
 

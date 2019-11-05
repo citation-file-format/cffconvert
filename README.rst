@@ -323,7 +323,7 @@ Making a release
     cd $(mktemp -d)
     git clone https://github.com/citation-file-format/cff-converter-python.git
     cd cff-converter-python
-    virtualenv -p /usr/bin/python3.6 venv36
+    python3 -m virtualenv -p /usr/bin/python3.6 venv36
     source venv36/bin/activate
     pip install -r requirements.txt
     pip install -r requirements-dev.txt

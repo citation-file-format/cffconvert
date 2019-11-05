@@ -271,16 +271,14 @@ Install
     git clone https://github.com/citation-file-format/cff-converter-python.git
     # change directory into cff-converter-python
     cd cff-converter-python
-    # make a Python3.5 virtual environment named .venv35
-    virtualenv -p /usr/bin/python3.5 .venv35
+    # make a Python3.6 virtual environment named venv36
+    python3 -m virtualenv -p /usr/bin/python3.6 venv36
     # activate the virtual environment
-    source ./.venv35/bin/activate
+    source ./venv36/bin/activate
     # install any packages that cff-converter-python needs
     pip install -r requirements.txt
     # install any packages used for development such as for testing
     pip install -r requirements-dev.txt
-    # install the cffconvert package using symlinks
-    pip install --editable .
 
 Running tests
 -------------
@@ -308,14 +306,25 @@ Making a release
 
     # run the live tests and unit tests, make sure they pass
 
+    # remove old cffconvert from your system if you have it
+    python3 -m pip uninstall cffconvert
+
+    # this next command should now return empty
+    which cffconvert
+
+    # install the package to user space, using no caching (can bring to light dependency problems)
+    python3 -m pip install --user --no-cache-dir .
+    # check if cffconvert works, e.g.
+    cffconvert --version
+
     # git push everything, merge into master as appropriate
 
     # verify that everything has been pushed and merged by testing as follows
     cd $(mktemp -d)
     git clone https://github.com/citation-file-format/cff-converter-python.git
     cd cff-converter-python
-    virtualenv -p /usr/bin/python3.5 myvenv3
-    source myvenv3/bin/activate
+    virtualenv -p /usr/bin/python3.6 venv36
+    source venv36/bin/activate
     pip install -r requirements.txt
     pip install -r requirements-dev.txt
     pytest test/
@@ -334,7 +343,7 @@ Making a release
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
     # checking the package
-    # pip install --user --index-url https://test.pypi.org/simple/ cffconvert
+    # pip install --user --no-cache-dir --index-url https://test.pypi.org/simple/ cffconvert
     
     # check that the package works as it should when installed from pypitest
 

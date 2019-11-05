@@ -1,7 +1,15 @@
+1.3.2
+=====
+
+- the ruamel.yaml dependency was not specified tightly enough,
+  ``requirements.txt`` has been updated as have the notes for maintainers.
+
 1.3.1
 =====
 
-- 'cff-version: 1.0.3' is now interpreted as 1.0.3-1 (the latest schema version that implements the spec 1.0.3). This will fix some problems with the list of SPDX license abbreviations. These additional licenses should now work:
+- 'cff-version: 1.0.3' is now interpreted as 1.0.3-1 (the latest schema version
+  that implements the spec 1.0.3). This will fix some problems with the list of
+  SPDX license abbreviations. These additional licenses should now work:
     
   - ``AGPL-3.0-only``
   - ``AGPL-3.0-or-later``

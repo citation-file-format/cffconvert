@@ -1,7 +1,4 @@
 --- 
-addons: 
-  sonarcloud: 
-    organization: citation-file-format
 dist: xenial
 language: python
 notifications: 
@@ -21,7 +18,4 @@ script:
   - "pytest --cov=./cffconvert --cov-report=xml test/"
     # also run the live tests, without test coverage calculation
   - "pytest livetest/"
-    # had sonarcloud.io generate a token, added the token as environmental
-    # variable SONAR_TOKEN to the configuration on travis-ci.org
-  - "sonar-scanner -Dsonar.login=$SONAR_TOKEN -X"
 sudo: false

@@ -5,8 +5,6 @@ Badges
 - |Travis build status|
 - |PyPI badge|
 - |CII Best Practices|
-- |SonarCloud Quality Gate|
-- |SonarCloud Code Coverage|
 - |Research Software Directory|
 
 cffconvert
@@ -353,7 +351,3 @@ Making a release
    :target: https://www.research-software.nl/software/cff-converter-python
 .. |CII Best Practices| image:: https://bestpractices.coreinfrastructure.org/projects/1811/badge
    :target: https://bestpractices.coreinfrastructure.org/projects/1811
-.. |SonarCloud Quality Gate| image:: https://sonarcloud.io/api/project_badges/measure?project=cff-converter-python&metric=alert_status
-   :target: https://sonarcloud.io/dashboard?id=cff-converter-python
-.. |SonarCloud Code Coverage| image:: https://sonarcloud.io/api/project_badges/measure?project=cff-converter-python&metric=coverage
-   :target: https://sonarcloud.io/dashboard?id=cff-converter-python

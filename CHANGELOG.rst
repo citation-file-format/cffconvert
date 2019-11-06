@@ -1,3 +1,8 @@
+1.3.3
+=====
+
+- With recent changes to the release process, the schema will be in a different places than before. This release fixes https://github.com/citation-file-format/cff-converter-python/issues/119).
+
 1.3.2
 =====
 

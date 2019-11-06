@@ -195,7 +195,7 @@ def cffconvert(request):
 
     try:
         citation = Citation(url=url, cffstr=cffstr, ignore_suspect_keys=ignore_suspect_keys, override=override,
-                            remove=remove, suspect_keys=suspect_keys, validate=validate)
+                            remove=remove, suspect_keys=suspect_keys, validate=validate, raise_exception=True)
     except Exception as e:
         if str(e) == "Provided CITATION.cff does not seem valid YAML.":
             outstr += "\n\nError: Provided 'cffstr' does not seem valid YAML."

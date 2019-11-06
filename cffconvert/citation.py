@@ -124,14 +124,19 @@ class Citation:
     def _validate(self):
         regexp = re.compile(r"^cff-version: (['|\"])?(?P<semver>[\d\.]*)(['\"])?\s*$")
         semver = None
+        has_no_cff_version_key = True
         for line in self.cffstr.split("\n"):
-            matched = re.match(regexp, line)
-            if matched is not None:
-                semver = matched.groupdict()["semver"]
-                break
+            if line[0:12] == "cff-version:":
+                has_no_cff_version_key = False
+                matched = re.match(regexp, line)
+                if matched is not None:
+                    semver = matched.groupdict()["semver"]
+                    break
 
-        if semver is None:
+        if has_no_cff_version_key:
             raise ValueError("Unable to identify the schema version. Does the CFF include the 'cff-version' key?")
+        if semver is None:
+            raise ValueError("Unrecognized value for key \"cff-version\".")
 
         schema_urls = {
             "1.0.1": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.1/CFF-Core/schema.yaml",

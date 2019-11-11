@@ -124,21 +124,34 @@ class Citation:
     def _validate(self):
         regexp = re.compile(r"^cff-version: (['|\"])?(?P<semver>[\d\.]*)(['\"])?\s*$")
         semver = None
+        has_no_cff_version_key = True
         for line in self.cffstr.split("\n"):
-            matched = re.match(regexp, line)
-            if matched is not None:
-                semver = matched.groupdict()["semver"]
-                break
+            if line[0:12] == "cff-version:":
+                has_no_cff_version_key = False
+                matched = re.match(regexp, line)
+                if matched is not None:
+                    semver = matched.groupdict()["semver"]
+                    break
 
-        if semver is None:
+        if has_no_cff_version_key:
             raise ValueError("Unable to identify the schema version. Does the CFF include the 'cff-version' key?")
-        # Hard-coded fix for https://github.com/citation-file-format/cff-converter-python/issues/106.
-        # 1.0.3-1 schema will be the last one using pykwalifire/schema.yaml, therefore
-        # this hard-coded fix is acceptable.
-        elif semver == '1.0.3':
-            semver = '1.0.3-1'
-        schema_url = "https://raw.githubusercontent.com/citation-file-format/" +\
-                     "schema/{0}/CFF-Core/schema.yaml".format(semver)
+        if semver is None:
+            raise ValueError("Unrecognized value for key \"cff-version\".")
+
+        schema_urls = {
+            "1.0.1": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.1/CFF-Core/schema.yaml",
+            "1.0.2": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.2/CFF-Core/schema.yaml",
+            "1.0.3": "https://raw.githubusercontent.com/citation-file-format/schema/1.0.3-1/CFF-Core/schema.yaml",
+            "1.1.0": "https://raw.githubusercontent.com/citation-file-format/citation-file-format/1.1.0/schema.yaml"
+        }
+
+        try:
+            schema_url = schema_urls[semver]
+        except KeyError as e:
+            versions = '"' + '", "'.join(sorted(schema_urls.keys())) + '"'
+            raise Exception("\"{0}\" is not a supported release. Instead, use one of {1}."
+                            .format(semver, versions))
+
         r = requests.get(schema_url)
         r.raise_for_status()
         self.schema = r.text

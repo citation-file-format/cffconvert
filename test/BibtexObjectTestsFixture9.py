@@ -12,6 +12,11 @@ class BibtexObjectTestsFixture9(unittest.TestCase):
             cffstr = f.read()
             self.cff_object = yaml.safe_load(cffstr)
 
+    def test_author(self):
+        bo = BibtexObject(self.cff_object)
+        bo.add_author()
+        self.assertTrue(bo.author == 'author = {Jurriaan H. Spaaks and Tom Klaver}\n')
+
     def test_title(self):
         bo = BibtexObject(self.cff_object)
         bo.add_title()

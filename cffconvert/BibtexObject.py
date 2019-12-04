@@ -15,8 +15,17 @@ class BibtexObject:
 
     def add_author(self):
         if 'authors' in self.cff_object.keys():
-            for author in self.cff_object.authors:
-                pass
+            fullnames = []
+            for author in self.cff_object['authors']:
+                keys = author.keys()
+                nameparts = [
+                    author['given-names'] if 'given-names' in keys else None,
+                    author['name-particle'] if 'name-particle' in keys else None,
+                    author['family-names'] if 'family-names' in keys else None,
+                    author['name-suffix'] if 'name-suffix' in keys else None
+                ]
+                fullnames.append(' '.join([namepart for namepart in nameparts if namepart is not None]))
+            self.author = 'author = {' + ' and '.join(fullnames) + '}\n'
 
     def add_doi(self):
         version = self.cff_version

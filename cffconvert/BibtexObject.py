@@ -13,6 +13,15 @@ class BibtexObject:
         self.url = None
         self.year = None
 
+    def add_all(self):
+        self.add_author()
+        self.add_doi()
+        self.add_month()
+        self.add_title()
+        self.add_url()
+        self.add_year()
+        return self
+
     def add_author(self):
         if 'authors' in self.cff_object.keys():
             fullnames = []
@@ -29,39 +38,43 @@ class BibtexObject:
                     fullname = author['alias'] if author['alias'] != '' else None
                 if fullname is not None and fullname != '':
                     fullnames.append(fullname)
-            self.author = 'author = {' + ' and '.join(fullnames) + '}\n'
+            self.author = 'author = {' + ' and '.join(fullnames) + '}'
+        return self
 
     def add_doi(self):
         version = self.cff_version
         if version in ['1.0.3', '1.1.0']:
             if 'doi' in self.cff_object.keys():
-                self.doi = 'doi = {' + self.cff_object['doi'] + '}\n'
+                self.doi = 'doi = {' + self.cff_object['doi'] + '}'
 
         if version in ['1.1.0']:
             if 'identifiers' in self.cff_object.keys():
                 identifiers = self.cff_object['identifiers']
                 for identifier in identifiers:
                     if identifier['type'] == 'doi':
-                        self.doi = 'doi = {' + identifier['value'] + '}\n'
+                        self.doi = 'doi = {' + identifier['value'] + '}'
                         break
         return self
 
     def add_month(self):
         if 'date-released' in self.cff_object.keys():
-            self.month = 'month = {' + str(self.cff_object['date-released'].month) + '}\n'
+            self.month = 'month = {' + str(self.cff_object['date-released'].month) + '}'
+        return self
 
     def add_title(self):
         if 'title' in self.cff_object.keys():
-            self.title = 'title = {' + self.cff_object['title'] + '}\n'
+            self.title = 'title = {' + self.cff_object['title'] + '}'
         return self
 
     def add_url(self):
         if 'repository-code' in self.cff_object.keys():
-            self.url = 'url = {' + self.cff_object['repository-code'] + '}\n'
+            self.url = 'url = {' + self.cff_object['repository-code'] + '}'
+        return self
 
     def add_year(self):
         if 'date-released' in self.cff_object.keys():
-            self.year = 'year = {' + str(self.cff_object['date-released'].year) + '}\n'
+            self.year = 'year = {' + str(self.cff_object['date-released'].year) + '}'
+        return self
 
     def __str__(self):
         items = [item for item in [self.author,
@@ -70,8 +83,9 @@ class BibtexObject:
                                    self.year,
                                    self.doi,
                                    self.url] if item is not None]
-        s = ', '.join(items)
-        return '@misc{' + self.reference + ',\n' + s + '}\n'
+        s = ',\n'.join(items)
+        return '@misc{' + self.reference + ',\n' + s + '\n}\n'
 
     def print(self):
         return self.__str__()
+

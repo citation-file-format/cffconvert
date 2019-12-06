@@ -1,6 +1,11 @@
 class BibtexObject:
+
+    supported_cff_versions = ['1.0.3', '1.1.0']
+
     def __init__(self, cff_object, reference='YourReferenceHere', initialize_empty=False):
         if 'cff-version' in cff_object.keys():
+            if cff_object['cff-version'] not in BibtexObject.supported_cff_versions:
+                raise ValueError('\'cff-version\': {} isn\'t a supported version.'.format(cff_object['cff-version']))
             self.cff_object = cff_object
         else:
             raise ValueError('Missing key "cff-version" in CITATION.cff file.')

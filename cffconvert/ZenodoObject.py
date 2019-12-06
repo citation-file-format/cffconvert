@@ -2,8 +2,13 @@ import json
 
 
 class ZenodoObject:
+
+    supported_cff_versions = ['1.0.3', '1.1.0']
+
     def __init__(self, cff_object, initialize_empty=False):
         if 'cff-version' in cff_object.keys():
+            if cff_object['cff-version'] not in ZenodoObject.supported_cff_versions:
+                raise ValueError('\'cff-version\': {} isn\'t a supported version.'.format(cff_object['cff-version']))
             self.cff_object = cff_object
         else:
             raise ValueError('Missing key "cff-version" in CITATION.cff file.')
@@ -30,7 +35,7 @@ class ZenodoObject:
             "version": self.version
         }
         filtered = [item for item in d.items() if item[1] is not None]
-        return json.dumps(dict(filtered), sort_keys=True, indent=3, separators=(', ', ': ')) + '\n'
+        return json.dumps(dict(filtered), sort_keys=True, indent=3, separators=(', ', ': '), ensure_ascii=False) + '\n'
 
     def add_all(self):
         self.add_creators()          \
@@ -62,6 +67,10 @@ class ZenodoObject:
                     continue
                 if 'affiliation' in author.keys():
                     d['affiliation'] = author['affiliation']
+                if 'orcid' in author.keys():
+                    if author['orcid'].startswith('https://orcid.org/'):
+                        d['orcid'] = author['orcid'][len('https://orcid.org/'):]
+
                 self.creators.append(d)
         return self
 

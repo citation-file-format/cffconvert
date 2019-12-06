@@ -4,6 +4,7 @@ import json
 class ZenodoObject:
 
     supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_zenodo_props = ['creators', 'doi', 'keywords', 'license', 'publication_date', 'title', 'version']
 
     def __init__(self, cff_object, initialize_empty=False):
         if 'cff-version' in cff_object.keys():

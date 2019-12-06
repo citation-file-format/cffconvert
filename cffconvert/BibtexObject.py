@@ -1,6 +1,7 @@
 class BibtexObject:
 
     supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_bibtex_props = ['author', 'doi', 'month', 'title', 'url', 'year']
 
     def __init__(self, cff_object, reference='YourReferenceHere', initialize_empty=False):
         if 'cff-version' in cff_object.keys():

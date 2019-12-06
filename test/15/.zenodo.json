@@ -7,6 +7,10 @@
       {
          "affiliation": "Netherlands eScience Center", 
          "name": "Klaver, Tom"
+      }, 
+      {
+         "affiliation": "MyAffiliation", 
+         "name": "mysteryauthor"
       }
    ], 
    "doi": "10.5281/zenodo.1162057", 

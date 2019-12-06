@@ -4,7 +4,7 @@ import os
 import ruamel.yaml as yaml
 
 
-class ZenodoObjectTest14(unittest.TestCase):
+class ZenodoObjectTest16(unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -17,12 +17,12 @@ class ZenodoObjectTest14(unittest.TestCase):
         zo.add_creators()
         expected_creators = [
             {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Spaaks, Jurriaan H."
+                "affiliation": "Springsteen",
+                "name": "Van Zandt, Steven"
             },
             {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Klaver, Tom"
+                "affiliation": "coverband",
+                "name": "van Zandt, Steven"
             }
         ]
         self.assertListEqual(zo.creators, expected_creators)
@@ -30,17 +30,17 @@ class ZenodoObjectTest14(unittest.TestCase):
     def test_doi(self):
         zo = ZenodoObject(self.cff_object, initialize_empty=True)
         zo.add_doi()
-        self.assertEqual(zo.doi, '10.5281/zenodo.1162057')
+        self.assertIsNone(zo.doi)
 
     def test_keywords(self):
         zo = ZenodoObject(self.cff_object, initialize_empty=True)
         zo.add_keywords()
-        self.assertEqual(zo.keywords, ['citation', 'bibliography', 'cff', 'CITATION.cff'])
+        self.assertIsNone(zo.keywords)
 
     def test_license(self):
         zo = ZenodoObject(self.cff_object, initialize_empty=True)
         zo.add_license()
-        self.assertEqual(zo.license, dict(id='Apache-2.0'))
+        self.assertIsNone(zo.license)
 
     def test_print(self):
         zo = ZenodoObject(self.cff_object)

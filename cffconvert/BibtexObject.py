@@ -1,8 +1,7 @@
 class BibtexObject:
-    def __init__(self, cff_object, reference='YourReferenceHere'):
+    def __init__(self, cff_object, reference='YourReferenceHere', initialize_empty=False):
         if 'cff-version' in cff_object.keys():
             self.cff_object = cff_object
-            self.cff_version = cff_object['cff-version']
         else:
             raise ValueError('Missing key "cff-version" in CITATION.cff file.')
         self.reference = reference
@@ -12,14 +11,28 @@ class BibtexObject:
         self.title = None
         self.url = None
         self.year = None
+        if initialize_empty:
+            pass
+        else:
+            self.add_all()
+
+    def __str__(self):
+        items = [item for item in [self.author,
+                                   self.title,
+                                   self.month,
+                                   self.year,
+                                   self.doi,
+                                   self.url] if item is not None]
+        s = ',\n'.join(items)
+        return '@misc{' + self.reference + ',\n' + s + '\n}\n'
 
     def add_all(self):
-        self.add_author()
-        self.add_doi()
-        self.add_month()
-        self.add_title()
-        self.add_url()
-        self.add_year()
+        self.add_author()   \
+            .add_doi()      \
+            .add_month()    \
+            .add_title()    \
+            .add_url()      \
+            .add_year()
         return self
 
     def add_author(self):
@@ -42,7 +55,7 @@ class BibtexObject:
         return self
 
     def add_doi(self):
-        version = self.cff_version
+        version = self.cff_object['cff-version']
         if version in ['1.0.3', '1.1.0']:
             if 'doi' in self.cff_object.keys():
                 self.doi = 'doi = {' + self.cff_object['doi'] + '}'
@@ -75,16 +88,6 @@ class BibtexObject:
         if 'date-released' in self.cff_object.keys():
             self.year = 'year = {' + str(self.cff_object['date-released'].year) + '}'
         return self
-
-    def __str__(self):
-        items = [item for item in [self.author,
-                                   self.title,
-                                   self.month,
-                                   self.year,
-                                   self.doi,
-                                   self.url] if item is not None]
-        s = ',\n'.join(items)
-        return '@misc{' + self.reference + ',\n' + s + '\n}\n'
 
     def print(self):
         return self.__str__()

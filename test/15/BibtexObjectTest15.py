@@ -10,42 +10,40 @@ class BibtexObjectTest15(unittest.TestCase):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
         with open(fixture, "r") as f:
             cffstr = f.read()
-            self.cff_object = yaml.safe_load(cffstr)
+            cff_object = yaml.safe_load(cffstr)
+            self.bo = BibtexObject(cff_object, initialize_empty=True)
 
     def test_author(self):
-        bo = BibtexObject(self.cff_object, initialize_empty=True)
-        bo.add_author()
-        self.assertTrue(bo.author == 'author = {Jurriaan H. Spaaks and Tom Klaver and mysteryauthor}')
+        self.bo.add_author()
+        self.assertEqual(self.bo.author, 'author = {Jurriaan H. Spaaks and Tom Klaver and mysteryauthor}')
+
+    def test_check_cff_object(self):
+        self.bo.check_cff_object()
+        # doesn't need an assert
 
     def test_doi(self):
-        bo = BibtexObject(self.cff_object, initialize_empty=True)
-        bo.add_doi()
-        self.assertTrue(bo.doi == 'doi = {10.5281/zenodo.1162057}')
+        self.bo.add_doi()
+        self.assertEqual(self.bo.doi, 'doi = {10.5281/zenodo.1162057}')
 
     def test_month(self):
-        bo = BibtexObject(self.cff_object, initialize_empty=True)
-        bo.add_month()
-        self.assertTrue(bo.month == 'month = {1}')
+        self.bo.add_month()
+        self.assertEqual(self.bo.month, 'month = {1}')
 
     def test_print(self):
-        bo = BibtexObject(self.cff_object)
-        actual_bibtex = bo.print()
+        actual_bibtex = self.bo.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")
         with open(fixture, "r") as f:
             expected_bibtex = f.read()
         self.assertEqual(actual_bibtex, expected_bibtex)
 
     def test_title(self):
-        bo = BibtexObject(self.cff_object, initialize_empty=True)
-        bo.add_title()
-        self.assertTrue(bo.title == 'title = {cff-converter-python}')
+        self.bo.add_title()
+        self.assertEqual(self.bo.title, 'title = {cff-converter-python}')
 
     def test_url(self):
-        bo = BibtexObject(self.cff_object, initialize_empty=True)
-        bo.add_url()
-        self.assertTrue(bo.url == 'url = {https://github.com/citation-file-format/cff-converter-python}')
+        self.bo.add_url()
+        self.assertEqual(self.bo.url, 'url = {https://github.com/citation-file-format/cff-converter-python}')
 
     def test_year(self):
-        bo = BibtexObject(self.cff_object, initialize_empty=True)
-        bo.add_year()
-        self.assertTrue(bo.year == 'year = {2018}')
+        self.bo.add_year()
+        self.assertEqual(self.bo.year, 'year = {2018}')

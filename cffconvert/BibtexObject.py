@@ -4,12 +4,7 @@ class BibtexObject:
     supported_bibtex_props = ['author', 'doi', 'month', 'title', 'url', 'year']
 
     def __init__(self, cff_object, reference='YourReferenceHere', initialize_empty=False):
-        if 'cff-version' in cff_object.keys():
-            if cff_object['cff-version'] not in BibtexObject.supported_cff_versions:
-                raise ValueError('\'cff-version\': {} isn\'t a supported version.'.format(cff_object['cff-version']))
-            self.cff_object = cff_object
-        else:
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+        self.cff_object = cff_object
         self.reference = reference
         self.author = None
         self.doi = None
@@ -20,7 +15,7 @@ class BibtexObject:
         if initialize_empty:
             pass
         else:
-            self.add_all()
+            self.check_cff_object().add_all()
 
     def __str__(self):
         items = [item for item in [self.author,
@@ -94,6 +89,17 @@ class BibtexObject:
         if 'date-released' in self.cff_object.keys():
             self.year = 'year = {' + str(self.cff_object['date-released'].year) + '}'
         return self
+
+    def check_cff_object(self):
+        if not isinstance(self.cff_object, dict):
+            raise ValueError('Expected cff_object to be of type \'dict\'.')
+        elif 'cff-version' not in self.cff_object.keys():
+            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+        elif self.cff_object['cff-version'] not in BibtexObject.supported_cff_versions:
+            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
+                             .format(self.cff_object['cff-version']))
+        else:
+            return self
 
     def print(self):
         return self.__str__()

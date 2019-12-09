@@ -7,12 +7,7 @@ class ZenodoObject:
     supported_zenodo_props = ['creators', 'doi', 'keywords', 'license', 'publication_date', 'title', 'version']
 
     def __init__(self, cff_object, initialize_empty=False):
-        if 'cff-version' in cff_object.keys():
-            if cff_object['cff-version'] not in ZenodoObject.supported_cff_versions:
-                raise ValueError('\'cff-version\': {} isn\'t a supported version.'.format(cff_object['cff-version']))
-            self.cff_object = cff_object
-        else:
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+        self.cff_object = cff_object
         self.creators = None
         self.doi = None
         self.keywords = None
@@ -23,7 +18,7 @@ class ZenodoObject:
         if initialize_empty:
             pass
         else:
-            self.add_all()
+            self.check_cff_object().add_all()
 
     def __str__(self):
         d = {
@@ -46,6 +41,7 @@ class ZenodoObject:
             .add_publication_date()  \
             .add_title()             \
             .add_version()
+        return self
 
     def add_creators(self):
         if 'authors' in self.cff_object.keys():
@@ -116,6 +112,17 @@ class ZenodoObject:
         if 'version' in self.cff_object.keys():
             self.version = self.cff_object['version']
         return self
+
+    def check_cff_object(self):
+        if not isinstance(self.cff_object, dict):
+            raise ValueError('Expected cff_object to be of type \'dict\'.')
+        elif 'cff-version' not in self.cff_object.keys():
+            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+        elif self.cff_object['cff-version'] not in ZenodoObject.supported_cff_versions:
+            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
+                             .format(self.cff_object['cff-version']))
+        else:
+            return self
 
     def print(self):
         return self.__str__()

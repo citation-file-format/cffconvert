@@ -1,0 +1,5 @@
+{
+   "@context": "https://schema.org", 
+   "@type": "SoftwareSourceCode", 
+   "codeRepository": "https://github.com/citation-file-format/cff-converter-python"
+}

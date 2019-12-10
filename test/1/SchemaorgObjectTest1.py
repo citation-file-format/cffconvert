@@ -21,6 +21,10 @@ class SchemaorgObjectTest1(unittest.TestCase):
         self.so.add_code_repository()
         self.assertEqual(self.so.code_repository, 'https://github.com/citation-file-format/cff-converter-python')
 
+    def test_date_published(self):
+        self.so.add_date_published()
+        self.assertEqual(self.so.date_published, '2018-01-16')
+
     def test_print(self):
         actual_schemaorg = self.so.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")

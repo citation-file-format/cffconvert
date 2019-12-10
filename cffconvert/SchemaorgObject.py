@@ -4,11 +4,12 @@ import json
 class SchemaorgObject:
 
     supported_cff_versions = ['1.0.3', '1.1.0']
-    supported_schemaorg_props = ['codeRepository']
+    supported_schemaorg_props = ['codeRepository', 'datePublished']
 
     def __init__(self, cff_object, initialize_empty=False):
         self.cff_object = cff_object
         self.code_repository = None
+        self.date_published = None
         if initialize_empty:
             pass
         else:
@@ -18,7 +19,8 @@ class SchemaorgObject:
         d = {
             "@context": "https://schema.org",
             "@type": "SoftwareSourceCode",
-            "codeRepository": self.code_repository
+            "codeRepository": self.code_repository,
+            "datePublished": self.date_published
         }
         filtered = [item for item in d.items() if item[1] is not None]
         return json.dumps(dict(filtered), sort_keys=True, indent=3,
@@ -43,6 +45,13 @@ class SchemaorgObject:
                              .format(self.cff_object['cff-version']))
         else:
             return self
+
+    def add_date_published(self):
+        if 'date-released' in self.cff_object.keys():
+            self.date_published = "{:d}-{:02d}-{:02d}".format(self.cff_object['date-released'].year,
+                                                              self.cff_object['date-released'].month,
+                                                              self.cff_object['date-released'].day)
+        return self
 
     def print(self):
         return self.__str__()

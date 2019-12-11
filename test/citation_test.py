@@ -12,13 +12,6 @@ class CitationTest1(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "1", "bibtex.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "1", "codemeta.json")
         with open(fixture, "r") as f:
@@ -40,20 +33,6 @@ class CitationTest1(unittest.TestCase):
         actual_ris = self.citation.as_ris()
         self.assertEqual(expected_ris, actual_ris)
 
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "1", "schema-dot-org.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
-
-    def test_printing_as_zenodojson(self):
-        fixture = os.path.join("fixtures", "1", "zenodo.json")
-        with open(fixture, "r") as f:
-            expected_zenodojson = f.read()
-        actual_zenodojson = self.citation.as_zenodojson()
-        self.assertEqual(expected_zenodojson, actual_zenodojson)
-
 
 class CitationTest2(unittest.TestCase):
 
@@ -62,13 +41,6 @@ class CitationTest2(unittest.TestCase):
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
-
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "2", "bibtex.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
 
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "2", "codemeta.json")
@@ -91,20 +63,6 @@ class CitationTest2(unittest.TestCase):
         actual_ris = self.citation.as_ris()
         self.assertEqual(expected_ris, actual_ris)
 
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "2", "schema-dot-org.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
-
-    def test_printing_as_zenodojson(self):
-        fixture = os.path.join("fixtures", "2", "zenodo.json")
-        with open(fixture, "r") as f:
-            expected_zenodojson = f.read()
-        actual_zenodojson = self.citation.as_zenodojson()
-        self.assertEqual(expected_zenodojson, actual_zenodojson)
-
 
 class CitationTest3(unittest.TestCase):
 
@@ -113,13 +71,6 @@ class CitationTest3(unittest.TestCase):
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
-
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "3", "bibtex.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
 
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "3", "codemeta.json")
@@ -135,26 +86,12 @@ class CitationTest3(unittest.TestCase):
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
 
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "3", "schema-dot-org.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "3", "ris.txt")
         with open(fixture, "r") as f:
             expected_ris = f.read()
         actual_ris = self.citation.as_ris()
         self.assertEqual(expected_ris, actual_ris)
-
-    def test_printing_as_zenodojson(self):
-        fixture = os.path.join("fixtures", "3", "zenodo.json")
-        with open(fixture, "r") as f:
-            expected_zenodojson = f.read()
-        actual_zenodojson = self.citation.as_zenodojson()
-        self.assertEqual(expected_zenodojson, actual_zenodojson)
 
 
 class CitationTest4(unittest.TestCase):
@@ -187,13 +124,6 @@ class CitationTestOverride(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._override_suspect_keys()
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "5", "bibtex.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "5", "codemeta.json")
         with open(fixture, "r") as f:
@@ -207,13 +137,6 @@ class CitationTestOverride(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "5", "schema-dot-org.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "5", "ris.txt")
@@ -235,13 +158,6 @@ class CitationTestRemoveSuspectKeyDate(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "6", "bibtex-no-date.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "6", "codemeta-no-date.json")
         with open(fixture, "r") as f:
@@ -255,13 +171,6 @@ class CitationTestRemoveSuspectKeyDate(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "6", "schema-dot-org-no-date.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-date.txt")
@@ -281,13 +190,6 @@ class CitationTestIgnoreSuspectKeyDate(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "6", "bibtex-no-date.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "6", "codemeta-no-date.json")
         with open(fixture, "r") as f:
@@ -301,13 +203,6 @@ class CitationTestIgnoreSuspectKeyDate(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "6", "schema-dot-org-no-date.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-date.txt")
@@ -329,13 +224,6 @@ class CitationTestRemoveSuspectKeyDoi(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "6", "bibtex-no-doi.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "6", "codemeta-no-doi.json")
         with open(fixture, "r") as f:
@@ -349,13 +237,6 @@ class CitationTestRemoveSuspectKeyDoi(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "6", "schema-dot-org-no-doi.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-doi.txt")
@@ -375,13 +256,6 @@ class CitationTestIgnoreSuspectKeyDoi(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "6", "bibtex-no-doi.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "6", "codemeta-no-doi.json")
         with open(fixture, "r") as f:
@@ -395,13 +269,6 @@ class CitationTestIgnoreSuspectKeyDoi(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "6", "schema-dot-org-no-doi.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-doi.txt")
@@ -423,13 +290,6 @@ class CitationTestRemoveSuspectKeyVersion(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "6", "bibtex-no-version.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "6", "codemeta-no-version.json")
         with open(fixture, "r") as f:
@@ -443,13 +303,6 @@ class CitationTestRemoveSuspectKeyVersion(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "6", "schema-dot-org-no-version.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-version.txt")
@@ -469,13 +322,6 @@ class CitationTestIgnoreSuspectKeyVersion(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "6", "bibtex-no-version.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "6", "codemeta-no-version.json")
         with open(fixture, "r") as f:
@@ -489,13 +335,6 @@ class CitationTestIgnoreSuspectKeyVersion(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "6", "schema-dot-org-no-version.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-version.txt")
@@ -514,13 +353,6 @@ class CitationTestIgnoreAllSuspectKeys(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True)
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "6", "bibtex-no-suspect-keys.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "6", "codemeta-no-suspect-keys.json")
         with open(fixture, "r") as f:
@@ -534,13 +366,6 @@ class CitationTestIgnoreAllSuspectKeys(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "6", "schema-dot-org-no-suspect-keys.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-suspect-keys.txt")
@@ -562,13 +387,6 @@ class CitationTestRemoveNonExistentKey(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "1", "bibtex.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "1", "codemeta.json")
         with open(fixture, "r") as f:
@@ -582,13 +400,6 @@ class CitationTestRemoveNonExistentKey(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "1", "schema-dot-org.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")
@@ -608,13 +419,6 @@ class CitationTestIgnoreNonExistentKey(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
 
-    def test_printing_as_bibtex(self):
-        fixture = os.path.join("fixtures", "1", "bibtex.bib")
-        with open(fixture, "r") as f:
-            expected_bibtex = f.read()
-        actual_bibtex = self.citation.as_bibtex()
-        self.assertEqual(expected_bibtex, actual_bibtex)
-
     def test_printing_as_codemeta(self):
         fixture = os.path.join("fixtures", "1", "codemeta.json")
         with open(fixture, "r") as f:
@@ -628,13 +432,6 @@ class CitationTestIgnoreNonExistentKey(unittest.TestCase):
             expected_endnote = f.read()
         actual_endnote = self.citation.as_enw()
         self.assertEqual(expected_endnote, actual_endnote)
-
-    def test_printing_as_schema_dot_org(self):
-        fixture = os.path.join("fixtures", "1", "schema-dot-org.json")
-        with open(fixture, "r") as f:
-            expected_schema_dot_org = f.read()
-        actual_schema_dot_org = self.citation.as_schema_dot_org()
-        self.assertEqual(expected_schema_dot_org, actual_schema_dot_org)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")

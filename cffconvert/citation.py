@@ -7,6 +7,9 @@ import json
 from datetime import datetime, date
 import tempfile
 from pykwalify.core import Core
+from cffconvert.BibtexObject import BibtexObject
+from cffconvert.SchemaorgObject import SchemaorgObject
+from cffconvert.ZenodoObject import ZenodoObject
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -171,46 +174,7 @@ class Citation:
         return self
 
     def as_bibtex(self):
-
-        def get_author_string():
-            arr = list()
-            for author in self.yaml["authors"]:
-                authors = list()
-                if "given-names" in author:
-                    authors.append(author["given-names"])
-                if "name-particle" in author:
-                    authors.append(author["name-particle"])
-                if "family-names" in author:
-                    authors.append(author["family-names"])
-                if "name-suffix" in author:
-                    authors.append(author["name-suffix"])
-                arr.append(" " * 12 + " ".join(authors))
-            return " and\n".join(arr)
-
-        s = ""
-        s += "@misc{"
-        s += "YourReferenceHere"
-        if self._key_should_be_included("authors"):
-            s += ",\nauthor = {\n"
-            s += get_author_string()
-            s += "\n         }"
-        if self._key_should_be_included("title"):
-            s += ",\ntitle  = {"
-            s += self.yaml["title"] + "}"
-        if self._key_should_be_included("date-released"):
-            s += ",\nmonth  = {"
-            s += str(self.yaml["date-released"].month) + "}"
-            s += ",\nyear   = {"
-            s += str(self.yaml["date-released"].year) + "}"
-        if self._key_should_be_included("doi"):
-            s += ",\ndoi    = {"
-            s += self.yaml["doi"] + "}"
-        if self._key_should_be_included("repository-code"):
-            s += ",\nurl    = {"
-            s += self.yaml["repository-code"] + "}"
-        s += "\n}\n"
-
-        return s
+        return BibtexObject(self.yaml).print()
 
     def as_cff(self, indent=4, sort_keys=True, ensure_ascii=False):
         return json.dumps(self.yaml, sort_keys=sort_keys, indent=indent, ensure_ascii=ensure_ascii)
@@ -378,72 +342,7 @@ class Citation:
         return JSONEncoder().encode(self.yaml)
 
     def as_schema_dot_org(self):
-
-        def resolve_spdx_license(spdx_license_code):
-            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data" + \
-                           "/b541ee8a345aa93b70a08765c7bf5e423bb4d558/json/licenses.json"
-            r = requests.get(licenses_url)
-            if r.ok:
-                data = r.json()
-                for license in data["licenses"]:
-                    if license["licenseId"] == spdx_license_code:
-                        return license["seeAlso"][0]
-                raise ValueError("Provided license {0} not in list of licenses".format(spdx_license_code))
-            else:
-                raise Warning("status not '200 OK'")
-
-        def construct_authors_arr():
-
-            authors = list()
-            for read_author in self.yaml["authors"]:
-                write_author = dict()
-                write_author["@type"] = "Person"
-
-                if "given-names" in read_author:
-                    write_author["givenName"] = read_author["given-names"]
-
-                family_name = ""
-                if "name-particle" in read_author:
-                    family_name += read_author["name-particle"] + " "
-                if "family-names" in read_author:
-                    family_name += read_author["family-names"]
-                if "name-suffix" in read_author:
-                    family_name += " " + read_author["name-suffix"]
-                write_author["familyName"] = family_name
-
-                if "orcid" in read_author:
-                    write_author["@id"] = read_author["orcid"]
-
-                if "affiliation" in read_author:
-                    write_author["affiliation"] = {
-                        "@type": "Organization",
-                        "legalName": read_author["affiliation"]
-                    }
-
-                authors.append(write_author)
-            return authors
-
-        d = dict()
-        d["@context"] = "https://schema.org"
-        d["@type"] = "SoftwareSourceCode"
-        if self._key_should_be_included("repository-code"):
-            d["codeRepository"] = self.yaml["repository-code"]
-        if self._key_should_be_included("date-released"):
-            d["datePublished"] = self.yaml["date-released"].isoformat()
-        if self._key_should_be_included("authors"):
-            d["author"] = construct_authors_arr()
-        if self._key_should_be_included("keywords"):
-            d["keywords"] = self.yaml["keywords"]
-        if self._key_should_be_included("license"):
-            d["license"] = resolve_spdx_license(self.yaml["license"])
-        if self._key_should_be_included("version"):
-            d["version"] = self.yaml["version"]
-        if self._key_should_be_included("doi"):
-            d["identifier"] = "https://doi.org/{0}".format(self.yaml["doi"])
-        if self._key_should_be_included("title"):
-            d["name"] = self.yaml["title"]
-
-        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
+        return SchemaorgObject(self.yaml).print()
 
     def as_ris(self):
         def construct_author_string():
@@ -516,57 +415,4 @@ class Citation:
         return s
 
     def as_zenodojson(self):
-
-        def construct_authors_arr():
-
-            authors = list()
-            for author in self.yaml["authors"]:
-                name = ""
-                if "name-particle" in author:
-                    name += author["name-particle"] + " "
-                if "family-names" in author:
-                    name += author["family-names"]
-                if "name-suffix" in author:
-                    name += " " + author["name-suffix"]
-                if "given-names" in author:
-                    name += ", " + author["given-names"]
-
-                author2 = {"name": name}
-                if "orcid" in author:
-                    author2["orcid"] = author["orcid"].replace('https://orcid.org/', '')
-
-                if "affiliation" in author:
-                    author2["affiliation"] = author["affiliation"]
-
-                authors.append(author2)
-            return authors
-
-        if self.ignore_suspect_keys is False and len(self.suspect_keys) > 0:
-            print("Note: suspect keys will be included in the output.", file=sys.stderr)
-
-        d = dict()
-        if self._key_should_be_included("abstract"):
-            d["description"] = self.yaml["abstract"]
-
-        if self._key_should_be_included("authors"):
-            d["creators"] = construct_authors_arr()
-
-        if self._key_should_be_included("date-released"):
-            d["publication_date"] = self.yaml["date-released"].isoformat()
-
-        if self._key_should_be_included("doi"):
-            d["doi"] = self.yaml["doi"]
-
-        if self._key_should_be_included("keywords"):
-            d["keywords"] = self.yaml["keywords"]
-
-        if self._key_should_be_included("license"):
-            d["license"] = {"id": self.yaml["license"]}
-
-        if self._key_should_be_included("title"):
-            d["title"] = self.yaml["title"]
-
-        if self._key_should_be_included("version"):
-            d["version"] = self.yaml["version"]
-
-        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
+        return ZenodoObject(self.yaml).print()

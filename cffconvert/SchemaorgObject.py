@@ -59,6 +59,15 @@ class SchemaorgObject:
             for author in self.cff_object['authors']:
                 d = dict()
                 keys = author.keys()
+                if 'orcid' in author.keys():
+                    if author['orcid'].startswith('https://orcid.org/'):
+                        d['@id'] = author['orcid']
+                d["@type"] = "Person"
+                if 'affiliation' in author.keys():
+                    d['affiliation'] = {
+                        "@type": "Organization",
+                        "legalName": author['affiliation']
+                    }
                 nameparts = [
                     author['name-particle'] if 'name-particle' in keys else None,
                     author['family-names'] if 'family-names' in keys else None,
@@ -72,7 +81,6 @@ class SchemaorgObject:
                                            author['alias'] is not None and \
                                            author['alias'] != '' else None
                 if family_name or given_name or alias:
-                    d["@type"] = "Person"
                     if family_name:
                         d['familyName'] = family_name
                     if given_name:
@@ -81,14 +89,6 @@ class SchemaorgObject:
                         d['name'] = alias
                 else:
                     continue
-                if 'affiliation' in author.keys():
-                    d['affiliation'] = {
-                        "@type": "Organization",
-                        "legalName": author['affiliation']
-                    }
-                if 'orcid' in author.keys():
-                    if author['orcid'].startswith('https://orcid.org/'):
-                        d['@id'] = author['orcid']
                 self.author.append(d)
         return self
 

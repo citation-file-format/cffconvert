@@ -35,6 +35,9 @@ class SchemaorgObjectTest1(unittest.TestCase):
             },
             "familyName": "Klaver",
             "givenName": "Tom"
+        }, {
+            "@type": "Person",
+            "name": "mysteryauthor"
         }]
         self.assertListEqual(self.so.author, expected_author)
 

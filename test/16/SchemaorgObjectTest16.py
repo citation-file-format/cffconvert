@@ -23,24 +23,24 @@ class SchemaorgObjectTest1(unittest.TestCase):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "legalName": "Springsteen"
             },
-            "familyName": "Spaaks",
-            "givenName": "Jurriaan H."
+            "familyName": "Van Zandt",
+            "givenName": "Steven"
         }, {
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "legalName": "coverband"
             },
-            "familyName": "Klaver",
-            "givenName": "Tom"
+            "familyName": "van Zandt",
+            "givenName": "Steven"
         }]
         self.assertListEqual(self.so.author, expected_author)
 
     def test_code_repository(self):
         self.so.add_code_repository()
-        self.assertEqual(self.so.code_repository, 'https://github.com/citation-file-format/cff-converter-python')
+        self.assertIsNone(self.so.code_repository)
 
     def test_date_published(self):
         self.so.add_date_published()
@@ -52,16 +52,15 @@ class SchemaorgObjectTest1(unittest.TestCase):
 
     def test_identifier(self):
         self.so.add_identifier()
-        self.assertEqual(self.so.identifier, 'https://doi.org/10.5281/zenodo.1162057')
+        self.assertIsNone(self.so.identifier)
 
     def test_keywords(self):
         self.so.add_keywords()
-        expected_keywords = ['citation', 'bibliography', 'cff', 'CITATION.cff']
-        self.assertListEqual(self.so.keywords, expected_keywords)
+        self.assertIsNone(self.so.keywords)
 
     def test_license(self):
         self.so.add_license()
-        self.assertEqual(self.so.license, 'https://spdx.org/licenses/Apache-2.0')
+        self.assertIsNone(self.so.license)
 
     def test_name(self):
         self.so.add_name()

@@ -80,12 +80,12 @@ class SchemaorgObject:
                 alias = author['alias'] if 'alias' in keys and             \
                                            author['alias'] is not None and \
                                            author['alias'] != '' else None
-                if family_name or given_name or alias:
+                if family_name or given_name:
                     if family_name:
                         d['familyName'] = family_name
                     if given_name:
                         d['givenName'] = given_name
-                    if alias:
+                elif alias:
                         d['name'] = alias
                 else:
                     continue

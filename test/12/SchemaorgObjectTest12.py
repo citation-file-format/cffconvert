@@ -4,7 +4,7 @@ import os
 import ruamel.yaml as yaml
 
 
-class SchemaorgObjectTest1(unittest.TestCase):
+class SchemaorgObjectTest12(unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

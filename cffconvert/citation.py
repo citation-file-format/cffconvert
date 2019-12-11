@@ -8,6 +8,7 @@ from datetime import datetime, date
 import tempfile
 from pykwalify.core import Core
 from cffconvert.BibtexObject import BibtexObject
+from cffconvert.EndnoteObject import EndnoteObject
 from cffconvert.SchemaorgObject import SchemaorgObject
 from cffconvert.ZenodoObject import ZenodoObject
 
@@ -251,92 +252,7 @@ class Citation:
         return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
 
     def as_enw(self):
-
-        def construct_author_string():
-            names = list()
-            for author in self.yaml["authors"]:
-                name = ""
-                if "name-particle" in author:
-                    name += author["name-particle"] + " "
-                if "family-names" in author:
-                    name += author["family-names"]
-                if "name-suffix" in author:
-                    name += " " + author["name-suffix"]
-                if "given-names" in author:
-                    name += ", " + author["given-names"]
-                names.append(name)
-            return " & ".join(names)
-
-        def construct_keywords_string():
-            return ", ".join(["\"" + keyword + "\"" for keyword in self.yaml["keywords"]])
-
-        s = ""
-        s += "%0\n"
-        s += "%0 Generic\n"
-
-        if self._key_should_be_included("authors"):
-            s += "%A " + construct_author_string() + "\n"
-        else:
-            s += "%A\n"
-
-        if self._key_should_be_included("date-released"):
-            s += "%D " + str(self.yaml["date-released"].year) + "\n"
-        else:
-            s += "%D\n"
-
-        if self._key_should_be_included("title"):
-            s += "%T " + self.yaml["title"] + "\n"
-        else:
-            s += "%T\n"
-
-        s += "%E\n"
-        s += "%B\n"
-        s += "%C\n"
-        s += "%I GitHub repository\n"
-        s += "%V\n"
-        s += "%6\n"
-        s += "%N\n"
-        s += "%P\n"
-        s += "%&\n"
-        s += "%Y\n"
-        s += "%S\n"
-        s += "%7\n"
-        if self._key_should_be_included("date-released"):
-            s += "%8 " + str(self.yaml["date-released"].month) + "\n"
-        else:
-            s += "%8\n"
-
-        s += "%9\n"
-        s += "%?\n"
-        s += "%!\n"
-        s += "%Z\n"
-        s += "%@\n"
-        s += "%(\n"
-        s += "%)\n"
-        s += "%*\n"
-        s += "%L\n"
-        s += "%M\n"
-        s += "\n"
-        s += "\n"
-        s += "%2\n"
-        s += "%3\n"
-        s += "%4\n"
-        s += "%#\n"
-        s += "%$\n"
-        s += "%F YourReferenceHere\n"
-        if self._key_should_be_included("keywords"):
-            s += "%K " + construct_keywords_string() + "\n"
-        else:
-            s += "%K\n"
-
-        s += "%X\n"
-        s += "%Z\n"
-        if self._key_should_be_included("repository-code"):
-            s += "%U " + self.yaml["repository-code"] + "\n"
-        else:
-            s += "%U\n"
-
-        return s
+        return EndnoteObject(self.yaml).print()
 
     def as_json(self):
         return JSONEncoder().encode(self.yaml)

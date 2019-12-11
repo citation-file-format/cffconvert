@@ -19,13 +19,6 @@ class CitationTest1(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")
         with open(fixture, "r") as f:
@@ -49,13 +42,6 @@ class CitationTest2(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "2", "endnote.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "2", "ris.txt")
         with open(fixture, "r") as f:
@@ -78,13 +64,6 @@ class CitationTest3(unittest.TestCase):
             expected_codemeta = f.read()
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "3", "endnote.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "3", "ris.txt")
@@ -131,13 +110,6 @@ class CitationTestOverride(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "5", "endnote.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "5", "ris.txt")
         with open(fixture, "r") as f:
@@ -165,13 +137,6 @@ class CitationTestRemoveSuspectKeyDate(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "6", "endnote-no-date.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-date.txt")
         with open(fixture, "r") as f:
@@ -196,13 +161,6 @@ class CitationTestIgnoreSuspectKeyDate(unittest.TestCase):
             expected_codemeta = f.read()
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "6", "endnote-no-date.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-date.txt")
@@ -231,13 +189,6 @@ class CitationTestRemoveSuspectKeyDoi(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "6", "endnote-no-doi.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-doi.txt")
         with open(fixture, "r") as f:
@@ -262,13 +213,6 @@ class CitationTestIgnoreSuspectKeyDoi(unittest.TestCase):
             expected_codemeta = f.read()
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "6", "endnote-no-doi.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-doi.txt")
@@ -297,13 +241,6 @@ class CitationTestRemoveSuspectKeyVersion(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "6", "endnote-no-version.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-version.txt")
         with open(fixture, "r") as f:
@@ -329,13 +266,6 @@ class CitationTestIgnoreSuspectKeyVersion(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "6", "endnote-no-version.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-version.txt")
         with open(fixture, "r") as f:
@@ -359,13 +289,6 @@ class CitationTestIgnoreAllSuspectKeys(unittest.TestCase):
             expected_codemeta = f.read()
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "6", "endnote-no-suspect-keys.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-suspect-keys.txt")
@@ -394,13 +317,6 @@ class CitationTestRemoveNonExistentKey(unittest.TestCase):
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
 
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")
         with open(fixture, "r") as f:
@@ -425,13 +341,6 @@ class CitationTestIgnoreNonExistentKey(unittest.TestCase):
             expected_codemeta = f.read()
         actual_codemeta = self.citation.as_codemeta()
         self.assertEqual(expected_codemeta, actual_codemeta)
-
-    def test_printing_as_enw(self):
-        fixture = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture, "r") as f:
-            expected_endnote = f.read()
-        actual_endnote = self.citation.as_enw()
-        self.assertEqual(expected_endnote, actual_endnote)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")

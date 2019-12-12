@@ -4,7 +4,7 @@ import os
 import ruamel.yaml as yaml
 
 
-class CodemetaObjectTest03(unittest.TestCase):
+class CodemetaObjectTest04(unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -16,5 +16,4 @@ class CodemetaObjectTest03(unittest.TestCase):
     def test_check_cff_object(self):
         with self.assertRaises(ValueError) as context:
             self.co.check_cff_object()
-        self.assertTrue(str(context.exception).startswith('\'cff-version\':') and
-                        str(context.exception).endswith('isn\'t a supported version.'))
+        self.assertTrue('Expected cff_object to be of type \'dict\'.' in str(context.exception))

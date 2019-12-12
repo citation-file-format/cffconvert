@@ -4,7 +4,7 @@ import os
 import ruamel.yaml as yaml
 
 
-class CodemetaObjectTest01(unittest.TestCase):
+class CodemetaObjectTest07(unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -35,6 +35,23 @@ class CodemetaObjectTest01(unittest.TestCase):
             },
             "familyName": "Klaver",
             "givenName": "Tom"
+        }, {
+            "@type": "Person",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Netherlands eScience Center"
+            },
+            "familyName": "Verhoeven",
+            "givenName": "Stefan"
+        }, {
+            "@id": "https://orcid.org/0000-0003-4925-7248",
+            "@type": "Person",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Humboldt-Universität zu Berlin"
+            },
+            "familyName": "Druskat",
+            "givenName": "Stephan"
         }]
         self.assertListEqual(self.co.author, expected_author)
 
@@ -44,7 +61,7 @@ class CodemetaObjectTest01(unittest.TestCase):
 
     def test_date_published(self):
         self.co.add_date_published()
-        self.assertEqual(self.co.date_published, '2018-01-16')
+        self.assertEqual(self.co.date_published, '2018-07-25')
 
     def test_description(self):
         self.co.add_description()
@@ -65,11 +82,11 @@ class CodemetaObjectTest01(unittest.TestCase):
 
     def test_name(self):
         self.co.add_name()
-        self.assertEqual(self.co.name, 'cff-converter-python')
+        self.assertEqual(self.co.name, 'cffconvert')
 
     def test_version(self):
         self.co.add_version()
-        self.assertEqual(self.co.version, '1.0.0')
+        self.assertEqual(self.co.version, '1.0.1')
 
     def test_print(self):
         actual_codemeta = self.co.add_all().print()

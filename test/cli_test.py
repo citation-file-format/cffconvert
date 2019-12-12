@@ -1,4 +1,3 @@
-import os
 import unittest
 from click.testing import CliRunner
 from cffconvert import cli as cffconvert_cli
@@ -59,46 +58,6 @@ class CliTests(unittest.TestCase):
             result = self.runner.invoke(cffconvert_cli, ["-f", "bibtex"])
         self.assertTrue(result.exit_code == -1)
         self.assertTrue(result.exception.strerror.startswith("No such file or directory"))
-
-
-class CliTestsFromLocalCffFile(unittest.TestCase):
-
-    def setUp(self):
-        self.runner = CliRunner()
-
-    def test_printing_as_ris_from_local_cff_file(self):
-        fixture_ris = os.path.join("fixtures", "1", "ris.txt")
-        with open(fixture_ris, "r") as f:
-            expected_output = f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "ris"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
-    def test_validating_a_local_valid_cff_file(self):
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["--validate"])
-            actual_output = result.output
-
-        expected_output = ""
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
 
 
 if __name__ == "__main__":

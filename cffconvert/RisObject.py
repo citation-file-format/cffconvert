@@ -25,9 +25,9 @@ class RisObject:
                                    self.date,
                                    self.doi,
                                    self.keywords,
+                                   self.year,
                                    self.title,
-                                   self.url,
-                                   self.year] if item is not None]
+                                   self.url] if item is not None]
         return 'TY  - GEN\n' + ''.join(items) + 'ER\n'
 
     def add_all(self):

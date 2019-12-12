@@ -7,7 +7,7 @@ KW  - citation
 KW  - bibliography
 KW  - cff
 KW  - CITATION.cff
+PY  - 2018
 TI  - cff-converter-python
 UR  - https://github.com/citation-file-format/cff-converter-python
-PY  - 2018
 ER

@@ -1,4 +1,3 @@
-import sys
 import os
 import requests
 import ruamel.yaml as yaml
@@ -10,6 +9,7 @@ from pykwalify.core import Core
 from cffconvert.BibtexObject import BibtexObject
 from cffconvert.CodemetaObject import CodemetaObject
 from cffconvert.EndnoteObject import EndnoteObject
+from cffconvert.RisObject import RisObject
 from cffconvert.SchemaorgObject import SchemaorgObject
 from cffconvert.ZenodoObject import ZenodoObject
 
@@ -179,7 +179,8 @@ class Citation:
         return BibtexObject(self.yaml).print()
 
     def as_cff(self, indent=4, sort_keys=True, ensure_ascii=False):
-        return json.dumps(self.yaml, sort_keys=sort_keys, indent=indent, ensure_ascii=ensure_ascii)
+        return json.dumps(self.yaml, sort_keys=sort_keys,
+                          indent=indent, ensure_ascii=ensure_ascii)
 
     def as_codemeta(self):
         return CodemetaObject(self.yaml).print()
@@ -194,74 +195,7 @@ class Citation:
         return SchemaorgObject(self.yaml).print()
 
     def as_ris(self):
-        def construct_author_string():
-            names = list()
-            for author in self.yaml["authors"]:
-                name = "AU  - "
-                if "name-particle" in author:
-                    name += author["name-particle"] + " "
-                if "family-names" in author:
-                    name += author["family-names"]
-                if "name-suffix" in author:
-                    name += " " + author["name-suffix"]
-                if "given-names" in author:
-                    name += ", " + author["given-names"]
-                name += "\n"
-                names.append(name)
-            return "".join(names)
-
-        def construct_keywords_string():
-            names = list()
-            for keyword in self.yaml["keywords"]:
-                names.append("KW  - " + keyword + "\n")
-            return "".join(names)
-
-        def construct_date_string():
-            return "PY  - " + \
-                   str(self.yaml["date-released"].year) + "/" +\
-                   str(self.yaml["date-released"].month).rjust(2,"0") + "/" +\
-                   str(self.yaml["date-released"].day).rjust(2, "0") + "\n"
-
-        s = ""
-        s += "TY  - COMP\n"
-
-        if self._key_should_be_included("authors"):
-            s += construct_author_string()
-        else:
-            s += "AU  -\n"
-
-        if self._key_should_be_included("doi"):
-            s += "DO  - " + self.yaml["doi"] + "\n"
-        else:
-            s += "DO  -\n"
-
-        if self._key_should_be_included("keywords"):
-            s += construct_keywords_string()
-        else:
-            s += "KW  -\n"
-
-        s += "M3  - software\n"
-        s += "PB  - GitHub Inc.\n"
-        s += "PP  - San Francisco, USA\n"
-
-        if self._key_should_be_included("date-released"):
-            s += construct_date_string()
-        else:
-            s += "PY  -\n"
-
-        if self._key_should_be_included("title"):
-            s += "T1  - " + self.yaml["title"] + "\n"
-        else:
-            s += "T1  -\n"
-
-        if self._key_should_be_included("repository-code"):
-            s += "UR  - " + self.yaml["repository-code"] + "\n"
-        else:
-            s += "UR  -\n"
-
-        s += "ER  -\n"
-
-        return s
+        return RisObject(self.yaml).print()
 
     def as_zenodojson(self):
         return ZenodoObject(self.yaml).print()

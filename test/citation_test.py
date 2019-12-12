@@ -12,13 +12,6 @@ class CitationTest1(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")
         with open(fixture, "r") as f:
@@ -35,13 +28,6 @@ class CitationTest2(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "2", "codemeta.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "2", "ris.txt")
         with open(fixture, "r") as f:
@@ -57,13 +43,6 @@ class CitationTest3(unittest.TestCase):
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, suspect_keys=[])
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "3", "codemeta.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "3", "ris.txt")
@@ -103,13 +82,6 @@ class CitationTestOverride(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._override_suspect_keys()
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "5", "codemeta.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "5", "ris.txt")
         with open(fixture, "r") as f:
@@ -130,13 +102,6 @@ class CitationTestRemoveSuspectKeyDate(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "6", "codemeta-no-date.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-date.txt")
         with open(fixture, "r") as f:
@@ -154,13 +119,6 @@ class CitationTestIgnoreSuspectKeyDate(unittest.TestCase):
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "6", "codemeta-no-date.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-date.txt")
@@ -182,13 +140,6 @@ class CitationTestRemoveSuspectKeyDoi(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "6", "codemeta-no-doi.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-doi.txt")
         with open(fixture, "r") as f:
@@ -206,13 +157,6 @@ class CitationTestIgnoreSuspectKeyDoi(unittest.TestCase):
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "6", "codemeta-no-doi.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-doi.txt")
@@ -234,13 +178,6 @@ class CitationTestRemoveSuspectKeyVersion(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "6", "codemeta-no-version.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-version.txt")
         with open(fixture, "r") as f:
@@ -259,13 +196,6 @@ class CitationTestIgnoreSuspectKeyVersion(unittest.TestCase):
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "6", "codemeta-no-version.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-version.txt")
         with open(fixture, "r") as f:
@@ -282,13 +212,6 @@ class CitationTestIgnoreAllSuspectKeys(unittest.TestCase):
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "6", "codemeta-no-suspect-keys.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "6", "ris-no-suspect-keys.txt")
@@ -310,13 +233,6 @@ class CitationTestRemoveNonExistentKey(unittest.TestCase):
         self.citation._parse_yaml()
         self.citation._remove_suspect_keys()
 
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
-
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")
         with open(fixture, "r") as f:
@@ -334,13 +250,6 @@ class CitationTestIgnoreNonExistentKey(unittest.TestCase):
         with open(fixture, "r") as f:
             cffstr = f.read()
         self.citation = Citation(cffstr=cffstr, ignore_suspect_keys=True, suspect_keys=suspect_keys)
-
-    def test_printing_as_codemeta(self):
-        fixture = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture, "r") as f:
-            expected_codemeta = f.read()
-        actual_codemeta = self.citation.as_codemeta()
-        self.assertEqual(expected_codemeta, actual_codemeta)
 
     def test_printing_as_ris(self):
         fixture = os.path.join("fixtures", "1", "ris.txt")

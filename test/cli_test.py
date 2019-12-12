@@ -66,24 +66,6 @@ class CliTestsFromLocalCffFile(unittest.TestCase):
     def setUp(self):
         self.runner = CliRunner()
 
-    def test_printing_as_codemeta_from_local_cff_file(self):
-        fixture_codemeta = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture_codemeta, "r") as f:
-            expected_output = f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "codemeta"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
     def test_printing_as_ris_from_local_cff_file(self):
         fixture_ris = os.path.join("fixtures", "1", "ris.txt")
         with open(fixture_ris, "r") as f:

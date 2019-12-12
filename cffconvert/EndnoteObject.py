@@ -1,7 +1,7 @@
 class EndnoteObject:
 
     supported_cff_versions = ['1.0.3', '1.1.0']
-    supported_bibtex_props = ['author', 'year', 'keyword', 'doi', 'name', 'url']
+    supported_endnote_props = ['author', 'year', 'keyword', 'doi', 'name', 'url']
 
     def __init__(self, cff_object, initialize_empty=False):
         self.cff_object = cff_object

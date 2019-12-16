@@ -1,4 +1,4 @@
-from cffconvert.BibtexObject import BibtexObject
+from cffconvert import BibtexObject
 import unittest
 import os
 import ruamel.yaml as yaml

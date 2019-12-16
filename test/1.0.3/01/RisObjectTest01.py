@@ -1,4 +1,4 @@
-from cffconvert.RisObject import RisObject
+from cffconvert import RisObject
 import unittest
 import os
 import ruamel.yaml as yaml

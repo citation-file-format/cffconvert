@@ -1,4 +1,4 @@
-from cffconvert.EndnoteObject import EndnoteObject
+from cffconvert import EndnoteObject
 import unittest
 import os
 import ruamel.yaml as yaml

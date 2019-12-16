@@ -1,4 +1,4 @@
-from cffconvert.CodemetaObject import CodemetaObject
+from cffconvert import CodemetaObject
 import unittest
 import os
 import ruamel.yaml as yaml

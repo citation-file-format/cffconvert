@@ -1,4 +1,4 @@
-from cffconvert.ZenodoObject import ZenodoObject
+from cffconvert import ZenodoObject
 import unittest
 import os
 import ruamel.yaml as yaml

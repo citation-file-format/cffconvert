@@ -6,12 +6,12 @@ import json
 from datetime import datetime, date
 import tempfile
 from pykwalify.core import Core
-from cffconvert.BibtexObject import BibtexObject
-from cffconvert.CodemetaObject import CodemetaObject
-from cffconvert.EndnoteObject import EndnoteObject
-from cffconvert.RisObject import RisObject
-from cffconvert.SchemaorgObject import SchemaorgObject
-from cffconvert.ZenodoObject import ZenodoObject
+from cffconvert import BibtexObject
+from cffconvert import CodemetaObject
+from cffconvert import RisObject
+from cffconvert import SchemaorgObject
+from cffconvert import ZenodoObject
+from cffconvert import EndnoteObject
 
 
 class JSONEncoder(json.JSONEncoder):

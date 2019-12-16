@@ -1,4 +1,4 @@
-from cffconvert.SchemaorgObject import SchemaorgObject
+from cffconvert import SchemaorgObject
 import unittest
 import os
 import ruamel.yaml as yaml

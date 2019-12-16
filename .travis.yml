@@ -22,6 +22,7 @@ script:
   - "python -m pytest test/$SCHEMA_VERSION"
 stages:
   - versioning
+  - test naming
   - test
   - cli
   - livetest
@@ -30,7 +31,10 @@ jobs:
     - stage: versioning
       env: SCHEMA_VERSION=1.1.0
       python: "3.7"
-      script: "python -m pytest test/consistency_test.py"
+      script: "python -m pytest test/consistent_versioning.py"
+    - stage: test naming
+      language: bash
+      script: "bash test/consistent_file_naming.sh"
     - stage: cli
       env: SCHEMA_VERSION=1.1.0
       python: "3.7"

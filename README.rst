@@ -315,7 +315,7 @@ Making a release
     which cffconvert
 
     # install the package to user space, using no caching (can bring to light dependency problems)
-    python3 -m pip install --user --no-cache-dir .
+    python3 -m pip install --user --no-cache-dir --editable .
     # check if cffconvert works, e.g.
     cffconvert --version
 

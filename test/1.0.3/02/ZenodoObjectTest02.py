@@ -4,7 +4,7 @@ import os
 import ruamel.yaml as yaml
 
 
-class ZenodoObjectTest1(unittest.TestCase):
+class ZenodoObjectTest(unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

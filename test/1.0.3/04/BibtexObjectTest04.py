@@ -15,7 +15,8 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.bo.add_author()
-        self.assertEqual(self.bo.author, 'author = {Jurriaan H. Spaaks and Tom Klaver}')
+        self.assertEqual(self.bo.author, 'author = {Jurriaan H. Spaaks and Tom Klaver' +
+                                         ' and Stefan Verhoeven and Stephan Druskat}')
 
     def test_check_cff_object(self):
         self.bo.check_cff_object()
@@ -27,7 +28,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_month(self):
         self.bo.add_month()
-        self.assertEqual(self.bo.month, 'month = {1}')
+        self.assertEqual(self.bo.month, 'month = {7}')
 
     def test_print(self):
         actual_bibtex = self.bo.add_all().print()
@@ -38,7 +39,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_title(self):
         self.bo.add_title()
-        self.assertEqual(self.bo.title, 'title = {cff-converter-python}')
+        self.assertEqual(self.bo.title, 'title = {cffconvert}')
 
     def test_url(self):
         self.bo.add_url()

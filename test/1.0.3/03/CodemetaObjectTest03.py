@@ -21,18 +21,31 @@ class CodemetaObjectTest(unittest.TestCase):
         self.co.add_author()
         expected_author = [{
             "@type": "Person",
-            "givenName": "Gonzalo",
-            "familyName": "Fernández de Córdoba Jr.",
+            "givenName": "Jisk",
+            "familyName": "Attema",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Netherlands eScience Center"
+            }
+        }, {
+            "@id": "https://orcid.org/0000-0002-0989-929X",
+            "@type": "Person",
+            "givenName": "Faruk",
+            "familyName": "Diblen",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Netherlands eScience Center"
+            }
         }]
         self.assertListEqual(self.co.author, expected_author)
 
     def test_code_repository(self):
         self.co.add_code_repository()
-        self.assertIsNone(self.co.code_repository)
+        self.assertEqual(self.co.code_repository, 'https://github.com/NLeSC/spot')
 
     def test_date_published(self):
         self.co.add_date_published()
-        self.assertIsNone(self.co.date_published)
+        self.assertEqual(self.co.date_published, '2017-10-07')
 
     def test_description(self):
         self.co.add_description()
@@ -40,23 +53,24 @@ class CodemetaObjectTest(unittest.TestCase):
 
     def test_identifier(self):
         self.co.add_identifier()
-        self.assertIsNone(self.co.identifier)
+        self.assertEqual(self.co.identifier, 'https://doi.org/10.5281/zenodo.1003346')
 
     def test_keywords(self):
         self.co.add_keywords()
-        self.assertIsNone(self.co.keywords)
+        expected_keywords = ['visualization', 'big data', 'visual data analytics', 'multi-dimensional data']
+        self.assertListEqual(self.co.keywords, expected_keywords)
 
     def test_license(self):
         self.co.add_license()
-        self.assertIsNone(self.co.license)
+        self.assertEqual(self.co.license, 'https://spdx.org/licenses/Apache-2.0')
 
     def test_name(self):
         self.co.add_name()
-        self.assertEqual(self.co.name, 'example title')
+        self.assertEqual(self.co.name, 'spot')
 
     def test_version(self):
         self.co.add_version()
-        self.assertEqual(self.co.version, '1.0.0')
+        self.assertEqual(self.co.version, '0.1.0')
 
     def test_print(self):
         actual_codemeta = self.co.add_all().print()

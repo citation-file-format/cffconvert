@@ -19,7 +19,8 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.eo.add_author()
-        self.assertEqual(self.eo.author, '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n')
+        self.assertEqual(self.eo.author, '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n' + \
+                                         '%A Verhoeven, Stefan\n%A Druskat, Stephan\n')
 
     def test_doi(self):
         self.eo.add_doi()
@@ -31,7 +32,7 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_name(self):
         self.eo.add_name()
-        self.assertEqual(self.eo.name, '%T cff-converter-python\n')
+        self.assertEqual(self.eo.name, '%T cffconvert\n')
 
     def test_print(self):
         actual_endnote = self.eo.add_all().print()

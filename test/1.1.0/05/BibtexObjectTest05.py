@@ -15,7 +15,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.bo.add_author()
-        self.assertEqual(self.bo.author, 'author = {Jurriaan H. Spaaks and Tom Klaver}')
+        self.assertEqual(self.bo.author, 'author = {Jurriaan H. Spaaks and Tom Klaver and mysteryauthor}')
 
     def test_check_cff_object(self):
         self.bo.check_cff_object()

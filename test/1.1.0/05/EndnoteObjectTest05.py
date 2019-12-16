@@ -19,7 +19,7 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.eo.add_author()
-        self.assertEqual(self.eo.author, '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n')
+        self.assertEqual(self.eo.author, '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n%A mysteryauthor\n')
 
     def test_doi(self):
         self.eo.add_doi()

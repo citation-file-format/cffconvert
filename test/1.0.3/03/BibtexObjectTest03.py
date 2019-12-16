@@ -15,7 +15,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.bo.add_author()
-        self.assertEqual(self.bo.author, 'author = {Jurriaan H. Spaaks and Tom Klaver}')
+        self.assertEqual(self.bo.author, 'author = {Jisk Attema and Faruk Diblen}')
 
     def test_check_cff_object(self):
         self.bo.check_cff_object()
@@ -23,11 +23,11 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_doi(self):
         self.bo.add_doi()
-        self.assertEqual(self.bo.doi, 'doi = {10.5281/zenodo.1162057}')
+        self.assertEqual(self.bo.doi, 'doi = {10.5281/zenodo.1003346}')
 
     def test_month(self):
         self.bo.add_month()
-        self.assertEqual(self.bo.month, 'month = {1}')
+        self.assertEqual(self.bo.month, 'month = {10}')
 
     def test_print(self):
         actual_bibtex = self.bo.add_all().print()
@@ -38,12 +38,12 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_title(self):
         self.bo.add_title()
-        self.assertEqual(self.bo.title, 'title = {cff-converter-python}')
+        self.assertEqual(self.bo.title, 'title = {spot}')
 
     def test_url(self):
         self.bo.add_url()
-        self.assertEqual(self.bo.url, 'url = {https://github.com/citation-file-format/cff-converter-python}')
+        self.assertEqual(self.bo.url, 'url = {https://github.com/NLeSC/spot}')
 
     def test_year(self):
         self.bo.add_year()
-        self.assertEqual(self.bo.year, 'year = {2018}')
+        self.assertEqual(self.bo.year, 'year = {2017}')

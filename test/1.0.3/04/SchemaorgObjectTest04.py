@@ -35,6 +35,23 @@ class SchemaorgObjectTest(unittest.TestCase):
             },
             "familyName": "Klaver",
             "givenName": "Tom"
+        }, {
+            "@type": "Person",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Netherlands eScience Center"
+            },
+            "familyName": "Verhoeven",
+            "givenName": "Stefan"
+        }, {
+            "@id": "https://orcid.org/0000-0003-4925-7248",
+            "@type": "Person",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Humboldt-Universität zu Berlin"
+            },
+            "familyName": "Druskat",
+            "givenName": "Stephan"
         }]
         self.assertListEqual(self.so.author, expected_author)
 
@@ -44,7 +61,7 @@ class SchemaorgObjectTest(unittest.TestCase):
 
     def test_date_published(self):
         self.so.add_date_published()
-        self.assertEqual(self.so.date_published, '2018-01-16')
+        self.assertEqual(self.so.date_published, '2018-07-25')
 
     def test_description(self):
         self.so.add_description()
@@ -65,11 +82,11 @@ class SchemaorgObjectTest(unittest.TestCase):
 
     def test_name(self):
         self.so.add_name()
-        self.assertEqual(self.so.name, 'cff-converter-python')
+        self.assertEqual(self.so.name, 'cffconvert')
 
     def test_version(self):
         self.so.add_version()
-        self.assertEqual(self.so.version, '1.0.0')
+        self.assertEqual(self.so.version, '1.0.1')
 
     def test_print(self):
         actual_schemaorg = self.so.add_all().print()

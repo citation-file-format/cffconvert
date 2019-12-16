@@ -21,18 +21,33 @@ class SchemaorgObjectTest(unittest.TestCase):
         self.so.add_author()
         expected_author = [{
             "@type": "Person",
-            "givenName": "Gonzalo",
-            "familyName": "Fernández de Córdoba Jr.",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Netherlands eScience Center"
+            },
+            "familyName": "Spaaks",
+            "givenName": "Jurriaan H."
+        }, {
+            "@type": "Person",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Netherlands eScience Center"
+            },
+            "familyName": "Klaver",
+            "givenName": "Tom"
+        }, {
+            "@type": "Person",
+            "name": "mysteryauthor"
         }]
         self.assertListEqual(self.so.author, expected_author)
 
     def test_code_repository(self):
         self.so.add_code_repository()
-        self.assertIsNone(self.so.code_repository)
+        self.assertEqual(self.so.code_repository, 'https://github.com/citation-file-format/cff-converter-python')
 
     def test_date_published(self):
         self.so.add_date_published()
-        self.assertIsNone(self.so.date_published)
+        self.assertEqual(self.so.date_published, '2018-01-16')
 
     def test_description(self):
         self.so.add_description()
@@ -40,19 +55,20 @@ class SchemaorgObjectTest(unittest.TestCase):
 
     def test_identifier(self):
         self.so.add_identifier()
-        self.assertIsNone(self.so.identifier)
+        self.assertEqual(self.so.identifier, 'https://doi.org/10.5281/zenodo.1162057')
 
     def test_keywords(self):
         self.so.add_keywords()
-        self.assertIsNone(self.so.keywords)
+        expected_keywords = ['citation', 'bibliography', 'cff', 'CITATION.cff']
+        self.assertListEqual(self.so.keywords, expected_keywords)
 
     def test_license(self):
         self.so.add_license()
-        self.assertIsNone(self.so.license)
+        self.assertEqual(self.so.license, 'https://spdx.org/licenses/Apache-2.0')
 
     def test_name(self):
         self.so.add_name()
-        self.assertEqual(self.so.name, 'example title')
+        self.assertEqual(self.so.name, 'cff-converter-python')
 
     def test_version(self):
         self.so.add_version()

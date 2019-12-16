@@ -27,6 +27,9 @@ class ZenodoObjectTest(unittest.TestCase):
             {
                 "affiliation": "Netherlands eScience Center",
                 "name": "Klaver, Tom"
+            },
+            {
+                "name": "mysteryauthor"
             }
         ]
         self.assertListEqual(self.zo.creators, expected_creators)

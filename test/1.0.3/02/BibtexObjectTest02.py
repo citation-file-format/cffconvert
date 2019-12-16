@@ -4,7 +4,7 @@ import os
 import ruamel.yaml as yaml
 
 
-class BibtexObjectTest02(unittest.TestCase):
+class BibtexObjectTest(unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

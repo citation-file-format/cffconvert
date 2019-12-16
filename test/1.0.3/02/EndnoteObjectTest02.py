@@ -4,7 +4,7 @@ import os
 import ruamel.yaml as yaml
 
 
-class EndnoteObjectTest2(unittest.TestCase):
+class EndnoteObjectTest(unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

@@ -21,8 +21,20 @@ class SchemaorgObjectTest(unittest.TestCase):
         self.so.add_author()
         expected_author = [{
             "@type": "Person",
-            "givenName": "Gonzalo",
-            "familyName": "Fernández de Córdoba Jr.",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Springsteen"
+            },
+            "familyName": "Van Zandt",
+            "givenName": "Steven"
+        }, {
+            "@type": "Person",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "coverband"
+            },
+            "familyName": "van Zandt",
+            "givenName": "Steven"
         }]
         self.assertListEqual(self.so.author, expected_author)
 
@@ -32,7 +44,7 @@ class SchemaorgObjectTest(unittest.TestCase):
 
     def test_date_published(self):
         self.so.add_date_published()
-        self.assertIsNone(self.so.date_published)
+        self.assertEqual(self.so.date_published, '2018-01-16')
 
     def test_description(self):
         self.so.add_description()
@@ -52,7 +64,7 @@ class SchemaorgObjectTest(unittest.TestCase):
 
     def test_name(self):
         self.so.add_name()
-        self.assertEqual(self.so.name, 'example title')
+        self.assertEqual(self.so.name, 'cff-converter-python')
 
     def test_version(self):
         self.so.add_version()

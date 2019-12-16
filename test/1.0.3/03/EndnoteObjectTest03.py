@@ -19,19 +19,20 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.eo.add_author()
-        self.assertEqual(self.eo.author, '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n')
+        self.assertEqual(self.eo.author, '%A Attema, Jisk\n%A Diblen, Faruk\n')
 
     def test_doi(self):
         self.eo.add_doi()
-        self.assertEqual(self.eo.doi, '%R 10.5281/zenodo.1162057\n')
+        self.assertEqual(self.eo.doi, '%R 10.5281/zenodo.1003346\n')
 
     def test_keyword(self):
         self.eo.add_keyword()
-        self.assertEqual(self.eo.keyword, '%K citation\n%K bibliography\n%K cff\n%K CITATION.cff\n')
+        self.assertEqual(self.eo.keyword, '%K visualization\n%K big data\n%K visual ' + \
+                                          'data analytics\n%K multi-dimensional data\n')
 
     def test_name(self):
         self.eo.add_name()
-        self.assertEqual(self.eo.name, '%T cff-converter-python\n')
+        self.assertEqual(self.eo.name, '%T spot\n')
 
     def test_print(self):
         actual_endnote = self.eo.add_all().print()
@@ -42,9 +43,9 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_url(self):
         self.eo.add_url()
-        self.assertEqual(self.eo.url, '%U https://github.com/citation-file-format/cff-converter-python\n')
+        self.assertEqual(self.eo.url, '%U https://github.com/NLeSC/spot\n')
 
     def test_year(self):
         self.eo.add_year()
-        self.assertEqual(self.eo.year, '%D 2018\n')
+        self.assertEqual(self.eo.year, '%D 2017\n')
 

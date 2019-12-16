@@ -15,7 +15,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.bo.add_author()
-        self.assertEqual(self.bo.author, 'author = {Jurriaan H. Spaaks and Tom Klaver}')
+        self.assertEqual(self.bo.author, 'author = {Steven Van Zandt and Steven van Zandt}')
 
     def test_check_cff_object(self):
         self.bo.check_cff_object()
@@ -23,7 +23,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_doi(self):
         self.bo.add_doi()
-        self.assertEqual(self.bo.doi, 'doi = {10.5281/zenodo.1162057}')
+        self.assertIsNone(self.bo.doi)
 
     def test_month(self):
         self.bo.add_month()
@@ -42,7 +42,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_url(self):
         self.bo.add_url()
-        self.assertEqual(self.bo.url, 'url = {https://github.com/citation-file-format/cff-converter-python}')
+        self.assertIsNone(self.bo.url)
 
     def test_year(self):
         self.bo.add_year()

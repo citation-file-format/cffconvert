@@ -21,8 +21,20 @@ class CodemetaObjectTest(unittest.TestCase):
         self.co.add_author()
         expected_author = [{
             "@type": "Person",
-            "givenName": "Gonzalo",
-            "familyName": "Fernández de Córdoba Jr.",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "Springsteen"
+            },
+            "familyName": "Van Zandt",
+            "givenName": "Steven"
+        }, {
+            "@type": "Person",
+            "affiliation": {
+                "@type": "Organization",
+                "legalName": "coverband"
+            },
+            "familyName": "van Zandt",
+            "givenName": "Steven"
         }]
         self.assertListEqual(self.co.author, expected_author)
 
@@ -32,7 +44,7 @@ class CodemetaObjectTest(unittest.TestCase):
 
     def test_date_published(self):
         self.co.add_date_published()
-        self.assertIsNone(self.co.date_published)
+        self.assertEqual(self.co.date_published, '2018-01-16')
 
     def test_description(self):
         self.co.add_description()
@@ -52,7 +64,7 @@ class CodemetaObjectTest(unittest.TestCase):
 
     def test_name(self):
         self.co.add_name()
-        self.assertEqual(self.co.name, 'example title')
+        self.assertEqual(self.co.name, 'cff-converter-python')
 
     def test_version(self):
         self.co.add_version()

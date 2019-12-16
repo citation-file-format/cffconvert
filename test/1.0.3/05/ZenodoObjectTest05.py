@@ -27,6 +27,10 @@ class ZenodoObjectTest(unittest.TestCase):
             {
                 "affiliation": "Netherlands eScience Center",
                 "name": "Klaver, Tom"
+            },
+            {
+                "affiliation": "Netherlands eScience Center",
+                "name": "Verhoeven, Stefan"
             }
         ]
         self.assertListEqual(self.zo.creators, expected_creators)
@@ -52,12 +56,12 @@ class ZenodoObjectTest(unittest.TestCase):
 
     def test_publication_date(self):
         self.zo.add_publication_date()
-        self.assertEqual(self.zo.publication_date, '2018-01-16')
+        self.assertEqual(self.zo.publication_date, '2018-05-09')
 
     def test_title(self):
         self.zo.add_title()
-        self.assertEqual(self.zo.title, 'cff-converter-python')
+        self.assertEqual(self.zo.title, 'cffconvert')
 
     def test_version(self):
         self.zo.add_version()
-        self.assertEqual(self.zo.version, '1.0.0')
+        self.assertEqual(self.zo.version, '0.0.4')

@@ -22,22 +22,23 @@ class ZenodoObjectTest(unittest.TestCase):
         expected_creators = [
             {
                 "affiliation": "Netherlands eScience Center",
-                "name": "Spaaks, Jurriaan H."
+                "name": "Attema, Jisk"
             },
             {
                 "affiliation": "Netherlands eScience Center",
-                "name": "Klaver, Tom"
+                "name": "Diblen, Faruk",
+                "orcid": "0000-0002-0989-929X"
             }
         ]
         self.assertListEqual(self.zo.creators, expected_creators)
 
     def test_doi(self):
         self.zo.add_doi()
-        self.assertEqual(self.zo.doi, '10.5281/zenodo.1162057')
+        self.assertEqual(self.zo.doi, '10.5281/zenodo.1003346')
 
     def test_keywords(self):
         self.zo.add_keywords()
-        self.assertEqual(self.zo.keywords, ['citation', 'bibliography', 'cff', 'CITATION.cff'])
+        self.assertEqual(self.zo.keywords, ['visualization', 'big data', 'visual data analytics', 'multi-dimensional data'])
 
     def test_license(self):
         self.zo.add_license()
@@ -52,12 +53,12 @@ class ZenodoObjectTest(unittest.TestCase):
 
     def test_publication_date(self):
         self.zo.add_publication_date()
-        self.assertEqual(self.zo.publication_date, '2018-01-16')
+        self.assertEqual(self.zo.publication_date, '2017-10-07')
 
     def test_title(self):
         self.zo.add_title()
-        self.assertEqual(self.zo.title, 'cff-converter-python')
+        self.assertEqual(self.zo.title, 'spot')
 
     def test_version(self):
         self.zo.add_version()
-        self.assertEqual(self.zo.version, '1.0.0')
+        self.assertEqual(self.zo.version, '0.1.0')

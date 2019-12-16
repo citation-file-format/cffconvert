@@ -19,15 +19,15 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_author(self):
         self.eo.add_author()
-        self.assertEqual(self.eo.author, '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n')
+        self.assertEqual(self.eo.author, '%A Van Zandt, Steven\n%A van Zandt, Steven\n')
 
     def test_doi(self):
         self.eo.add_doi()
-        self.assertEqual(self.eo.doi, '%R 10.5281/zenodo.1162057\n')
+        self.assertIsNone(self.eo.doi)
 
     def test_keyword(self):
         self.eo.add_keyword()
-        self.assertEqual(self.eo.keyword, '%K citation\n%K bibliography\n%K cff\n%K CITATION.cff\n')
+        self.assertIsNone(self.eo.keyword)
 
     def test_name(self):
         self.eo.add_name()
@@ -42,7 +42,7 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_url(self):
         self.eo.add_url()
-        self.assertEqual(self.eo.url, '%U https://github.com/citation-file-format/cff-converter-python\n')
+        self.assertIsNone(self.eo.url)
 
     def test_year(self):
         self.eo.add_year()

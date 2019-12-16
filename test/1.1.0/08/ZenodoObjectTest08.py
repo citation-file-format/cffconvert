@@ -21,27 +21,27 @@ class ZenodoObjectTest(unittest.TestCase):
         self.zo.add_creators()
         expected_creators = [
             {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Spaaks, Jurriaan H."
+                "affiliation": "Springsteen",
+                "name": "Van Zandt, Steven"
             },
             {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Klaver, Tom"
+                "affiliation": "coverband",
+                "name": "van Zandt, Steven"
             }
         ]
         self.assertListEqual(self.zo.creators, expected_creators)
 
     def test_doi(self):
         self.zo.add_doi()
-        self.assertEqual(self.zo.doi, '10.5281/zenodo.1162057')
+        self.assertIsNone(self.zo.doi)
 
     def test_keywords(self):
         self.zo.add_keywords()
-        self.assertEqual(self.zo.keywords, ['citation', 'bibliography', 'cff', 'CITATION.cff'])
+        self.assertIsNone(self.zo.keywords)
 
     def test_license(self):
         self.zo.add_license()
-        self.assertEqual(self.zo.license, dict(id='Apache-2.0'))
+        self.assertIsNone(self.zo.license)
 
     def test_print(self):
         actual_zenodo = self.zo.add_all().print()

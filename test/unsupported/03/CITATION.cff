@@ -1,0 +1,6 @@
+this: is
+a:
+  - dict: with
+    valid: yaml
+  - but: not
+    valid: cff

@@ -5,17 +5,40 @@ notifications:
   email: 
     on_failure: change
     on_succes: never
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+sudo: false
 python: 
   - "3.5"
   - "3.6"
   - "3.7"
   - "nightly"
-install:
-  - pip install -r requirements.txt
-  - pip install -r requirements-dev.txt
-script: 
-    # run the unit tests, with test coverage calculation
-  - "pytest --cov=./cffconvert --cov-report=xml test/"
-    # also run the live tests, without test coverage calculation
-  - "pytest livetest/"
-sudo: false
+env:
+  - SCHEMA_VERSION=1.0.3
+  - SCHEMA_VERSION=1.1.0
+  - SCHEMA_VERSION=unsupported
+script:
+  - "bash test/test_consistent_file_naming.sh test"
+  - "python -m pytest test/$SCHEMA_VERSION"
+stages:
+  - versioning
+  - test
+  - cli
+  - livetest
+jobs:
+  include:
+    - stage: versioning
+      env: SCHEMA_VERSION=1.1.0
+      python: "3.7"
+      script: "python -m pytest test/test_consistent_versioning.py"
+    - stage: cli
+      env: SCHEMA_VERSION=1.1.0
+      python: "3.7"
+      script: "python -m pytest test/cli_test.py"
+    - stage: livetest
+      env: SCHEMA_VERSION=1.1.0
+      python: "3.7"
+      script:
+        - "bash test/test_consistent_file_naming.sh livetest"
+        - "python -m pytest livetest"

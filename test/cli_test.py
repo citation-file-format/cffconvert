@@ -1,4 +1,3 @@
-import os
 import unittest
 from click.testing import CliRunner
 from cffconvert import cli as cffconvert_cli
@@ -31,7 +30,7 @@ class CliTests(unittest.TestCase):
     def test_printing_of_version(self):
         result = self.runner.invoke(cffconvert_cli, ["--version"])
         self.assertTrue(result.exit_code == 0)
-        self.assertEqual(result.output, "1.3.3\n")
+        self.assertEqual(result.output, "1.4.0-alpha0\n")
 
     def test_printing_when_verbose(self):
         result = self.runner.invoke(cffconvert_cli, ["--verbose"])
@@ -59,136 +58,6 @@ class CliTests(unittest.TestCase):
             result = self.runner.invoke(cffconvert_cli, ["-f", "bibtex"])
         self.assertTrue(result.exit_code == -1)
         self.assertTrue(result.exception.strerror.startswith("No such file or directory"))
-
-
-class CliTestsFromLocalCffFile(unittest.TestCase):
-
-    def setUp(self):
-        self.runner = CliRunner()
-
-    def test_printing_as_bibtex_from_local_cff_file(self):
-        fixture_bibtex = os.path.join("fixtures", "1", "bibtex.bib")
-        with open(fixture_bibtex, "r") as f:
-            expected_output = f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "bibtex"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
-    def test_printing_as_codemeta_from_local_cff_file(self):
-        fixture_codemeta = os.path.join("fixtures", "1", "codemeta.json")
-        with open(fixture_codemeta, "r") as f:
-            expected_output = f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "codemeta"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
-    def test_printing_as_endnote_from_local_cff_file(self):
-        fixture_endnote = os.path.join("fixtures", "1", "endnote.enw")
-        with open(fixture_endnote, "r") as f:
-            expected_output = f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "endnote"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
-    def test_printing_as_ris_from_local_cff_file(self):
-        fixture_ris = os.path.join("fixtures", "1", "ris.txt")
-        with open(fixture_ris, "r") as f:
-            expected_output = f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "ris"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
-    def test_printing_as_schema_dot_org_from_local_cff_file(self):
-        fixture_schema_dot_org = os.path.join("fixtures", "1", "schema-dot-org.json")
-        with open(fixture_schema_dot_org, "r") as f:
-            expected_output = f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "schema.org"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
-    def test_printing_as_zenodojson_from_local_cff_file(self):
-        fixture_zenodo = os.path.join("fixtures", "1", "zenodo.json")
-        with open(fixture_zenodo, "r") as f:
-            expected_output = "Note: suspect keys will be included in the output.\n" + f.read() + "\n"
-
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["-f", "zenodo"])
-            actual_output = result.output
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
-
-    def test_validating_a_local_valid_cff_file(self):
-        fixture_cff = os.path.join("fixtures", "1", "CITATION.cff")
-        with open(fixture_cff, "r") as f:
-            cff_contents = f.read()
-
-        with self.runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
-                f.write(cff_contents)
-            result = self.runner.invoke(cffconvert_cli, ["--validate"])
-            actual_output = result.output
-
-        expected_output = ""
-
-        self.assertTrue(result.exit_code == 0)
-        self.assertEqual(expected_output, actual_output)
 
 
 if __name__ == "__main__":

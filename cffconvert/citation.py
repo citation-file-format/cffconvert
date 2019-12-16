@@ -1,4 +1,3 @@
-import sys
 import os
 import requests
 import ruamel.yaml as yaml
@@ -7,6 +6,12 @@ import json
 from datetime import datetime, date
 import tempfile
 from pykwalify.core import Core
+from cffconvert import BibtexObject
+from cffconvert import CodemetaObject
+from cffconvert import RisObject
+from cffconvert import SchemaorgObject
+from cffconvert import ZenodoObject
+from cffconvert import EndnoteObject
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -65,14 +70,6 @@ class Citation:
             self.baseurl = "https://raw.githubusercontent.com"
         else:
             raise Exception("Only 'https://github.com' URLs are supported at the moment.")
-
-    def _key_should_be_included(self, key):
-        if not self.ignore_suspect_keys:
-            return key in self.yaml
-        elif key in self.suspect_keys:
-            return False
-        else:
-            return key in self.yaml
 
     def _override_suspect_keys(self):
         if self.override is not None and type(self.override) is dict:
@@ -171,402 +168,41 @@ class Citation:
         return self
 
     def as_bibtex(self):
-
-        def get_author_string():
-            arr = list()
-            for author in self.yaml["authors"]:
-                authors = list()
-                if "given-names" in author:
-                    authors.append(author["given-names"])
-                if "name-particle" in author:
-                    authors.append(author["name-particle"])
-                if "family-names" in author:
-                    authors.append(author["family-names"])
-                if "name-suffix" in author:
-                    authors.append(author["name-suffix"])
-                arr.append(" " * 12 + " ".join(authors))
-            return " and\n".join(arr)
-
-        s = ""
-        s += "@misc{"
-        s += "YourReferenceHere"
-        if self._key_should_be_included("authors"):
-            s += ",\nauthor = {\n"
-            s += get_author_string()
-            s += "\n         }"
-        if self._key_should_be_included("title"):
-            s += ",\ntitle  = {"
-            s += self.yaml["title"] + "}"
-        if self._key_should_be_included("date-released"):
-            s += ",\nmonth  = {"
-            s += str(self.yaml["date-released"].month) + "}"
-            s += ",\nyear   = {"
-            s += str(self.yaml["date-released"].year) + "}"
-        if self._key_should_be_included("doi"):
-            s += ",\ndoi    = {"
-            s += self.yaml["doi"] + "}"
-        if self._key_should_be_included("repository-code"):
-            s += ",\nurl    = {"
-            s += self.yaml["repository-code"] + "}"
-        s += "\n}\n"
-
-        return s
+        filtered = self.filter_properties(self.yaml)
+        return BibtexObject(filtered).print()
 
     def as_cff(self, indent=4, sort_keys=True, ensure_ascii=False):
-        return json.dumps(self.yaml, sort_keys=sort_keys, indent=indent, ensure_ascii=ensure_ascii)
+        filtered = self.filter_properties(self.yaml)
+        return json.dumps(filtered, sort_keys=sort_keys,
+                          indent=indent, ensure_ascii=ensure_ascii)
 
     def as_codemeta(self):
-
-        def resolve_spdx_license(spdx_license_code):
-            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data" + \
-                           "/b541ee8a345aa93b70a08765c7bf5e423bb4d558/json/licenses.json"
-            r = requests.get(licenses_url)
-            if r.ok:
-                data = r.json()
-                for license in data["licenses"]:
-                    if license["licenseId"] == spdx_license_code:
-                        return license["seeAlso"][0]
-                raise ValueError("Provided license {0} not in list of licenses".format(spdx_license_code))
-            else:
-                raise Warning("status not '200 OK'")
-
-        def construct_authors_arr():
-
-            authors = list()
-            for read_author in self.yaml["authors"]:
-                write_author = dict()
-                write_author["@type"] = "Person"
-
-                if "given-names" in read_author:
-                    write_author["givenName"] = read_author["given-names"]
-
-                family_name = ""
-                if "name-particle" in read_author:
-                    family_name += read_author["name-particle"] + " "
-                if "family-names" in read_author:
-                    family_name += read_author["family-names"]
-                if "name-suffix" in read_author:
-                    family_name += " " + read_author["name-suffix"]
-                write_author["familyName"] = family_name
-
-                if "orcid" in read_author:
-                    write_author["@id"] = read_author["orcid"]
-
-                if "affiliation" in read_author:
-                    write_author["affiliation"] = {
-                        "@type": "Organization",
-                        "legalName": read_author["affiliation"]
-                    }
-
-                authors.append(write_author)
-            return authors
-
-        d = dict()
-        d["@context"] = [
-            "https://doi.org/10.5063/schema/codemeta-2.0",
-            "http://schema.org"
-        ]
-        d["@type"] = "SoftwareSourceCode"
-        if self._key_should_be_included("repository-code"):
-            d["codeRepository"] = self.yaml["repository-code"]
-        if self._key_should_be_included("date-released"):
-            d["datePublished"] = self.yaml["date-released"].isoformat()
-        if self._key_should_be_included("authors"):
-            d["author"] = construct_authors_arr()
-        if self._key_should_be_included("keywords"):
-            d["keywords"] = self.yaml["keywords"]
-        if self._key_should_be_included("license"):
-            d["license"] = resolve_spdx_license(self.yaml["license"])
-        if self._key_should_be_included("version"):
-            d["version"] = self.yaml["version"]
-        if self._key_should_be_included("doi"):
-            d["identifier"] = "https://doi.org/{0}".format(self.yaml["doi"])
-        if self._key_should_be_included("title"):
-            d["name"] = self.yaml["title"]
-
-        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
+        filtered = self.filter_properties(self.yaml)
+        return CodemetaObject(filtered).print()
 
     def as_enw(self):
-
-        def construct_author_string():
-            names = list()
-            for author in self.yaml["authors"]:
-                name = ""
-                if "name-particle" in author:
-                    name += author["name-particle"] + " "
-                if "family-names" in author:
-                    name += author["family-names"]
-                if "name-suffix" in author:
-                    name += " " + author["name-suffix"]
-                if "given-names" in author:
-                    name += ", " + author["given-names"]
-                names.append(name)
-            return " & ".join(names)
-
-        def construct_keywords_string():
-            return ", ".join(["\"" + keyword + "\"" for keyword in self.yaml["keywords"]])
-
-        s = ""
-        s += "%0\n"
-        s += "%0 Generic\n"
-
-        if self._key_should_be_included("authors"):
-            s += "%A " + construct_author_string() + "\n"
-        else:
-            s += "%A\n"
-
-        if self._key_should_be_included("date-released"):
-            s += "%D " + str(self.yaml["date-released"].year) + "\n"
-        else:
-            s += "%D\n"
-
-        if self._key_should_be_included("title"):
-            s += "%T " + self.yaml["title"] + "\n"
-        else:
-            s += "%T\n"
-
-        s += "%E\n"
-        s += "%B\n"
-        s += "%C\n"
-        s += "%I GitHub repository\n"
-        s += "%V\n"
-        s += "%6\n"
-        s += "%N\n"
-        s += "%P\n"
-        s += "%&\n"
-        s += "%Y\n"
-        s += "%S\n"
-        s += "%7\n"
-        if self._key_should_be_included("date-released"):
-            s += "%8 " + str(self.yaml["date-released"].month) + "\n"
-        else:
-            s += "%8\n"
-
-        s += "%9\n"
-        s += "%?\n"
-        s += "%!\n"
-        s += "%Z\n"
-        s += "%@\n"
-        s += "%(\n"
-        s += "%)\n"
-        s += "%*\n"
-        s += "%L\n"
-        s += "%M\n"
-        s += "\n"
-        s += "\n"
-        s += "%2\n"
-        s += "%3\n"
-        s += "%4\n"
-        s += "%#\n"
-        s += "%$\n"
-        s += "%F YourReferenceHere\n"
-        if self._key_should_be_included("keywords"):
-            s += "%K " + construct_keywords_string() + "\n"
-        else:
-            s += "%K\n"
-
-        s += "%X\n"
-        s += "%Z\n"
-        if self._key_should_be_included("repository-code"):
-            s += "%U " + self.yaml["repository-code"] + "\n"
-        else:
-            s += "%U\n"
-
-        return s
+        filtered = self.filter_properties(self.yaml)
+        return EndnoteObject(filtered).print()
 
     def as_json(self):
-        return JSONEncoder().encode(self.yaml)
+        filtered = self.filter_properties(self.yaml)
+        return JSONEncoder().encode(filtered)
 
     def as_schema_dot_org(self):
-
-        def resolve_spdx_license(spdx_license_code):
-            licenses_url = "https://raw.githubusercontent.com/spdx/license-list-data" + \
-                           "/b541ee8a345aa93b70a08765c7bf5e423bb4d558/json/licenses.json"
-            r = requests.get(licenses_url)
-            if r.ok:
-                data = r.json()
-                for license in data["licenses"]:
-                    if license["licenseId"] == spdx_license_code:
-                        return license["seeAlso"][0]
-                raise ValueError("Provided license {0} not in list of licenses".format(spdx_license_code))
-            else:
-                raise Warning("status not '200 OK'")
-
-        def construct_authors_arr():
-
-            authors = list()
-            for read_author in self.yaml["authors"]:
-                write_author = dict()
-                write_author["@type"] = "Person"
-
-                if "given-names" in read_author:
-                    write_author["givenName"] = read_author["given-names"]
-
-                family_name = ""
-                if "name-particle" in read_author:
-                    family_name += read_author["name-particle"] + " "
-                if "family-names" in read_author:
-                    family_name += read_author["family-names"]
-                if "name-suffix" in read_author:
-                    family_name += " " + read_author["name-suffix"]
-                write_author["familyName"] = family_name
-
-                if "orcid" in read_author:
-                    write_author["@id"] = read_author["orcid"]
-
-                if "affiliation" in read_author:
-                    write_author["affiliation"] = {
-                        "@type": "Organization",
-                        "legalName": read_author["affiliation"]
-                    }
-
-                authors.append(write_author)
-            return authors
-
-        d = dict()
-        d["@context"] = "https://schema.org"
-        d["@type"] = "SoftwareSourceCode"
-        if self._key_should_be_included("repository-code"):
-            d["codeRepository"] = self.yaml["repository-code"]
-        if self._key_should_be_included("date-released"):
-            d["datePublished"] = self.yaml["date-released"].isoformat()
-        if self._key_should_be_included("authors"):
-            d["author"] = construct_authors_arr()
-        if self._key_should_be_included("keywords"):
-            d["keywords"] = self.yaml["keywords"]
-        if self._key_should_be_included("license"):
-            d["license"] = resolve_spdx_license(self.yaml["license"])
-        if self._key_should_be_included("version"):
-            d["version"] = self.yaml["version"]
-        if self._key_should_be_included("doi"):
-            d["identifier"] = "https://doi.org/{0}".format(self.yaml["doi"])
-        if self._key_should_be_included("title"):
-            d["name"] = self.yaml["title"]
-
-        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
+        filtered = self.filter_properties(self.yaml)
+        return SchemaorgObject(filtered).print()
 
     def as_ris(self):
-        def construct_author_string():
-            names = list()
-            for author in self.yaml["authors"]:
-                name = "AU  - "
-                if "name-particle" in author:
-                    name += author["name-particle"] + " "
-                if "family-names" in author:
-                    name += author["family-names"]
-                if "name-suffix" in author:
-                    name += " " + author["name-suffix"]
-                if "given-names" in author:
-                    name += ", " + author["given-names"]
-                name += "\n"
-                names.append(name)
-            return "".join(names)
-
-        def construct_keywords_string():
-            names = list()
-            for keyword in self.yaml["keywords"]:
-                names.append("KW  - " + keyword + "\n")
-            return "".join(names)
-
-        def construct_date_string():
-            return "PY  - " + \
-                   str(self.yaml["date-released"].year) + "/" +\
-                   str(self.yaml["date-released"].month).rjust(2,"0") + "/" +\
-                   str(self.yaml["date-released"].day).rjust(2, "0") + "\n"
-
-        s = ""
-        s += "TY  - COMP\n"
-
-        if self._key_should_be_included("authors"):
-            s += construct_author_string()
-        else:
-            s += "AU  -\n"
-
-        if self._key_should_be_included("doi"):
-            s += "DO  - " + self.yaml["doi"] + "\n"
-        else:
-            s += "DO  -\n"
-
-        if self._key_should_be_included("keywords"):
-            s += construct_keywords_string()
-        else:
-            s += "KW  -\n"
-
-        s += "M3  - software\n"
-        s += "PB  - GitHub Inc.\n"
-        s += "PP  - San Francisco, USA\n"
-
-        if self._key_should_be_included("date-released"):
-            s += construct_date_string()
-        else:
-            s += "PY  -\n"
-
-        if self._key_should_be_included("title"):
-            s += "T1  - " + self.yaml["title"] + "\n"
-        else:
-            s += "T1  -\n"
-
-        if self._key_should_be_included("repository-code"):
-            s += "UR  - " + self.yaml["repository-code"] + "\n"
-        else:
-            s += "UR  -\n"
-
-        s += "ER  -\n"
-
-        return s
+        filtered = self.filter_properties(self.yaml)
+        return RisObject(filtered).print()
 
     def as_zenodojson(self):
+        filtered = self.filter_properties(self.yaml)
+        return ZenodoObject(filtered).print()
 
-        def construct_authors_arr():
-
-            authors = list()
-            for author in self.yaml["authors"]:
-                name = ""
-                if "name-particle" in author:
-                    name += author["name-particle"] + " "
-                if "family-names" in author:
-                    name += author["family-names"]
-                if "name-suffix" in author:
-                    name += " " + author["name-suffix"]
-                if "given-names" in author:
-                    name += ", " + author["given-names"]
-
-                author2 = {"name": name}
-                if "orcid" in author:
-                    author2["orcid"] = author["orcid"].replace('https://orcid.org/', '')
-
-                if "affiliation" in author:
-                    author2["affiliation"] = author["affiliation"]
-
-                authors.append(author2)
-            return authors
-
-        if self.ignore_suspect_keys is False and len(self.suspect_keys) > 0:
-            print("Note: suspect keys will be included in the output.", file=sys.stderr)
-
-        d = dict()
-        if self._key_should_be_included("abstract"):
-            d["description"] = self.yaml["abstract"]
-
-        if self._key_should_be_included("authors"):
-            d["creators"] = construct_authors_arr()
-
-        if self._key_should_be_included("date-released"):
-            d["publication_date"] = self.yaml["date-released"].isoformat()
-
-        if self._key_should_be_included("doi"):
-            d["doi"] = self.yaml["doi"]
-
-        if self._key_should_be_included("keywords"):
-            d["keywords"] = self.yaml["keywords"]
-
-        if self._key_should_be_included("license"):
-            d["license"] = {"id": self.yaml["license"]}
-
-        if self._key_should_be_included("title"):
-            d["title"] = self.yaml["title"]
-
-        if self._key_should_be_included("version"):
-            d["version"] = self.yaml["version"]
-
-        return json.dumps(d, sort_keys=True, indent=4, ensure_ascii=False)
+    def filter_properties(self, unfiltered):
+        if self.ignore_suspect_keys:
+            filtered = [item for item in unfiltered.items() if item[0] not in self.suspect_keys]
+            return dict(filtered)
+        else:
+            return unfiltered

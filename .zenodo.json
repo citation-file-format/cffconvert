@@ -1,34 +1,35 @@
 {
-    "creators": [
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Spaaks, Jurriaan H.",
-            "orcid": "0000-0002-7064-4069"
-        },
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Klaver, Tom"
-        },
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Verhoeven, Stefan",
-            "orcid": "0000-0002-5821-2060"
-        },
-        {
-            "affiliation": "Humboldt-Universität zu Berlin",
-            "name": "Druskat, Stephan",
-            "orcid": "0000-0003-4925-7248"
-        }
-    ],
-    "description": "Command line program to convert from Citation File Format to various other formats such as BibTeX, EndNote, RIS, schema.org, and .zenodo.json.",
-    "keywords": [
-        "citation",
-        "bibliography",
-        "cff",
-        "CITATION.cff"
-    ],
-    "license": {
-        "id": "Apache-2.0"
-    },
-    "title": "cffconvert"
+   "creators": [
+      {
+         "affiliation": "Netherlands eScience Center", 
+         "name": "Spaaks, Jurriaan H.", 
+         "orcid": "0000-0002-7064-4069"
+      }, 
+      {
+         "affiliation": "Netherlands eScience Center", 
+         "name": "Klaver, Tom"
+      }, 
+      {
+         "affiliation": "Netherlands eScience Center", 
+         "name": "Verhoeven, Stefan", 
+         "orcid": "0000-0002-5821-2060"
+      }, 
+      {
+         "affiliation": "Humboldt-Universität zu Berlin", 
+         "name": "Druskat, Stephan", 
+         "orcid": "0000-0003-4925-7248"
+      }
+   ], 
+   "description": "Command line program to convert from Citation File Format to various other formats such as BibTeX, EndNote, RIS, schema.org, CodeMeta, and .zenodo.json.", 
+   "keywords": [
+      "citation", 
+      "bibliography", 
+      "cff", 
+      "CITATION.cff"
+   ], 
+   "license": {
+      "id": "Apache-2.0"
+   }, 
+   "title": "cffconvert"
 }
+

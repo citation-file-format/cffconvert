@@ -172,52 +172,62 @@ Contents of file ``codemeta.json``:
 .. code:: json
 
     {
-        "@context": [
-            "https://doi.org/10.5063/schema/codemeta-2.0",
-            "http://schema.org"
-        ],
-        "@type": "SoftwareSourceCode",
-        "author": [
-            {
-                "@type": "Person",
-                "affiliation": {
-                    "@type": "Organization",
-                    "legalName": "Netherlands eScience Center"
-                },
-                "familyName": "Spaaks",
-                "givenName": "Jurriaan H."
-            },
-            {
-                "@type": "Person",
-                "affiliation": {
-                    "@type": "Organization",
-                    "legalName": "Netherlands eScience Center"
-                },
-                "familyName": "Klaver",
-                "givenName": "Tom"
-            },
-            {
-                "@type": "Person",
-                "affiliation": {
-                    "@type": "Organization",
-                    "legalName": "Netherlands eScience Center"
-                },
-                "familyName": "Verhoeven",
-                "givenName": "Stefan"
-            }
-        ],
-        "codeRepository": "https://github.com/citation-file-format/cff-converter-python",
-        "datePublished": "2018-05-22",
-        "identifier": "https://doi.org/10.5281/zenodo.1162057",
-        "keywords": [
-            "citation",
-            "bibliography",
-            "cff",
-            "CITATION.cff"
-        ],
-        "license": "http://www.apache.org/licenses/LICENSE-2.0",
-        "name": "cffconvert",
-        "version": "0.0.5"
+       "@context": "https://doi.org/10.5063/schema/codemeta-2.0", 
+       "@type": "SoftwareSourceCode", 
+       "author": [
+          {
+             "@id": "https://orcid.org/0000-0002-7064-4069", 
+             "@type": "Person", 
+             "affiliation": {
+                "@type": "Organization", 
+                "legalName": "Netherlands eScience Center"
+             }, 
+             "familyName": "Spaaks", 
+             "givenName": "Jurriaan H."
+          }, 
+          {
+             "@type": "Person", 
+             "affiliation": {
+                "@type": "Organization", 
+                "legalName": "Netherlands eScience Center"
+             }, 
+             "familyName": "Klaver", 
+             "givenName": "Tom"
+          }, 
+          {
+             "@id": "https://orcid.org/0000-0002-5821-2060", 
+             "@type": "Person", 
+             "affiliation": {
+                "@type": "Organization", 
+                "legalName": "Netherlands eScience Center"
+             }, 
+             "familyName": "Verhoeven", 
+             "givenName": "Stefan"
+          }, 
+          {
+             "@id": "https://orcid.org/0000-0003-4925-7248", 
+             "@type": "Person", 
+             "affiliation": {
+                "@type": "Organization", 
+                "legalName": "Humboldt-Universität zu Berlin"
+             }, 
+             "familyName": "Druskat", 
+             "givenName": "Stephan"
+          }
+       ], 
+       "codeRepository": "https://github.com/citation-file-format/cff-converter-python", 
+       "datePublished": "2019-11-12", 
+       "description": "Command line program to convert from Citation File Format to various other formats such as BibTeX, EndNote, RIS, schema.org, and .zenodo.json.", 
+       "identifier": "https://doi.org/10.5281/zenodo.1162057", 
+       "keywords": [
+          "citation", 
+          "bibliography", 
+          "cff", 
+          "CITATION.cff"
+       ], 
+       "license": "https://spdx.org/licenses/Apache-2.0", 
+       "name": "cffconvert", 
+       "version": "1.3.3"
     }
 
 Convert the contents of a local file ``CITATION.cff`` into the format used by ``.zenodo.json`` files (see

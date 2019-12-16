@@ -23,12 +23,8 @@ stages:
 jobs:
   include:
     - stage: test
-      script:
-        - "python -m pytest test/$SCHEMA_VERSION"
+      script: "python -m pytest test/$SCHEMA_VERSION"
     - stage: livetest
-      env: 
-        - SCHEMA_VERSION=1.1.0
-      python: 
-        - "3.7"
-      script:
-        - "python -m pytest livetest"
+      env: SCHEMA_VERSION=1.1.0
+      python: "3.7"
+      script: "python -m pytest livetest"

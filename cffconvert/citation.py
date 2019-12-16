@@ -168,26 +168,41 @@ class Citation:
         return self
 
     def as_bibtex(self):
-        return BibtexObject(self.yaml).print()
+        filtered = self.filter_properties(self.yaml)
+        return BibtexObject(filtered).print()
 
     def as_cff(self, indent=4, sort_keys=True, ensure_ascii=False):
-        return json.dumps(self.yaml, sort_keys=sort_keys,
+        filtered = self.filter_properties(self.yaml)
+        return json.dumps(filtered, sort_keys=sort_keys,
                           indent=indent, ensure_ascii=ensure_ascii)
 
     def as_codemeta(self):
-        return CodemetaObject(self.yaml).print()
+        filtered = self.filter_properties(self.yaml)
+        return CodemetaObject(filtered).print()
 
     def as_enw(self):
-        return EndnoteObject(self.yaml).print()
+        filtered = self.filter_properties(self.yaml)
+        return EndnoteObject(filtered).print()
 
     def as_json(self):
-        return JSONEncoder().encode(self.yaml)
+        filtered = self.filter_properties(self.yaml)
+        return JSONEncoder().encode(filtered)
 
     def as_schema_dot_org(self):
-        return SchemaorgObject(self.yaml).print()
+        filtered = self.filter_properties(self.yaml)
+        return SchemaorgObject(filtered).print()
 
     def as_ris(self):
-        return RisObject(self.yaml).print()
+        filtered = self.filter_properties(self.yaml)
+        return RisObject(filtered).print()
 
     def as_zenodojson(self):
-        return ZenodoObject(self.yaml).print()
+        filtered = self.filter_properties(self.yaml)
+        return ZenodoObject(filtered).print()
+
+    def filter_properties(self, unfiltered):
+        if self.ignore_suspect_keys:
+            filtered = [item for item in unfiltered.items() if item[0] not in self.suspect_keys]
+            return dict(filtered)
+        else:
+            return unfiltered

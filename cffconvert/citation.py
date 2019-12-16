@@ -71,14 +71,6 @@ class Citation:
         else:
             raise Exception("Only 'https://github.com' URLs are supported at the moment.")
 
-    def _key_should_be_included(self, key):
-        if not self.ignore_suspect_keys:
-            return key in self.yaml
-        elif key in self.suspect_keys:
-            return False
-        else:
-            return key in self.yaml
-
     def _override_suspect_keys(self):
         if self.override is not None and type(self.override) is dict:
             for key in self.override.keys():

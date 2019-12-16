@@ -19,9 +19,22 @@ env:
   - SCHEMA_VERSION=1.1.0
 script:
   - "python -m pytest test/$SCHEMA_VERSION"
+stages:
+  - versioning
+  - test
+  - cli
+  - livetest
 jobs:
   include:
     - stage: livetest
       env: SCHEMA_VERSION=1.1.0
       python: "3.7"
       script: "python -m pytest livetest"
+    - stage: cli
+      env: SCHEMA_VERSION=1.1.0
+      python: "3.7"
+      script: "python -m pytest test/cli_test.py"
+    - stage: versioning
+      env: SCHEMA_VERSION=1.1.0
+      python: "3.7"
+      script: "python -m pytest test/consistency_test.py"

@@ -4,11 +4,13 @@ import json
 class ZenodoObject:
 
     supported_cff_versions = ['1.0.3', '1.1.0']
-    supported_zenodo_props = ['creators', 'doi', 'keywords', 'license', 'publication_date', 'title', 'version']
+    supported_zenodo_props = ['creators', 'description', 'doi', 'keywords',
+                              'license', 'publication_date', 'title', 'version']
 
     def __init__(self, cff_object, initialize_empty=False):
         self.cff_object = cff_object
         self.creators = None
+        self.description = None
         self.doi = None
         self.keywords = None
         self.license = None
@@ -23,6 +25,7 @@ class ZenodoObject:
     def __str__(self):
         d = {
             "creators": self.creators,
+            "description": self.description,
             "doi": self.doi,
             "keywords": self.keywords,
             "license": self.license,
@@ -35,6 +38,7 @@ class ZenodoObject:
 
     def add_all(self):
         self.add_creators()          \
+            .add_description()       \
             .add_doi()               \
             .add_keywords()          \
             .add_license()           \
@@ -69,6 +73,11 @@ class ZenodoObject:
                         d['orcid'] = author['orcid'][len('https://orcid.org/'):]
 
                 self.creators.append(d)
+        return self
+
+    def add_description(self):
+        if 'abstract' in self.cff_object.keys():
+            self.description = self.cff_object['abstract']
         return self
 
     def add_doi(self):

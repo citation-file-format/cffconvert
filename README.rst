@@ -288,7 +288,9 @@ Running tests
     # (from the project root)
 
     # run unit tests
-    pytest test/
+    python3 -m pytest test/1.1.0
+    python3 -m pytest test/1.0.3
+    python3 -m pytest test/unsupported
 
     # run tests against live system (GitHub)
     pytest livetest/

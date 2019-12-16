@@ -19,7 +19,7 @@ env:
   - SCHEMA_VERSION=1.1.0
   - SCHEMA_VERSION=unsupported
 script:
-  - "bash test/consistent_file_naming.sh test"
+  - "bash test/test_consistent_file_naming.sh test"
   - "python -m pytest test/$SCHEMA_VERSION"
 stages:
   - versioning
@@ -31,7 +31,7 @@ jobs:
     - stage: versioning
       env: SCHEMA_VERSION=1.1.0
       python: "3.7"
-      script: "python -m pytest test/consistent_versioning.py"
+      script: "python -m pytest test/test_consistent_versioning.py"
     - stage: cli
       env: SCHEMA_VERSION=1.1.0
       python: "3.7"
@@ -40,5 +40,5 @@ jobs:
       env: SCHEMA_VERSION=1.1.0
       python: "3.7"
       script:
-        - "bash test/consistent_file_naming.sh livetest"
+        - "bash test/test_consistent_file_naming.sh livetest"
         - "python -m pytest livetest"

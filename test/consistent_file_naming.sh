@@ -13,12 +13,20 @@ function check_file_naming {
     done
 }
 
+arg=$1
+
 HAS_ERRORS=0
 
-strings=$(find . | grep "./test/$SCHEMA_VERSION/.*\.py$")
-check_file_naming
-
-strings=$(find . | grep "./livetest/.*\.py$")
-check_file_naming
+if [ $arg = 'test' ]
+then 
+    strings=$(find . | grep "./test/$SCHEMA_VERSION/.*\.py$")
+    check_file_naming
+elif [ $arg = 'livetest' ]
+then
+    strings=$(find . | grep "./livetest/.*\.py$")
+    check_file_naming
+else
+    exit 1
+fi
 
 exit $HAS_ERRORS

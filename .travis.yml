@@ -5,28 +5,32 @@ notifications:
   email: 
     on_failure: change
     on_succes: never
-python: 
-  - "3.5"
-  - "3.6"
-  - "3.7"
-  - "nightly"
 install:
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt
+sudo: false
+stages:
+  - schemas
+  - live
 jobs:
   include:
-    - stage: Tests for supported schema versions 
+    - stage: schemas
+      name: "Tests for supported versions of the schema"
+      python: 
+        - "3.5"
+        - "3.6"
+        - "3.7"
+        - "nightly"
       env:
         - SCHEMA_VERSION=1.0.3
         - SCHEMA_VERSION=1.1.0
-      script: 
+      script:
         - "python -m pytest test/$SCHEMA_VERSION"
-    - stage: Tests against live infrastructure
-      script: 
+    - stage: live
+      name: "Tests against live infrastructure"
+      python:
+        - "3.7"
+      env: 
+        - SCHEMA_VERSION=1.1.0
+      script:
         - "python -m pytest livetest"
-sudo: false
-
-# introduce a second stage later
-  # 
-  #   # also run the live tests, without test coverage calculation
-  # - "pytest livetest/"

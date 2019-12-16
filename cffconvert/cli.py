@@ -70,7 +70,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
     elif outputformat == "bibtex":
         outstr = citation.as_bibtex()
     elif outputformat == "cff":
-        outstr = citation.cffstr
+        outstr = citation.as_cff()
     elif outputformat == "codemeta":
         outstr = citation.as_codemeta()
     elif outputformat == "endnote":

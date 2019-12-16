@@ -293,7 +293,7 @@ Running tests
     python3 -m pytest test/unsupported
 
     # run tests against live system (GitHub)
-    pytest livetest/
+    python3 -m pytest livetest/
 
 
 For maintainers
@@ -329,8 +329,10 @@ Making a release
     source venv36/bin/activate
     pip install --no-cache-dir -r requirements.txt
     pip install --no-cache-dir -r requirements-dev.txt
-    pytest test/
-    pytest livetest/
+    python3 -m pytest test/1.1.0
+    python3 -m pytest test/1.0.3
+    python3 -m pytest test/unsupported
+    python3 -m pytest livetest/
 
     # register with PyPI test instance https://test.pypi.org
 

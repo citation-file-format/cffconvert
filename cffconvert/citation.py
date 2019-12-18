@@ -2,7 +2,6 @@ import os
 import requests
 import ruamel.yaml as yaml
 import re
-import json
 from datetime import datetime, date
 import tempfile
 from pykwalify.core import Core
@@ -12,13 +11,6 @@ from cffconvert.RisObject import RisObject
 from cffconvert.SchemaorgObject import SchemaorgObject
 from cffconvert.ZenodoObject import ZenodoObject
 from cffconvert.EndnoteObject import EndnoteObject
-
-
-class JSONEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, (datetime, date)):
-            return o.isoformat()
-        return o.__dict__
 
 
 class Citation:
@@ -169,10 +161,9 @@ class Citation:
         filtered = self.filter_properties(self.yaml)
         return BibtexObject(filtered).print()
 
-    def as_cff(self, indent=4, sort_keys=True, ensure_ascii=False):
+    def as_cff(self):
         filtered = self.filter_properties(self.yaml)
-        return json.dumps(filtered, sort_keys=sort_keys,
-                          indent=indent, ensure_ascii=ensure_ascii)
+        return yaml.safe_dump(filtered)
 
     def as_codemeta(self):
         filtered = self.filter_properties(self.yaml)
@@ -181,10 +172,6 @@ class Citation:
     def as_enw(self):
         filtered = self.filter_properties(self.yaml)
         return EndnoteObject(filtered).print()
-
-    def as_json(self):
-        filtered = self.filter_properties(self.yaml)
-        return JSONEncoder().encode(filtered)
 
     def as_schema_dot_org(self):
         filtered = self.filter_properties(self.yaml)

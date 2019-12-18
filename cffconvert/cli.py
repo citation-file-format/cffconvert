@@ -83,7 +83,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
         outstr = citation.as_zenodojson()
 
     if outfile is None:
-        print(outstr)
+        print(outstr, end='')
     else:
         with open(outfile, "w") as f:
-            f.write(outstr + "\n")
+            f.write(outstr)

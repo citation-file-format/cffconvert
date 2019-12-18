@@ -33,9 +33,6 @@ jobs:
       python: "3.7"
       script: "python -m pytest test/test_consistent_versioning.py"
     - stage: cli
-      env: SCHEMA_VERSION=1.1.0
-      python: "3.7"
-      script: "python -m pytest test/cli_test.py"
     - stage: livetest
       env: SCHEMA_VERSION=1.1.0
       python: "3.7"

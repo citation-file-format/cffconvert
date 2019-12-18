@@ -21,6 +21,10 @@ if [ $arg = 'test' ]
 then 
     strings=$(find . | grep "./test/$SCHEMA_VERSION/.*\.py$")
     check_file_naming
+elif [ $arg = 'clitest' ]
+then 
+    strings=$(find . | grep "./clitest/$SCHEMA_VERSION/.*\.py$")
+    check_file_naming
 elif [ $arg = 'livetest' ]
 then
     strings=$(find . | grep "./livetest/.*\.py$")

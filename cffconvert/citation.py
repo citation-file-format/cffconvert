@@ -66,7 +66,7 @@ class Citation:
             self._remove_suspect_keys()
 
     def _get_baseurl(self):
-        if self.url[0:18] == "https://github.com":
+        if self.url.startswith("https://github.com"):
             self.baseurl = "https://raw.githubusercontent.com"
         else:
             raise Exception("Only 'https://github.com' URLs are supported at the moment.")
@@ -93,25 +93,23 @@ class Citation:
                     self.cffstr = yaml.safe_dump(self.yaml, default_flow_style=False)
 
     def _retrieve_file(self):
-        regexp = re.compile(r"^" +
-                            "(?P<baseurl>https://github.com)/" +
-                            "(?P<org>[^/\n]*)/" +
-                            "(?P<repo>[^/\n]*)" +
-                            "(/tree/(?P<label>[^/\n]*))?", re.IGNORECASE)
 
-        matched = re.match(regexp, self.url)
-        if matched is None:
-            raise Exception("Error extracting (user|organization) and/or repository " +
-                            "information from the provided URL ({0}).".format(self.url))
+        if not self.url[18:].startswith("/"):
+            raise ValueError("Error extracting (user|organization) and/or repository " +
+                             "information from the provided URL ({0}).".format(self.url))
+        url_parts = self.url[19:].split('/')
+        if len(url_parts) < 2:
+            raise ValueError("Error extracting (user|organization) and/or repository " +
+                             "information from the provided URL ({0}).".format(self.url))
+        elif len(url_parts) == 2:
+            org, repo, label = url_parts[0], url_parts[1], "master"
         else:
-            url_parts = matched.groupdict()
+            if url_parts[2] != "tree":
+                raise ValueError("Expected 'https://github.com/<org>/<repo>/tree/...' but instead "
+                                 "found '{0}'".format(url_parts[2]))
+            org, repo, label = url_parts[0], url_parts[1], url_parts[3]
 
-        self.file_url = "/".join([self.baseurl,
-                                  url_parts["org"],
-                                  url_parts["repo"],
-                                  url_parts["label"] if url_parts["label"] is not None else "master",
-                                  "CITATION.cff"])
-
+        self.file_url = "/".join([self.baseurl, org, repo, label, "CITATION.cff"])
         r = requests.get(self.file_url)
         if r.ok:
             self.cffstr = r.text

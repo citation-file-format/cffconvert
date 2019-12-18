@@ -2,6 +2,7 @@ import unittest
 import os
 from click.testing import CliRunner
 from cffconvert import cli as cffconvert_cli
+import ruamel.yaml as yaml
 
 
 class CliTests(unittest.TestCase):
@@ -47,15 +48,15 @@ class CliTests(unittest.TestCase):
 
     def test_printing_on_stdout_as_cff(self):
         cffstr = CliTests.read_sibling_file("CITATION.cff")
-        expected = cffstr
+        expected = yaml.safe_load(cffstr)
         runner = CliRunner()
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "cff"])
         self.assertEqual(result.exit_code, 0)
-        actual = result.output
-        self.assertEqual(expected, actual)
+        actual = yaml.safe_load(result.output)
+        self.assertDictEqual(expected, actual)
 
     def test_printing_on_stdout_as_codemeta(self):
         cffstr = CliTests.read_sibling_file("CITATION.cff")

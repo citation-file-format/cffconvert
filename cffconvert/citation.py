@@ -162,7 +162,8 @@ class Citation:
         return BibtexObject(filtered).print()
 
     def as_cff(self):
-        return self.cffstr
+        filtered = self.filter_properties(self.yaml)
+        return yaml.safe_dump(filtered)
 
     def as_codemeta(self):
         filtered = self.filter_properties(self.yaml)

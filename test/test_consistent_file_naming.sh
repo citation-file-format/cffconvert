@@ -17,15 +17,16 @@ arg=$1
 
 HAS_ERRORS=0
 
-if [ $arg = 'test' ]
+if [ $arg = 'dir=test/' ]
 then 
     strings=$(find . | grep "./test/$SCHEMA_VERSION/.*\.py$")
     check_file_naming
-elif [ $arg = 'livetest' ]
+elif [ $arg = 'dir=livetest/' ]
 then
     strings=$(find . | grep "./livetest/.*\.py$")
     check_file_naming
 else
+    echo "Unrecognized input ('$arg')"
     exit 1
 fi
 

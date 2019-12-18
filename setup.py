@@ -31,6 +31,7 @@ def get_version():
         exec(version_file.read(), version_namespace)
     return version_namespace["__version__"]
 
+
 setup(
     name='cffconvert',
     py_modules=["cffconvert"],

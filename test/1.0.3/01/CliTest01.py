@@ -45,6 +45,18 @@ class CliTests(unittest.TestCase):
         actual = result.output
         self.assertEqual(expected, actual)
 
+    def test_printing_on_stdout_as_cff(self):
+        cffstr = CliTests.read_sibling_file("CITATION.cff")
+        expected = cffstr
+        runner = CliRunner()
+        with runner.isolated_filesystem():
+            with open("CITATION.cff", "w") as f:
+                f.write(cffstr)
+            result = runner.invoke(cffconvert_cli, ["--outputformat", "cff"])
+        self.assertEqual(result.exit_code, 0)
+        actual = result.output
+        self.assertEqual(expected, actual)
+
     def test_printing_on_stdout_as_codemeta(self):
         cffstr = CliTests.read_sibling_file("CITATION.cff")
         expected = CliTests.read_sibling_file("codemeta.json")

@@ -109,7 +109,7 @@ class RisObject:
     def add_year(self):
         if 'date-released' in self.cff_object.keys():
             self.year = 'PY  - {}\n'.format(self.cff_object['date-released'].year)
-        pass
+        return self
 
     def check_cff_object(self):
         if not isinstance(self.cff_object, dict):

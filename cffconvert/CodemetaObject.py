@@ -11,6 +11,7 @@ class CodemetaObject(SchemaorgObject):
     def __init__(self, cff_object, initialize_empty=False):
         super().__init__(cff_object, initialize_empty)
         if initialize_empty:
+            # clause for testing purposes
             pass
         else:
             self.check_cff_object().add_all()

@@ -15,6 +15,7 @@ class RisObject:
         self.url = None
         self.year = None
         if initialize_empty:
+            # clause for testing purposes
             pass
         else:
             self.check_cff_object().add_all()

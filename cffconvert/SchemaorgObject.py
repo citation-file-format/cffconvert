@@ -19,6 +19,7 @@ class SchemaorgObject:
         self.name = None
         self.version = None
         if initialize_empty:
+            # clause for testing purposes
             pass
         else:
             self.check_cff_object().add_all()

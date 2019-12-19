@@ -3,6 +3,7 @@ Badges
 
 - |Zenodo DOI|
 - |Travis build status|
+- |SonarCloud Quality Gate|
 - |PyPI badge|
 - |CII Best Practices|
 - |Research Software Directory|
@@ -370,6 +371,8 @@ Making a release
    :target: https://travis-ci.org/citation-file-format/cff-converter-python
 .. |Zenodo DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg
    :target: https://doi.org/10.5281/zenodo.1162057
+.. |SonarCloud Quality Gate| image:: https://sonarcloud.io/api/project_badges/measure?project=citation-file-format_cff-converter-python&metric=alert_status
+   :target: https://sonarcloud.io/dashboard?id=citation-file-format_cff-converter-python
 .. |PyPi Badge| image:: https://img.shields.io/pypi/v/cffconvert.svg?colorB=blue 
    :target: https://pypi.python.org/pypi/cffconvert/   
 .. |Research Software Directory| image:: https://img.shields.io/badge/rsd-cffconvert-00a3e3.svg

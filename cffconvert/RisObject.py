@@ -15,6 +15,7 @@ class RisObject:
         self.url = None
         self.year = None
         if initialize_empty:
+            # clause for testing purposes
             pass
         else:
             self.check_cff_object().add_all()
@@ -109,7 +110,7 @@ class RisObject:
     def add_year(self):
         if 'date-released' in self.cff_object.keys():
             self.year = 'PY  - {}\n'.format(self.cff_object['date-released'].year)
-        pass
+        return self
 
     def check_cff_object(self):
         if not isinstance(self.cff_object, dict):

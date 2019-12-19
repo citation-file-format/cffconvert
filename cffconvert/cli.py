@@ -61,6 +61,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
 
     acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo"]
     if validate:
+        # when validating, there's no need to convert to anything yet
         pass
     elif outputformat not in acceptable_output_formats:
         raise ValueError("'--outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats)))

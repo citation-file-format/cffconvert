@@ -1,11 +1,12 @@
 import click
+import sys
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
 
 
 @click.command(context_settings=dict(max_content_width=120))
 @click.option("--infile", "-if", type=str, default=None,
-              help="Path to the CITATION.cff input file.")
+              help="Path to the CITATION.cff input file. Use '--infile -' to read from STDIN.")
 @click.option("--outfile", "-of", type=str, default=None,
               help="Path to the output file.")
 @click.option("--outputformat", "-f", type=str, default=None,
@@ -47,6 +48,8 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
 
     if infile is None:
         cffstr = None
+    elif infile == '-':
+        cffstr = sys.stdin.read()
     else:
         with open(infile, "r") as f:
             cffstr = f.read()
@@ -87,3 +90,6 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
     else:
         with open(outfile, "w") as f:
             f.write(outstr)
+
+if __name__ == "__main__":
+    cli()

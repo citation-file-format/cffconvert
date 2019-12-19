@@ -20,7 +20,7 @@ env:
   - SCHEMA_VERSION=unsupported
 script:
   - "bash test/test_consistent_file_naming.sh dir=test/"
-  - "python -m pytest test/$SCHEMA_VERSION/*/*Test*.py"
+  - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append test/$SCHEMA_VERSION/*/*Test*.py"
 stages:
   - versioning
   - test
@@ -36,4 +36,4 @@ jobs:
       python: "3.7"
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
-        - "python -m pytest livetest/*/*Test*.py"
+        - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/*/*Test*.py"

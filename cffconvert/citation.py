@@ -134,7 +134,7 @@ class Citation:
 
         try:
             schema_url = schema_urls[semver]
-        except KeyError as e:
+        except KeyError:
             versions = '"' + '", "'.join(sorted(schema_urls.keys())) + '"'
             raise Exception("\"{0}\" is not a supported release. Instead, use one of {1}."
                             .format(semver, versions))

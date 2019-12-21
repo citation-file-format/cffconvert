@@ -12,7 +12,7 @@ cffconvert
 ==========
 
 Read `CFF formatted
-CITATION <https://github.com/citation-file-format>`__ file from a GitHub
+CITATION <https://github.com/citation-file-format/citation-file-format>`__ file from a GitHub
 url and convert it to various formats, such as:
 
 1. BibTeX

@@ -299,12 +299,19 @@ Running tests
     # (from the project root)
 
     # run unit tests
-    python3 -m pytest test/1.1.0/*/*Test*.py
-    python3 -m pytest test/1.0.3/*/*Test*.py
+    python3 -m pytest test/1.1.0
+    python3 -m pytest test/1.0.3
     python3 -m pytest test/unsupported
 
+    # tests for consistent file naming
+    bash test/test_consistent_file_naming.sh dir=test/
+    bash test/test_consistent_file_naming.sh dir=livetest/
+
+    # tests for consistent versioning
+    python3 -m pytest test/test_consistent_versioning.py
+
     # run tests against live system (GitHub)
-    python3 -m pytest livetest/
+    python3 -m pytest livetest
 
 
 For maintainers
@@ -340,10 +347,8 @@ Making a release
     source venv36/bin/activate
     pip install --no-cache-dir -r requirements.txt
     pip install --no-cache-dir -r requirements-dev.txt
-    python3 -m pytest test/1.1.0
-    python3 -m pytest test/1.0.3
-    python3 -m pytest test/unsupported
-    python3 -m pytest livetest/
+
+    # run the tests accorinding to section above
 
     # register with PyPI test instance https://test.pypi.org
 

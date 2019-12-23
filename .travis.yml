@@ -5,9 +5,6 @@ notifications:
   email: 
     on_failure: change
     on_succes: never
-install:
-  - pip install -r requirements.txt
-  - pip install -r requirements-dev.txt
 sudo: false
 python: 
   - "3.7"
@@ -30,9 +27,15 @@ jobs:
   include:
     - stage: versioning
       language: python
-      script: "python -m pytest test/test_consistent_versioning.py"
+      install:
+        - python3 -m pip install -r requirements.txt
+        - python3 -m pip install -r requirements-dev.txt
+      script: "python3 -m pytest test/test_consistent_versioning.py"
     - stage: livetest
       language: python
+      install:
+        - python3 -m pip install -r requirements.txt
+        - python3 -m pip install -r requirements-dev.txt
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/"

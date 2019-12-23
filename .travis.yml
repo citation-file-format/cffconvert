@@ -36,8 +36,8 @@ jobs:
         - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/"
     - stage: sonarcloud
       script:
-        - sonar-scanner
+        - sonar-scanner -Dsonar.projectKey=citation-file-format_cff-converter-python -X
 addons:
   sonarcloud:
-    # using config from .sonarcloud.properties
     # see also: https://docs.travis-ci.com/user/sonarcloud/
+    organization: citation-file-format

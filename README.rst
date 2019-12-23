@@ -166,7 +166,9 @@ Example usage, let ``cffconvert`` retrieve CITATION.cff from URL, output as ``co
 
 .. code:: bash
 
-    cffconvert -f codemeta -u https://github.com/citation-file-format/cff-converter-python/tree/master -of codemeta.json
+    cffconvert -f codemeta \
+    -u https://github.com/citation-file-format/cff-converter-python/tree/1.3.3 \
+    -of codemeta.json
 
 Contents of file ``codemeta.json``:
 

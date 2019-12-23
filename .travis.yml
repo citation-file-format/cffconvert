@@ -29,17 +29,19 @@ stages:
 jobs:
   include:
     - stage: versioning
+      language: python
       script: "python -m pytest test/test_consistent_versioning.py"
     - stage: livetest
+      language: python
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/"
     - stage: sonarcloud
       language: java
+      addons:
+        sonarcloud:
+          # see also: https://docs.travis-ci.com/user/sonarcloud/
+          organization: citation-file-format
       env:
       script:
         - sonar-scanner -X -Dsonar.projectKey=citation-file-format_cff-converter-python -Dsonar.inclusions=cffconvert/**/*.py -Dsonar.test.inclusions=test/**/*.py,livetest/**/*.py
-addons:
-  sonarcloud:
-    # see also: https://docs.travis-ci.com/user/sonarcloud/
-    organization: citation-file-format

@@ -35,7 +35,6 @@ jobs:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest livetest/"
     - stage: sonarcloud
-      language: java
       addons:
         sonarcloud:
           # see also: https://docs.travis-ci.com/user/sonarcloud/

@@ -25,6 +25,7 @@ stages:
   - versioning
   - test
   - livetest
+  - coverage
 jobs:
   include:
     - stage: versioning
@@ -37,3 +38,9 @@ jobs:
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/"
+    - stage: coverage
+      script:
+        - sonar-scanner
+addons:
+  sonarcloud:
+    organization: "citation-file-format"

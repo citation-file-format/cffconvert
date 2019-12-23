@@ -10,13 +10,13 @@ install:
   - pip install -r requirements-dev.txt
 sudo: false
 python: 
-  - "3.5"
-  - "3.6"
   - "3.7"
+  - "3.6"
+  - "3.5"
   - "nightly"
 env:
-  - SCHEMA_VERSION=1.0.3
   - SCHEMA_VERSION=1.1.0
+  - SCHEMA_VERSION=1.0.3
   - SCHEMA_VERSION=unsupported
 script:
   - "bash test/test_consistent_file_naming.sh dir=test/"
@@ -25,22 +25,19 @@ stages:
   - versioning
   - test
   - livetest
-  - coverage
+  - sonarcloud
 jobs:
   include:
     - stage: versioning
-      env: SCHEMA_VERSION=1.1.0
-      python: "3.7"
       script: "python -m pytest test/test_consistent_versioning.py"
     - stage: livetest
-      env: SCHEMA_VERSION=1.1.0
-      python: "3.7"
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/"
-    - stage: coverage
+    - stage: sonarcloud
       script:
         - sonar-scanner
 addons:
   sonarcloud:
-    organization: "citation-file-format"
+    # using config from .sonarcloud.properties
+    # see also: https://docs.travis-ci.com/user/sonarcloud/

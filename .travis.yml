@@ -35,8 +35,10 @@ jobs:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/"
     - stage: sonarcloud
+      language: java
+      env:
       script:
-        - sonar-scanner -Dsonar.projectKey=citation-file-format_cff-converter-python -X
+        - sonar-scanner -X -Dsonar.projectKey=citation-file-format_cff-converter-python -Dsonar.inclusions=cffconvert/**/*.py -Dsonar.test.inclusions=test/**/*.py,livetest/**/*.py
 addons:
   sonarcloud:
     # see also: https://docs.travis-ci.com/user/sonarcloud/

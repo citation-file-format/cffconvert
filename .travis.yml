@@ -11,6 +11,9 @@ python:
   - "3.6"
   - "3.5"
   - "nightly"
+install:
+  - python3 -m pip install -r requirements.txt
+  - python3 -m pip install -r requirements-dev.txt
 env:
   - SCHEMA_VERSION=1.1.0
   - SCHEMA_VERSION=1.0.3
@@ -27,20 +30,15 @@ jobs:
   include:
     - stage: versioning
       language: python
-      install:
-        - python3 -m pip install -r requirements.txt
-        - python3 -m pip install -r requirements-dev.txt
       script: "python3 -m pytest test/test_consistent_versioning.py"
     - stage: livetest
       language: python
-      install:
-        - python3 -m pip install -r requirements.txt
-        - python3 -m pip install -r requirements-dev.txt
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append livetest/"
     - stage: sonarcloud
       language: java
+      install:
       addons:
         sonarcloud:
           # see also: https://docs.travis-ci.com/user/sonarcloud/

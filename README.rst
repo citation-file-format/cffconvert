@@ -125,9 +125,9 @@ Shows:
     Usage: cffconvert [OPTIONS]
 
     Options:
-      -if, --infile TEXT          Path to the CITATION.cff input file.
+      -if, --infile TEXT          Path to the CITATION.cff input file. Use '--infile -' to read from STDIN.
       -of, --outfile TEXT         Path to the output file.
-      -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|schema.org|ris|zenodo
+      -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo
       -u, --url TEXT              URL of the repo containing the CITATION.cff (currently only github.com is supported; may
                                   include branch name, commit sha, tag name). For example: 'https://github.com/citation-
                                   file-format/cff-converter-python' or 'https://github.com/citation-file-format/cff-
@@ -166,7 +166,9 @@ Example usage, let ``cffconvert`` retrieve CITATION.cff from URL, output as ``co
 
 .. code:: bash
 
-    cffconvert -f codemeta -u https://github.com/citation-file-format/cff-converter-python/tree/master -of codemeta.json
+    cffconvert -f codemeta \
+    -u https://github.com/citation-file-format/cff-converter-python/tree/1.3.3 \
+    -of codemeta.json
 
 Contents of file ``codemeta.json``:
 
@@ -299,12 +301,19 @@ Running tests
     # (from the project root)
 
     # run unit tests
-    python3 -m pytest test/1.1.0/*/*Test*.py
-    python3 -m pytest test/1.0.3/*/*Test*.py
+    python3 -m pytest test/1.1.0
+    python3 -m pytest test/1.0.3
     python3 -m pytest test/unsupported
 
+    # tests for consistent file naming
+    bash test/test_consistent_file_naming.sh dir=test/
+    bash test/test_consistent_file_naming.sh dir=livetest/
+
+    # tests for consistent versioning
+    python3 -m pytest test/test_consistent_versioning.py
+
     # run tests against live system (GitHub)
-    python3 -m pytest livetest/
+    python3 -m pytest livetest
 
 
 For maintainers
@@ -340,10 +349,8 @@ Making a release
     source venv36/bin/activate
     pip install --no-cache-dir -r requirements.txt
     pip install --no-cache-dir -r requirements-dev.txt
-    python3 -m pytest test/1.1.0
-    python3 -m pytest test/1.0.3
-    python3 -m pytest test/unsupported
-    python3 -m pytest livetest/
+
+    # run the tests accorinding to section above
 
     # register with PyPI test instance https://test.pypi.org
 

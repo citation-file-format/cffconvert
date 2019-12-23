@@ -350,7 +350,7 @@ Making a release
     pip install --no-cache-dir -r requirements.txt
     pip install --no-cache-dir -r requirements-dev.txt
 
-    # run the tests accorinding to section above
+    # run the tests according to section above
 
     # register with PyPI test instance https://test.pypi.org
 

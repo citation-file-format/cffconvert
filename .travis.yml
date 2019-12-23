@@ -31,6 +31,7 @@ jobs:
     - stage: versioning
       script: "python3 -m pytest test/test_consistent_versioning.py"
     - stage: livetest
+      env: ~
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest livetest/"

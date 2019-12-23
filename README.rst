@@ -125,9 +125,9 @@ Shows:
     Usage: cffconvert [OPTIONS]
 
     Options:
-      -if, --infile TEXT          Path to the CITATION.cff input file.
+      -if, --infile TEXT          Path to the CITATION.cff input file. Use '--infile -' to read from STDIN.
       -of, --outfile TEXT         Path to the output file.
-      -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|schema.org|ris|zenodo
+      -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo
       -u, --url TEXT              URL of the repo containing the CITATION.cff (currently only github.com is supported; may
                                   include branch name, commit sha, tag name). For example: 'https://github.com/citation-
                                   file-format/cff-converter-python' or 'https://github.com/citation-file-format/cff-

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+# test
 
 class Contract(ABC):
 

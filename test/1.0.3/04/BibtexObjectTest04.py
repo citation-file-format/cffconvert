@@ -2,9 +2,10 @@ from cffconvert import BibtexObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.BibtexObject import Contract
 
 
-class BibtexObjectTest(unittest.TestCase):
+class BibtexObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

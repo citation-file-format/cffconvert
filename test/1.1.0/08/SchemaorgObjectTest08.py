@@ -2,9 +2,10 @@ from cffconvert import SchemaorgObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.SchemaorgObject import Contract
 
 
-class SchemaorgObjectTest(unittest.TestCase):
+class SchemaorgObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

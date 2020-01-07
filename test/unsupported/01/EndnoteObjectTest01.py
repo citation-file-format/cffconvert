@@ -2,9 +2,10 @@ from cffconvert.EndnoteObject import EndnoteObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.EndnoteObject import Contract
 
 
-class EndnoteObjectTest(unittest.TestCase):
+class EndnoteObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -13,12 +14,30 @@ class EndnoteObjectTest(unittest.TestCase):
             cff_object = yaml.safe_load(cffstr)
             self.eo = EndnoteObject(cff_object, initialize_empty=True)
 
-    def test_check_cff_object(self):
-        self.eo.check_cff_object()
-        # doesn't need an assert
+    def test_author(self):
+        pass
 
     def test_check_cff_object(self):
         with self.assertRaises(ValueError) as context:
             self.eo.check_cff_object()
         self.assertTrue(str(context.exception).startswith('\'cff-version\':') and
                         str(context.exception).endswith('isn\'t a supported version.'))
+
+    def test_doi(self):
+        pass
+
+    def test_keyword(self):
+        pass
+
+    def test_name(self):
+        pass
+
+    def test_print(self):
+        pass
+
+    def test_url(self):
+        pass
+
+    def test_year(self):
+        pass
+

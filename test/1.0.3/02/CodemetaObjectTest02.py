@@ -2,9 +2,10 @@ from cffconvert import CodemetaObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.CodemetaObject import Contract
 
 
-class CodemetaObjectTest(unittest.TestCase):
+class CodemetaObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -32,7 +33,7 @@ class CodemetaObjectTest(unittest.TestCase):
 
     def test_date_published(self):
         self.co.add_date_published()
-        self.assertIsNone(self.co.date_published)
+        self.assertEqual(self.co.date_published, "1999-12-31")
 
     def test_description(self):
         self.co.add_description()

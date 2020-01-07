@@ -2,9 +2,10 @@ from cffconvert import EndnoteObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.EndnoteObject import Contract
 
 
-class EndnoteObjectTest(unittest.TestCase):
+class EndnoteObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -46,5 +47,5 @@ class EndnoteObjectTest(unittest.TestCase):
 
     def test_year(self):
         self.eo.add_year()
-        self.assertIsNone(self.eo.year)
+        self.assertEqual(self.eo.year, "%D 1999\n")
 

@@ -2,9 +2,10 @@ from cffconvert import BibtexObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.BibtexObject import Contract
 
 
-class BibtexObjectTest(unittest.TestCase):
+class BibtexObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -27,7 +28,7 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_month(self):
         self.bo.add_month()
-        self.assertIsNone(self.bo.month)
+        self.assertEqual(self.bo.month, "month = {12}")
 
     def test_print(self):
         actual_bibtex = self.bo.add_all().print()
@@ -46,5 +47,5 @@ class BibtexObjectTest(unittest.TestCase):
 
     def test_year(self):
         self.bo.add_year()
-        self.assertIsNone(self.bo.year)
+        self.assertEqual(self.bo.year, "year = {1999}")
 

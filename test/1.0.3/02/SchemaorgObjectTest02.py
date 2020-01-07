@@ -2,9 +2,10 @@ from cffconvert import SchemaorgObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.SchemaorgObject import Contract
 
 
-class SchemaorgObjectTest(unittest.TestCase):
+class SchemaorgObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -32,7 +33,7 @@ class SchemaorgObjectTest(unittest.TestCase):
 
     def test_date_published(self):
         self.so.add_date_published()
-        self.assertIsNone(self.so.date_published)
+        self.assertEqual(self.so.date_published, "1999-12-31")
 
     def test_description(self):
         self.so.add_description()

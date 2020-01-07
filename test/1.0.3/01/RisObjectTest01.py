@@ -2,9 +2,10 @@ from cffconvert import RisObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.RisObject import Contract
 
 
-class RisObjectTest(unittest.TestCase):
+class RisObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

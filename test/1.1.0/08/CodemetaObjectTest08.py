@@ -2,9 +2,10 @@ from cffconvert import CodemetaObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.CodemetaObject import Contract
 
 
-class CodemetaObjectTest(unittest.TestCase):
+class CodemetaObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")

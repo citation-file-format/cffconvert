@@ -2,9 +2,10 @@ from cffconvert import ZenodoObject
 import unittest
 import os
 import ruamel.yaml as yaml
+from test.contracts.ZenodoObject import Contract
 
 
-class ZenodoObjectTest(unittest.TestCase):
+class ZenodoObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
@@ -47,7 +48,7 @@ class ZenodoObjectTest(unittest.TestCase):
 
     def test_publication_date(self):
         self.zo.add_publication_date()
-        self.assertIsNone(self.zo.publication_date)
+        self.assertEqual(self.zo.publication_date, "1999-12-31")
 
     def test_title(self):
         self.zo.add_title()

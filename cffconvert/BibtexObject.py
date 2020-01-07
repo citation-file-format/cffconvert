@@ -20,11 +20,11 @@ class BibtexObject:
 
     def __str__(self):
         items = [item for item in [self.author,
-                                   self.title,
-                                   self.month,
-                                   self.year,
                                    self.doi,
-                                   self.url] if item is not None]
+                                   self.month,
+                                   self.title,
+                                   self.url,
+                                   self.year] if item is not None]
         s = ',\n'.join(items)
         return '@misc{' + self.reference + ',\n' + s + '\n}\n'
 

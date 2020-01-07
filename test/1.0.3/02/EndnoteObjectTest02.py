@@ -47,5 +47,5 @@ class EndnoteObjectTest(Contract, unittest.TestCase):
 
     def test_year(self):
         self.eo.add_year()
-        self.assertIsNone(self.eo.year)
+        self.assertEqual(self.eo.year, "%D 1999\n")
 

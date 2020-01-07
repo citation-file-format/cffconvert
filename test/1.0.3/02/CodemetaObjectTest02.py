@@ -33,7 +33,7 @@ class CodemetaObjectTest(Contract, unittest.TestCase):
 
     def test_date_published(self):
         self.co.add_date_published()
-        self.assertIsNone(self.co.date_published)
+        self.assertEqual(self.co.date_published, "1999-12-31")
 
     def test_description(self):
         self.co.add_description()

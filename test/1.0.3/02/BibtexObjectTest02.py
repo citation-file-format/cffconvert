@@ -28,7 +28,7 @@ class BibtexObjectTest(Contract, unittest.TestCase):
 
     def test_month(self):
         self.bo.add_month()
-        self.assertIsNone(self.bo.month)
+        self.assertEqual(self.bo.month, "month = {12}")
 
     def test_print(self):
         actual_bibtex = self.bo.add_all().print()
@@ -47,5 +47,5 @@ class BibtexObjectTest(Contract, unittest.TestCase):
 
     def test_year(self):
         self.bo.add_year()
-        self.assertIsNone(self.bo.year)
+        self.assertEqual(self.bo.year, "year = {1999}")
 

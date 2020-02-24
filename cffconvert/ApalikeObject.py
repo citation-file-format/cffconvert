@@ -89,7 +89,7 @@ class ApalikeObject:
         version = self.cff_object['cff-version']
         if version in ['1.0.3', '1.1.0']:
             if 'doi' in self.cff_object.keys():
-                self.doi = 'doi: ' + format(self.cff_object['doi']) + '. '
+                self.doi = 'DOI: http://doi.org/' + format(self.cff_object['doi']) + ' '
 
         if version in ['1.1.0']:
             if 'identifiers' in self.cff_object.keys():
@@ -102,7 +102,7 @@ class ApalikeObject:
 
     def add_url(self):
         if 'repository-code' in self.cff_object.keys():
-            self.url = format(self.cff_object['repository-code']) + '\n'
+            self.url = 'URL: ' + format(self.cff_object['repository-code']) + '\n'
         return self
 
     def check_cff_object(self):

@@ -14,13 +14,14 @@
 class ApalikeObject:
 
     supported_cff_versions = ['1.0.3', '1.1.0']
-    supported_pure_props = ['author', 'year', 'title', 'doi', 'url']
+    supported_pure_props = ['author', 'year', 'title', 'version', 'doi', 'url']
 
     def __init__(self, cff_object, initialize_empty=False):
         self.cff_object = cff_object
         self.author = None
         self.year = None
         self.title = None
+        self.version = None
         self.doi = None
         self.url = None
         if initialize_empty:
@@ -33,6 +34,7 @@ class ApalikeObject:
         items = [item for item in [self.author,
                                    self.year,
                                    self.title,
+                                   self.version,
                                    self.doi,
                                    self.url] if item is not None]
         return ''.join(items)
@@ -41,6 +43,7 @@ class ApalikeObject:
         self.add_author()   \
             .add_year()     \
             .add_title()    \
+            .add_version()  \
             .add_doi()      \
             .add_url()
         return self
@@ -74,7 +77,12 @@ class ApalikeObject:
 
     def add_title(self):
         if 'title' in self.cff_object.keys():
-            self.title = format(self.cff_object['title']) + '. '
+            self.title = format(self.cff_object['title'])
+        return self
+
+    def add_version(self):
+        if 'version' in self.cff_object.keys():
+            self.version = ' (version ' + str(self.cff_object['version']) + '). '
         return self
 
     def add_doi(self):

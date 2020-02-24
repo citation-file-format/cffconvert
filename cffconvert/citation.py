@@ -11,6 +11,7 @@ from cffconvert.RisObject import RisObject
 from cffconvert.SchemaorgObject import SchemaorgObject
 from cffconvert.ZenodoObject import ZenodoObject
 from cffconvert.EndnoteObject import EndnoteObject
+from cffconvert.ApalikeObject import ApalikeObject
 
 
 class Citation:
@@ -184,6 +185,10 @@ class Citation:
     def as_zenodojson(self):
         filtered = self.filter_properties(self.yaml)
         return ZenodoObject(filtered).print()
+
+    def as_apalike(self):
+        filtered = self.filter_properties(self.yaml)
+        return ApalikeObject(filtered).print()
 
     def filter_properties(self, unfiltered):
         if self.ignore_suspect_keys:

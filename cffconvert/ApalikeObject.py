@@ -1,19 +1,15 @@
 class ApalikeObject:
 
     supported_cff_versions = ['1.0.3', '1.1.0']
-    supported_pure_props = ['abstract', 'author', 'date', 'doi', 'keywords',
-                           'title', 'url', 'year']
+    supported_pure_props = ['author', 'year', 'title', 'doi', 'url']
 
     def __init__(self, cff_object, initialize_empty=False):
         self.cff_object = cff_object
-        self.abstract = None
         self.author = None
-        self.date = None
-        self.doi = None
-        self.keywords = None
-        self.title = None
-        self.url = None
         self.year = None
+        self.title = None
+        self.doi = None
+        self.url = None
         if initialize_empty:
             # clause for testing purposes
             pass
@@ -21,30 +17,19 @@ class ApalikeObject:
             self.check_cff_object().add_all()
 
     def __str__(self):
-        items = [item for item in [self.abstract,
-                                   self.author,
-                                   self.date,
-                                   self.doi,
-                                   self.keywords,
+        items = [item for item in [self.author,
                                    self.year,
                                    self.title,
+                                   self.doi,
                                    self.url] if item is not None]
-        return 'TY  - GEN\n' + ''.join(items) + 'ER\n'
+        return ''.join(items)
 
     def add_all(self):
-        self.add_abstract() \
-            .add_author()   \
-            .add_date()     \
-            .add_doi()      \
-            .add_keywords()  \
+        self.add_author()   \
+            .add_year()     \
             .add_title()    \
-            .add_url()      \
-            .add_year()
-        return self
-
-    def add_abstract(self):
-        if 'abstract' in self.cff_object.keys():
-            self.abstract = 'AB  - {}\n'.format(self.cff_object['abstract'])
+            .add_doi()      \
+            .add_url()
         return self
 
     def add_author(self):
@@ -61,55 +46,42 @@ class ApalikeObject:
                 fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
                 alias = author['alias'] if 'alias' in keys and author['alias'] is not None and author['alias'] != '' else None
                 if fullname:
-                    authors.append('AU  - {}\n'.format(fullname))
+                    authors.append(format(fullname))
                 elif alias:
-                    authors.append('AU  - {}\n'.format(alias))
+                    authors.append(format(alias))
                 else:
                     continue
             self.author = ''.join(authors)
         return self
 
-    def add_date(self):
+    def add_year(self):
         if 'date-released' in self.cff_object.keys():
-            self.date = "DA  - {:d}-{:02d}-{:02d}\n".format(self.cff_object['date-released'].year,
-                                                            self.cff_object['date-released'].month,
-                                                            self.cff_object['date-released'].day)
+            self.year = ' (' + str(self.cff_object['date-released'].year) + '). '
+        return self
+
+    def add_title(self):
+        if 'title' in self.cff_object.keys():
+            self.title = format(self.cff_object['title']) + '. '
         return self
 
     def add_doi(self):
         version = self.cff_object['cff-version']
         if version in ['1.0.3', '1.1.0']:
             if 'doi' in self.cff_object.keys():
-                self.doi = 'DO  - {}\n'.format(self.cff_object['doi'])
+                self.doi = 'doi: ' + format(self.cff_object['doi']) + '. '
 
         if version in ['1.1.0']:
             if 'identifiers' in self.cff_object.keys():
                 identifiers = self.cff_object['identifiers']
                 for identifier in identifiers:
                     if identifier['type'] == 'doi':
-                        self.doi = 'DO  - {}\n'.format(identifier['value'])
+                        self.doi = 'doi: ' + format(identifier['value']) + '. '
                         break
-        return self
-
-    def add_keywords(self):
-        if 'keywords' in self.cff_object.keys():
-            keywords = ['KW  - {}\n'.format(keyword) for keyword in self.cff_object['keywords']]
-            self.keywords = ''.join(keywords)
-        return self
-
-    def add_title(self):
-        if 'title' in self.cff_object.keys():
-            self.title = 'TI  - {}\n'.format(self.cff_object['title'])
         return self
 
     def add_url(self):
         if 'repository-code' in self.cff_object.keys():
-            self.url = 'UR  - {}\n'.format(self.cff_object['repository-code'])
-        return self
-
-    def add_year(self):
-        if 'date-released' in self.cff_object.keys():
-            self.year = 'PY  - {}\n'.format(self.cff_object['date-released'].year)
+            self.url = format(self.cff_object['repository-code']) + '\n'
         return self
 
     def check_cff_object(self):

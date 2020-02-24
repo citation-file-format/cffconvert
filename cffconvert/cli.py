@@ -62,7 +62,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
     citation = Citation(url=url, cffstr=cffstr, ignore_suspect_keys=ignore_suspect_keys, override=override,
                         remove=remove, suspect_keys=suspect_keys, validate=validate)
 
-    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo"]
+    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo", "apalike"]
     if validate:
         # when validating, there's no need to convert to anything yet
         pass
@@ -85,6 +85,8 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
         outstr = citation.as_schema_dot_org()
     elif outputformat == "zenodo":
         outstr = citation.as_zenodojson()
+    elif outputformat == "apalike":
+        outstr = citation.as_apalike()
 
     if outfile is None:
         print(outstr, end='')

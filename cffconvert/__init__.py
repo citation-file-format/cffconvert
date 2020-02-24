@@ -6,3 +6,4 @@ from cffconvert.EndnoteObject import EndnoteObject
 from cffconvert.RisObject import RisObject
 from cffconvert.SchemaorgObject import SchemaorgObject
 from cffconvert.ZenodoObject import ZenodoObject
+from cffconvert.ApalikeObject import ApalikeObject

@@ -10,7 +10,7 @@ from cffconvert import version as cffconvert_version
 @click.option("--outfile", "-of", type=str, default=None,
               help="Path to the output file.")
 @click.option("--outputformat", "-f", type=str, default=None,
-              help="Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo")
+              help="Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo|apalike")
 @click.option("--url", "-u", type=str, default=None,
               help="URL of the repo containing the CITATION.cff (currently only github.com is supported; may " +
                    "include branch name, commit sha, tag name). For example: \'https://github.com/citation-fi" +

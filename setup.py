@@ -67,6 +67,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Utilities'
     ],
+    test_suite="test",
     packages=find_packages(),
     install_requires=get_install_dependencies(),
     setup_requires=get_test_dependencies(),

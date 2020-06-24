@@ -34,18 +34,3 @@ jobs:
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest livetest/"
-    - stage: sonarcloud
-      addons:
-        sonarcloud: ~
-          # see also: https://docs.travis-ci.com/user/sonarcloud/
-      env: ~
-      script:
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml livetest/"
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append test/1.1.0/"
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append test/1.0.3/"
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append test/unsupported/"
-        - sonar-scanner -X -Dsonar.organization=citation-file-format
-                           -Dsonar.projectKey=citation-file-format_cff-converter-python
-                           -Dsonar.python.coverage.reportPaths=coverage.xml
-                           -Dsonar.inclusions=cffconvert/**/*.py
-                           -Dsonar.test.inclusions=test/**/*.py,livetest/**/*.py

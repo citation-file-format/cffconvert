@@ -68,7 +68,7 @@ setup(
         'Topic :: Utilities'
     ],
     test_suite="test",
-    packages=find_packages(),
+    packages=find_packages(exclude=['*test*', '*livetest*']),
     install_requires=get_install_dependencies(),
     setup_requires=get_test_dependencies(),
     tests_require=get_test_dependencies(),

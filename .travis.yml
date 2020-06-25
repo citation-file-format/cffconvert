@@ -1,16 +1,15 @@
 --- 
-dist: xenial
+os: linux
+dist: bionic
 language: python
 notifications: 
   email: 
     on_failure: change
-    on_succes: never
-sudo: false
+    on_success: never
 python: 
+  - "3.8"
   - "3.7"
   - "3.6"
-  - "3.5"
-  - "nightly"
 install:
   - python3 -m pip install -r requirements.txt
   - python3 -m pip install -r requirements-dev.txt
@@ -35,18 +34,3 @@ jobs:
       script:
         - "bash test/test_consistent_file_naming.sh dir=livetest/"
         - "python3 -m pytest livetest/"
-    - stage: sonarcloud
-      addons:
-        sonarcloud: ~
-          # see also: https://docs.travis-ci.com/user/sonarcloud/
-      env: ~
-      script:
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml livetest/"
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append test/1.1.0/"
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append test/1.0.3/"
-        - "python3 -m pytest --cov=cffconvert --cov-report=xml --cov-append test/unsupported/"
-        - sonar-scanner -X -Dsonar.organization=citation-file-format
-                           -Dsonar.projectKey=citation-file-format_cff-converter-python
-                           -Dsonar.python.coverage.reportPaths=coverage.xml
-                           -Dsonar.inclusions=cffconvert/**/*.py
-                           -Dsonar.test.inclusions=test/**/*.py,livetest/**/*.py

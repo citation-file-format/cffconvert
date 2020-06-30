@@ -21,6 +21,11 @@ authors:
     family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
+  -
+    affiliation: "University of Oslo"
+    family-names: Leoncio
+    given-names: Waldir
+    name-suffix: Netto
 cff-version: "1.0.3"
 date-released: 2019-11-12
 doi: 10.5281/zenodo.1162057

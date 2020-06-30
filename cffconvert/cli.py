@@ -10,7 +10,7 @@ from cffconvert import version as cffconvert_version
 @click.option("--outfile", "-of", type=str, default=None,
               help="Path to the output file.")
 @click.option("--outputformat", "-f", type=str, default=None,
-              help="Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo")
+              help="Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo|apalike")
 @click.option("--url", "-u", type=str, default=None,
               help="URL of the repo containing the CITATION.cff (currently only github.com is supported; may " +
                    "include branch name, commit sha, tag name). For example: \'https://github.com/citation-fi" +
@@ -62,7 +62,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
     citation = Citation(url=url, cffstr=cffstr, ignore_suspect_keys=ignore_suspect_keys, override=override,
                         remove=remove, suspect_keys=suspect_keys, validate=validate)
 
-    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo"]
+    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo", "apalike"]
     if validate:
         # when validating, there's no need to convert to anything yet
         pass
@@ -85,6 +85,8 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
         outstr = citation.as_schema_dot_org()
     elif outputformat == "zenodo":
         outstr = citation.as_zenodojson()
+    elif outputformat == "apalike":
+        outstr = citation.as_apalike()
 
     if outfile is None:
         print(outstr, end='')

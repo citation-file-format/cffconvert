@@ -1,15 +1,7 @@
-Badges
-======
-
-- |Zenodo DOI|
-- |Travis build status|
-- |SonarCloud Quality Gate|
-- |PyPI badge|
-- |CII Best Practices|
-- |Research Software Directory|
-
 cffconvert
 ==========
+
+|Zenodo DOI| |Travis build status| |SonarCloud Quality Gate| |PyPI badge| |CII Best Practices| |Research Software Directory| |fair-software.eu|
 
 Read `CFF formatted
 CITATION <https://github.com/citation-file-format/citation-file-format>`__ file from a GitHub
@@ -386,6 +378,8 @@ Making a release
    :target: https://www.research-software.nl/software/cff-converter-python
 .. |CII Best Practices| image:: https://bestpractices.coreinfrastructure.org/projects/1811/badge
    :target: https://bestpractices.coreinfrastructure.org/projects/1811
+.. |fair-software.eu| image:: https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green
+   :target: https://fair-software.eu
 
 
 

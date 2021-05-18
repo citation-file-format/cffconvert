@@ -9,7 +9,7 @@ class ZenodoObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             cffstr = f.read()
             cff_object = yaml.safe_load(cffstr)
             self.zo = ZenodoObject(cff_object, initialize_empty=True)
@@ -47,7 +47,7 @@ class ZenodoObjectTest(Contract, unittest.TestCase):
     def test_print(self):
         actual_zenodo = self.zo.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             expected_zenodo = f.read()
         self.assertEqual(actual_zenodo, expected_zenodo)
 

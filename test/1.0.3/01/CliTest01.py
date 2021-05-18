@@ -10,7 +10,7 @@ class CliTests(unittest.TestCase):
     @staticmethod
     def read_sibling_file(filename):
         f = os.path.join(os.path.dirname(__file__), filename)
-        with open(f, "r") as f:
+        with open(f, "r", encoding="utf8") as f:
             return f.read()
 
     def test_local_cff_file_does_not_exist(self):
@@ -39,7 +39,7 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("bibtex.bib")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "bibtex"])
         self.assertEqual(result.exit_code, 0)
@@ -51,7 +51,7 @@ class CliTests(unittest.TestCase):
         expected = yaml.safe_load(cffstr)
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "cff"])
         self.assertEqual(result.exit_code, 0)
@@ -63,7 +63,7 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("codemeta.json")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "codemeta"])
         self.assertEqual(result.exit_code, 0)
@@ -75,7 +75,7 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("endnote.enw")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "endnote"])
         self.assertEqual(result.exit_code, 0)
@@ -87,7 +87,7 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("ris.txt")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "ris"])
         self.assertEqual(result.exit_code, 0)
@@ -99,7 +99,7 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("schemaorg.json")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "schema.org"])
         self.assertEqual(result.exit_code, 0)
@@ -132,7 +132,7 @@ class CliTests(unittest.TestCase):
         cffstr = CliTests.read_sibling_file("CITATION.cff")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "unsupported_97491"])
         self.assertEqual(result.exit_code, -1)
@@ -152,11 +152,11 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("bibtex.bib")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "bibtex",
                                                          "--outfile", "bibtex.bib"])
-            with open("bibtex.bib", "r") as f:
+            with open("bibtex.bib", "r", encoding="utf8") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(expected, actual)
@@ -166,11 +166,11 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("codemeta.json")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "codemeta",
                                                          "--outfile", "codemeta.json"])
-            with open("codemeta.json", "r") as f:
+            with open("codemeta.json", "r", encoding="utf8") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(expected, actual)
@@ -180,11 +180,11 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("endnote.enw")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "endnote",
                                                          "--outfile", "endnote.enw"])
-            with open("endnote.enw", "r") as f:
+            with open("endnote.enw", "r", encoding="utf8") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(expected, actual)
@@ -194,11 +194,11 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("ris.txt")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "ris",
                                                          "--outfile", "ris.txt"])
-            with open("ris.txt", "r") as f:
+            with open("ris.txt", "r", encoding="utf8") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(expected, actual)
@@ -208,11 +208,11 @@ class CliTests(unittest.TestCase):
         expected = CliTests.read_sibling_file("schemaorg.json")
         runner = CliRunner()
         with runner.isolated_filesystem():
-            with open("CITATION.cff", "w") as f:
+            with open("CITATION.cff", "w", encoding="utf8") as f:
                 f.write(cffstr)
             result = runner.invoke(cffconvert_cli, ["--outputformat", "schema.org",
                                                          "--outfile", "schemaorg.json"])
-            with open("schemaorg.json", "r") as f:
+            with open("schemaorg.json", "r", encoding="utf8") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(expected, actual)

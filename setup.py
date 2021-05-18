@@ -6,19 +6,19 @@ from distutils.util import convert_path
 
 
 def get_install_dependencies():
-    with open("requirements.txt", "r") as f:
+    with open("requirements.txt", "r", encoding="utf8") as f:
         lines = f.readlines()
     return [line.rstrip('\n') for line in lines]
 
 
 def get_test_dependencies():
-    with open("requirements-dev.txt", "r") as f:
+    with open("requirements-dev.txt", "r", encoding="utf8") as f:
         lines = f.readlines()
     return [line.rstrip('\n') for line in lines]
 
 
 def get_readme():
-    with open("README.rst", "r") as f:
+    with open("README.rst", "r", encoding="utf8") as f:
         return f.read()
 
 
@@ -27,7 +27,7 @@ def get_version():
     # -my-package#answer-24517154
     version_namespace = {}
     version_path = convert_path('cffconvert/version.py')
-    with open(version_path) as version_file:
+    with open(version_path, encoding="utf8") as version_file:
         exec(version_file.read(), version_namespace)
     return version_namespace["__version__"]
 

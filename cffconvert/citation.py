@@ -148,9 +148,9 @@ class Citation:
 
             datafile = os.path.join(tmpdir, "data.yaml")
             schemafile = os.path.join(tmpdir, "schema.yaml")
-            with open(datafile, "w") as f:
+            with open(datafile, "w", encoding="utf8") as f:
                 f.write(self.cffstr)
-            with open(schemafile, "w") as f:
+            with open(schemafile, "w", encoding="utf8") as f:
                 f.write(self.schema)
 
             c = Core(source_file=datafile, schema_files=[schemafile])

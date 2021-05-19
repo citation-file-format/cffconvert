@@ -153,7 +153,7 @@ class Citation:
             with open(schemafile, "w", encoding="utf8") as f:
                 f.write(self.schema)
 
-            c = Core(source_file=datafile, schema_files=[schemafile])
+            c = Core(source_file=datafile, schema_files=[schemafile], file_encoding="utf8")
             c.validate(raise_exception=self.raise_exception)
 
         return self

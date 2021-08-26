@@ -1,3 +1,5 @@
+# EndNote example result
+
 ```text
 %0 Generic
 %A Spaaks, Jurriaan H.

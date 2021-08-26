@@ -1,6 +1,6 @@
-import unittest
-import os
 import json
+import os
+import unittest
 import ruamel.yaml as yaml
 from cffconvert.version import __version__ as expected_version
 

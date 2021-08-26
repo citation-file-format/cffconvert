@@ -1,8 +1,8 @@
-from cffconvert import SchemaorgObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.SchemaorgObject import Contract
+import ruamel.yaml as yaml
+from cffconvert import SchemaorgObject
 
 
 class SchemaorgObjectTest(Contract, unittest.TestCase):
@@ -95,4 +95,3 @@ class SchemaorgObjectTest(Contract, unittest.TestCase):
         with open(fixture, "r") as f:
             expected_schemaorg = f.read()
         self.assertEqual(actual_schemaorg, expected_schemaorg)
-

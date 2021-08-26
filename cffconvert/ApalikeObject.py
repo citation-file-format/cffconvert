@@ -11,9 +11,10 @@
 # [1] https://blog.apastyle.org/apastyle/2015/01/how-to-cite-software-in-apa-style.html
 # [2] https://apastyle.apa.org
 
+
 class ApalikeObject:
 
-    supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
     supported_pure_props = ['author', 'year', 'title', 'version', 'doi', 'url']
 
     def __init__(self, cff_object, initialize_empty=False):
@@ -47,7 +48,6 @@ class ApalikeObject:
             .add_doi()      \
             .add_url()
         return self
-
 
     def add_author(self):
         if 'authors' in self.cff_object.keys():
@@ -103,11 +103,11 @@ class ApalikeObject:
 
     def add_doi(self):
         version = self.cff_object['cff-version']
-        if version in ['1.0.3', '1.1.0']:
+        if version in ['1.0.3', '1.1.0', '1.2.0']:
             if 'doi' in self.cff_object.keys():
                 self.doi = 'DOI: http://doi.org/' + format(self.cff_object['doi']) + ' '
 
-        if version in ['1.1.0']:
+        if version in ['1.1.0', '1.2.0']:
             if 'identifiers' in self.cff_object.keys():
                 identifiers = self.cff_object['identifiers']
                 for identifier in identifiers:
@@ -134,4 +134,3 @@ class ApalikeObject:
 
     def print(self):
         return self.__str__()
-

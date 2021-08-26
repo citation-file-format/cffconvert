@@ -3,7 +3,7 @@ import json
 
 class SchemaorgObject:
 
-    supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
     supported_schemaorg_props = ['author', 'codeRepository', 'datePublished', 'description',
                                  'identifier', 'keywords', 'license', 'name', 'version']
 
@@ -112,11 +112,11 @@ class SchemaorgObject:
 
     def add_identifier(self):
         version = self.cff_object['cff-version']
-        if version in ['1.0.3', '1.1.0']:
+        if version in ['1.0.3', '1.1.0', '1.2.0']:
             if 'doi' in self.cff_object.keys():
                 self.identifier = 'https://doi.org/{}'.format(self.cff_object['doi'])
 
-        if version in ['1.1.0']:
+        if version in ['1.1.0', '1.2.0']:
             if 'identifiers' in self.cff_object.keys():
                 identifiers = self.cff_object['identifiers']
                 for identifier in identifiers:
@@ -158,5 +158,3 @@ class SchemaorgObject:
 
     def print(self):
         return self.__str__()
-
-

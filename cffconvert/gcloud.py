@@ -1,6 +1,7 @@
-from flask import request, Response
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
+from flask import Response
+from flask import request
 
 
 def get_help_text():

@@ -1,6 +1,6 @@
 class EndnoteObject:
 
-    supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
     supported_endnote_props = ['author', 'year', 'keyword', 'doi', 'name', 'url']
 
     def __init__(self, cff_object, initialize_empty=False):
@@ -59,11 +59,11 @@ class EndnoteObject:
 
     def add_doi(self):
         version = self.cff_object['cff-version']
-        if version in ['1.0.3', '1.1.0']:
+        if version in ['1.0.3', '1.1.0', '1.2.0']:
             if 'doi' in self.cff_object.keys():
                 self.doi = '%R {}\n'.format(self.cff_object['doi'])
 
-        if version in ['1.1.0']:
+        if version in ['1.1.0', '1.2.0']:
             if 'identifiers' in self.cff_object.keys():
                 identifiers = self.cff_object['identifiers']
                 for identifier in identifiers:
@@ -106,4 +106,3 @@ class EndnoteObject:
 
     def print(self):
         return self.__str__()
-

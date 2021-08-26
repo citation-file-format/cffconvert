@@ -1,8 +1,8 @@
-from cffconvert import CodemetaObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.CodemetaObject import Contract
+import ruamel.yaml as yaml
+from cffconvert import CodemetaObject
 
 
 class CodemetaObjectTest(Contract, unittest.TestCase):
@@ -79,4 +79,3 @@ class CodemetaObjectTest(Contract, unittest.TestCase):
         with open(fixture, "r") as f:
             expected_codemeta = f.read()
         self.assertEqual(actual_codemeta, expected_codemeta)
-

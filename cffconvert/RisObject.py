@@ -1,6 +1,6 @@
 class RisObject:
 
-    supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
     supported_ris_props = ['abstract', 'author', 'date', 'doi', 'keywords',
                            'title', 'url', 'year']
 
@@ -78,11 +78,11 @@ class RisObject:
 
     def add_doi(self):
         version = self.cff_object['cff-version']
-        if version in ['1.0.3', '1.1.0']:
+        if version in ['1.0.3', '1.1.0', '1.2.0']:
             if 'doi' in self.cff_object.keys():
                 self.doi = 'DO  - {}\n'.format(self.cff_object['doi'])
 
-        if version in ['1.1.0']:
+        if version in ['1.1.0', '1.2.0']:
             if 'identifiers' in self.cff_object.keys():
                 identifiers = self.cff_object['identifiers']
                 for identifier in identifiers:
@@ -125,4 +125,3 @@ class RisObject:
 
     def print(self):
         return self.__str__()
-

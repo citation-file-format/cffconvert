@@ -1,8 +1,9 @@
-from cffconvert import ApalikeObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.ApalikeObject import Contract
+import ruamel.yaml as yaml
+from cffconvert import ApalikeObject
+
 
 class ApalikeObjectTest(Contract, unittest.TestCase):
 

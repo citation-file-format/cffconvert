@@ -67,26 +67,26 @@ Shows:
 Usage: cffconvert [OPTIONS]
 
 Options:
-  -if, --infile TEXT          Path to the CITATION.cff input file. Use '--infile -' to read from STDIN.
-  -of, --outfile TEXT         Path to the output file.
-  -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo
-  -u, --url TEXT              URL of the repo containing the CITATION.cff (currently only github.com is supported; may
-                              include branch name, commit sha, tag name). For example: 'https://github.com/citation-
-                              file-format/cff-converter-python' or 'https://github.com/citation-file-format/cff-
-                              converter-python/tree/master'
-  --validate                  Validate the CITATION.cff found at the URL or supplied through '--infile'
-  -ig, --ignore-suspect-keys  If True, ignore any keys from CITATION.cff that are likely out of date, such as
-                              'commit', 'date-released', 'doi', and 'version'.
-  --verbose                   Provide feedback on what was entered.
-  --version                   Print version and exit.
-  --help                      Show this message and exit.
+  -i TEXT                         Path to the CITATION.cff input file. Use '-i -' to read from STDIN.
+  -o TEXT                         Path to the output file.
+  -f [bibtex|cff|codemeta|endnote|ris|schema.org|zenodo|apalike]
+                                  Output format.
+  -u, --url TEXT                  URL of the repo containing the CITATION.cff (currently only github.com is supported;
+                                  may include branch name, commit sha, tag name). For example:
+                                  'https://github.com/citation-file-format/cff-converter-python' or
+                                  'https://github.com/citation-file-format/cff-converter-python/tree/main'
+  -h, --help                      Show help and exit.
+  --show-trace                    Show error trace.
+  --validate                      Validate the CITATION.cff found at the URL or supplied through '-i'.
+  --ignore-suspect-keys           Ignore any keys from CITATION.cff that are likely out of date, such as 'commit',
+                                  'date-released', 'doi', and 'version'.
+  --verbose                       Provide feedback on what was entered.
+  --version                       Print version and exit.
 ```
 
 ## Example usage
 
-### Convert local `CITATION.cff` to BibTeX
-
-Assume you have a local `CITATION.cff` file with the following contents:
+The following examples assume a `CITATION.cff` file with the following contents is present in the current working directory:
 
 ```yaml
 authors:
@@ -101,134 +101,63 @@ title: cffconvert
 version: 1.3.3
 ```
 
-These metadata can be converted to BibTeX using:
+### Converting to BibTeX
 
-```
+```shell
 cffconvert -f bibtex
 ```
 
-Which results in:
+(see [result](docs/example-result-bibtex.md))
 
-```bibtex
-@misc{YourReferenceHere,
-author = {
-            Jurriaan H. Spaaks
-         },
-title  = {cffconvert},
-month  = {11},
-year   = {2019},
-doi    = {10.5281/zenodo.1162057},
-url    = {https://github.com/citation-file-format/cff-converter-python}
-}
-```
-
-### Retrieve `CITATION.cff` contents from a URL, output as `codemeta.json`
-
-`cffconvert` can retrieve the contents of a `CITATION.cff` file, if the file is in a public repository on GitHub, as follows:
+### Converting to CodeMeta
 
 ```shell
-cffconvert -f codemeta \
---url https://github.com/citation-file-format/cff-converter-python/tree/1.3.3 > codemeta.json
+cffconvert -f codemeta
 ```
 
-Contents of file `codemeta.json`:
+(see [result](docs/example-result-codemeta.md))
 
-```json
-{
-   "@context": "https://doi.org/10.5063/schema/codemeta-2.0", 
-   "@type": "SoftwareSourceCode", 
-   "author": [
-      {
-         "@id": "https://orcid.org/0000-0002-7064-4069", 
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Spaaks", 
-         "givenName": "Jurriaan H."
-      }, 
-      {
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Klaver", 
-         "givenName": "Tom"
-      }, 
-      {
-         "@id": "https://orcid.org/0000-0002-5821-2060", 
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Verhoeven", 
-         "givenName": "Stefan"
-      }, 
-      {
-         "@id": "https://orcid.org/0000-0003-4925-7248", 
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Humboldt-Universität zu Berlin"
-         }, 
-         "familyName": "Druskat", 
-         "givenName": "Stephan"
-      }
-   ], 
-   "codeRepository": "https://github.com/citation-file-format/cff-converter-python", 
-   "datePublished": "2019-11-12", 
-   "description": "Command line program to convert from Citation File Format to various other formats such as BibTeX, EndNote, RIS, schema.org, and .zenodo.json.", 
-   "identifier": "https://doi.org/10.5281/zenodo.1162057", 
-   "keywords": [
-      "citation", 
-      "bibliography", 
-      "cff", 
-      "CITATION.cff"
-   ], 
-   "license": "https://spdx.org/licenses/Apache-2.0", 
-   "name": "cffconvert", 
-   "version": "1.3.3"
-}
+### Converting to EndNote
+
+```shell
+cffconvert -f endnote
 ```
-### Local `CITATION.cff` to Zenodo metadata file
+
+(see [result](docs/example-result-endnote.md))
+
+### Converting to RIS
+
+```shell
+cffconvert -f ris
+```
+
+(see [result](docs/example-result-ris.md))
+
+### Converting to schema.org JSON
+
+(schema.org is used in websites to improve ranking by search engines)
+
+```shell
+cffconvert -f schema.org
+```
+
+(see [result](docs/example-result-schema-org.md))
+
+### Converting to Zenodo JSON
 
 Convert the contents of a local file `CITATION.cff` into the format used by `.zenodo.json` files (see [Zenodo's API
-docs](http://developers.zenodo.org/#representation)), while ignoring any keys that are likely out of date:
+docs](http://developers.zenodo.org/#representation)):
 
 ```shell
-cffconvert -f zenodo --ignore-suspect-keys
+cffconvert -f zenodo
 ```
 
-Results in (note absence of `date-released`, `doi`, and `version`):
+(see [result](docs/example-result-zenodo.md))
 
-```json
-{
-    "creators": [
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Spaaks, Jurriaan H."
-        },
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Klaver, Tom"
-        },
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Verhoeven, Stefan"
-        }
-    ],
-    "keywords": [
-        "citation",
-        "bibliography",
-        "cff",
-        "CITATION.cff"
-    ],
-    "license": {
-        "id": "Apache-2.0"
-    },
-    "title": "cffconvert"
-}
+### Converting to APA-like
+
+```shell
+cffconvert -f apalike
 ```
+
+(see [result](docs/example-result-apalike.md))

@@ -1,6 +1,6 @@
 # YAML 1.2
 ---
-abstract: "Command line program to convert from Citation File Format to various other formats such as BibTeX, EndNote, RIS, schema.org, CodeMeta, and .zenodo.json."
+abstract: "Command line program to validate and convert CITATION.cff files."
 authors:
   -
     affiliation: "Netherlands eScience Center"
@@ -26,16 +26,31 @@ authors:
     family-names: Leoncio
     given-names: Waldir
     name-suffix: Netto
-cff-version: "1.0.3"
-date-released: 2019-11-12
-doi: 10.5281/zenodo.1162057
+cff-version: 1.2.0
+date-released: FIXME
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.1162057
+    description: "Persistent identifier for all versions of cffconvert"
+  - type: url
+    value: https://github.com/citation-file-format/cff-converter-python
+    description: "URL to the GitHub repository for cffconvert"
+  - type: url
+    value: https://pypi.org/project/cffconvert
+    description: "cffconvert on PyPI"
 keywords:
-  - "citation"
-  - "bibliography"
-  - "cff"
-  - "CITATION.cff"
+  - bibliography
+  - BibTeX
+  - cff
+  - citation
+  - CITATION.cff
+  - CodeMeta
+  - EndNote
+  - RIS
+  - "Citation File Format"
 license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
+repository-artifact: "https://pypi.org/project/cffconvert"
 repository-code: "https://github.com/citation-file-format/cff-converter-python"
 title: cffconvert
-version: "1.4.0-alpha0"
+version: "2.0.0-alpha.0"

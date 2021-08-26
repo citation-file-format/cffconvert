@@ -4,28 +4,34 @@ from cffconvert import Citation
 from cffconvert import version as cffconvert_version
 
 
+format_choices = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo", "apalike"]
 @click.command(context_settings=dict(max_content_width=120))
-@click.option("--infile", "-if", type=str, default=None,
-              help="Path to the CITATION.cff input file. Use '--infile -' to read from STDIN.")
-@click.option("--outfile", "-of", type=str, default=None,
-              help="Path to the output file.")
-@click.option("--outputformat", "-f", type=str, default=None,
-              help="Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo|apalike")
-@click.option("--url", "-u", type=str, default=None,
-              help="URL of the repo containing the CITATION.cff (currently only github.com is supported; may " +
-                   "include branch name, commit sha, tag name). For example: \'https://github.com/citation-fi" +
-                   "le-format/cff-converter-python\' or \'https://github.com/citation-file-format/cff-convert" +
-                   "er-python/tree/master\'")
-@click.option("--validate", is_flag=True, default=False,
-              help="Validate the CITATION.cff found at the URL or supplied through '--infile'")
-@click.option("--ignore-suspect-keys", "-ig", is_flag=True, default=False,
-              help="If True, ignore any keys from CITATION.cff that are likely out of date, such as \'commit\', " +
-                   "\'date-released\', \'doi\', and \'version\'.")
-@click.option("--verbose", is_flag=True, default=False,
-              help="Provide feedback on what was entered.")
-@click.option("--version", is_flag=True, default=False,
-              help="Print version and exit.")
-def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbose, version):
+@click.option("-i", "infile", type=str, default=None, help="Path to the CITATION.cff input file. Use '-i -' to read from STDIN.")
+@click.option("-o", "outfile", type=str, default=None,help="Path to the output file.")
+@click.option("-f", "outputformat", type=click.Choice(format_choices), default=None, help="Output format.")
+@click.option("-u", "--url", type=str, default=None, help="URL of the repo containing the CITATION.cff (currently only github.com is supported; may " +
+              "include branch name, commit sha, tag name). For example: 'https://github.com/citation-file-format/cff-converter-python' or 'https://g" +
+              "ithub.com/citation-file-format/cff-converter-python/tree/main'")
+@click.option("-h", "--help", "show_help", is_flag=True, flag_value=True, default=False, help="Show help and exit.")
+@click.option("--show-trace", "show_trace", is_flag=True, flag_value=True, default=False, help="Show error trace.")
+@click.option("--validate", is_flag=True, default=False, help="Validate the CITATION.cff found at the URL or supplied through '-i'.")
+@click.option("--ignore-suspect-keys", "ignore_suspect_keys", is_flag=True, default=False, help="Ignore any keys from CITATION.cff that are l" +
+              "ikely out of date, such as 'commit', 'date-released', 'doi', and 'version'.")
+@click.option("--verbose", is_flag=True, default=False, help="Provide feedback on what was entered.")
+@click.option("--version", is_flag=True, default=False, help="Print version and exit.")
+def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ignore_suspect_keys, verbose, version):
+
+    def print_help():
+        ctx = click.get_current_context()
+        click.echo(ctx.get_help())
+        ctx.exit()
+
+    no_user_input = len(sys.argv) == 1
+    if show_help or no_user_input:
+        print_help()
+
+    if show_trace is False:
+        sys.tracebacklimit = 0
 
     if version is True:
         print("{0}".format(cffconvert_version.__version__))
@@ -36,6 +42,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
         click.echo("{0} = {1}".format("outfile", outfile))
         click.echo("{0} = {1}".format("outputformat", outputformat))
         click.echo("{0} = {1}".format("url", url))
+        click.echo("{0} = {1}".format("show_trace", show_trace))
         click.echo("{0} = {1}".format("validate", validate))
         click.echo("{0} = {1}".format("ignore_suspect_keys", ignore_suspect_keys))
         click.echo("{0} = {1}".format("verbose", verbose))
@@ -44,7 +51,7 @@ def cli(infile, outfile, outputformat, url, validate, ignore_suspect_keys, verbo
     if infile is None and url is None:
         infile = "CITATION.cff"
     elif infile is not None and url is not None:
-        raise ValueError("You need to specify either \'--infile\' or \'url\' but not both.")
+        raise ValueError("You need to specify either an input file or a URL, but not both.")
 
     if infile is None:
         cffstr = None

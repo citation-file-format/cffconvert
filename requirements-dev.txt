@@ -1,3 +1,0 @@
-pytest-cov
-pytest-runner
-pytest>=4.6

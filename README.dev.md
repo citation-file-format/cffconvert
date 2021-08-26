@@ -3,24 +3,26 @@
 ## Install
 
 
-``` {.sourceCode .bash}
+```shell
 # get a copy of the cff-converter-python software
 git clone https://github.com/citation-file-format/cff-converter-python.git
 # change directory into cff-converter-python
 cd cff-converter-python
-# make a Python3.6 virtual environment named venv36
-python3 -m virtualenv -p /usr/bin/python3.6 venv36
+# make a virtual environment named env
+python3 -m venv env
 # activate the virtual environment
-source ./venv36/bin/activate
-# install any packages that cff-converter-python needs
-pip install -r requirements.txt
+source env/bin/activate
+# upgrade pip, wheel, setuptools
+pip install --upgrade pip wheel setuptools
+# install cffconvert itself
+pip install --editable .
 # install any packages used for development such as for testing
-pip install -r requirements-dev.txt
+pip install --editable .[dev]
 ```
 
 ## Running tests
 
-``` {.sourceCode .bash}
+```shell
 # (from the project root)
 
 # run unit tests
@@ -44,7 +46,7 @@ python3 -m pytest livetest
 ### Making a release
 
 
-``` {.sourceCode .bash}
+```shell
 # make sure the release notes are up to date
 
 # run the live tests and unit tests, make sure they pass

@@ -106,132 +106,41 @@ version: 1.3.3
 ```
 cffconvert -f bibtex
 ```
-<details>
-    <summary>Expand to see the generated BibTeX</summary>
-    ```bibtex
-    @misc{YourReferenceHere,
-    author = {Jurriaan H. Spaaks},
-    doi = {10.5281/zenodo.1162057},
-    month = {11},
-    title = {cffconvert},
-    url = {https://github.com/citation-file-format/cff-converter-python},
-    year = {2019}
-    }
-    ```
-</details>
 
 ### Converting to CodeMeta
 
 ```
 cffconvert -f codemeta
 ```
-<details>
-    <summary>Expand to see the generated CodeMeta</summary>
-```json
-{
-   "@context": "https://doi.org/10.5063/schema/codemeta-2.0", 
-   "@type": "SoftwareSourceCode", 
-   "author": [
-      {
-         "@type": "Person", 
-         "familyName": "Spaaks", 
-         "givenName": "Jurriaan H."
-      }
-   ], 
-   "codeRepository": "https://github.com/citation-file-format/cff-converter-python", 
-   "datePublished": "2019-11-12", 
-   "identifier": "https://doi.org/10.5281/zenodo.1162057", 
-   "name": "cffconvert", 
-   "version": "1.3.3"
-}
-```
-</details>
 
 ### Converting to EndNote
 
 ```
 cffconvert -f endnote
 ```
-<details>
-    <summary>Expand to see the generated EndNote</summary>
-```endnote
-%0 Generic
-%A Spaaks, Jurriaan H.
-%D 2019
-%R 10.5281/zenodo.1162057
-%T cffconvert
-%U https://github.com/citation-file-format/cff-converter-python
-%9 source code
-```
-</details>
 
 ### Converting to RIS
 
 ```
 cffconvert -f ris
 ```
-<details>
-    <summary>Expand to see the generated EndNote</summary>
-```ris
-TY  - GEN
-AU  - Spaaks, Jurriaan H.
-DA  - 2019-11-12
-DO  - 10.5281/zenodo.1162057
-PY  - 2019
-TI  - cffconvert
-UR  - https://github.com/citation-file-format/cff-converter-python
-ER
-```
-</details>
 
 ### Converting to schema.org JSON
+
+(schema.org is used in websites to improve ranking by search engines)
 
 ```
 cffconvert -f schema.org
 ```
-<details>
-    <summary>Expand to see the generated schema.org</summary>
-```json
-{
-   "@context": "https://schema.org", 
-   "@type": "SoftwareSourceCode", 
-   "author": [
-      {
-         "@type": "Person", 
-         "familyName": "Spaaks", 
-         "givenName": "Jurriaan H."
-      }
-   ], 
-   "codeRepository": "https://github.com/citation-file-format/cff-converter-python", 
-   "datePublished": "2019-11-12", 
-   "identifier": "https://doi.org/10.5281/zenodo.1162057", 
-   "name": "cffconvert", 
-   "version": "1.3.3"
-}
-```
-</details>
 
 ### Converting to Zenodo JSON
+
+Convert the contents of a local file `CITATION.cff` into the format used by `.zenodo.json` files (see [Zenodo's API
+docs](http://developers.zenodo.org/#representation)):
 
 ```
 cffconvert -f zenodo
 ```
-<details>
-    <summary>Expand to see the generated Zenodo JSON</summary>
-```text
-{
-   "creators": [
-      {
-         "name": "Spaaks, Jurriaan H."
-      }
-   ], 
-   "doi": "10.5281/zenodo.1162057", 
-   "publication_date": "2019-11-12", 
-   "title": "cffconvert", 
-   "version": "1.3.3"
-}
-```
-</details>
 
 ### Converting to APA-like
 
@@ -239,119 +148,8 @@ cffconvert -f zenodo
 cffconvert -f apalike
 ```
 
-Generates the following plain text:
-Spaaks J.H. (2019). cffconvert (version 1.3.3). DOI: http://doi.org/10.5281/zenodo.1162057 URL: https://github.com/citation-file-format/cff-converter-python
+Generates the following plaintext:
 
-</details>
+_Spaaks J.H. (2019). cffconvert (version 1.3.3). DOI: http://doi.org/10.5281/zenodo.1162057 URL: https://github.com/citation-file-format/cff-converter-python_
 
 
-### Retrieve `CITATION.cff` contents from a URL, output as `codemeta.json`
-
-`cffconvert` can retrieve the contents of a `CITATION.cff` file, if the file is in a public repository on GitHub, as follows:
-
-```shell
-cffconvert -f codemeta \
---url https://github.com/citation-file-format/cff-converter-python/tree/1.3.3 > codemeta.json
-```
-
-Contents of file `codemeta.json`:
-
-```json
-{
-   "@context": "https://doi.org/10.5063/schema/codemeta-2.0", 
-   "@type": "SoftwareSourceCode", 
-   "author": [
-      {
-         "@id": "https://orcid.org/0000-0002-7064-4069", 
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Spaaks", 
-         "givenName": "Jurriaan H."
-      }, 
-      {
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Klaver", 
-         "givenName": "Tom"
-      }, 
-      {
-         "@id": "https://orcid.org/0000-0002-5821-2060", 
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Verhoeven", 
-         "givenName": "Stefan"
-      }, 
-      {
-         "@id": "https://orcid.org/0000-0003-4925-7248", 
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Humboldt-Universität zu Berlin"
-         }, 
-         "familyName": "Druskat", 
-         "givenName": "Stephan"
-      }
-   ], 
-   "codeRepository": "https://github.com/citation-file-format/cff-converter-python", 
-   "datePublished": "2019-11-12", 
-   "description": "Command line program to convert from Citation File Format to various other formats such as BibTeX, EndNote, RIS, schema.org, and .zenodo.json.", 
-   "identifier": "https://doi.org/10.5281/zenodo.1162057", 
-   "keywords": [
-      "citation", 
-      "bibliography", 
-      "cff", 
-      "CITATION.cff"
-   ], 
-   "license": "https://spdx.org/licenses/Apache-2.0", 
-   "name": "cffconvert", 
-   "version": "1.3.3"
-}
-```
-### Local `CITATION.cff` to Zenodo metadata file
-
-Convert the contents of a local file `CITATION.cff` into the format used by `.zenodo.json` files (see [Zenodo's API
-docs](http://developers.zenodo.org/#representation)), while ignoring any keys that are likely out of date:
-
-```shell
-cffconvert -f zenodo --ignore-suspect-keys
-```
-
-Results in (note absence of `date-released`, `doi`, and `version`):
-
-```json
-{
-    "creators": [
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Spaaks, Jurriaan H."
-        },
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Klaver, Tom"
-        },
-        {
-            "affiliation": "Netherlands eScience Center",
-            "name": "Verhoeven, Stefan"
-        }
-    ],
-    "keywords": [
-        "citation",
-        "bibliography",
-        "cff",
-        "CITATION.cff"
-    ],
-    "license": {
-        "id": "Apache-2.0"
-    },
-    "title": "cffconvert"
-}
-```

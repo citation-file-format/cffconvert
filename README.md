@@ -8,7 +8,14 @@
 [![Research Software Directory](https://img.shields.io/badge/rsd-cffconvert-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 
-Validate and convert [`CITATION.cff`](https://github.com/citation-file-format/citation-file-format) files. Supported output formats:
+Validate and convert [`CITATION.cff`](https://github.com/citation-file-format/citation-file-format) files.
+
+Supported input versions
+
+1. `1.0.3` <https://doi.org/10.5281/zenodo.3515946>
+1. `1.1.0` <https://doi.org/10.5281/zenodo.4813122>
+
+Supported output formats:
 
 1.  BibTeX
 1.  CodeMeta

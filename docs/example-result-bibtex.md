@@ -1,3 +1,5 @@
+# BibTeX example result
+
 ```bibtex
 @misc{YourReferenceHere,
 author = {Jurriaan H. Spaaks},

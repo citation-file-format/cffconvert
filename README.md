@@ -86,9 +86,7 @@ Options:
 
 ## Example usage
 
-### Convert local `CITATION.cff` to BibTeX
-
-Assume you have a local `CITATION.cff` file with the following contents:
+The following examples assume a `CITATION.cff` file with the following contents is present in the current working directory:
 
 ```yaml
 authors:
@@ -103,26 +101,149 @@ title: cffconvert
 version: 1.3.3
 ```
 
-These metadata can be converted to BibTeX using:
+### Converting to BibTeX
 
 ```
 cffconvert -f bibtex
 ```
-
-Which results in:
-
+<details>
+    <summary>Expand to see the generated BibTeX</summary>
 ```bibtex
 @misc{YourReferenceHere,
-author = {
-            Jurriaan H. Spaaks
-         },
-title  = {cffconvert},
-month  = {11},
-year   = {2019},
-doi    = {10.5281/zenodo.1162057},
-url    = {https://github.com/citation-file-format/cff-converter-python}
+author = {Jurriaan H. Spaaks},
+doi = {10.5281/zenodo.1162057},
+month = {11},
+title = {cffconvert},
+url = {https://github.com/citation-file-format/cff-converter-python},
+year = {2019}
 }
 ```
+</details>
+
+### Converting to CodeMeta
+
+```
+cffconvert -f codemeta
+```
+<details>
+    <summary>Expand to see the generated CodeMeta</summary>
+```json
+{
+   "@context": "https://doi.org/10.5063/schema/codemeta-2.0", 
+   "@type": "SoftwareSourceCode", 
+   "author": [
+      {
+         "@type": "Person", 
+         "familyName": "Spaaks", 
+         "givenName": "Jurriaan H."
+      }
+   ], 
+   "codeRepository": "https://github.com/citation-file-format/cff-converter-python", 
+   "datePublished": "2019-11-12", 
+   "identifier": "https://doi.org/10.5281/zenodo.1162057", 
+   "name": "cffconvert", 
+   "version": "1.3.3"
+}
+```
+</details>
+
+### Converting to EndNote
+
+```
+cffconvert -f endnote
+```
+<details>
+    <summary>Expand to see the generated EndNote</summary>
+```endnote
+%0 Generic
+%A Spaaks, Jurriaan H.
+%D 2019
+%R 10.5281/zenodo.1162057
+%T cffconvert
+%U https://github.com/citation-file-format/cff-converter-python
+%9 source code
+```
+</details>
+
+### Converting to RIS
+
+```
+cffconvert -f ris
+```
+<details>
+    <summary>Expand to see the generated EndNote</summary>
+```ris
+TY  - GEN
+AU  - Spaaks, Jurriaan H.
+DA  - 2019-11-12
+DO  - 10.5281/zenodo.1162057
+PY  - 2019
+TI  - cffconvert
+UR  - https://github.com/citation-file-format/cff-converter-python
+ER
+```
+</details>
+
+### Converting to schema.org JSON
+
+```
+cffconvert -f schema.org
+```
+<details>
+    <summary>Expand to see the generated schema.org</summary>
+```json
+{
+   "@context": "https://schema.org", 
+   "@type": "SoftwareSourceCode", 
+   "author": [
+      {
+         "@type": "Person", 
+         "familyName": "Spaaks", 
+         "givenName": "Jurriaan H."
+      }
+   ], 
+   "codeRepository": "https://github.com/citation-file-format/cff-converter-python", 
+   "datePublished": "2019-11-12", 
+   "identifier": "https://doi.org/10.5281/zenodo.1162057", 
+   "name": "cffconvert", 
+   "version": "1.3.3"
+}
+```
+</details>
+
+### Converting to Zenodo JSON
+
+```
+cffconvert -f zenodo
+```
+<details>
+    <summary>Expand to see the generated Zenodo JSON</summary>
+```text
+{
+   "creators": [
+      {
+         "name": "Spaaks, Jurriaan H."
+      }
+   ], 
+   "doi": "10.5281/zenodo.1162057", 
+   "publication_date": "2019-11-12", 
+   "title": "cffconvert", 
+   "version": "1.3.3"
+}
+```
+</details>
+
+### Converting to APA-like
+
+```
+cffconvert -f apalike
+```
+
+Generates the following plain text:
+Spaaks J.H. (2019). cffconvert (version 1.3.3). DOI: http://doi.org/10.5281/zenodo.1162057 URL: https://github.com/citation-file-format/cff-converter-python
+
+</details>
+
 
 ### Retrieve `CITATION.cff` contents from a URL, output as `codemeta.json`
 

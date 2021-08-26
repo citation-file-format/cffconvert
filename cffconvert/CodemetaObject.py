@@ -4,7 +4,7 @@ from cffconvert.SchemaorgObject import SchemaorgObject
 
 class CodemetaObject(SchemaorgObject):
 
-    supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
     supported_codemeta_props = ['author', 'codeRepository', 'datePublished', 'description',
                                 'identifier', 'keywords', 'license', 'name', 'version']
 
@@ -33,4 +33,3 @@ class CodemetaObject(SchemaorgObject):
         filtered = [item for item in d.items() if item[1] is not None]
         return json.dumps(dict(filtered), sort_keys=True, indent=3,
                           separators=(', ', ': '), ensure_ascii=False) + '\n'
-

@@ -10,10 +10,10 @@
 
 Validate and convert [`CITATION.cff`](https://github.com/citation-file-format/citation-file-format) files.
 
-Supported input versions
+Supported input versions of the Citation File Format:
 
-1. `1.0.3` <https://doi.org/10.5281/zenodo.3515946>
-1. `1.1.0` <https://doi.org/10.5281/zenodo.4813122>
+- `1.0.3` [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3515946.svg)](https://doi.org/10.5281/zenodo.3515946)
+- `1.1.0` [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4813122.svg)](https://doi.org/10.5281/zenodo.4813122)
 
 Supported output formats:
 

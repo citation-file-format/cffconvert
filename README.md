@@ -1,23 +1,14 @@
-cffconvert
-==========
+# `cffconvert`
 
-[![Zenodo
-DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg)](https://doi.org/10.5281/zenodo.1162057)
-[![Travis build
-status](https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master)](https://travis-ci.org/citation-file-format/cff-converter-python)
-[![SonarCloud Quality
-Gate](https://sonarcloud.io/api/project_badges/measure?project=citation-file-format_cff-converter-python&metric=alert_status)](https://sonarcloud.io/dashboard?id=citation-file-format_cff-converter-python)
-[![PyPi
-Badge](https://img.shields.io/pypi/v/cffconvert.svg?colorB=blue)](https://pypi.python.org/pypi/cffconvert/)
-[![CII Best
-Practices](https://bestpractices.coreinfrastructure.org/projects/1811/badge)](https://bestpractices.coreinfrastructure.org/projects/1811)
-[![Research Software
-Directory](https://img.shields.io/badge/rsd-cffconvert-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
+[![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg)](https://doi.org/10.5281/zenodo.1162057)
+[![Travis build status](https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master)](https://travis-ci.org/citation-file-format/cff-converter-python)
+[![SonarCloud Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=citation-file-format_cff-converter-python&metric=alert_status)](https://sonarcloud.io/dashboard?id=citation-file-format_cff-converter-python)
+[![PyPi Badge](https://img.shields.io/pypi/v/cffconvert.svg?colorB=blue)](https://pypi.python.org/pypi/cffconvert/)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1811/badge)](https://bestpractices.coreinfrastructure.org/projects/1811)
+[![Research Software Directory](https://img.shields.io/badge/rsd-cffconvert-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 
-Read [CFF formatted
-CITATION](https://github.com/citation-file-format/citation-file-format)
-file from a GitHub url and convert it to various formats, such as:
+Read [CFF formatted CITATION](https://github.com/citation-file-format/citation-file-format) file from a GitHub url and convert it to various formats, such as:
 
 1.  BibTeX
 2.  EndNote
@@ -38,95 +29,31 @@ Supported types of GitHub URL:
 spec](https://citation-file-format.github.io/assets/pdf/cff-specifications-1.0.3.pdf)
 yet.
 
-For users
-=========
+## Installing `cffconvert` in user space
 
-Install
--------
-
-There are a few options:
-
-**Option 1 (preferred): install in user space.**
-
-Ensure that the user space directory `~/.local/bin/` is on the `PATH`.
-
-``` {.sourceCode .bash}
+```shell
 pip3 install --user cffconvert
 ```
+Ensure that the user space directory `~/.local/bin/` is on the `PATH`.
 
-**Option 2: use `cffconvert` as a Google Cloud Function**
-
-`cffconvert` comes with [an interface](/cffconvert/gcloud.py) for
-running as a Google Cloud Function. We set it up here
-<https://bit.ly/cffconvert> for the time being / as long as we have
-enough credits on the Google Cloud Function platform.
-
-Really, all the Google Cloud interface does is get any supplied URL
-parameters, and use them as if they had been entered as command line
-arguments. For more detailed explanation and examples, see
-<https://bit.ly/cffconvert>.
-
-On Google Cloud Function, set `requirements.txt` to:
-
-``` {.sourceCode .}
-Flask
-cffconvert
+```shell
+which cffconvert
 ```
+should now return the location of the program.
 
-and use the following as `main.py`:
+See [docs/alternative-install-options.md](docs/alternative-install-options.md) for alternative install options.
 
-``` {.sourceCode .python}
-from cffconvert.gcloud import cffconvert
-
-def main(request):
-   return cffconvert(request)
-```
-
-**Option 3 (not preferred): install in virtual environment**
-
-``` {.sourceCode .bash}
-virtualenv -p /usr/bin/python3.5 myvenv3
-source myvenv3/bin/activate
-pip3 install cffconvert
-```
-
-**Option 4 (not preferred): install globally**
-
-Note: this option needs sudo rights.
-
-``` {.sourceCode .bash}
-sudo -H pip3 install cffconvert
-```
-
-**Option 5 (not preferred): install with conda**
-
-See
-<https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment>
-
-``` {.sourceCode .bash}
-conda install pip
-pip install cffconvert
-```
-
-**Option 6 (not preferred): install with setup.py in the user
-environment**
-
-``` {.sourceCode .bash}
-python setup.py install --user
-```
-
-Command line interface
-----------------------
+## Command line interface
 
 See `cffconvert`'s options:
 
-``` {.sourceCode .bash}
+```shell
 cffconvert --help
 ```
 
 Shows:
 
-``` {.sourceCode .bash}
+```shell
 Usage: cffconvert [OPTIONS]
 
 Options:
@@ -145,17 +72,18 @@ Options:
   --help                      Show this message and exit.
 ```
 
-Example usage, retrieve CITATION.cff from URL with `curl`, output as
-BibTeX:
+## Example usage
 
-``` {.sourceCode .bash}
+### Retrieve `CITATION.cff` contents from a URL with `curl`, output as BibTeX
+
+```shell
 curl https://raw.githubusercontent.com/citation-file-format/cff-converter-python/44a8ad35d94dd50a8b5924d8d26402ae0d162189/CITATION.cff > CITATION.cff
 cffconvert -f bibtex
 ```
 
 Results in:
 
-``` {.sourceCode .bash}
+```bibtex
 @misc{YourReferenceHere,
 author = {
             Jurriaan H. Spaaks and
@@ -169,10 +97,9 @@ url    = {https://github.com/citation-file-format/cff-converter-python}
 }
 ```
 
-Example usage, let `cffconvert` retrieve CITATION.cff from URL, output
-as `codemeta.json`:
+### Let `cffconvert` retrieve CITATION.cff from URL, output as `codemeta.json`
 
-``` {.sourceCode .bash}
+```shell
 cffconvert -f codemeta \
 -u https://github.com/citation-file-format/cff-converter-python/tree/1.3.3 \
 -of codemeta.json
@@ -180,7 +107,7 @@ cffconvert -f codemeta \
 
 Contents of file `codemeta.json`:
 
-``` {.sourceCode .json}
+```json
 {
    "@context": "https://doi.org/10.5063/schema/codemeta-2.0", 
    "@type": "SoftwareSourceCode", 
@@ -240,19 +167,20 @@ Contents of file `codemeta.json`:
    "version": "1.3.3"
 }
 ```
+### Local `CITATION.cff` to Zenodo metadata file
 
 Convert the contents of a local file `CITATION.cff` into the format used
 by `.zenodo.json` files (see [Zenodo's API
 docs](http://developers.zenodo.org/#representation)), while ignoring any
 keys that are likely out of date:
 
-``` {.sourceCode .bash}
+```shell
 cffconvert -f zenodo --ignore-suspect-keys
 ```
 
 Results in (note absence of `date-released`, `doi`, and `version`):
 
-``` {.sourceCode .bash}
+```json
 {
     "creators": [
         {
@@ -279,105 +207,4 @@ Results in (note absence of `date-released`, `doi`, and `version`):
     },
     "title": "cffconvert"
 }
-```
-
-For developers
-==============
-
-Install
--------
-
-``` {.sourceCode .bash}
-# get a copy of the cff-converter-python software
-git clone https://github.com/citation-file-format/cff-converter-python.git
-# change directory into cff-converter-python
-cd cff-converter-python
-# make a Python3.6 virtual environment named venv36
-python3 -m virtualenv -p /usr/bin/python3.6 venv36
-# activate the virtual environment
-source ./venv36/bin/activate
-# install any packages that cff-converter-python needs
-pip install -r requirements.txt
-# install any packages used for development such as for testing
-pip install -r requirements-dev.txt
-```
-
-Running tests
--------------
-
-``` {.sourceCode .bash}
-# (from the project root)
-
-# run unit tests
-python3 -m pytest test/1.1.0
-python3 -m pytest test/1.0.3
-python3 -m pytest test/unsupported
-
-# tests for consistent file naming
-bash test/test_consistent_file_naming.sh dir=test/
-bash test/test_consistent_file_naming.sh dir=livetest/
-
-# tests for consistent versioning
-python3 -m pytest test/test_consistent_versioning.py
-
-# run tests against live system (GitHub)
-python3 -m pytest livetest
-```
-
-For maintainers
-===============
-
-Making a release
-----------------
-
-``` {.sourceCode .bash}
-# make sure the release notes are up to date
-
-# run the live tests and unit tests, make sure they pass
-
-# remove old cffconvert from your system if you have it
-python3 -m pip uninstall cffconvert
-
-# this next command should now return empty
-which cffconvert
-
-# install the package to user space, using no caching (can bring to light dependency problems)
-python3 -m pip install --user --no-cache-dir --editable .
-# check if cffconvert works, e.g.
-cffconvert --version
-
-# git push everything, merge into master as appropriate
-
-# verify that everything has been pushed and merged by testing as follows
-cd $(mktemp -d)
-git clone https://github.com/citation-file-format/cff-converter-python.git
-cd cff-converter-python
-python3 -m virtualenv -p /usr/bin/python3.6 venv36
-source venv36/bin/activate
-pip install --no-cache-dir -r requirements.txt
-pip install --no-cache-dir -r requirements-dev.txt
-
-# run the tests according to section above
-
-# register with PyPI test instance https://test.pypi.org
-
-# remove these directories if you have them
-rm -rf dist
-rm -rf cffconvert-egg.info
-# make a source distribution:
-python setup.py sdist
-# install the 'upload to pypi/testpypi tool' aka twine
-pip install twine
-# upload the contents of the source distribtion we just made
-twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-
-# checking the package
-python3.6 -m pip -v install --user --no-cache-dir \
---index-url https://test.pypi.org/simple/ \
---extra-index-url https://pypi.org/simple cffconvert
-
-# check that the package works as it should when installed from pypitest
-
-# FINAL STEP: upload to PyPI
-twine upload dist/*
 ```

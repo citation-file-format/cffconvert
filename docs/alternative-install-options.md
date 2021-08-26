@@ -43,7 +43,9 @@ conda env create --file environment.yml
 conda activate env
 ```
 
-## No-install option: use `cffconvert` as a Google Cloud Function
+## No-install options
+
+### Using `cffconvert` as a Google Cloud Function
 
 `cffconvert` comes with [an interface](/cffconvert/gcloud.py) for
 running as a Google Cloud Function. We set it up here
@@ -69,4 +71,21 @@ from cffconvert.gcloud import cffconvert
 
 def main(request):
    return cffconvert(request)
+```
+
+### Docker
+
+Build the Docker container 
+
+```shell
+cd <project root>
+docker build --tag cffconvert:1.3.3 .
+docker build --tag cffconvert:latest .
+```
+
+Build the Docker container 
+
+```shell
+cd <where your CITATION.cff is>
+docker run --rm -ti -v ${PWD}:/app cffconvert
 ```

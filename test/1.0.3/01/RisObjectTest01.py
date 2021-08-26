@@ -1,8 +1,8 @@
-from cffconvert import RisObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.RisObject import Contract
+import ruamel.yaml as yaml
+from cffconvert import RisObject
 
 
 class RisObjectTest(Contract, unittest.TestCase):
@@ -56,4 +56,3 @@ class RisObjectTest(Contract, unittest.TestCase):
     def test_year(self):
         self.ro.add_year()
         self.assertEqual(self.ro.year, 'PY  - 2018\n')
-

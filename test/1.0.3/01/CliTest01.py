@@ -1,8 +1,8 @@
-import unittest
 import os
+import unittest
+import ruamel.yaml as yaml
 from click.testing import CliRunner
 from cffconvert import cli as cffconvert_cli
-import ruamel.yaml as yaml
 
 
 class CliTests(unittest.TestCase):
@@ -220,11 +220,3 @@ class CliTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-
-
-
-
-
-
-

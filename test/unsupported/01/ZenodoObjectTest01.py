@@ -1,8 +1,8 @@
-from cffconvert.ZenodoObject import ZenodoObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.ZenodoObject import Contract
+import ruamel.yaml as yaml
+from cffconvert.ZenodoObject import ZenodoObject
 
 
 class ZenodoObjectTest(Contract, unittest.TestCase):

@@ -1,8 +1,8 @@
-from cffconvert.SchemaorgObject import SchemaorgObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.SchemaorgObject import Contract
+import ruamel.yaml as yaml
+from cffconvert.SchemaorgObject import SchemaorgObject
 
 
 class SchemaorgObjectTest(Contract, unittest.TestCase):

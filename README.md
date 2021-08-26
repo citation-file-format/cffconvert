@@ -73,35 +73,50 @@ Options:
 
 ## Example usage
 
-### Retrieve `CITATION.cff` contents from a URL with `curl`, output as BibTeX
+### Convert local `CITATION.cff` to BibTeX
 
-```shell
-curl https://raw.githubusercontent.com/citation-file-format/cff-converter-python/44a8ad35d94dd50a8b5924d8d26402ae0d162189/CITATION.cff > CITATION.cff
+Assume you have a local `CITATION.cff` file with the following contents:
+
+```yaml
+authors:
+  - family-names: Spaaks
+    given-names: Jurriaan H.
+cff-version: "1.1.0"
+date-released: 2019-11-12
+doi: 10.5281/zenodo.1162057
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/citation-file-format/cff-converter-python"
+title: cffconvert
+version: "1.3.3"
+```
+These metadata can be converted to BibTeX using:
+
+```
 cffconvert -f bibtex
 ```
 
-Results in:
+Which results in:
 
 ```bibtex
 @misc{YourReferenceHere,
 author = {
-            Jurriaan H. Spaaks and
-            Tom Klaver
+            Jurriaan H. Spaaks
          },
-title  = {cff-converter-python},
-month  = {1},
-year   = {2018},
+title  = {cffconvert},
+month  = {11},
+year   = {2019},
 doi    = {10.5281/zenodo.1162057},
 url    = {https://github.com/citation-file-format/cff-converter-python}
 }
 ```
 
-### Let `cffconvert` retrieve CITATION.cff from URL, output as `codemeta.json`
+### Retrieve `CITATION.cff` contents from a URL, output as `codemeta.json`
+
+`cffconvert` can retrieve the contents of a CITATION.cff file, if the file is in a public repository on GitHub, as follows:
 
 ```shell
 cffconvert -f codemeta \
--u https://github.com/citation-file-format/cff-converter-python/tree/1.3.3 \
--of codemeta.json
+--url https://github.com/citation-file-format/cff-converter-python/tree/1.3.3 > codemeta.json
 ```
 
 Contents of file `codemeta.json`:

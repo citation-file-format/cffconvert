@@ -1,8 +1,8 @@
-from cffconvert.EndnoteObject import EndnoteObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.EndnoteObject import Contract
+import ruamel.yaml as yaml
+from cffconvert.EndnoteObject import EndnoteObject
 
 
 class EndnoteObjectTest(Contract, unittest.TestCase):
@@ -40,4 +40,3 @@ class EndnoteObjectTest(Contract, unittest.TestCase):
 
     def test_year(self):
         pass
-

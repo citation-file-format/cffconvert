@@ -1,8 +1,8 @@
-from cffconvert import CodemetaObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.CodemetaObject import Contract
+import ruamel.yaml as yaml
+from cffconvert import CodemetaObject
 
 
 class CodemetaObjectTest(Contract, unittest.TestCase):

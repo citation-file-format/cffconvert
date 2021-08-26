@@ -1,8 +1,8 @@
-from cffconvert import BibtexObject
-import unittest
 import os
-import ruamel.yaml as yaml
+import unittest
 from test.contracts.BibtexObject import Contract
+import ruamel.yaml as yaml
+from cffconvert import BibtexObject
 
 
 class BibtexObjectTest(Contract, unittest.TestCase):
@@ -48,4 +48,3 @@ class BibtexObjectTest(Contract, unittest.TestCase):
     def test_year(self):
         self.bo.add_year()
         self.assertEqual(self.bo.year, "year = {1999}")
-

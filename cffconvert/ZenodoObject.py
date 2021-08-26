@@ -3,7 +3,7 @@ import json
 
 class ZenodoObject:
 
-    supported_cff_versions = ['1.0.3', '1.1.0']
+    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
     supported_zenodo_props = ['creators', 'description', 'doi', 'keywords',
                               'license', 'publication_date', 'title', 'version']
 
@@ -83,11 +83,11 @@ class ZenodoObject:
 
     def add_doi(self):
         version = self.cff_object['cff-version']
-        if version in ['1.0.3', '1.1.0']:
+        if version in ['1.0.3', '1.1.0', '1.2.0']:
             if 'doi' in self.cff_object.keys():
                 self.doi = self.cff_object['doi']
 
-        if version in ['1.1.0']:
+        if version in ['1.1.0', '1.2.0']:
             if 'identifiers' in self.cff_object.keys():
                 identifiers = self.cff_object['identifiers']
                 for identifier in identifiers:
@@ -136,5 +136,3 @@ class ZenodoObject:
 
     def print(self):
         return self.__str__()
-
-

@@ -80,15 +80,16 @@ Assume you have a local `CITATION.cff` file with the following contents:
 ```yaml
 authors:
   - family-names: Spaaks
-    given-names: Jurriaan H.
-cff-version: "1.1.0"
+    given-names: "Jurriaan H."
+cff-version: 1.1.0
 date-released: 2019-11-12
 doi: 10.5281/zenodo.1162057
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/citation-file-format/cff-converter-python"
 title: cffconvert
-version: "1.3.3"
+version: 1.3.3
 ```
+
 These metadata can be converted to BibTeX using:
 
 ```

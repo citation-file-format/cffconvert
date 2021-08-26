@@ -31,7 +31,7 @@ Besides local files, `cffconvert` can fetch `CITATION.cff` file contents from th
 ## Installing `cffconvert` in user space
 
 ```shell
-pip3 install --user cffconvert
+python3 -m pip install --user cffconvert
 ```
 Ensure that the user space directory `~/.local/bin/` is on the `PATH`.
 

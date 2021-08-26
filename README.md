@@ -113,7 +113,7 @@ url    = {https://github.com/citation-file-format/cff-converter-python}
 
 ### Retrieve `CITATION.cff` contents from a URL, output as `codemeta.json`
 
-`cffconvert` can retrieve the contents of a CITATION.cff file, if the file is in a public repository on GitHub, as follows:
+`cffconvert` can retrieve the contents of a `CITATION.cff` file, if the file is in a public repository on GitHub, as follows:
 
 ```shell
 cffconvert -f codemeta \
@@ -184,10 +184,8 @@ Contents of file `codemeta.json`:
 ```
 ### Local `CITATION.cff` to Zenodo metadata file
 
-Convert the contents of a local file `CITATION.cff` into the format used
-by `.zenodo.json` files (see [Zenodo's API
-docs](http://developers.zenodo.org/#representation)), while ignoring any
-keys that are likely out of date:
+Convert the contents of a local file `CITATION.cff` into the format used by `.zenodo.json` files (see [Zenodo's API
+docs](http://developers.zenodo.org/#representation)), while ignoring any keys that are likely out of date:
 
 ```shell
 cffconvert -f zenodo --ignore-suspect-keys

@@ -103,53 +103,61 @@ version: 1.3.3
 
 ### Converting to BibTeX
 
-```
+```shell
 cffconvert -f bibtex
 ```
 
+(see [result](docs/example-result-bibtex.md))
+
 ### Converting to CodeMeta
 
-```
+```shell
 cffconvert -f codemeta
 ```
 
+(see [result](docs/example-result-codemeta.md))
+
 ### Converting to EndNote
 
-```
+```shell
 cffconvert -f endnote
 ```
 
+(see [result](docs/example-result-endnote.md))
+
 ### Converting to RIS
 
-```
+```shell
 cffconvert -f ris
 ```
+
+(see [result](docs/example-result-ris.md))
 
 ### Converting to schema.org JSON
 
 (schema.org is used in websites to improve ranking by search engines)
 
-```
+```shell
 cffconvert -f schema.org
 ```
+
+(see [result](docs/example-result-schema-org.md))
 
 ### Converting to Zenodo JSON
 
 Convert the contents of a local file `CITATION.cff` into the format used by `.zenodo.json` files (see [Zenodo's API
 docs](http://developers.zenodo.org/#representation)):
 
-```
+```shell
 cffconvert -f zenodo
 ```
 
+(see [result](docs/example-result-zenodo.md))
+
 ### Converting to APA-like
 
-```
+```shell
 cffconvert -f apalike
 ```
 
-Generates the following plaintext:
-
-_Spaaks J.H. (2019). cffconvert (version 1.3.3). DOI: http://doi.org/10.5281/zenodo.1162057 URL: https://github.com/citation-file-format/cff-converter-python_
-
-
+(see [result](docs/example-result-apalike.md))

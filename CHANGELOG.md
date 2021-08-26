@@ -1,6 +1,6 @@
 # Unreleased
 
-- added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks @wleoncio)
+- added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
 - switched to static config
 - dependencies are now in `setup.cfg` as opposed to `requirements[-dev].txt`
 

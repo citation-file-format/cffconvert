@@ -67,19 +67,21 @@ Shows:
 Usage: cffconvert [OPTIONS]
 
 Options:
-  -if, --infile TEXT          Path to the CITATION.cff input file. Use '--infile -' to read from STDIN.
-  -of, --outfile TEXT         Path to the output file.
-  -f, --outputformat TEXT     Output format: bibtex|cff|codemeta|endnote|ris|schema.org|zenodo
-  -u, --url TEXT              URL of the repo containing the CITATION.cff (currently only github.com is supported; may
-                              include branch name, commit sha, tag name). For example: 'https://github.com/citation-
-                              file-format/cff-converter-python' or 'https://github.com/citation-file-format/cff-
-                              converter-python/tree/master'
-  --validate                  Validate the CITATION.cff found at the URL or supplied through '--infile'
-  -ig, --ignore-suspect-keys  If True, ignore any keys from CITATION.cff that are likely out of date, such as
-                              'commit', 'date-released', 'doi', and 'version'.
-  --verbose                   Provide feedback on what was entered.
-  --version                   Print version and exit.
-  --help                      Show this message and exit.
+  -i TEXT                         Path to the CITATION.cff input file. Use '-i -' to read from STDIN.
+  -o TEXT                         Path to the output file.
+  -f [bibtex|cff|codemeta|endnote|ris|schema.org|zenodo|apalike]
+                                  Output format.
+  -u, --url TEXT                  URL of the repo containing the CITATION.cff (currently only github.com is supported;
+                                  may include branch name, commit sha, tag name). For example:
+                                  'https://github.com/citation-file-format/cff-converter-python' or
+                                  'https://github.com/citation-file-format/cff-converter-python/tree/main'
+  -h, --help                      Show help and exit.
+  --show-trace                    Show error trace.
+  --validate                      Validate the CITATION.cff found at the URL or supplied through '-i'.
+  --ignore-suspect-keys           Ignore any keys from CITATION.cff that are likely out of date, such as 'commit',
+                                  'date-released', 'doi', and 'version'.
+  --verbose                       Provide feedback on what was entered.
+  --version                       Print version and exit.
 ```
 
 ## Example usage

@@ -1,5 +1,5 @@
-import click
 import sys
+import click
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
 

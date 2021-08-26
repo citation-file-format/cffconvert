@@ -46,54 +46,52 @@ python3 -m pytest livetest
 ### Making a release
 
 
-```shell
-# make sure the release notes are up to date
+1. make sure the release notes are up to date
+1. run the live tests and unit tests, make sure they pass
+1. 
 
-# run the live tests and unit tests, make sure they pass
+    ```shell
+    # remove old cffconvert from your system if you have it
+    python3 -m pip uninstall cffconvert
 
-# remove old cffconvert from your system if you have it
-python3 -m pip uninstall cffconvert
+    # this next command should now return empty
+    which cffconvert
 
-# this next command should now return empty
-which cffconvert
+    # install the package to user space, using no caching (can bring to light dependency problems)
+    python3 -m pip install --user --no-cache-dir --editable .
+    # check if cffconvert works, e.g.
+    cffconvert --version
 
-# install the package to user space, using no caching (can bring to light dependency problems)
-python3 -m pip install --user --no-cache-dir --editable .
-# check if cffconvert works, e.g.
-cffconvert --version
+    # git push everything, merge into main as appropriate
 
-# git push everything, merge into master as appropriate
+    # verify that everything has been pushed and merged by testing as follows
+    cd $(mktemp -d --tmpdir cffconvert-release.XXXXXX)
+    git clone https://github.com/citation-file-format/cff-converter-python.git .
+    python3 -m venv env
+    source env/bin/activate
+    pip install --no-cache-dir .[dev]
 
-# verify that everything has been pushed and merged by testing as follows
-cd $(mktemp -d)
-git clone https://github.com/citation-file-format/cff-converter-python.git
-cd cff-converter-python
-python3 -m virtualenv -p /usr/bin/python3.6 venv36
-source venv36/bin/activate
-pip install --no-cache-dir -r requirements.txt
-pip install --no-cache-dir -r requirements-dev.txt
+    # run the tests according to section above
 
-# run the tests according to section above
+    # register with PyPI test instance https://test.pypi.org
 
-# register with PyPI test instance https://test.pypi.org
+    # remove these directories if you have them
+    rm -rf dist
+    rm -rf cffconvert-egg.info
+    # make a source distribution:
+    python setup.py sdist
+    # install the 'upload to pypi/testpypi tool' aka twine
+    pip install twine
+    # upload the contents of the source distribtion we just made
+    twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
-# remove these directories if you have them
-rm -rf dist
-rm -rf cffconvert-egg.info
-# make a source distribution:
-python setup.py sdist
-# install the 'upload to pypi/testpypi tool' aka twine
-pip install twine
-# upload the contents of the source distribtion we just made
-twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+    # checking the package
+    python3 -m pip -v install --user --no-cache-dir \
+    --index-url https://test.pypi.org/simple/ \
+    --extra-index-url https://pypi.org/simple cffconvert
 
-# checking the package
-python3.6 -m pip -v install --user --no-cache-dir \
---index-url https://test.pypi.org/simple/ \
---extra-index-url https://pypi.org/simple cffconvert
+    # check that the package works as it should when installed from pypitest
 
-# check that the package works as it should when installed from pypitest
-
-# FINAL STEP: upload to PyPI
-twine upload dist/*
-```
+    # FINAL STEP: upload to PyPI
+    twine upload dist/*
+    ```

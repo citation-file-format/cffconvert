@@ -37,7 +37,9 @@ Besides local files, `cffconvert` can fetch `CITATION.cff` file contents from th
 
 `cffconvert` does not aim to support the full Citation File Format specification.
 
-## Installing `cffconvert` in user space
+## Installing
+
+To install in user space, 
 
 ```shell
 python3 -m pip install --user cffconvert

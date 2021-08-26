@@ -1,19 +1,22 @@
-1.3.3
-=====
+# Unreleased
+
+- added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks @wleoncio)
+- switched to static config
+- dependencies are now in `setup.cfg` as opposed to `requirements[-dev].txt`
+
+# 1.3.3
 
 -   With recent changes to the release process, the schema will be in a
     different places than before. This release fixes
     <https://github.com/citation-file-format/cff-converter-python/issues/119>).
 
-1.3.2
-=====
+# 1.3.2
 
 -   the ruamel.yaml dependency was not specified tightly enough,
     `requirements.txt` has been updated as have the notes for
     maintainers.
 
-1.3.1
-=====
+# 1.3.1
 
 -   'cff-version: 1.0.3' is now interpreted as 1.0.3-1 (the latest
     schema version that implements the spec 1.0.3). This will fix some
@@ -46,31 +49,26 @@
     -   `LGPL-3.0-only`
     -   `LGPL-3.0-or-later`
 
-1.3.0
-=====
+# 1.3.0
 
 -   added schema.org converter method
 
-1.2.2
-=====
+# 1.2.2
 
 -   added documentation for the Google Cloud Function interface
 
-1.2.1
-=====
+# 1.2.1
 
 -   setup.py no longer includes test dependencies as install
     dependencies
 
-1.2.0
-=====
+# 1.2.0
 
 -   corrected an error where cffconvert could not raise an error during
     validation
     (<https://github.com/citation-file-format/cff-converter-python/issues/94>).
 
-1.1.0
-=====
+# 1.1.0
 
 -   replaced pykwalifire with its parent pykwalify
 -   now works for python 3.7 (refs \#80)
@@ -81,32 +79,27 @@
     dates (the new validator does not find that offensive, hence I had
     to fix it myself)
 
-1.0.4
-=====
+# 1.0.4
 
 -   replaced PyYAML dependency with ruamel.yaml
 
-1.0.3
-=====
+# 1.0.3
 
 -   security bugfix by updating requests from 2.18.4 to 2.20.0
 
-1.0.2
-=====
+# 1.0.2
 
 -   fixed bug
     <https://github.com/citation-file-format/cff-converter-python/issues/82>
     (warnings on stdout)
 
-1.0.1
-=====
+# 1.0.1
 
 -   fixed bug
     <https://github.com/citation-file-format/cff-converter-python/issues/73>
     (orcid format in zenodo export)
 
-1.0.0
-=====
+# 1.0.0
 
 -   first stable release
 -   solved bug
@@ -114,13 +107,11 @@
     (cffconvert creates local file `data.yaml` and `schema.yaml` on
     validate)
 
-0.0.5
-=====
+# 0.0.5
 
 -   Minor changes
 
-0.0.4
-=====
+# 0.0.4
 
 -   added optional validation of CITATION.cff files using pykwalifire
     (`--validate`)

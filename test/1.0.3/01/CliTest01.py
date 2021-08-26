@@ -32,7 +32,7 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             result = runner.invoke(cffconvert_cli, ["--version"])
         self.assertTrue(result.exit_code == 0)
-        self.assertEqual(result.output, "1.4.0-alpha0\n")
+        self.assertEqual(result.output, "2.0.0-alpha.0\n")
 
     def test_printing_on_stdout_as_bibtex(self):
         cffstr = CliTests.read_sibling_file("CITATION.cff")
@@ -41,7 +41,7 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "bibtex"])
+            result = runner.invoke(cffconvert_cli, ["-f", "bibtex"])
         self.assertEqual(result.exit_code, 0)
         actual = result.output
         self.assertEqual(expected, actual)
@@ -53,7 +53,7 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "cff"])
+            result = runner.invoke(cffconvert_cli, ["-f", "cff"])
         self.assertEqual(result.exit_code, 0)
         actual = yaml.safe_load(result.output)
         self.assertDictEqual(expected, actual)
@@ -65,7 +65,7 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "codemeta"])
+            result = runner.invoke(cffconvert_cli, ["-f", "codemeta"])
         self.assertEqual(result.exit_code, 0)
         actual = result.output
         self.assertEqual(expected, actual)
@@ -77,7 +77,7 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "endnote"])
+            result = runner.invoke(cffconvert_cli, ["-f", "endnote"])
         self.assertEqual(result.exit_code, 0)
         actual = result.output
         self.assertEqual(expected, actual)
@@ -89,7 +89,7 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "ris"])
+            result = runner.invoke(cffconvert_cli, ["-f", "ris"])
         self.assertEqual(result.exit_code, 0)
         actual = result.output
         self.assertEqual(expected, actual)
@@ -101,7 +101,7 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "schema.org"])
+            result = runner.invoke(cffconvert_cli, ["-f", "schema.org"])
         self.assertEqual(result.exit_code, 0)
         actual = result.output
         self.assertEqual(expected, actual)
@@ -114,10 +114,12 @@ class CliTests(unittest.TestCase):
                            "{8} = {9}\n" +
                            "{10} = {11}\n" +
                            "{12} = {13}\n" +
-                           "{14} = {15}\n").format("infile", None,
+                           "{14} = {15}\n" +
+                           "{16} = {17}\n").format("infile", None,
                                                    "outfile", None,
                                                    "outputformat", None,
                                                    "url", None,
+                                                   "show_trace", False,
                                                    "validate", False,
                                                    "ignore_suspect_keys", False,
                                                    "verbose", True,
@@ -128,16 +130,15 @@ class CliTests(unittest.TestCase):
         self.assertTrue(result.exit_code == -1)
         self.assertEqual(result.output, expected_output)
 
-    def test_raising_valueerror_on_unsupported_format(self):
+    def test_raising_error_on_unsupported_format(self):
         cffstr = CliTests.read_sibling_file("CITATION.cff")
         runner = CliRunner()
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "unsupported_97491"])
-        self.assertEqual(result.exit_code, -1)
-        self.assertTrue(isinstance(result.exception, ValueError))
-        self.assertTrue(str(result.exception).startswith('\'--outputformat\' should be one of ['))
+            result = runner.invoke(cffconvert_cli, ["-f", "unsupported_97491"])
+        self.assertEqual(result.exit_code, 2)
+        self.assertTrue("invalid choice" in str(result.output))
 
     def test_without_arguments(self):
         runner = CliRunner()
@@ -154,8 +155,8 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "bibtex",
-                                                         "--outfile", "bibtex.bib"])
+            result = runner.invoke(cffconvert_cli, ["-f", "bibtex",
+                                                    "-o", "bibtex.bib"])
             with open("bibtex.bib", "r") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
@@ -168,8 +169,8 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "codemeta",
-                                                         "--outfile", "codemeta.json"])
+            result = runner.invoke(cffconvert_cli, ["-f", "codemeta",
+                                                    "-o", "codemeta.json"])
             with open("codemeta.json", "r") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
@@ -182,8 +183,8 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "endnote",
-                                                         "--outfile", "endnote.enw"])
+            result = runner.invoke(cffconvert_cli, ["-f", "endnote",
+                                                    "-o", "endnote.enw"])
             with open("endnote.enw", "r") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
@@ -196,8 +197,8 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "ris",
-                                                         "--outfile", "ris.txt"])
+            result = runner.invoke(cffconvert_cli, ["-f", "ris",
+                                                    "-o", "ris.txt"])
             with open("ris.txt", "r") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)
@@ -210,8 +211,8 @@ class CliTests(unittest.TestCase):
         with runner.isolated_filesystem():
             with open("CITATION.cff", "w") as f:
                 f.write(cffstr)
-            result = runner.invoke(cffconvert_cli, ["--outputformat", "schema.org",
-                                                         "--outfile", "schemaorg.json"])
+            result = runner.invoke(cffconvert_cli, ["-f", "schema.org",
+                                                    "-o", "schemaorg.json"])
             with open("schemaorg.json", "r") as f:
                 actual = f.read()
         self.assertEqual(result.exit_code, 0)

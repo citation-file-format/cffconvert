@@ -51,7 +51,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     if infile is None and url is None:
         infile = "CITATION.cff"
     elif infile is not None and url is not None:
-        raise ValueError("You need to specify either '--infile' or 'url' but not both.")
+        raise ValueError("You need to specify either an input file or a URL, but not both.")
 
     if infile is None:
         cffstr = None

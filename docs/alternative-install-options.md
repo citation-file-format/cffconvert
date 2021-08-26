@@ -23,11 +23,24 @@ sudo -H python3 -m pip install cffconvert
 
 ## Install with conda
 
-See <https://stackoverflow.com/questions/41060382/using-pip-to-install-packages-to-anaconda-environment>
+Make an environment definition file `environment.yml` with the following contents:
+
+```yaml
+name: env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - pip:
+    - cffconvert
+```
+
+Then run:
 
 ```shell
-conda install pip
-pip install cffconvert
+conda env create --file environment.yml
+conda activate env
 ```
 
 ## No-install option: use `cffconvert` as a Google Cloud Function

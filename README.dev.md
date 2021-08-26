@@ -26,6 +26,7 @@ pip install --editable .[dev]
 # (from the project root)
 
 # run unit tests
+python3 -m pytest test/1.2.0
 python3 -m pytest test/1.1.0
 python3 -m pytest test/1.0.3
 python3 -m pytest test/unsupported

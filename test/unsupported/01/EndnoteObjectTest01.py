@@ -9,7 +9,7 @@ class EndnoteObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             cffstr = f.read()
             cff_object = yaml.safe_load(cffstr)
             self.eo = EndnoteObject(cff_object, initialize_empty=True)

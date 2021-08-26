@@ -9,7 +9,7 @@ class BibtexObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             cffstr = f.read()
             cff_object = yaml.safe_load(cffstr)
             self.bo = BibtexObject(cff_object, initialize_empty=True)
@@ -33,7 +33,7 @@ class BibtexObjectTest(Contract, unittest.TestCase):
     def test_print(self):
         actual_bibtex = self.bo.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             expected_bibtex = f.read()
         self.assertEqual(actual_bibtex, expected_bibtex)
 

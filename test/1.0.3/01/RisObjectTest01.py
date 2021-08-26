@@ -9,7 +9,7 @@ class RisObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             cffstr = f.read()
             cff_object = yaml.safe_load(cffstr)
             self.ro = RisObject(cff_object, initialize_empty=True)
@@ -41,7 +41,7 @@ class RisObjectTest(Contract, unittest.TestCase):
     def test_print(self):
         actual_ris = self.ro.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "ris.txt")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             expected_ris = f.read()
         self.assertEqual(actual_ris, expected_ris)
 

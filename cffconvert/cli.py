@@ -58,7 +58,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     elif infile == '-':
         cffstr = sys.stdin.read()
     else:
-        with open(infile, "r") as f:
+        with open(infile, "r", encoding="utf8") as f:
             cffstr = f.read()
 
     # TODO currently there is no way to provide values for these 3 arguments from the command line
@@ -98,7 +98,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     if outfile is None:
         print(outstr, end='')
     else:
-        with open(outfile, "w") as f:
+        with open(outfile, "w", encoding="utf8") as f:
             f.write(outstr)
 
 if __name__ == "__main__":

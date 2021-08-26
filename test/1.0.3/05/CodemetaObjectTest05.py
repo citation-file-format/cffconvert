@@ -9,7 +9,7 @@ class CodemetaObjectTest(Contract, unittest.TestCase):
 
     def setUp(self):
         fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             cffstr = f.read()
             cff_object = yaml.safe_load(cffstr)
             self.co = CodemetaObject(cff_object, initialize_empty=True)
@@ -83,6 +83,6 @@ class CodemetaObjectTest(Contract, unittest.TestCase):
     def test_print(self):
         actual_codemeta = self.co.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "codemeta.json")
-        with open(fixture, "r") as f:
+        with open(fixture, "r", encoding="utf8") as f:
             expected_codemeta = f.read()
         self.assertEqual(actual_codemeta, expected_codemeta)

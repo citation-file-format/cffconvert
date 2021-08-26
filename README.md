@@ -8,15 +8,16 @@
 [![Research Software Directory](https://img.shields.io/badge/rsd-cffconvert-00a3e3.svg)](https://www.research-software.nl/software/cff-converter-python)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 
-Validate and convert [CITATION.cff](https://github.com/citation-file-format/citation-file-format) files. Supported output formats:
+Validate and convert [`CITATION.cff`](https://github.com/citation-file-format/citation-file-format) files. Supported output formats:
 
 1.  BibTeX
-2.  EndNote
-3.  codemeta
-4.  plain JSON
-5.  schema.org
-6.  RIS
-7.  Zenodo JSON
+1.  CodeMeta
+1.  EndNote
+1.  JSON
+1.  plaintext APA
+1.  RIS
+1.  schema.org JSON
+1.  Zenodo JSON
 
 Besides local files, `cffconvert` can fetch `CITATION.cff` file contents from the following GitHub URLs:
 

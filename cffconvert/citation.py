@@ -1,7 +1,6 @@
 import os
 import re
 import tempfile
-from datetime import date
 from datetime import datetime
 import requests
 import ruamel.yaml as yaml

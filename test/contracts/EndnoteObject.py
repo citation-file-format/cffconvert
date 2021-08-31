@@ -5,33 +5,33 @@ from abc import abstractmethod
 class Contract(ABC):
 
     @abstractmethod
-    def test_check_cff_object(self):
+    def test_check_cff_object(self, fixture):
         pass
 
     @abstractmethod
-    def test_author(self):
+    def test_author(self, fixture):
         pass
 
     @abstractmethod
-    def test_doi(self):
+    def test_doi(self, fixture):
         pass
 
     @abstractmethod
-    def test_keyword(self):
+    def test_keyword(self, fixture):
         pass
 
     @abstractmethod
-    def test_name(self):
+    def test_name(self, fixture):
         pass
 
     @abstractmethod
-    def test_print(self):
+    def test_print(self, fixture):
         pass
 
     @abstractmethod
-    def test_url(self):
+    def test_url(self, fixture):
         pass
 
     @abstractmethod
-    def test_year(self):
+    def test_year(self, fixture):
         pass

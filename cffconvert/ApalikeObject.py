@@ -87,8 +87,15 @@ class ApalikeObject:
         return self
 
     def add_year(self):
-        if 'date-released' in self.cff_object.keys():
-            self.year = ' (' + str(self.cff_object['date-released'].year) + '). '
+        version = self.cff_object['cff-version']
+        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.year = ' (' + str(self.cff_object['date-released'].year) + '). '
+        elif version in ['1.2.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.year = ' (' + self.cff_object['date-released'][:4] + '). '
+        else:
+            raise ValueError("Unsupported schema version")
         return self
 
     def add_title(self):

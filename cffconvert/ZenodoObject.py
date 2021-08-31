@@ -108,9 +108,12 @@ class ZenodoObject:
 
     def add_publication_date(self):
         if 'date-released' in self.cff_object.keys():
-            self.publication_date = '{:d}-{:02d}-{:02d}'.format(self.cff_object['date-released'].year,
-                                                                self.cff_object['date-released'].month,
-                                                                self.cff_object['date-released'].day)
+            if self.cff_object['cff-version'] in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
+                self.publication_date = '{:d}-{:02d}-{:02d}'.format(self.cff_object['date-released'].year,
+                                                                    self.cff_object['date-released'].month,
+                                                                    self.cff_object['date-released'].day)
+            elif self.cff_object['cff-version'] in ['1.2.0']:
+                self.publication_date = self.cff_object['date-released']
         return self
 
     def add_title(self):

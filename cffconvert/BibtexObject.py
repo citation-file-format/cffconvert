@@ -72,8 +72,16 @@ class BibtexObject:
         return self
 
     def add_month(self):
-        if 'date-released' in self.cff_object.keys():
-            self.month = 'month = {' + str(self.cff_object['date-released'].month) + '}'
+        version = self.cff_object['cff-version']
+        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.month = 'month = {' + str(self.cff_object['date-released'].month) + '}'
+        elif version in ['1.2.0']:
+            if 'date-released' in self.cff_object.keys():
+                month = self.cff_object['date-released'].split('-')[1].lstrip('0')
+                self.month = 'month = {' + month + '}'
+        else:
+            raise ValueError("Unsupported schema version")
         return self
 
     def add_title(self):
@@ -87,8 +95,15 @@ class BibtexObject:
         return self
 
     def add_year(self):
-        if 'date-released' in self.cff_object.keys():
-            self.year = 'year = {' + str(self.cff_object['date-released'].year) + '}'
+        version = self.cff_object['cff-version']
+        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.year = 'year = {' + str(self.cff_object['date-released'].year) + '}'
+        elif version in ['1.2.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.year = 'year = {' + self.cff_object['date-released'][:4] + '}'
+        else:
+            raise ValueError("Unsupported schema version")
         return self
 
     def check_cff_object(self):

@@ -1,7 +1,14 @@
 import sys
 import click
-from cffconvert import Citation
-from cffconvert import version as cffconvert_version
+from cffconvert.citation import Citation
+from cffconvert.BibtexObject import BibtexObject
+from cffconvert.CodemetaObject import CodemetaObject
+from cffconvert.EndnoteObject import EndnoteObject
+from cffconvert.RisObject import RisObject
+from cffconvert.SchemaorgObject import SchemaorgObject
+from cffconvert.ZenodoObject import ZenodoObject
+from cffconvert.ApalikeObject import ApalikeObject
+from cffconvert.version import __version__ as cffconvert_version
 
 
 format_choices = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo", "apalike"]
@@ -34,7 +41,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
         sys.tracebacklimit = 0
 
     if version is True:
-        print("{0}".format(cffconvert_version.__version__))
+        print("{0}".format(cffconvert_version))
         return
 
     if verbose is True:
@@ -66,40 +73,36 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     override = None
     suspect_keys = None
 
-    citation = Citation(url=url, cffstr=cffstr, ignore_suspect_keys=ignore_suspect_keys, override=override,
-                        remove=remove, suspect_keys=suspect_keys, validate=validate)
+    # url, ignore_suspect_keys=ignore_suspect_keys, override=override, remove=remove,
+    # suspect_keys=suspect_keys, validate=validate
 
-    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo", "apalike"]
-    if validate:
-        # when validating, there's no need to convert to anything yet
-        pass
-    elif outputformat not in acceptable_output_formats:
-        raise ValueError("'--outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats)))
+    citation = Citation(cffstr=cffstr)
 
     if outputformat is None:
         return
     elif outputformat == "bibtex":
-        outstr = citation.as_bibtex()
+        outstr = BibtexObject(citation.cffobj).print()
     elif outputformat == "cff":
-        outstr = citation.as_cff()
+        outstr = citation.cffstr
     elif outputformat == "codemeta":
-        outstr = citation.as_codemeta()
+        outstr = CodemetaObject(citation.cffobj).print()
     elif outputformat == "endnote":
-        outstr = citation.as_enw()
+        outstr = EndnoteObject(citation.cffobj).print()
     elif outputformat == "ris":
-        outstr = citation.as_ris()
+        outstr = RisObject(citation.cffobj).print()
     elif outputformat == "schema.org":
-        outstr = citation.as_schema_dot_org()
+        outstr = SchemaorgObject(citation.cffobj).print()
     elif outputformat == "zenodo":
-        outstr = citation.as_zenodojson()
+        outstr = ZenodoObject(citation.cffobj).print()
     elif outputformat == "apalike":
-        outstr = citation.as_apalike()
+        outstr = ApalikeObject(citation.cffobj).print()
 
     if outfile is None:
         print(outstr, end='')
     else:
         with open(outfile, "w", encoding="utf8") as f:
             f.write(outstr)
+
 
 if __name__ == "__main__":
     cli()

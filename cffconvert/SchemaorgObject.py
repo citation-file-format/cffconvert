@@ -99,10 +99,18 @@ class SchemaorgObject:
         return self
 
     def add_date_published(self):
-        if 'date-released' in self.cff_object.keys():
-            self.date_published = "{:d}-{:02d}-{:02d}".format(self.cff_object['date-released'].year,
-                                                              self.cff_object['date-released'].month,
-                                                              self.cff_object['date-released'].day)
+        version = self.cff_object['cff-version']
+        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.date_published = "{:d}-{:02d}-{:02d}".format(self.cff_object['date-released'].year,
+                                                                  self.cff_object['date-released'].month,
+                                                                  self.cff_object['date-released'].day)
+        elif version in ['1.2.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.date_published = self.cff_object['date-released']
+        else:
+            raise ValueError("Unsupported version")
+
         return self
 
     def add_description(self):

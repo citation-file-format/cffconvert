@@ -70,10 +70,17 @@ class RisObject:
         return self
 
     def add_date(self):
-        if 'date-released' in self.cff_object.keys():
-            self.date = "DA  - {:d}-{:02d}-{:02d}\n".format(self.cff_object['date-released'].year,
-                                                            self.cff_object['date-released'].month,
-                                                            self.cff_object['date-released'].day)
+        version = self.cff_object['cff-version']
+        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.date = "DA  - {:d}-{:02d}-{:02d}\n".format(self.cff_object['date-released'].year,
+                                                                self.cff_object['date-released'].month,
+                                                                self.cff_object['date-released'].day)
+        elif version in ['1.2.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.date = 'DA  - {}\n'.format(self.cff_object['date-released'])
+        else:
+            raise ValueError("Unsupported schema version")
         return self
 
     def add_doi(self):
@@ -108,8 +115,15 @@ class RisObject:
         return self
 
     def add_year(self):
-        if 'date-released' in self.cff_object.keys():
-            self.year = 'PY  - {}\n'.format(self.cff_object['date-released'].year)
+        version = self.cff_object['cff-version']
+        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.year = 'PY  - {}\n'.format(self.cff_object['date-released'].year)
+        elif version in ['1.2.0']:
+            if 'date-released' in self.cff_object.keys():
+                self.year = 'PY  - {}\n'.format(self.cff_object['date-released'][:4])
+        else:
+            raise ValueError("Unsupported schema version")
         return self
 
     def check_cff_object(self):

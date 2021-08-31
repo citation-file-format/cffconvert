@@ -76,7 +76,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     # url, ignore_suspect_keys=ignore_suspect_keys, override=override, remove=remove,
     # suspect_keys=suspect_keys, validate=validate
 
-    citation = Citation(cffstr=cffstr)
+    citation = Citation(cffstr)
 
     if outputformat is None:
         return

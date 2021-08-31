@@ -12,6 +12,8 @@ from cffconvert.version import __version__ as cffconvert_version
 
 
 format_choices = ["bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo", "apalike"]
+
+
 @click.command(context_settings=dict(max_content_width=120))
 @click.option("-i", "infile", type=str, default=None, help="Path to the CITATION.cff input file. Use '-i -' to read from STDIN.")
 @click.option("-o", "outfile", type=str, default=None,help="Path to the output file.")
@@ -77,6 +79,9 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     # suspect_keys=suspect_keys, validate=validate
 
     citation = Citation(cffstr)
+
+    if validate is True:
+        citation.validate()
 
     if outputformat is None:
         return

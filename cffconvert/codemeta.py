@@ -1,5 +1,5 @@
 import json
-from cffconvert.SchemaorgObject import SchemaorgObject
+from cffconvert.schemaorg import SchemaorgObject
 
 
 class CodemetaObject(SchemaorgObject):

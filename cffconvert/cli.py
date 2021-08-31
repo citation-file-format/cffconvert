@@ -1,13 +1,13 @@
 import sys
 import click
 from cffconvert.citation import Citation
-from cffconvert.BibtexObject import BibtexObject
-from cffconvert.CodemetaObject import CodemetaObject
-from cffconvert.EndnoteObject import EndnoteObject
-from cffconvert.RisObject import RisObject
-from cffconvert.SchemaorgObject import SchemaorgObject
-from cffconvert.ZenodoObject import ZenodoObject
-from cffconvert.ApalikeObject import ApalikeObject
+from cffconvert.bibtex import BibtexObject
+from cffconvert.codemeta import CodemetaObject
+from cffconvert.endnote import EndnoteObject
+from cffconvert.ris import RisObject
+from cffconvert.schemaorg import SchemaorgObject
+from cffconvert.zenodo import ZenodoObject
+from cffconvert.apalike import ApalikeObject
 from cffconvert.version import __version__ as cffconvert_version
 
 

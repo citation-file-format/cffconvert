@@ -1,7 +1,6 @@
 import os
 import re
 import tempfile
-from datetime import date
 from datetime import datetime
 import requests
 import ruamel.yaml as yaml
@@ -123,7 +122,8 @@ class Citation:
                     break
 
         if has_no_cff_version_key:
-            raise ValueError("Unable to identify the schema version. Does the CFF include the 'cff-version' key?")
+            raise ValueError("Unable to identify the schema version. Does your CITATION.cff file include " +
+                             "the 'cff-version' key?")
         if semver is None:
             raise ValueError("Unrecognized value for key \"cff-version\".")
 

@@ -51,6 +51,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
         click.echo("{0} = {1}".format("outfile", outfile))
         click.echo("{0} = {1}".format("outputformat", outputformat))
         click.echo("{0} = {1}".format("url", url))
+        click.echo("{0} = {1}".format("show_help", show_help))
         click.echo("{0} = {1}".format("show_trace", show_trace))
         click.echo("{0} = {1}".format("validate", validate))
         click.echo("{0} = {1}".format("ignore_suspect_keys", ignore_suspect_keys))

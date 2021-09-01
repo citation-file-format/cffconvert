@@ -26,7 +26,7 @@ class EndnoteObjectTest(Contract):
 
     def test_doi(self, endnote_object):
         endnote_object.add_doi()
-        assert endnote_object.doi, '%R 10.5281/zenodo.1162057\n'
+        assert endnote_object.doi == '%R 10.5281/zenodo.1162057\n'
 
     def test_keyword(self, endnote_object):
         endnote_object.add_keyword()

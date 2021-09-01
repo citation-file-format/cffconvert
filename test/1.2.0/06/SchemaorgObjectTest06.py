@@ -47,7 +47,7 @@ class SchemaorgObjectTest(Contract):
 
     def test_date_published(self, schemaorg_object):
         schemaorg_object.add_date_published()
-        assert schemaorg_object.date_published, '2018-01-16'
+        assert schemaorg_object.date_published == '2018-01-16'
 
     def test_description(self, schemaorg_object):
         schemaorg_object.add_description()

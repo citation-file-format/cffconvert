@@ -13,7 +13,7 @@ def test_local_cff_file_does_not_exist():
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, ["-f", "bibtex"])
-    assert result.exit_code == -1
+    assert result.exit_code == 1
     assert result.exception.strerror.startswith("No such file or directory")
 
 
@@ -110,27 +110,20 @@ def test_printing_on_stdout_as_schemaorg():
 
 
 def test_printing_when_verbose():
-    expected_output = ("{0} = {1}\n" +
-                       "{2} = {3}\n" +
-                       "{4} = {5}\n" +
-                       "{6} = {7}\n" +
-                       "{8} = {9}\n" +
-                       "{10} = {11}\n" +
-                       "{12} = {13}\n" +
-                       "{14} = {15}\n" +
-                       "{16} = {17}\n").format("infile", None,
-                                               "outfile", None,
-                                               "outputformat", None,
-                                               "url", None,
-                                               "show_trace", False,
-                                               "validate", False,
-                                               "ignore_suspect_keys", False,
-                                               "verbose", True,
-                                               "version", False)
+    expected_output = ("infile = None\n" +
+                       "outfile = None\n" +
+                       "outputformat = None\n" +
+                       "url = None\n" +
+                       "show_help = False\n" +
+                       "show_trace = False\n" +
+                       "validate = False\n" +
+                       "ignore_suspect_keys = False\n" +
+                       "verbose = True\n" +
+                       "version = False\n")
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, ["--verbose"])
-    assert result.exit_code == -1
+    assert result.exit_code == 1
     assert result.output == expected_output
 
 
@@ -142,14 +135,14 @@ def test_raising_error_on_unsupported_format():
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "unsupported_97491"])
     assert result.exit_code == 2
-    assert "invalid choice" in str(result.output)
+    assert "Error: Invalid value for '-f'" in str(result.output)
 
 
 def test_without_arguments():
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, [])
-    assert result.exit_code == -1
+    assert result.exit_code == 1
     assert isinstance(result.exception, FileNotFoundError)
     assert result.exception.strerror == 'No such file or directory'
 

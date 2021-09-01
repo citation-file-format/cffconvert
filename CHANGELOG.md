@@ -5,7 +5,10 @@
 - dependencies are now in `setup.cfg` as opposed to `requirements[-dev].txt`
 - updated version ranges for dependencies
 - tests are no longer `unittest.TestCase` based, but pytest with fixtures
-- added support for validation and conversion of CITATION.cff files with `cff-version: 1.2.0`
+- added jsonschema based validation for CITATION.cff files with `cff-version: 1.2.0`
+- added support for conversion of CITATION.cff files with `cff-version: 1.2.0` 
+- simplified the `Citation` class, it was doing too much
+- implemented _State pattern_ for `Citation` to help it deal with multiple behaviors under past and future versions of the Citation File Format.
 
 # 1.3.3
 

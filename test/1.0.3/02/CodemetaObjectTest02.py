@@ -1,67 +1,69 @@
 import os
-import unittest
+import pytest
 from test.contracts.CodemetaObject import Contract
-import ruamel.yaml as yaml
 from cffconvert import CodemetaObject
+from cffconvert import Citation
 
 
-class CodemetaObjectTest(Contract, unittest.TestCase):
+@pytest.fixture
+def codemeta_object():
+    fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
+    with open(fixture, "r", encoding="utf8") as f:
+        cffstr = f.read()
+        citation = Citation(cffstr)
+        return CodemetaObject(citation.cffobj, initialize_empty=True)
 
-    def setUp(self):
-        fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-        with open(fixture, "r", encoding="utf8") as f:
-            cffstr = f.read()
-            cff_object = yaml.safe_load(cffstr)
-            self.co = CodemetaObject(cff_object, initialize_empty=True)
 
-    def test_check_cff_object(self):
-        self.co.check_cff_object()
+class CodemetaObjectTest(Contract):
+
+    def test_check_cff_object(self, codemeta_object):
+        codemeta_object.check_cff_object()
         # doesn't need an assert
 
-    def test_author(self):
-        self.co.add_author()
+    def test_author(self, codemeta_object):
+        codemeta_object.add_author()
         expected_author = [{
             "@type": "Person",
             "givenName": "Gonzalo",
             "familyName": "Fernández de Córdoba Jr.",
         }]
-        self.assertListEqual(self.co.author, expected_author)
+        assert codemeta_object.author == expected_author
 
-    def test_code_repository(self):
-        self.co.add_code_repository()
-        self.assertIsNone(self.co.code_repository)
+    def test_code_repository(self, codemeta_object):
+        codemeta_object.add_code_repository()
+        assert codemeta_object.code_repository is None
 
-    def test_date_published(self):
-        self.co.add_date_published()
-        self.assertEqual(self.co.date_published, "1999-12-31")
+    def test_date_published(self, codemeta_object):
+        codemeta_object.add_date_published()
+        assert codemeta_object.date_published == "1999-12-31"
 
-    def test_description(self):
-        self.co.add_description()
-        self.assertIsNone(self.co.description)
+    def test_description(self, codemeta_object):
+        codemeta_object.add_description()
+        assert codemeta_object.description is None
 
-    def test_identifier(self):
-        self.co.add_identifier()
-        self.assertIsNone(self.co.identifier)
+    def test_identifier(self, codemeta_object):
+        codemeta_object.add_identifier()
+        assert codemeta_object.identifier is None
 
-    def test_keywords(self):
-        self.co.add_keywords()
-        self.assertIsNone(self.co.keywords)
+    def test_keywords(self, codemeta_object):
+        codemeta_object.add_keywords()
+        assert codemeta_object.keywords is None
 
-    def test_license(self):
-        self.co.add_license()
-        self.assertIsNone(self.co.license)
+    def test_license(self, codemeta_object):
+        codemeta_object.add_license()
+        assert codemeta_object.license is None
 
-    def test_name(self):
-        self.co.add_name()
-        self.assertEqual(self.co.name, 'example title')
+    def test_name(self, codemeta_object):
+        codemeta_object.add_name()
+        assert codemeta_object.name == 'example title'
 
-    def test_version(self):
-        self.co.add_version()
-        self.assertEqual(self.co.version, '1.0.0')
+    def test_version(self, codemeta_object):
+        codemeta_object.add_version()
+        assert codemeta_object.version == '1.0.0'
 
-    def test_print(self):
-        actual_codemeta = self.co.add_all().print()
+    def test_print(self, codemeta_object):
+        actual_codemeta = codemeta_object.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "codemeta.json")
         with open(fixture, "r", encoding="utf8") as f:
             expected_codemeta = f.read()
-        self.assertEqual(actual_codemeta, expected_codemeta)
+        assert actual_codemeta == expected_codemeta

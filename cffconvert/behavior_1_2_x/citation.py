@@ -8,7 +8,7 @@ from cffconvert.root import get_package_root
 
 class Citation_1_2_x(Contract):
 
-    SUPPORTED_CFF_VERSIONS = [
+    supported_cff_versions = [
         "1.2.0"
     ]
 

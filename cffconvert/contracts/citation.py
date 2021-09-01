@@ -9,5 +9,9 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def _get_schema(self):
+        pass
+
+    @abstractmethod
     def validate(self):
         pass

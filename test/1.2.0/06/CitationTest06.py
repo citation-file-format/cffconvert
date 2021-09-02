@@ -22,9 +22,9 @@ def test_cffversion(citation):
 
 
 def test_validate(citation):
-    with pytest.raises(jsonschema.exceptions.ValidationError) as execinfo:
+    with pytest.raises(jsonschema.exceptions.ValidationError) as e:
         citation.validate()
-    msg = str(execinfo.value)
+    msg = str(e.value)
     assert "None is not of type 'string'" in msg
     assert "alias" in msg
 

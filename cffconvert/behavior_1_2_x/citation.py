@@ -5,6 +5,7 @@ from ruamel.yaml import YAML
 from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 from cffconvert.behavior_1_2_x.bibtex import BibtexObject
+from cffconvert.behavior_1_2_x.apalike import ApalikeObject
 
 
 class Citation_1_2_x(Contract):
@@ -38,6 +39,9 @@ class Citation_1_2_x(Contract):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")
 
         return cffobj
+
+    def as_apalike(self):
+        return ApalikeObject(self.cffobj).print()
 
     def as_bibtex(self, reference='YourReferenceHere'):
         return BibtexObject(self.cffobj).print(reference)

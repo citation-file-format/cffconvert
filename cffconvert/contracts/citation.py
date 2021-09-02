@@ -13,6 +13,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def as_apalike(self):
+        pass
+
+    @abstractmethod
     def as_bibtex(self, reference='YourReferenceHere'):
         pass
 

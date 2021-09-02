@@ -10,15 +10,22 @@
 #
 # [1] https://blog.apastyle.org/apastyle/2015/01/how-to-cite-software-in-apa-style.html
 # [2] https://apastyle.apa.org
+from abc import abstractmethod
 
 
-class ApalikeObject:
+class ApalikeObjectShared:
 
-    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
-    supported_pure_props = ['author', 'year', 'title', 'version', 'doi', 'url']
+    supported_apalike_props = [
+        'author',
+        'year',
+        'title',
+        'version',
+        'doi',
+        'url'
+    ]
 
-    def __init__(self, cff_object, initialize_empty=False):
-        self.cff_object = cff_object
+    def __init__(self, cffobj, initialize_empty=False):
+        self.cffobj = cffobj
         self.author = None
         self.year = None
         self.title = None
@@ -29,7 +36,7 @@ class ApalikeObject:
             # clause for testing purposes
             pass
         else:
-            self.check_cff_object()
+            self.check_cffobj()
             self.add_all()
 
     def __str__(self):
@@ -51,9 +58,9 @@ class ApalikeObject:
         return self
 
     def add_author(self):
-        if 'authors' in self.cff_object.keys():
+        if 'authors' in self.cffobj.keys():
             authors = list()
-            for author in self.cff_object['authors']:
+            for author in self.cffobj['authors']:
                 def extract_initials(self):
                     # Print initials of 'given-name'. Adapted from
                     # https://www.geeksforgeeks.org/python-print-initials-name-last-name-full/
@@ -87,56 +94,32 @@ class ApalikeObject:
             self.author = ', '.join(authors)
         return self
 
+    @abstractmethod
     def add_year(self):
-        version = self.cff_object['cff-version']
-        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
-            if 'date-released' in self.cff_object.keys():
-                self.year = ' (' + str(self.cff_object['date-released'].year) + '). '
-        elif version in ['1.2.0']:
-            if 'date-released' in self.cff_object.keys():
-                self.year = ' (' + self.cff_object['date-released'][:4] + '). '
-        else:
-            raise ValueError("Unsupported schema version")
-        return self
+        pass
 
     def add_title(self):
-        if 'title' in self.cff_object.keys():
-            self.title = format(self.cff_object['title'])
+        if 'title' in self.cffobj.keys():
+            self.title = format(self.cffobj['title'])
         return self
 
     def add_version(self):
-        if 'version' in self.cff_object.keys():
-            self.version = ' (version ' + str(self.cff_object['version']) + '). '
+        if 'version' in self.cffobj.keys():
+            self.version = ' (version ' + str(self.cffobj['version']) + '). '
         return self
 
+    @abstractmethod
     def add_doi(self):
-        version = self.cff_object['cff-version']
-        if version in ['1.0.3', '1.1.0', '1.2.0']:
-            if 'doi' in self.cff_object.keys():
-                self.doi = 'DOI: http://doi.org/' + format(self.cff_object['doi']) + ' '
-
-        if version in ['1.1.0', '1.2.0']:
-            if 'identifiers' in self.cff_object.keys():
-                identifiers = self.cff_object['identifiers']
-                for identifier in identifiers:
-                    if identifier['type'] == 'doi':
-                        self.doi = 'doi: ' + format(identifier['value']) + '. '
-                        break
-        return self
+        pass
 
     def add_url(self):
-        if 'repository-code' in self.cff_object.keys():
-            self.url = 'URL: ' + format(self.cff_object['repository-code']) + '\n'
+        if 'repository-code' in self.cffobj.keys():
+            self.url = 'URL: ' + format(self.cffobj['repository-code']) + '\n'
         return self
 
-    def check_cff_object(self):
-        if not isinstance(self.cff_object, dict):
-            raise ValueError('Expected cff_object to be of type \'dict\'.')
-        if 'cff-version' not in self.cff_object.keys():
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
-        if self.cff_object['cff-version'] not in ApalikeObject.supported_cff_versions:
-            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
-                             .format(self.cff_object['cff-version']))
+    @abstractmethod
+    def check_cffobj(self):
+        pass
 
     def print(self):
         return self.__str__()

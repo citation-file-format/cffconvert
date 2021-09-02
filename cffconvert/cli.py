@@ -6,7 +6,6 @@ from cffconvert.endnote import EndnoteObject
 from cffconvert.ris import RisObject
 from cffconvert.schemaorg import SchemaorgObject
 from cffconvert.zenodo import ZenodoObject
-from cffconvert.apalike import ApalikeObject
 from cffconvert.version import __version__ as cffconvert_version
 
 
@@ -85,6 +84,8 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
 
     if outputformat is None:
         return
+    elif outputformat == "apalike":
+        outstr = citation.as_apalike()
     elif outputformat == "bibtex":
         outstr = citation.as_bibtex()
     elif outputformat == "cff":
@@ -99,8 +100,6 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
         outstr = SchemaorgObject(citation.cffobj).print()
     elif outputformat == "zenodo":
         outstr = ZenodoObject(citation.cffobj).print()
-    elif outputformat == "apalike":
-        outstr = ApalikeObject(citation.cffobj).print()
 
     if outfile is None:
         print(outstr, end='')

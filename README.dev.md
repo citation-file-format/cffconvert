@@ -22,25 +22,57 @@ pip install --editable .[dev]
 
 ## Running tests
 
+Running the tests requires an activated virtual environment with the development tools installed.
+
 ```shell
 # (from the project root)
 
 # run unit tests
-python3 -m pytest test/1.2.0
-python3 -m pytest test/1.1.0
-python3 -m pytest test/1.0.3
-python3 -m pytest test/unsupported
+pytest test/1.2.0
+pytest test/1.1.0
+pytest test/1.0.3
+pytest test/unsupported
 
 # tests for consistent file naming
 bash test/test_consistent_file_naming.sh dir=test/
 bash test/test_consistent_file_naming.sh dir=livetest/
 
 # tests for consistent versioning
-python3 -m pytest test/test_consistent_versioning.py
+pytest test/test_consistent_versioning.py
 
 # run tests against live system (GitHub)
-python3 -m pytest livetest
+pytest livetest
 ```
+
+## Running linters locally
+
+For linting we use [prospector](https://pypi.org/project/prospector/) and to sort imports we will use
+[isort](https://pycqa.github.io/isort/). Running the linters requires an activated virtual environment with the
+development tools installed.
+
+```shell
+# linter
+prospector
+
+# recursively check import style for the cffconvert module only
+isort --recursive --check-only cffconvert
+
+# recursively check import style for the cffconvert module only and show
+# any proposed changes as a diff
+isort --recursive --check-only --diff cffconvert
+
+# recursively fix import style for the cffconvert module only
+isort --recursive cffconvert
+```
+
+To fix readability of your code style you can use [yapf](https://github.com/google/yapf).
+
+Developers should consider enabling automatic linting with `prospector` and `isort` on commit by enabling the git hook from `.githooks/pre-commit`, like so:
+
+```shell
+git config --local core.hooksPath .githooks
+```
+
 
 ## For maintainers
 

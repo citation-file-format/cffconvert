@@ -4,7 +4,6 @@ from cffconvert.citation import Citation
 from cffconvert.codemeta import CodemetaObject
 from cffconvert.endnote import EndnoteObject
 from cffconvert.ris import RisObject
-from cffconvert.schemaorg import SchemaorgObject
 from cffconvert.version import __version__ as cffconvert_version
 
 
@@ -96,7 +95,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     elif outputformat == "ris":
         outstr = RisObject(citation.cffobj).print()
     elif outputformat == "schema.org":
-        outstr = SchemaorgObject(citation.cffobj).print()
+        outstr = citation.as_schemaorg()
     elif outputformat == "zenodo":
         outstr = citation.as_zenodo()
 

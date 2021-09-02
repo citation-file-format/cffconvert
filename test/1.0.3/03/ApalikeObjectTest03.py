@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.ApalikeObject import Contract
-from cffconvert.apalike import ApalikeObject
+from cffconvert.behavior_1_0_x.apalike import ApalikeObject
 from cffconvert import Citation
 
 
@@ -20,8 +20,8 @@ class ApalikeObjectTest(Contract):
         apalike_object.add_author()
         assert apalike_object.author == 'Attema J., Diblen F.'
 
-    def test_check_cff_object(self, apalike_object):
-        apalike_object.check_cff_object()
+    def test_check_cffobj(self, apalike_object):
+        apalike_object.check_cffobj()
         # doesn't need an assert
 
     def test_year(self, apalike_object):

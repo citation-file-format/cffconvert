@@ -28,20 +28,19 @@ Running the tests requires an activated virtual environment with the development
 # (from the project root)
 
 # run unit tests
-pytest test/1.2.0
-pytest test/1.1.0
-pytest test/1.0.3
-pytest test/unsupported
+python3 -m pytest test/1.2.0
+python3 -m pytest test/1.1.0
+python3 -m pytest test/1.0.3
 
 # tests for consistent file naming
 bash test/test_consistent_file_naming.sh dir=test/
 bash test/test_consistent_file_naming.sh dir=livetest/
 
 # tests for consistent versioning
-pytest test/test_consistent_versioning.py
+python3 -m pytest test/test_consistent_versioning.py
 
 # run tests against live system (GitHub)
-pytest livetest
+python3 -m pytest livetest
 ```
 
 ## Running linters locally

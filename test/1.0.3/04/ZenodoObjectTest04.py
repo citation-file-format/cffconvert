@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.ZenodoObject import Contract
-from cffconvert.zenodo import ZenodoObject
+from cffconvert.behavior_1_0_x.zenodo import ZenodoObject
 from cffconvert import Citation
 
 
@@ -16,8 +16,8 @@ def zenodo_object():
 
 class ZenodoObjectTest(Contract):
 
-    def test_check_cff_object(self, zenodo_object):
-        zenodo_object.check_cff_object()
+    def test_check_cffobj(self, zenodo_object):
+        zenodo_object.check_cffobj()
         # doesn't need an assert
 
     def test_creators(self, zenodo_object):

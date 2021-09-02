@@ -5,6 +5,7 @@ from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 from cffconvert.behavior_1_1_x.bibtex import BibtexObject
 from cffconvert.behavior_1_1_x.apalike import ApalikeObject
+from cffconvert.behavior_1_1_x.zenodo import ZenodoObject
 
 
 class Citation_1_1_x(Contract):
@@ -35,6 +36,9 @@ class Citation_1_1_x(Contract):
 
     def as_bibtex(self, reference='YourReferenceHere'):
         return BibtexObject(self.cffobj).print(reference)
+
+    def as_zenodo(self):
+        return ZenodoObject(self.cffobj).print()
 
     def validate(self):
         # validation using YAML based schema

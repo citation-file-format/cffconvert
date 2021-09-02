@@ -1,14 +1,22 @@
 import json
+from abc import abstractmethod
 
 
-class ZenodoObject:
+class ZenodoObjectShared:
 
-    supported_cff_versions = ['1.0.3', '1.1.0', '1.2.0']
-    supported_zenodo_props = ['creators', 'description', 'doi', 'keywords',
-                              'license', 'publication_date', 'title', 'version']
+    supported_zenodo_props = [
+        'creators',
+        'description',
+        'doi',
+        'keywords',
+        'license',
+        'publication_date',
+        'title',
+        'version'
+    ]
 
-    def __init__(self, cff_object, initialize_empty=False):
-        self.cff_object = cff_object
+    def __init__(self, cffobj, initialize_empty=False):
+        self.cffobj = cffobj
         self.creators = None
         self.description = None
         self.doi = None
@@ -21,7 +29,7 @@ class ZenodoObject:
             # clause for testing purposes
             pass
         else:
-            self.check_cff_object()
+            self.check_cffobj()
             self.add_all()
 
     def __str__(self):
@@ -50,9 +58,9 @@ class ZenodoObject:
         return self
 
     def add_creators(self):
-        if 'authors' in self.cff_object.keys():
+        if 'authors' in self.cffobj.keys():
             self.creators = list()
-            for author in self.cff_object['authors']:
+            for author in self.cffobj['authors']:
                 d = dict()
                 keys = author.keys()
                 nameparts = [
@@ -78,63 +86,41 @@ class ZenodoObject:
         return self
 
     def add_description(self):
-        if 'abstract' in self.cff_object.keys():
-            self.description = self.cff_object['abstract']
+        if 'abstract' in self.cffobj.keys():
+            self.description = self.cffobj['abstract']
         return self
 
+    @abstractmethod
     def add_doi(self):
-        version = self.cff_object['cff-version']
-        if version in ['1.0.3', '1.1.0', '1.2.0']:
-            if 'doi' in self.cff_object.keys():
-                self.doi = self.cff_object['doi']
-
-        if version in ['1.1.0', '1.2.0']:
-            if 'identifiers' in self.cff_object.keys():
-                identifiers = self.cff_object['identifiers']
-                for identifier in identifiers:
-                    if identifier['type'] == 'doi':
-                        self.doi = identifier['value']
-                        break
-        return self
+        pass
 
     def add_keywords(self):
-        if 'keywords' in self.cff_object.keys():
-            self.keywords = self.cff_object['keywords']
+        if 'keywords' in self.cffobj.keys():
+            self.keywords = self.cffobj['keywords']
         return self
 
     def add_license(self):
-        if 'license' in self.cff_object.keys():
-            self.license = dict(id=self.cff_object['license'])
+        if 'license' in self.cffobj.keys():
+            self.license = dict(id=self.cffobj['license'])
         return self
 
+    @abstractmethod
     def add_publication_date(self):
-        if 'date-released' in self.cff_object.keys():
-            if self.cff_object['cff-version'] in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
-                self.publication_date = '{:d}-{:02d}-{:02d}'.format(self.cff_object['date-released'].year,
-                                                                    self.cff_object['date-released'].month,
-                                                                    self.cff_object['date-released'].day)
-            elif self.cff_object['cff-version'] in ['1.2.0']:
-                self.publication_date = self.cff_object['date-released']
-        return self
+        pass
 
     def add_title(self):
-        if 'title' in self.cff_object.keys():
-            self.title = self.cff_object['title']
+        if 'title' in self.cffobj.keys():
+            self.title = self.cffobj['title']
         return self
 
     def add_version(self):
-        if 'version' in self.cff_object.keys():
-            self.version = self.cff_object['version']
+        if 'version' in self.cffobj.keys():
+            self.version = self.cffobj['version']
         return self
 
-    def check_cff_object(self):
-        if not isinstance(self.cff_object, dict):
-            raise ValueError('Expected cff_object to be of type \'dict\'.')
-        if 'cff-version' not in self.cff_object.keys():
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
-        if self.cff_object['cff-version'] not in ZenodoObject.supported_cff_versions:
-            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
-                             .format(self.cff_object['cff-version']))
+    @abstractmethod
+    def check_cffobj(self):
+        pass
 
     def print(self):
         return self.__str__()

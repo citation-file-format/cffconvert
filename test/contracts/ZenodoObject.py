@@ -5,7 +5,7 @@ from abc import abstractmethod
 class Contract(ABC):
 
     @abstractmethod
-    def test_check_cff_object(self, fixture):
+    def test_check_cffobj(self, fixture):
         pass
 
     @abstractmethod

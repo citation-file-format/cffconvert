@@ -21,5 +21,9 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def as_zenodo(self):
+        pass
+
+    @abstractmethod
     def validate(self):
         pass

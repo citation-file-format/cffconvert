@@ -3,6 +3,7 @@ from pykwalify.core import Core
 from ruamel.yaml import YAML
 from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
+from cffconvert.behavior_1_0_x.bibtex import BibtexObject
 
 
 class Citation_1_0_x(Contract):
@@ -29,6 +30,9 @@ class Citation_1_0_x(Contract):
         if not isinstance(cffobj, dict):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")
         return cffobj
+
+    def as_bibtex(self):
+        return BibtexObject(self.cffobj).print()
 
     def validate(self):
         # validation using YAML based schema

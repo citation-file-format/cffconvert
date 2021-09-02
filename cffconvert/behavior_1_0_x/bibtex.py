@@ -8,10 +8,14 @@ class BibtexObject:
         'url',
         'year'
     ]
-    supported_cff_versions = ["1.2.0"]
+    supported_cff_versions = [
+        '1.0.1'
+        '1.0.2'
+        '1.0.3'
+    ]
 
-    def __init__(self, cffobj, reference='YourReferenceHere', initialize_empty=False):
-        self.cffobj = cffobj
+    def __init__(self, cff_object, reference='YourReferenceHere', initialize_empty=False):
+        self.cff_object = cff_object
         self.reference = reference
         self.author = None
         self.doi = None
@@ -23,7 +27,7 @@ class BibtexObject:
             # clause for testing purposes
             pass
         else:
-            self.check_cffobj()
+            self.check_cff_object()
             self.add_all()
 
     def __str__(self):
@@ -46,9 +50,9 @@ class BibtexObject:
         return self
 
     def add_author(self):
-        if 'authors' in self.cffobj.keys():
+        if 'authors' in self.cff_object.keys():
             fullnames = []
-            for author in self.cffobj['authors']:
+            for author in self.cff_object['authors']:
                 keys = author.keys()
                 nameparts = [
                     author['given-names'] if 'given-names' in keys else None,
@@ -65,45 +69,38 @@ class BibtexObject:
         return self
 
     def add_doi(self):
-        if 'doi' in self.cffobj.keys():
-            self.doi = 'doi = {' + self.cffobj['doi'] + '}'
-        if 'identifiers' in self.cffobj.keys():
-            identifiers = self.cffobj['identifiers']
-            for identifier in identifiers:
-                if identifier['type'] == 'doi':
-                    self.doi = 'doi = {' + identifier['value'] + '}'
-                    break
+        if 'doi' in self.cff_object.keys():
+            self.doi = 'doi = {' + self.cff_object['doi'] + '}'
         return self
 
     def add_month(self):
-        if 'date-released' in self.cffobj.keys():
-            month = self.cffobj['date-released'].split('-')[1].lstrip('0')
-            self.month = 'month = {' + month + '}'
+        if 'date-released' in self.cff_object.keys():
+            self.month = 'month = {' + str(self.cff_object['date-released'].month) + '}'
         return self
 
     def add_title(self):
-        if 'title' in self.cffobj.keys():
-            self.title = 'title = {' + self.cffobj['title'] + '}'
+        if 'title' in self.cff_object.keys():
+            self.title = 'title = {' + self.cff_object['title'] + '}'
         return self
 
     def add_url(self):
-        if 'repository-code' in self.cffobj.keys():
-            self.url = 'url = {' + self.cffobj['repository-code'] + '}'
+        if 'repository-code' in self.cff_object.keys():
+            self.url = 'url = {' + self.cff_object['repository-code'] + '}'
         return self
 
     def add_year(self):
-        if 'date-released' in self.cffobj.keys():
-            self.year = 'year = {' + self.cffobj['date-released'][:4] + '}'
+        if 'date-released' in self.cff_object.keys():
+            self.year = 'year = {' + str(self.cff_object['date-released'].year) + '}'
         return self
 
-    def check_cffobj(self):
-        if not isinstance(self.cffobj, dict):
-            raise ValueError("Expected cffobj to be of type 'dict'.")
-        if 'cff-version' not in self.cffobj.keys():
-            raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
-        if self.cffobj['cff-version'] not in BibtexObject.supported_cff_versions:
-            raise ValueError("cff-version: {} isn't a supported version."
-                             .format(self.cffobj['cff-version']))
+    def check_cff_object(self):
+        if not isinstance(self.cff_object, dict):
+            raise ValueError('Expected cff_object to be of type \'dict\'.')
+        if 'cff-version' not in self.cff_object.keys():
+            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+        if self.cff_object['cff-version'] not in BibtexObject.supported_cff_versions:
+            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
+                             .format(self.cff_object['cff-version']))
 
     def print(self):
         return self.__str__()

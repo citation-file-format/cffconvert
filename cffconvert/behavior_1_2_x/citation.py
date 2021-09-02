@@ -4,6 +4,7 @@ import os
 from ruamel.yaml import YAML
 from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
+from cffconvert.behavior_1_2_x.bibtex import BibtexObject
 
 
 class Citation_1_2_x(Contract):
@@ -37,6 +38,9 @@ class Citation_1_2_x(Contract):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")
 
         return cffobj
+
+    def as_bibtex(self):
+        return BibtexObject(self.cffobj).print()
 
     def validate(self):
         jsonschema.validate(instance=self.cffobj, schema=self.schema, format_checker=jsonschema.FormatChecker())

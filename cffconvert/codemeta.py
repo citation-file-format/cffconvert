@@ -14,7 +14,8 @@ class CodemetaObject(SchemaorgObject):
             # clause for testing purposes
             pass
         else:
-            self.check_cff_object().add_all()
+            self.check_cff_object()
+            self.add_all()
 
     def __str__(self):
         d = {

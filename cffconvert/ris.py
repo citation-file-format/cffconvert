@@ -18,7 +18,8 @@ class RisObject:
             # clause for testing purposes
             pass
         else:
-            self.check_cff_object().add_all()
+            self.check_cff_object()
+            self.add_all()
 
     def __str__(self):
         items = [item for item in [self.abstract,
@@ -129,13 +130,11 @@ class RisObject:
     def check_cff_object(self):
         if not isinstance(self.cff_object, dict):
             raise ValueError('Expected cff_object to be of type \'dict\'.')
-        elif 'cff-version' not in self.cff_object.keys():
+        if 'cff-version' not in self.cff_object.keys():
             raise ValueError('Missing key "cff-version" in CITATION.cff file.')
-        elif self.cff_object['cff-version'] not in RisObject.supported_cff_versions:
+        if self.cff_object['cff-version'] not in RisObject.supported_cff_versions:
             raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
                              .format(self.cff_object['cff-version']))
-        else:
-            return self
 
     def print(self):
         return self.__str__()

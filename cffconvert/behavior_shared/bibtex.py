@@ -1,3 +1,6 @@
+from abc import abstractmethod
+
+
 class BibtexObjectShared:
 
     supported_bibtex_props = [
@@ -62,9 +65,11 @@ class BibtexObjectShared:
             self.author = 'author = {' + ' and '.join(fullnames) + '}'
         return self
 
+    @abstractmethod
     def add_doi(self):
         pass
 
+    @abstractmethod
     def add_month(self):
         pass
 
@@ -78,9 +83,11 @@ class BibtexObjectShared:
             self.url = 'url = {' + self.cffobj['repository-code'] + '}'
         return self
 
+    @abstractmethod
     def add_year(self):
         pass
 
+    @abstractmethod
     def check_cffobj(self):
         pass
 

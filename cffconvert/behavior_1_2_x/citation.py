@@ -39,8 +39,8 @@ class Citation_1_2_x(Contract):
 
         return cffobj
 
-    def as_bibtex(self):
-        return BibtexObject(self.cffobj).print()
+    def as_bibtex(self, reference='YourReferenceHere'):
+        return BibtexObject(self.cffobj).print(reference)
 
     def validate(self):
         jsonschema.validate(instance=self.cffobj, schema=self.schema, format_checker=jsonschema.FormatChecker())

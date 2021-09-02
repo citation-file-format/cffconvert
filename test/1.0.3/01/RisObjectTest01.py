@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.RisObject import Contract
-from cffconvert import RisObject
+from cffconvert.ris import RisObject
 from cffconvert import Citation
 
 

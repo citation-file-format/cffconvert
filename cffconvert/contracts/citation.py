@@ -13,7 +13,7 @@ class Contract(ABC):
         pass
 
     @abstractmethod
-    def as_bibtex(self):
+    def as_bibtex(self, reference='YourReferenceHere'):
         pass
 
     @abstractmethod

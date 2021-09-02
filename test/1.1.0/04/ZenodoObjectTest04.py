@@ -1,8 +1,9 @@
 import os
 import pytest
 from test.contracts.ZenodoObject import Contract
-from cffconvert import ZenodoObject
+from cffconvert.zenodo import ZenodoObject
 from cffconvert import Citation
+
 
 @pytest.fixture
 def zenodo_object():

@@ -10,9 +10,8 @@ class BibtexObject:
     ]
     supported_cff_versions = ["1.2.0"]
 
-    def __init__(self, cffobj, reference='YourReferenceHere', initialize_empty=False):
+    def __init__(self, cffobj, initialize_empty=False):
         self.cffobj = cffobj
-        self.reference = reference
         self.author = None
         self.doi = None
         self.month = None
@@ -26,7 +25,7 @@ class BibtexObject:
             self.check_cffobj()
             self.add_all()
 
-    def __str__(self):
+    def __str__(self, reference='YourReferenceHere'):
         items = [item for item in [self.author,
                                    self.doi,
                                    self.month,
@@ -34,7 +33,7 @@ class BibtexObject:
                                    self.url,
                                    self.year] if item is not None]
         s = ',\n'.join(items)
-        return '@misc{' + self.reference + ',\n' + s + '\n}\n'
+        return '@misc{' + reference + ',\n' + s + '\n}\n'
 
     def add_all(self):
         self.add_author()   \
@@ -105,5 +104,5 @@ class BibtexObject:
             raise ValueError("cff-version: {} isn't a supported version."
                              .format(self.cffobj['cff-version']))
 
-    def print(self):
-        return self.__str__()
+    def print(self, reference='YourReferenceHere'):
+        return self.__str__(reference)

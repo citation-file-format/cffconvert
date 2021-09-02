@@ -1,11 +1,11 @@
 import os
 import pytest
 from test.contracts.BibtexObject import Contract
-from cffconvert import BibtexObject
+from cffconvert.behavior_1_1_x.bibtex import BibtexObject
 from cffconvert import Citation
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def bibtex_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "r", encoding="utf8") as f:
@@ -20,8 +20,8 @@ class BibtexObjectTest(Contract):
         bibtex_object.add_author()
         assert bibtex_object.author == 'author = {Steven Van Zandt and Steven van Zandt}'
 
-    def test_check_cff_object(self, bibtex_object):
-        bibtex_object.check_cff_object()
+    def test_check_cffobj(self, bibtex_object):
+        bibtex_object.check_cffobj()
         # doesn't need an assert
 
     def test_doi(self, bibtex_object):

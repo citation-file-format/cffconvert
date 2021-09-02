@@ -1,7 +1,6 @@
 import sys
 import click
 from cffconvert.citation import Citation
-from cffconvert.bibtex import BibtexObject
 from cffconvert.codemeta import CodemetaObject
 from cffconvert.endnote import EndnoteObject
 from cffconvert.ris import RisObject
@@ -87,7 +86,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     if outputformat is None:
         return
     elif outputformat == "bibtex":
-        outstr = BibtexObject(citation.cffobj).print()
+        outstr = citation.as_bibtex()
     elif outputformat == "cff":
         outstr = citation.cffstr
     elif outputformat == "codemeta":

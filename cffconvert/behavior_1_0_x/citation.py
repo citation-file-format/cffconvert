@@ -31,8 +31,8 @@ class Citation_1_0_x(Contract):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")
         return cffobj
 
-    def as_bibtex(self):
-        return BibtexObject(self.cffobj).print()
+    def as_bibtex(self, reference='YourReferenceHere'):
+        return BibtexObject(self.cffobj).print(reference)
 
     def validate(self):
         # validation using YAML based schema

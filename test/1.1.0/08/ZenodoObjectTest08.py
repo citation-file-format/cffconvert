@@ -1,11 +1,11 @@
 import os
 import pytest
 from test.contracts.ZenodoObject import Contract
-from cffconvert import ZenodoObject
+from cffconvert.zenodo import ZenodoObject
 from cffconvert import Citation
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def zenodo_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "r", encoding="utf8") as f:

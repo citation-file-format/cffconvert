@@ -1,11 +1,11 @@
 import os
 import pytest
 from test.contracts.CodemetaObject import Contract
-from cffconvert import CodemetaObject
+from cffconvert.codemeta import CodemetaObject
 from cffconvert import Citation
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def codemeta_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "r", encoding="utf8") as f:

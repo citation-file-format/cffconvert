@@ -5,7 +5,7 @@ from cffconvert.apalike import ApalikeObject
 from cffconvert import Citation
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def apalike_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "r", encoding="utf8") as f:

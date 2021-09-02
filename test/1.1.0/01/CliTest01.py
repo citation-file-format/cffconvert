@@ -1,5 +1,4 @@
 import os
-import pytest
 from click.testing import CliRunner
 from cffconvert import cli as cffconvert_cli
 

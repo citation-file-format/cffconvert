@@ -5,7 +5,7 @@ from cffconvert.behavior_1_2_x.bibtex import BibtexObject
 from cffconvert import Citation
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def bibtex_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "r") as f:

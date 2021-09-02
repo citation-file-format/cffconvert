@@ -5,7 +5,7 @@ from cffconvert.schemaorg import SchemaorgObject
 from cffconvert import Citation
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def schemorg_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "r", encoding="utf8") as f:

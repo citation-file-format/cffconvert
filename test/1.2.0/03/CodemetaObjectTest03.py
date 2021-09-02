@@ -5,7 +5,7 @@ from cffconvert.codemeta import CodemetaObject
 from cffconvert import Citation
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def codemeta_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "r") as f:

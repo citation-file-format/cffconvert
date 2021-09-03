@@ -70,15 +70,17 @@ Shows:
 Usage: cffconvert [OPTIONS]
 
 Options:
-  -i PATH                         Path to the CITATION.cff input file. Default value is './CITATION.cff'.
+  -i PATH                         Path to the CITATION.cff input file. Default
+                                  value is './CITATION.cff'.
   -o PATH                         Path to the output file.
   -f [apalike|bibtex|cff|codemeta|endnote|ris|schema.org|zenodo]
                                   Output format.
   -h, --help                      Show help and exit.
   --show-trace                    Show error trace.
   --validate                      Validate the CITATION.cff and exit.
-  --ignore-suspect-keys           Ignore any keys from CITATION.cff that are likely out of date, such as 'commit',
-                                  'date-released', 'doi', and 'version'.
+  --ignore-suspect-keys           Ignore any keys from CITATION.cff that are
+                                  likely out of date, such as 'commit', 'date-
+                                  released', 'doi', and 'version'.
   --verbose                       Provide feedback on what was entered.
   --version                       Print version and exit.
 ```

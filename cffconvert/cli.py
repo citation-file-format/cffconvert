@@ -67,7 +67,7 @@ options = {
 }
 
 
-@click.command(context_settings=dict(max_content_width=120))
+@click.command()
 @click.option("-i", "infile", **options["infile"])
 @click.option("-o", "outfile", **options["outfile"])
 @click.option("-f", "outputformat", **options["outputformat"])

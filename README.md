@@ -100,7 +100,7 @@ cffconvert --validate -i ../some-other-dir/CITATION.cff
 
 ### Converting metadata to other formats
 
-If there is a valid CITATION.cff file in the current directory, you can convert to various other formats and 
+If there is a valid `CITATION.cff` file in the current directory, you can convert to various other formats and 
 print the result on standard out with:
 
 ```shell

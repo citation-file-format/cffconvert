@@ -96,7 +96,10 @@ cffconvert --validate -i ${PWD}/CITATION.cff
 cffconvert --validate -i ../some-other-dir/CITATION.cff
 ```
 
-### Converting metadata from `./CITATION.cff` to other formats
+### Converting metadata to other formats
+
+If there is a valid CITATION.cff file in the current directory, you can convert to various other formats and 
+print the result on standard out with:
 
 ```shell
 cffconvert -f bibtex
@@ -106,4 +109,20 @@ cffconvert -f ris
 cffconvert -f schema.org
 cffconvert -f zenodo
 cffconvert -f apalike
+```
+
+### Writing to a file
+
+```shell
+# with i/o redirection:
+cffconvert -f bibtex > bibtex.bib
+cffconvert -f zenodo > zenodo.json
+cffconvert -f endnote > ${PWD}/endnote.enw
+# etc
+
+# without i/o redirection
+cffconvert -f bibtex -o bibtex.bib
+cffconvert -f zenodo -o zenodo.json
+cffconvert -f endnote -o ${PWD}/endnote.enw
+# etc
 ```

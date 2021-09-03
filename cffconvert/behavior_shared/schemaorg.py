@@ -16,7 +16,7 @@ class SchemaorgObjectShared:
         'version'
     ]
 
-    def __init__(self, cffobj, initialize_empty=False):
+    def __init__(self, cffobj, initialize_empty=False, context="https://schema.org"):
         self.cffobj = cffobj
         self.author = None
         self.code_repository = None
@@ -27,6 +27,7 @@ class SchemaorgObjectShared:
         self.license = None
         self.name = None
         self.version = None
+        self.context = context
         if initialize_empty:
             # clause for testing purposes
             pass
@@ -36,7 +37,7 @@ class SchemaorgObjectShared:
 
     def __str__(self):
         d = {
-            "@context": "https://schema.org",
+            "@context": self.context,
             "@type": "SoftwareSourceCode",
             "author": self.author,
             "codeRepository": self.code_repository,

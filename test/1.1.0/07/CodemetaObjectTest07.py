@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.CodemetaObject import Contract
-from cffconvert.codemeta import CodemetaObject
+from cffconvert.behavior_1_1_x.codemeta import CodemetaObject
 from cffconvert import Citation
 
 
@@ -16,8 +16,8 @@ def codemeta_object():
 
 class CodemetaObjectTest(Contract):
 
-    def test_check_cff_object(self, codemeta_object):
-        codemeta_object.check_cff_object()
+    def test_check_cffobj(self, codemeta_object):
+        codemeta_object.check_cffobj()
         # doesn't need an assert
 
     def test_author(self, codemeta_object):

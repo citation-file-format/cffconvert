@@ -21,6 +21,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def as_codemeta(self):
+        pass
+
+    @abstractmethod
     def as_schemaorg(self):
         pass
 

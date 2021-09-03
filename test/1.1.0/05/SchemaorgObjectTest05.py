@@ -16,8 +16,8 @@ def schemaorg_object():
 
 class SchemaorgObjectTest(Contract):
 
-    def test_check_cff_object(self, schemaorg_object):
-        schemaorg_object.check_cff_object()
+    def test_check_cffobj(self, schemaorg_object):
+        schemaorg_object.check_cffobj()
         # doesn't need an assert
 
     def test_author(self, schemaorg_object):

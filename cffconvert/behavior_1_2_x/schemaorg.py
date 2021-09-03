@@ -7,8 +7,8 @@ class SchemaorgObject(Shared):
         '1.2.0'
     ]
 
-    def __init__(self, cffobj, initialize_empty=False):
-        super().__init__(cffobj, initialize_empty)
+    def __init__(self, cffobj, initialize_empty=False, context="https://schema.org"):
+        super().__init__(cffobj, initialize_empty, context)
 
     def add_date_published(self):
         if 'date-released' in self.cffobj.keys():

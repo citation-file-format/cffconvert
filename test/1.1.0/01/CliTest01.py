@@ -112,20 +112,21 @@ def test_printing_on_stdout_as_schemaorg():
 
 
 def test_printing_when_verbose():
-    expected_output = ("infile = None\n" +
-                       "outfile = None\n" +
-                       "outputformat = None\n" +
-                       "url = None\n" +
-                       "show_help = False\n" +
-                       "show_trace = False\n" +
-                       "validate = False\n" +
-                       "ignore_suspect_keys = False\n" +
-                       "verbose = True\n"
-                       "version = False\n")
+    expected_output = "infile = .{0}CITATION.cff\n".format(os.sep) + \
+                      "outfile = None\n" + \
+                      "outputformat = None\n" + \
+                      "show_help = False\n" + \
+                      "show_trace = False\n" + \
+                      "validate = False\n" + \
+                      "ignore_suspect_keys = False\n" + \
+                      "verbose = True\n" + \
+                      "version = False\n"
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, ["--verbose"])
+    assert type(result.exception) == FileNotFoundError
     assert result.exit_code == 1
+    assert "No such file or directory" in str(result.exception)
     assert result.output == expected_output
 
 

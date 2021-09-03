@@ -9,6 +9,7 @@ from cffconvert.behavior_1_2_x.bibtex import BibtexObject
 from cffconvert.behavior_1_2_x.codemeta import CodemetaObject
 from cffconvert.behavior_1_2_x.endnote import EndnoteObject
 from cffconvert.behavior_1_2_x.schemaorg import SchemaorgObject
+from cffconvert.behavior_1_2_x.ris import RisObject
 from cffconvert.behavior_1_2_x.zenodo import ZenodoObject
 
 
@@ -58,6 +59,9 @@ class Citation_1_2_x(Contract):
 
     def as_schemaorg(self):
         return SchemaorgObject(self.cffobj).print()
+
+    def as_ris(self):
+        return RisObject(self.cffobj).print()
 
     def as_zenodo(self):
         return ZenodoObject(self.cffobj).print()

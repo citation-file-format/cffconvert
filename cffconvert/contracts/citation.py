@@ -33,6 +33,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def as_ris(self):
+        pass
+
+    @abstractmethod
     def as_zenodo(self):
         pass
 

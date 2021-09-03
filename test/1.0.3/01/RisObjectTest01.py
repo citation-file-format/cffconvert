@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.RisObject import Contract
-from cffconvert.ris import RisObject
+from cffconvert.behavior_1_0_x.ris import RisObject
 from cffconvert import Citation
 
 
@@ -24,8 +24,8 @@ class RisObjectTest(Contract):
         ris_object.add_author()
         assert ris_object.author == 'AU  - Spaaks, Jurriaan H.\nAU  - Klaver, Tom\n'
 
-    def test_check_cff_object(self, ris_object):
-        ris_object.check_cff_object()
+    def test_check_cffobj(self, ris_object):
+        ris_object.check_cffobj()
         # doesn't need an assert
 
     def test_date(self, ris_object):

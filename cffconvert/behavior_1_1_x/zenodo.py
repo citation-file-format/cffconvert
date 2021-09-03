@@ -10,17 +10,6 @@ class ZenodoObject(Shared):
     def __init__(self, cffobj, initialize_empty=False):
         super().__init__(cffobj, initialize_empty)
 
-    def add_doi(self):
-        if 'doi' in self.cffobj.keys():
-            self.doi = self.cffobj['doi']
-        if 'identifiers' in self.cffobj.keys():
-            identifiers = self.cffobj['identifiers']
-            for identifier in identifiers:
-                if identifier['type'] == 'doi':
-                    self.doi = identifier['value']
-                    break
-        return self
-
     def add_publication_date(self):
         if 'date-released' in self.cffobj.keys():
             self.publication_date = '{:d}-{:02d}-{:02d}'.format(self.cffobj['date-released'].year,

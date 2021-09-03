@@ -13,10 +13,6 @@ class Contract(ABC):
         pass
 
     @abstractmethod
-    def test_doi(self, fixture):
-        pass
-
-    @abstractmethod
     def test_keywords(self, fixture):
         pass
 

@@ -7,7 +7,6 @@ class ZenodoObjectShared:
     supported_zenodo_props = [
         'creators',
         'description',
-        'doi',
         'keywords',
         'license',
         'publication_date',
@@ -19,7 +18,6 @@ class ZenodoObjectShared:
         self.cffobj = cffobj
         self.creators = None
         self.description = None
-        self.doi = None
         self.keywords = None
         self.license = None
         self.publication_date = None
@@ -36,7 +34,6 @@ class ZenodoObjectShared:
         d = {
             "creators": self.creators,
             "description": self.description,
-            "doi": self.doi,
             "keywords": self.keywords,
             "license": self.license,
             "publication_date": self.publication_date,
@@ -49,7 +46,6 @@ class ZenodoObjectShared:
     def add_all(self):
         self.add_creators()          \
             .add_description()       \
-            .add_doi()               \
             .add_keywords()          \
             .add_license()           \
             .add_publication_date()  \
@@ -89,10 +85,6 @@ class ZenodoObjectShared:
         if 'abstract' in self.cffobj.keys():
             self.description = self.cffobj['abstract']
         return self
-
-    @abstractmethod
-    def add_doi(self):
-        pass
 
     def add_keywords(self):
         if 'keywords' in self.cffobj.keys():

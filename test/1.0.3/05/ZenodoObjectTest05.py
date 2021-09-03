@@ -38,10 +38,6 @@ class ZenodoObjectTest(Contract):
         ]
         assert zenodo_object.creators == expected_creators
 
-    def test_doi(self, zenodo_object):
-        zenodo_object.add_doi()
-        assert zenodo_object.doi == '10.5281/zenodo.1162057'
-
     def test_keywords(self, zenodo_object):
         zenodo_object.add_keywords()
         assert zenodo_object.keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']

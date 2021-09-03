@@ -1,7 +1,6 @@
 import sys
 import click
 from cffconvert.citation import Citation
-from cffconvert.endnote import EndnoteObject
 from cffconvert.ris import RisObject
 from cffconvert.version import __version__ as cffconvert_version
 
@@ -90,7 +89,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
     elif outputformat == "codemeta":
         outstr = citation.as_codemeta()
     elif outputformat == "endnote":
-        outstr = EndnoteObject(citation.cffobj).print()
+        outstr = citation.as_endnote()
     elif outputformat == "ris":
         outstr = RisObject(citation.cffobj).print()
     elif outputformat == "schema.org":

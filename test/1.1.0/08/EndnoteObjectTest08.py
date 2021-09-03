@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.EndnoteObject import Contract
-from cffconvert.endnote import EndnoteObject
+from cffconvert.behavior_1_1_x.endnote import EndnoteObject
 from cffconvert import Citation
 
 
@@ -16,8 +16,8 @@ def endnote_object():
 
 class EndnoteObjectTest(Contract):
 
-    def test_check_cff_object(self, endnote_object):
-        endnote_object.check_cff_object()
+    def test_check_cffobj(self, endnote_object):
+        endnote_object.check_cffobj()
         # doesn't need an assert
 
     def test_author(self, endnote_object):

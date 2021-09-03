@@ -16,6 +16,50 @@ def xor(condition1, condition2):
 if not xor(url is None, cffstr is None):
     raise ValueError("You should specify either \'url\' or \'cffstr\'.")
 
+def _get_baseurl(self):
+    if self.url.startswith("https://github.com"):
+        self.baseurl = "https://raw.githubusercontent.com"
+    else:
+        raise Exception("Only 'https://github.com' URLs are supported at the moment.")
+
+def _retrieve_file(self):
+
+    if not self.url[18:].startswith("/"):
+        raise ValueError("Error extracting (user|organization) and/or repository " +
+                         "information from the provided URL ({0}).".format(self.url))
+    url_parts = self.url[19:].split('/')
+    if len(url_parts) < 2:
+        raise ValueError("Error extracting (user|organization) and/or repository " +
+                         "information from the provided URL ({0}).".format(self.url))
+    elif len(url_parts) == 2:
+        org, repo, label = url_parts[0], url_parts[1], "master"
+    else:
+        if url_parts[2] != "tree":
+            raise ValueError("Expected 'https://github.com/<org>/<repo>/tree/...' but instead "
+                             "found '{0}'".format(url_parts[2]))
+        org, repo, label = url_parts[0], url_parts[1], url_parts[3]
+
+    self.file_url = "/".join([self.baseurl, org, repo, label, "CITATION.cff"])
+    r = requests.get(self.file_url)
+    if r.ok:
+        self.cffstr = r.text
+    else:
+        raise Exception("Error requesting file: {0}".format(self.file_url))
+
+
+def _override_suspect_keys(self):
+    if self.override is not None and type(self.override) is dict:
+        for key in self.override.keys():
+            self.cffobj[key] = self.override[key]
+            self.cffstr = YAML(typ="safe").dump(self.cffobj, default_flow_style=False)
+
+def _remove_suspect_keys(self):
+    if self.remove is not None and type(self.remove) is list:
+        for key in self.remove:
+            if key in self.cffobj:
+                del(self.cffobj[key])
+                self.cffstr = YAML(typ="safe").dump(self.cffobj, default_flow_style=False)
+
 if suspect_keys is None:
     self.suspect_keys = ["doi", "version", "date-released", "commit"]
 else:
@@ -38,103 +82,4 @@ else:
             self._override_suspect_keys()
             self._remove_suspect_keys()
 
-
-    def _get_baseurl(self):
-        if self.url.startswith("https://github.com"):
-            self.baseurl = "https://raw.githubusercontent.com"
-        else:
-            raise Exception("Only 'https://github.com' URLs are supported at the moment.")
-
-    def _override_suspect_keys(self):
-        if self.override is not None and type(self.override) is dict:
-            for key in self.override.keys():
-                self.cffobj[key] = self.override[key]
-                self.cffstr = YAML(typ="safe").dump(self.cffobj, default_flow_style=False)
-
-    def _parse_yaml(self):
-        self._get_cff_version()
-        if self.cff_version in ["1.0.1", "1.0.2", "1.0.3", "1.1.0"]:
-            self.cffobj = YAML(typ="safe").load(self.cffstr)
-            if not isinstance(self.cffobj, dict):
-                raise ValueError("Provided CITATION.cff does not seem valid YAML.")
-            # correct dates that have been entered as strings in the YAML:
-            if 'date-released' in self.cffobj.keys() and isinstance(self.cffobj['date-released'], str):
-                self.cffobj['date-released'] = datetime.strptime(self.cffobj['date-released'], '%Y-%m-%d')
-        elif self.cff_version in ["1.2.0"]:
-            # instantiate YAML module
-            yaml = YAML(typ='safe')
-            # read any yaml timestamps as string
-            yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:timestamp'] = yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:str']
-            self.cffobj = yaml.load(self.cffstr)
-        else:
-            raise ValueError("Unrecognized value for key \"cff-version\".")
-
-
-    def _retrieve_file(self):
-
-        if not self.url[18:].startswith("/"):
-            raise ValueError("Error extracting (user|organization) and/or repository " +
-                             "information from the provided URL ({0}).".format(self.url))
-        url_parts = self.url[19:].split('/')
-        if len(url_parts) < 2:
-            raise ValueError("Error extracting (user|organization) and/or repository " +
-                             "information from the provided URL ({0}).".format(self.url))
-        elif len(url_parts) == 2:
-            org, repo, label = url_parts[0], url_parts[1], "master"
-        else:
-            if url_parts[2] != "tree":
-                raise ValueError("Expected 'https://github.com/<org>/<repo>/tree/...' but instead "
-                                 "found '{0}'".format(url_parts[2]))
-            org, repo, label = url_parts[0], url_parts[1], url_parts[3]
-
-        self.file_url = "/".join([self.baseurl, org, repo, label, "CITATION.cff"])
-        r = requests.get(self.file_url)
-        if r.ok:
-            self.cffstr = r.text
-        else:
-            raise Exception("Error requesting file: {0}".format(self.file_url))
-
-
-    def _validate(self):
-
-        self._get_cff_version()
-
-        if self.cff_version in ["1.0.1", "1.0.2", "1.0.3", "1.1.0"]:
-            # validation using YAML based schema
-            schema_path = os.path.join(os.path.dirname(__file__), "schemas", self.cff_version, "schema.yaml")
-            with open(schema_path, "rt", encoding="utf-8") as sf:
-                self.schema = sf.read()
-            with tempfile.TemporaryDirectory() as tmpdir:
-                datafile = os.path.join(tmpdir, "data.yaml")
-                schemafile = os.path.join(tmpdir, "schema.yaml")
-                with open(datafile, "w", encoding="utf8") as f:
-                    f.write(self.cffstr)
-                with open(schemafile, "w", encoding="utf8") as f:
-                    f.write(self.schema)
-
-                c = pykwalify.core.Core(source_file=datafile, schema_files=[schemafile], file_encoding="utf8")
-                c.validate(raise_exception=self.raise_exception)
-                return self
-        elif self.cff_version in ["1.2.0"]:
-            # validation using JSONschema based schema
-            yaml = YAML(typ='safe')
-            # read any yaml timestamps as string
-            yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:timestamp'] = yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:str']
-            cffobj = yaml.load(self.cffstr)
-            schema_path = os.path.join(os.path.dirname(__file__), "schemas", self.cff_version, "schema.json")
-            with open(schema_path, 'r') as sf:
-                self.schema = json.loads(sf.read())
-                jsonschema.validate(instance=cffobj, schema=self.schema,
-                                    format_checker=jsonschema.FormatChecker())
-            return self
-        else:
-            raise ValueError("Unrecognized value for key \"cff-version\".")
-
-
-    def _remove_suspect_keys(self):
-        if self.remove is not None and type(self.remove) is list:
-            for key in self.remove:
-                if key in self.cffobj:
-                    del(self.cffobj[key])
-                    self.cffstr = YAML(typ="safe").dump(self.cffobj, default_flow_style=False)
 

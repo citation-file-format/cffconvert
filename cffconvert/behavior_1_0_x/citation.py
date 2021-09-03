@@ -6,6 +6,7 @@ from cffconvert.root import get_package_root
 from cffconvert.behavior_1_0_x.apalike import ApalikeObject
 from cffconvert.behavior_1_0_x.bibtex import BibtexObject
 from cffconvert.behavior_1_0_x.codemeta import CodemetaObject
+from cffconvert.behavior_1_0_x.endnote import EndnoteObject
 from cffconvert.behavior_1_0_x.schemaorg import SchemaorgObject
 from cffconvert.behavior_1_0_x.zenodo import ZenodoObject
 
@@ -40,6 +41,9 @@ class Citation_1_0_x(Contract):
 
     def as_bibtex(self, reference='YourReferenceHere'):
         return BibtexObject(self.cffobj).print(reference)
+
+    def as_endnote(self):
+        return EndnoteObject(self.cffobj).print()
 
     def as_codemeta(self):
         return CodemetaObject(self.cffobj).print()

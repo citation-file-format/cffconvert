@@ -1,8 +1,8 @@
 import os
 import sys
 import click
-import pykwalify
-import jsonschema
+from pykwalify.errors import SchemaError as PykwalifySchemaError
+from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
 from cffconvert.citation import Citation
 from cffconvert.version import __version__ as cffconvert_version
 
@@ -115,7 +115,7 @@ def cli(infile, outfile, outputformat, show_help, show_trace, validate, verbose,
 
     try:
         citation.validate()
-    except (pykwalify.errors.SchemaError, jsonschema.exceptions.ValidationError) as e:
+    except (PykwalifySchemaError, JsonschemaSchemaError):
         print("'{0}' does not pass validation. Conversion aborted.".format(infile))
         return
     outstr = {

@@ -31,12 +31,14 @@ Supported output formats:
 1.  schema.org JSON
 1.  Zenodo JSON
 
+<!--
 Besides local files, `cffconvert` can fetch `CITATION.cff` file contents from the following GitHub URLs:
 
 1.  `https://github.com/<org>/<repo>`
 2.  `https://github.com/<org>/<repo>/tree/<sha>`
 3.  `https://github.com/<org>/<repo>/tree/<tagname>`
 4.  `https://github.com/<org>/<repo>/tree/<branchname>`
+-->
 
 `cffconvert` does not aim to support the full Citation File Format specification.
 

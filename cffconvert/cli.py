@@ -28,17 +28,6 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
         click.echo(ctx.get_help())
         ctx.exit()
 
-    no_user_input = len(sys.argv) == 1
-    if show_help or no_user_input:
-        print_help()
-
-    if show_trace is False:
-        sys.tracebacklimit = 0
-
-    if version is True:
-        print("{0}".format(cffconvert_version))
-        return
-
     if verbose is True:
         click.echo("{0} = {1}".format("infile", infile))
         click.echo("{0} = {1}".format("outfile", outfile))
@@ -50,6 +39,18 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
         click.echo("{0} = {1}".format("ignore_suspect_keys", ignore_suspect_keys))
         click.echo("{0} = {1}".format("verbose", verbose))
         click.echo("{0} = {1}".format("version", version))
+
+    no_user_input = len(sys.argv) == 1
+    if show_help or no_user_input:
+        print_help()
+        return
+
+    if show_trace is False:
+        sys.tracebacklimit = 0
+
+    if version is True:
+        print("{0}".format(cffconvert_version))
+        return
 
     if infile is None and url is None:
         infile = "CITATION.cff"
@@ -64,13 +65,8 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
         with open(infile, "r", encoding="utf8") as f:
             cffstr = f.read()
 
-    # TODO currently there is no way to provide values for these 3 arguments from the command line
-    remove = None
-    override = None
-    suspect_keys = None
-
-    # url, ignore_suspect_keys=ignore_suspect_keys, override=override, remove=remove,
-    # suspect_keys=suspect_keys, validate=validate
+    # url, ignore_suspect_keys=ignore_suspect_keys
+    # validate=validate
 
     citation = Citation(cffstr)
 

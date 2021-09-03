@@ -75,22 +75,17 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate, ign
 
     if outputformat is None:
         return
-    elif outputformat == "apalike":
-        outstr = citation.as_apalike()
-    elif outputformat == "bibtex":
-        outstr = citation.as_bibtex()
-    elif outputformat == "cff":
-        outstr = citation.cffstr
-    elif outputformat == "codemeta":
-        outstr = citation.as_codemeta()
-    elif outputformat == "endnote":
-        outstr = citation.as_endnote()
-    elif outputformat == "ris":
-        outstr = citation.as_ris()
-    elif outputformat == "schema.org":
-        outstr = citation.as_schemaorg()
-    elif outputformat == "zenodo":
-        outstr = citation.as_zenodo()
+
+    outstr = {
+        "apalike": citation.as_apalike,
+        "bibtex": citation.as_bibtex,
+        "cff": citation.as_cff,
+        "codemeta": citation.as_codemeta,
+        "endnote": citation.as_endnote,
+        "ris": citation.as_ris,
+        "schema.org": citation.as_schemaorg,
+        "zenodo": citation.as_zenodo
+    }[outputformat]()
 
     if outfile is None:
         print(outstr, end='')

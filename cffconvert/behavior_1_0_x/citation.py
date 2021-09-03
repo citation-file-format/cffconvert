@@ -43,17 +43,20 @@ class Citation_1_0_x(Contract):
     def as_bibtex(self, reference='YourReferenceHere'):
         return BibtexObject(self.cffobj).print(reference)
 
-    def as_endnote(self):
-        return EndnoteObject(self.cffobj).print()
+    def as_cff(self):
+        return self.cffstr
 
     def as_codemeta(self):
         return CodemetaObject(self.cffobj).print()
 
-    def as_schemaorg(self):
-        return SchemaorgObject(self.cffobj).print()
+    def as_endnote(self):
+        return EndnoteObject(self.cffobj).print()
 
     def as_ris(self):
         return RisObject(self.cffobj).print()
+
+    def as_schemaorg(self):
+        return SchemaorgObject(self.cffobj).print()
 
     def as_zenodo(self):
         return ZenodoObject(self.cffobj).print()

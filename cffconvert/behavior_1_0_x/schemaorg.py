@@ -13,33 +13,15 @@ class SchemaorgObject(Shared):
         super().__init__(cffobj, initialize_empty, context)
 
     def add_date_published(self):
-        version = self.cffobj['cff-version']
-        if version in ['1.0.1', '1.0.2', '1.0.3', '1.1.0']:
-            if 'date-released' in self.cffobj.keys():
-                self.date_published = "{:d}-{:02d}-{:02d}".format(self.cffobj['date-released'].year,
-                                                                  self.cffobj['date-released'].month,
-                                                                  self.cffobj['date-released'].day)
-        elif version in ['1.2.0']:
-            if 'date-released' in self.cffobj.keys():
-                self.date_published = self.cffobj['date-released']
-        else:
-            raise ValueError("Unsupported version")
-
+        if 'date-released' in self.cffobj.keys():
+            self.date_published = "{:d}-{:02d}-{:02d}".format(self.cffobj['date-released'].year,
+                                                              self.cffobj['date-released'].month,
+                                                              self.cffobj['date-released'].day)
         return self
 
     def add_identifier(self):
-        version = self.cffobj['cff-version']
-        if version in ['1.0.3', '1.1.0', '1.2.0']:
-            if 'doi' in self.cffobj.keys():
-                self.identifier = 'https://doi.org/{}'.format(self.cffobj['doi'])
-
-        if version in ['1.1.0', '1.2.0']:
-            if 'identifiers' in self.cffobj.keys():
-                identifiers = self.cffobj['identifiers']
-                for identifier in identifiers:
-                    if identifier['type'] == 'doi':
-                        self.identifier = 'https://doi.org/{}'.format(identifier['value'])
-                        break
+        if 'doi' in self.cffobj.keys():
+            self.identifier = 'https://doi.org/{}'.format(self.cffobj['doi'])
         return self
 
     def check_cffobj(self):

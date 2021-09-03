@@ -54,3 +54,87 @@ repository-artifact: "https://pypi.org/project/cffconvert"
 repository-code: "https://github.com/citation-file-format/cff-converter-python"
 title: cffconvert
 version: "2.0.0-alpha.0"
+references:
+  - authors:
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Zwaan
+        given-names: Janneke
+        name-particle: "van der"
+        orcid: "https://orcid.org/0000-0002-8329-7000"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Werkhoven
+        given-names: Ben
+        name-particle: van
+        orcid: "https://orcid.org/0000-0002-7508-3272"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Andela
+        given-names: Bouwe
+        orcid: "https://orcid.org/0000-0001-9005-8940"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Bos
+        given-names: Patrick
+        orcid: "https://orcid.org/0000-0002-6033-960X"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Attema
+        given-names: Jisk
+        orcid: "https://orcid.org/0000-0002-0948-1176"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Bakker
+        given-names: Tom
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Spaaks
+        given-names: Jurriaan H.
+        orcid: "https://orcid.org/0000-0002-7064-4069"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Kuppevelt
+        given-names: Dafne
+        name-particle: van
+        orcid: "https://orcid.org/0000-0002-2662-1994"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Veen
+        given-names: Lourens
+        orcid: "https://orcid.org/0000-0002-6311-1168"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Rol
+        given-names: Evert
+        orcid: "https://orcid.org/0000-0001-8357-4453"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Verhoeven
+        given-names: Stefan
+        orcid: "https://orcid.org/0000-0002-5821-2060"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Diblen
+        given-names: Faruk
+        orcid: "https://orcid.org/0000-0002-0989-929X"
+      -
+        affiliation: "Netherlands eScience Center"
+        family-names: Tjong Kim Sang
+        given-names: Erik
+        orcid: "https://orcid.org/0000-0002-8431-081X"
+    date-released: 2018-07-17
+    identifiers:
+      -
+        description: "Concept DOI for Netherlands eScience Center Python Template"
+        type: doi
+        value: 10.5281/zenodo.1310751
+    keywords:
+      - cookiecutter
+      - template
+      - Python
+    license: Apache-2.0
+    repository-code: "https://github.com/NLeSC/python-template"
+    title: "Netherlands eScience Center Python Template"
+    type: software
+    version: "0.4.0"

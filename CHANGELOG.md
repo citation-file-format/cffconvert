@@ -1,13 +1,19 @@
-# Unreleased
+# 2.0.0 (Unreleased)
 
 - added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
-- switched to static config
+- switched to static configuration (setup.cfg over setup.py)
 - dependencies are now in `setup.cfg` as opposed to `requirements[-dev].txt`
+- updated version ranges for dependencies
+- tests are no longer `unittest.TestCase` based, but pytest with fixtures
+- added jsonschema based validation for CITATION.cff files with `cff-version: 1.2.0`
+- added support for conversion of CITATION.cff files with `cff-version: 1.2.0` 
+- simplified the `Citation` class, it was doing too much
+- implemented _State pattern_ for `Citation` to help it deal with multiple behaviors under past and future versions of the Citation File Format.
 
 # 1.3.3
 
 -   With recent changes to the release process, the schema will be in a
-    different places than before. This release fixes
+    different place than before. This release fixes
     <https://github.com/citation-file-format/cff-converter-python/issues/119>).
 
 # 1.3.2

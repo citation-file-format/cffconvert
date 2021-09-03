@@ -70,97 +70,59 @@ Shows:
 Usage: cffconvert [OPTIONS]
 
 Options:
-  -i TEXT                         Path to the CITATION.cff input file. Use '-i -' to read from STDIN.
-  -o TEXT                         Path to the output file.
-  -f [bibtex|cff|codemeta|endnote|ris|schema.org|zenodo|apalike]
+  -i PATH                         Path to the CITATION.cff input file. Default
+                                  value is './CITATION.cff'.
+  -o PATH                         Path to the output file.
+  -f [apalike|bibtex|cff|codemeta|endnote|ris|schema.org|zenodo]
                                   Output format.
-  -u, --url TEXT                  URL of the repo containing the CITATION.cff (currently only github.com is supported;
-                                  may include branch name, commit sha, tag name). For example:
-                                  'https://github.com/citation-file-format/cff-converter-python' or
-                                  'https://github.com/citation-file-format/cff-converter-python/tree/main'
   -h, --help                      Show help and exit.
   --show-trace                    Show error trace.
-  --validate                      Validate the CITATION.cff found at the URL or supplied through '-i'.
-  --ignore-suspect-keys           Ignore any keys from CITATION.cff that are likely out of date, such as 'commit',
-                                  'date-released', 'doi', and 'version'.
+  --validate                      Validate the CITATION.cff and exit.
+  --ignore-suspect-keys           Ignore any keys from CITATION.cff that are
+                                  likely out of date, such as 'commit', 'date-
+                                  released', 'doi', and 'version'.
   --verbose                       Provide feedback on what was entered.
   --version                       Print version and exit.
 ```
 
 ## Example usage
 
-The following examples assume a `CITATION.cff` file with the following contents is present in the current working directory:
+### Validating
 
-```yaml
-authors:
-  - family-names: Spaaks
-    given-names: "Jurriaan H."
-cff-version: 1.1.0
-date-released: 2019-11-12
-doi: 10.5281/zenodo.1162057
-message: "If you use this software, please cite it using these metadata."
-repository-code: "https://github.com/citation-file-format/cff-converter-python"
-title: cffconvert
-version: 1.3.3
+```shell
+cffconvert --validate
+cffconvert --validate -i CITATION.cff
+cffconvert --validate -i ${PWD}/CITATION.cff
+cffconvert --validate -i ../some-other-dir/CITATION.cff
 ```
 
-### Converting to BibTeX
+### Converting metadata to other formats
+
+If there is a valid CITATION.cff file in the current directory, you can convert to various other formats and 
+print the result on standard out with:
 
 ```shell
 cffconvert -f bibtex
-```
-
-(see [result](docs/example-result-bibtex.md))
-
-### Converting to CodeMeta
-
-```shell
 cffconvert -f codemeta
-```
-
-(see [result](docs/example-result-codemeta.md))
-
-### Converting to EndNote
-
-```shell
 cffconvert -f endnote
-```
-
-(see [result](docs/example-result-endnote.md))
-
-### Converting to RIS
-
-```shell
 cffconvert -f ris
-```
-
-(see [result](docs/example-result-ris.md))
-
-### Converting to schema.org JSON
-
-(schema.org is used in websites to improve ranking by search engines)
-
-```shell
 cffconvert -f schema.org
-```
-
-(see [result](docs/example-result-schema-org.md))
-
-### Converting to Zenodo JSON
-
-Convert the contents of a local file `CITATION.cff` into the format used by `.zenodo.json` files (see [Zenodo's API
-docs](http://developers.zenodo.org/#representation)):
-
-```shell
 cffconvert -f zenodo
-```
-
-(see [result](docs/example-result-zenodo.md))
-
-### Converting to APA-like
-
-```shell
 cffconvert -f apalike
 ```
 
-(see [result](docs/example-result-apalike.md))
+### Writing to a file
+
+```shell
+# with i/o redirection:
+cffconvert -f bibtex > bibtex.bib
+cffconvert -f zenodo > zenodo.json
+cffconvert -f endnote > ${PWD}/endnote.enw
+# etc
+
+# without i/o redirection
+cffconvert -f bibtex -o bibtex.bib
+cffconvert -f zenodo -o zenodo.json
+cffconvert -f endnote -o ${PWD}/endnote.enw
+# etc
+```

@@ -1,25 +1,27 @@
 import os
-import unittest
+import pytest
 from test.contracts.SchemaorgObject import Contract
-import ruamel.yaml as yaml
-from cffconvert import SchemaorgObject
+from cffconvert.behavior_1_0_x.schemaorg import SchemaorgObject
+from cffconvert import Citation
 
 
-class SchemaorgObjectTest(Contract, unittest.TestCase):
+@pytest.fixture(scope="module")
+def schemaorg_object():
+    fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
+    with open(fixture, "r", encoding="utf8") as f:
+        cffstr = f.read()
+        citation = Citation(cffstr)
+        return SchemaorgObject(citation.cffobj, initialize_empty=True)
 
-    def setUp(self):
-        fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-        with open(fixture, "r", encoding="utf8") as f:
-            cffstr = f.read()
-            cff_object = yaml.safe_load(cffstr)
-            self.so = SchemaorgObject(cff_object, initialize_empty=True)
 
-    def test_check_cff_object(self):
-        self.so.check_cff_object()
+class SchemaorgObjectTest(Contract):
+
+    def test_check_cffobj(self, schemaorg_object):
+        schemaorg_object.check_cffobj()
         # doesn't need an assert
 
-    def test_author(self):
-        self.so.add_author()
+    def test_author(self, schemaorg_object):
+        schemaorg_object.add_author()
         expected_author = [{
             "@type": "Person",
             "affiliation": {
@@ -45,44 +47,44 @@ class SchemaorgObjectTest(Contract, unittest.TestCase):
             "familyName": "Verhoeven",
             "givenName": "Stefan"
         }]
-        self.assertListEqual(self.so.author, expected_author)
+        assert schemaorg_object.author == expected_author
 
-    def test_code_repository(self):
-        self.so.add_code_repository()
-        self.assertEqual(self.so.code_repository, 'https://github.com/citation-file-format/cff-converter-python')
+    def test_code_repository(self, schemaorg_object):
+        schemaorg_object.add_code_repository()
+        assert schemaorg_object.code_repository == 'https://github.com/citation-file-format/cff-converter-python'
 
-    def test_date_published(self):
-        self.so.add_date_published()
-        self.assertEqual(self.so.date_published, '2018-05-09')
+    def test_date_published(self, schemaorg_object):
+        schemaorg_object.add_date_published()
+        assert schemaorg_object.date_published == '2018-05-09'
 
-    def test_description(self):
-        self.so.add_description()
-        self.assertIsNone(self.so.description)
+    def test_description(self, schemaorg_object):
+        schemaorg_object.add_description()
+        assert schemaorg_object.description is None
 
-    def test_identifier(self):
-        self.so.add_identifier()
-        self.assertEqual(self.so.identifier, 'https://doi.org/10.5281/zenodo.1162057')
+    def test_identifier(self, schemaorg_object):
+        schemaorg_object.add_identifier()
+        assert schemaorg_object.identifier == 'https://doi.org/10.5281/zenodo.1162057'
 
-    def test_keywords(self):
-        self.so.add_keywords()
+    def test_keywords(self, schemaorg_object):
+        schemaorg_object.add_keywords()
         expected_keywords = ['citation', 'bibliography', 'cff', 'CITATION.cff']
-        self.assertListEqual(self.so.keywords, expected_keywords)
+        assert schemaorg_object.keywords == expected_keywords
 
-    def test_license(self):
-        self.so.add_license()
-        self.assertEqual(self.so.license, 'https://spdx.org/licenses/Apache-2.0')
+    def test_license(self, schemaorg_object):
+        schemaorg_object.add_license()
+        assert schemaorg_object.license == 'https://spdx.org/licenses/Apache-2.0'
 
-    def test_name(self):
-        self.so.add_name()
-        self.assertEqual(self.so.name, 'cffconvert')
+    def test_name(self, schemaorg_object):
+        schemaorg_object.add_name()
+        assert schemaorg_object.name == 'cffconvert'
 
-    def test_version(self):
-        self.so.add_version()
-        self.assertEqual(self.so.version, '0.0.4')
+    def test_version(self, schemaorg_object):
+        schemaorg_object.add_version()
+        assert schemaorg_object.version == '0.0.4'
 
-    def test_print(self):
-        actual_schemaorg = self.so.add_all().print()
+    def test_print(self, schemaorg_object):
+        actual_schemaorg = schemaorg_object.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
         with open(fixture, "r", encoding="utf8") as f:
             expected_schemaorg = f.read()
-        self.assertEqual(actual_schemaorg, expected_schemaorg)
+        assert actual_schemaorg == expected_schemaorg

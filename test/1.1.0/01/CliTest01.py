@@ -118,7 +118,6 @@ def test_printing_when_verbose():
                       "show_help = False\n" + \
                       "show_trace = False\n" + \
                       "validate = False\n" + \
-                      "ignore_suspect_keys = False\n" + \
                       "verbose = True\n" + \
                       "version = False\n"
     runner = CliRunner()

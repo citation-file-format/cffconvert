@@ -49,11 +49,6 @@ options = {
         default=False,
         help="Validate the CITATION.cff and exit."
     ),
-    "ignore_suspect_keys": dict(
-        is_flag=True,
-        default=False,
-        help="Ignore any keys from CITATION.cff that are likely out of date, such as 'commit', 'date-released', 'doi', and 'version'."
-    ),
     "verbose": dict(
         is_flag=True,
         default=False,
@@ -74,10 +69,9 @@ options = {
 @click.option("-h", "--help", "show_help", **options["show_help"])
 @click.option("--show-trace", "show_trace", **options["show_trace"])
 @click.option("--validate", "validate", **options["validate"])
-@click.option("--ignore-suspect-keys", "ignore_suspect_keys", **options["ignore_suspect_keys"])
 @click.option("--verbose", "verbose", **options["verbose"])
 @click.option("--version", "version", **options["version"])
-def cli(infile, outfile, outputformat, show_help, show_trace, validate, ignore_suspect_keys, verbose, version):
+def cli(infile, outfile, outputformat, show_help, show_trace, validate, verbose, version):
 
     def print_help():
         ctx = click.get_current_context()
@@ -91,7 +85,6 @@ def cli(infile, outfile, outputformat, show_help, show_trace, validate, ignore_s
         click.echo("{0} = {1}".format("show_help", show_help))
         click.echo("{0} = {1}".format("show_trace", show_trace))
         click.echo("{0} = {1}".format("validate", validate))
-        click.echo("{0} = {1}".format("ignore_suspect_keys", ignore_suspect_keys))
         click.echo("{0} = {1}".format("verbose", verbose))
         click.echo("{0} = {1}".format("version", version))
 
@@ -109,9 +102,6 @@ def cli(infile, outfile, outputformat, show_help, show_trace, validate, ignore_s
 
     with open(infile, "r", encoding="utf8") as f:
         cffstr = f.read()
-
-    # url, ignore_suspect_keys=ignore_suspect_keys
-    # validate=validate
 
     citation = Citation(cffstr)
 

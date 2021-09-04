@@ -75,14 +75,13 @@ options = {
 def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only, version):
 
     def check_early_exits():
+        ctx = click.get_current_context()
         if show_help or len(sys.argv) == 1:
-            ctx = click.get_current_context()
             click.echo(ctx.get_help())
             ctx.exit()
-            return
         if version is True:
             print("{0}".format(cffconvert_version))
-            return
+            ctx.exit()
 
     def create_citation():
         condition = (infile is None, url is None)
@@ -109,11 +108,11 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only
         if condition == (True, False):
             # just validate, there is no target outputformat
             citation.validate()
-            print("'{0}' is valid.".format(infile))
+            print("Citation metadata are valid according to schema version {0}.".format(citation.cffversion))
         elif condition == (True, True):
             # just validate, ignore the target outputformat
             citation.validate()
-            print("'{0}' is valid. Ignoring output format.".format(infile))
+            print("Ignoring output format. Citation metadata are valid according to schema version {0}.".format(citation.cffversion))
         elif condition == (False, False):
             # user hasn't indicated what they want
             print('Indicate whether you want to validate or convert the citation metadata.')
@@ -123,7 +122,8 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only
                 citation.validate()
             except (PykwalifySchemaError, JsonschemaSchemaError):
                 print("'{0}' does not pass validation. Conversion aborted.".format(infile))
-                return
+                ctx = click.get_current_context()
+                ctx.exit()
             outstr = {
                 "apalike": citation.as_apalike,
                 "bibtex": citation.as_bibtex,
@@ -149,6 +149,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only
 
     if infile is None and url is None:
         infile = 'CITATION.cff'
+
     citation = create_citation()
     validate_or_write_output()
 

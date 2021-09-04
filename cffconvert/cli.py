@@ -149,13 +149,19 @@ options = {
 def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only, version):
 
     _check_early_exits(show_help, version)
+
     if show_trace is False:
+        # show elaborate error details if something goes wrong
         sys.tracebacklimit = 0
 
+    # if user didn't specify a filename or a url, apply default filename
     if infile is None and url is None:
         infile = 'CITATION.cff'
 
+    # load the citation metadata from the specified source and create a Python object representation of it
     citation = _create_citation(infile, url)
+
+    # either validate and exit, or convert to the selected output format
     _validate_or_write_output(outfile, outputformat, validate_only, citation)
 
 

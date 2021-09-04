@@ -8,6 +8,80 @@ from cffconvert.version import __version__ as cffconvert_version
 from cffconvert.fetching import read_from_url
 
 
+def _check_early_exits(show_help, version):
+    ctx = click.get_current_context()
+    if show_help or len(sys.argv) == 1:
+        click.echo(ctx.get_help())
+        ctx.exit()
+    if version is True:
+        print("{0}".format(cffconvert_version))
+        ctx.exit()
+
+
+def _create_citation(infile, url):
+    condition = (infile is None, url is None)
+    if condition == (True, True):
+        # neither has been defined, raise
+        raise ValueError("Define either a URL or a local file as the input.")
+    elif condition == (False, False):
+        # both have been defined, raise
+        raise ValueError("Define either a URL or a local file as the input, not both.")
+    elif condition == (True, False):
+        cffstr = read_from_url(url)
+    elif condition == (False, True):
+        cffstr = _read_from_file()
+    else:
+        raise ValueError("Something went wrong creating the citation object.")
+    return Citation(cffstr)
+
+
+def _read_from_file(infile):
+    with open(infile, "r", encoding="utf8") as f:
+        return f.read()
+
+
+def _validate_or_write_output(outfile, outputformat, validate_only, citation):
+    condition = (validate_only, outputformat is not None)
+    if condition == (True, False):
+        # just validate, there is no target outputformat
+        citation.validate()
+        print("Citation metadata are valid according to schema version {0}.".format(citation.cffversion))
+    elif condition == (True, True):
+        # just validate, ignore the target outputformat
+        citation.validate()
+        print("Ignoring output format. Citation metadata are valid according to schema version {0}.".format(
+            citation.cffversion))
+    elif condition == (False, False):
+        # user hasn't indicated what they want
+        print('Indicate whether you want to validate or convert the citation metadata.')
+    elif condition == (False, True):
+        # validate the input, then write to target outputformat
+        try:
+            citation.validate()
+        except (PykwalifySchemaError, JsonschemaSchemaError):
+            print("'{0}' does not pass validation. Conversion aborted.".format(infile))
+            ctx = click.get_current_context()
+            ctx.exit()
+        outstr = {
+            "apalike": citation.as_apalike,
+            "bibtex": citation.as_bibtex,
+            "cff": citation.as_cff,
+            "codemeta": citation.as_codemeta,
+            "endnote": citation.as_endnote,
+            "ris": citation.as_ris,
+            "schema.org": citation.as_schemaorg,
+            "zenodo": citation.as_zenodo
+        }[outputformat]()
+        if outfile is None:
+            print(outstr, end='')
+        else:
+            with open(outfile, "w", encoding="utf8") as f:
+                f.write(outstr)
+    else:
+        # shouldn't happen
+        raise ValueError('Something went wrong validating or writing the output')
+
+
 options = {
     "infile": dict(
         type=click.Path(),
@@ -74,84 +148,15 @@ options = {
 @click.option("--version", "version", **options["version"])
 def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only, version):
 
-    def check_early_exits():
-        ctx = click.get_current_context()
-        if show_help or len(sys.argv) == 1:
-            click.echo(ctx.get_help())
-            ctx.exit()
-        if version is True:
-            print("{0}".format(cffconvert_version))
-            ctx.exit()
-
-    def create_citation():
-        condition = (infile is None, url is None)
-        if condition == (True, True):
-            # neither has been defined, raise
-            raise ValueError("Define either a URL or a local file as the input.")
-        elif condition == (False, False):
-            # both have been defined, raise
-            raise ValueError("Define either a URL or a local file as the input, not both.")
-        elif condition == (True, False):
-            cffstr = read_from_url(url)
-        elif condition == (False, True):
-            cffstr = read_from_file()
-        else:
-            raise ValueError("Something went wrong creating the citation object.")
-        return Citation(cffstr)
-
-    def read_from_file():
-        with open(infile, "r", encoding="utf8") as f:
-            return f.read()
-
-    def validate_or_write_output():
-        condition = (validate_only, outputformat is not None)
-        if condition == (True, False):
-            # just validate, there is no target outputformat
-            citation.validate()
-            print("Citation metadata are valid according to schema version {0}.".format(citation.cffversion))
-        elif condition == (True, True):
-            # just validate, ignore the target outputformat
-            citation.validate()
-            print("Ignoring output format. Citation metadata are valid according to schema version {0}.".format(citation.cffversion))
-        elif condition == (False, False):
-            # user hasn't indicated what they want
-            print('Indicate whether you want to validate or convert the citation metadata.')
-        elif condition == (False, True):
-            # validate the input, then write to target outputformat
-            try:
-                citation.validate()
-            except (PykwalifySchemaError, JsonschemaSchemaError):
-                print("'{0}' does not pass validation. Conversion aborted.".format(infile))
-                ctx = click.get_current_context()
-                ctx.exit()
-            outstr = {
-                "apalike": citation.as_apalike,
-                "bibtex": citation.as_bibtex,
-                "cff": citation.as_cff,
-                "codemeta": citation.as_codemeta,
-                "endnote": citation.as_endnote,
-                "ris": citation.as_ris,
-                "schema.org": citation.as_schemaorg,
-                "zenodo": citation.as_zenodo
-            }[outputformat]()
-            if outfile is None:
-                print(outstr, end='')
-            else:
-                with open(outfile, "w", encoding="utf8") as f:
-                    f.write(outstr)
-        else:
-            # shouldn't happen
-            raise ValueError('Something went wrong validating or writing the output')
-
-    check_early_exits()
+    _check_early_exits(show_help, version)
     if show_trace is False:
         sys.tracebacklimit = 0
 
     if infile is None and url is None:
         infile = 'CITATION.cff'
 
-    citation = create_citation()
-    validate_or_write_output()
+    citation = _create_citation(infile, url)
+    _validate_or_write_output(outfile, outputformat, validate_only, citation)
 
 
 if __name__ == "__main__":

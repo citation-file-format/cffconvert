@@ -1,19 +1,5 @@
-import os
-import tempfile
-from datetime import datetime
-import jsonschema
-import json
 import requests
-from ruamel.yaml import YAML
-import pykwalify
 
-
-def xor(condition1, condition2):
-    conditions = [condition1, condition2]
-    return False in conditions and True in conditions
-
-if not xor(url is None, cffstr is None):
-    raise ValueError("You should specify either \'url\' or \'cffstr\'.")
 
 def _get_baseurl(self):
     if self.url.startswith("https://github.com"):

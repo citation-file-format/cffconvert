@@ -112,24 +112,6 @@ def test_printing_on_stdout_as_schemaorg():
     assert expected == actual
 
 
-def test_printing_when_verbose():
-    expected_output = "infile = .{0}CITATION.cff\n".format(os.sep) + \
-                      "outfile = None\n" + \
-                      "outputformat = None\n" + \
-                      "show_help = False\n" + \
-                      "show_trace = False\n" + \
-                      "validate = False\n" + \
-                      "verbose = True\n" + \
-                      "version = False\n"
-    runner = CliRunner()
-    with runner.isolated_filesystem():
-        result = runner.invoke(cffconvert_cli, ["--verbose"])
-    assert type(result.exception) == FileNotFoundError
-    assert result.exit_code == 1
-    assert "No such file or directory" in str(result.exception)
-    assert result.output == expected_output
-
-
 def test_raising_error_on_unsupported_format():
     cffstr = read_sibling_file("CITATION.cff")
     runner = CliRunner()

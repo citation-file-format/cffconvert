@@ -21,7 +21,7 @@ class Citation:
 
     @staticmethod
     def _get_cff_version(cffstr):
-        res = re.search(r"^cff-version: ['\"]?(?P<cffversion>[^\s]*)['\"]?[\s]*$", cffstr, re.MULTILINE)
+        res = re.search(r"^cff-version: ['\"]?(?P<cffversion>[^\s'\"]*)['\"]?[\s]*$", cffstr, re.MULTILINE)
         if res is None:
             raise ValueError("Unable to identify the schema version. Required key 'cff-version' seems to be missing.")
         cffversion = res.group("cffversion")

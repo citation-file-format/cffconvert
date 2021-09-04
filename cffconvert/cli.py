@@ -1,3 +1,4 @@
+import os
 import sys
 import click
 from pykwalify.errors import SchemaError as PykwalifySchemaError
@@ -11,7 +12,7 @@ options = {
     "infile": dict(
         type=click.Path(),
         default=None,
-        help="Path to the CITATION.cff input file."
+        help="Path to the CITATION.cff input file. If option is omitted, .{0}CITATION.cff is used.".format(os.sep)
     ),
     "outfile": dict(
         type=click.Path(),

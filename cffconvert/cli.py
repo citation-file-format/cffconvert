@@ -29,7 +29,7 @@ def _create_citation(infile, url):
     elif condition == (True, False):
         cffstr = read_from_url(url)
     elif condition == (False, True):
-        cffstr = _read_from_file()
+        cffstr = _read_from_file(infile)
     else:
         raise ValueError("Something went wrong creating the citation object.")
     return Citation(cffstr)

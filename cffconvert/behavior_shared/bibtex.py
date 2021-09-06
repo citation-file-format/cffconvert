@@ -108,7 +108,8 @@ class BibtexObjectShared:
     def add_author(self):
         authors_cff = self.cffobj.get('authors', list())
         authors_bibtex = [BibtexAuthor(a).as_string() for a in authors_cff]
-        self.author = 'author = {' + ' and '.join([a for a in authors_bibtex if a is not None]) + '}'
+        authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
+        self.author = 'author = {' + ' and '.join(authors_bibtex_filtered) + '}'
         return self
 
     @abstractmethod

@@ -18,7 +18,7 @@ class BibtexObjectTest(Contract):
 
     def test_author(self, bibtex_object):
         bibtex_object.add_author()
-        assert bibtex_object.author == 'author = {Gonzalo Fernández de Córdoba Jr.}'
+        assert bibtex_object.author == 'author = {Fernández de Córdoba Jr., Gonzalo}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()

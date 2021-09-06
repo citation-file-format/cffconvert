@@ -1,0 +1,45 @@
+name: testing
+
+on: [push, pull_request]
+
+jobs:
+
+  testing:
+    name: py${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
+        python-version: ['3.6', '3.7', '3.8', '3.9']
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Show python info
+        shell: bash -l {0}
+        run: |
+          which python3
+          python3 --version
+
+      - name: Upgrade pip, setuptools and wheel
+        run: python3 -m pip install --upgrade pip setuptools wheel
+
+      - name: Install runtime dependencies
+        run: python3 -m pip install .
+
+      - name: Install development dependencies
+        run: python3 -m pip install .[dev]
+
+      - name: Run unit tests for Citation File Format schema version 1.0.3
+        run: python3 -m pytest test/1.0.3
+
+      - name: Run unit tests for Citation File Format schema version 1.1.0
+        run: python3 -m pytest test/1.1.0
+
+      - name: Run unit tests for Citation File Format schema version 1.2.0
+        run: python3 -m pytest test/1.2.0

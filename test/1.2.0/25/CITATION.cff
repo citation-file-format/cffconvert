@@ -1,0 +1,8 @@
+authors:
+  - name: The soccer team members
+    alias: Rafa
+  - name: The trainers
+    alias: coach
+cff-version: "1.2.0"
+message: "test of author inputs"
+title: the title

@@ -1,0 +1,8 @@
+authors:
+  - given-names: Rafael
+    alias: Rafa
+  - given-names: Cristiano Ronaldo
+    alias: Ronaldo
+cff-version: "1.2.0"
+message: "test of author inputs"
+title: the title

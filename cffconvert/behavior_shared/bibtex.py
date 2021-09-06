@@ -1,6 +1,66 @@
 from abc import abstractmethod
 
 
+def _author_cff_to_author_bibtex(author_cff):
+    has_given_names = _exists_nonempty(author_cff, 'given-names')
+    has_family_names = _exists_nonempty(author_cff, 'family-names')
+    has_alias = _exists_nonempty(author_cff, 'alias')
+    has_name = _exists_nonempty(author_cff, 'name')
+
+    return {
+        (True, True, True, True): _from_given_and_last,
+        (True, True, True, False): _from_given_and_last,
+        (True, True, False, True): _from_given_and_last,
+        (True, True, False, False): _from_given_and_last,
+        (True, False, True, True): _from_name,
+        (True, False, True, False): _from_alias,
+        (True, False, False, True): _from_name,
+        (True, False, False, False): _from_given_only,
+        (False, True, True, True): _from_last_only,
+        (False, True, True, False): _from_last_only,
+        (False, True, False, True): _from_last_only,
+        (False, True, False, False): _from_last_only,
+        (False, False, True, True): _from_name,
+        (False, False, True, False): _from_alias,
+        (False, False, False, True): _from_name,
+        (False, False, False, False): _from_thin_air
+    }[(has_given_names, has_family_names, has_alias, has_name)](author_cff)
+
+
+def _exists_nonempty(obj, key):
+    value = obj.get(key, None)
+    return value is not None and value != ''
+
+
+def _from_alias(author_cff):
+    return author_cff.get('alias')
+
+
+def _from_given_and_last(author_cff):
+    return _from_last_only(author_cff) + ", " + _from_given_only(author_cff)
+
+
+def _from_given_only(author_cff):
+    return author_cff.get('given-names')
+
+
+def _from_last_only(author_cff):
+    nameparts = [
+        author_cff.get('name-particle'),
+        author_cff.get('family-names'),
+        author_cff.get('name-suffix')
+    ]
+    return ' '.join([n for n in nameparts if n is not None])
+
+
+def _from_name(author_cff):
+    return author_cff.get('name')
+
+
+def _from_thin_air():
+    return None
+
+
 class BibtexObjectShared:
 
     supported_bibtex_props = [
@@ -47,22 +107,9 @@ class BibtexObjectShared:
         return self
 
     def add_author(self):
-        if 'authors' in self.cffobj.keys():
-            fullnames = []
-            for author in self.cffobj['authors']:
-                keys = author.keys()
-                nameparts = [
-                    author['given-names'] if 'given-names' in keys else None,
-                    author['name-particle'] if 'name-particle' in keys else None,
-                    author['family-names'] if 'family-names' in keys else None,
-                    author['name-suffix'] if 'name-suffix' in keys else None
-                ]
-                fullname = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                if fullname == '' and 'alias' in keys and author['alias'] is not None:
-                    fullname = author['alias'] if author['alias'] != '' else None
-                if fullname is not None and fullname != '':
-                    fullnames.append(fullname)
-            self.author = 'author = {' + ' and '.join(fullnames) + '}'
+        authors_cff = self.cffobj.get('authors', list())
+        authors_bibtex = [_author_cff_to_author_bibtex(a) for a in authors_cff]
+        self.author = 'author = {' + ' and '.join([a for a in authors_bibtex if a is not None]) + '}'
         return self
 
     @abstractmethod

@@ -1,35 +1,11 @@
 from abc import abstractmethod
 
 
-class BibtexAuthor:
+class BibtexAuthorShared:
 
     def __init__(self, author_cff):
         self._author_cff = author_cff
-
-    def as_string(self):
-        has_given_names = self._exists_nonempty('given-names')
-        has_family_names = self._exists_nonempty('family-names')
-        has_alias = self._exists_nonempty('alias')
-        has_name = self._exists_nonempty('name')
-
-        return {
-            (True, True, True, True): self._from_given_and_last,
-            (True, True, True, False): self._from_given_and_last,
-            (True, True, False, True): self._from_given_and_last,
-            (True, True, False, False): self._from_given_and_last,
-            (True, False, True, True): self._from_name,
-            (True, False, True, False): self._from_alias,
-            (True, False, False, True): self._from_name,
-            (True, False, False, False): self._from_given_only,
-            (False, True, True, True): self._from_last_only,
-            (False, True, True, False): self._from_last_only,
-            (False, True, False, True): self._from_last_only,
-            (False, True, False, False): self._from_last_only,
-            (False, False, True, True): self._from_name,
-            (False, False, True, False): self._from_alias,
-            (False, False, False, True): self._from_name,
-            (False, False, False, False): BibtexAuthor._from_thin_air
-        }[(has_given_names, has_family_names, has_alias, has_name)]()
+        self._behaviors = None
 
     def _exists_nonempty(self, key):
         value = self._author_cff.get(key, None)
@@ -105,12 +81,9 @@ class BibtexObjectShared:
             .add_year()
         return self
 
+    @abstractmethod
     def add_author(self):
-        authors_cff = self.cffobj.get('authors', list())
-        authors_bibtex = [BibtexAuthor(a).as_string() for a in authors_cff]
-        authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
-        self.author = 'author = {' + ' and '.join(authors_bibtex_filtered) + '}'
-        return self
+        pass
 
     @abstractmethod
     def add_doi(self):

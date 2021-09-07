@@ -1,7 +1,33 @@
-from cffconvert.behavior_shared.bibtex import BibtexObjectShared as Shared
+from cffconvert.behavior_shared.bibtex import BibtexAuthorShared
+from cffconvert.behavior_shared.bibtex import BibtexObjectShared
 
 
-class BibtexObject(Shared):
+class BibtexAuthor(BibtexAuthorShared):
+
+    def __init__(self, author_cff):
+        super().__init__(author_cff)
+        self._behaviors = {
+            'TTT': self._from_given_and_last,
+            'TTF': self._from_given_and_last,
+            'TFT': self._from_name,
+            'TFF': self._from_given_only,
+            'FTT': self._from_last_only,
+            'FTF': self._from_last_only,
+            'FFT': self._from_name,
+            'FFF': BibtexAuthorShared._from_thin_air
+        }
+
+    def as_string(self):
+        state = [
+            self._exists_nonempty('given-names'),
+            self._exists_nonempty('family-names'),
+            self._exists_nonempty('name')
+        ]
+        key = ''.join(['T' if item is True else 'F' for item in state])
+        return self._behaviors[key]()
+
+
+class BibtexObject(BibtexObjectShared):
 
     supported_cff_versions = [
         '1.0.1',
@@ -11,6 +37,13 @@ class BibtexObject(Shared):
 
     def __init__(self, cffobj, initialize_empty=False):
         super().__init__(cffobj, initialize_empty)
+
+    def add_author(self):
+        authors_cff = self.cffobj.get('authors', list())
+        authors_bibtex = [BibtexAuthor(a).as_string() for a in authors_cff]
+        authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
+        self.author = 'author = {' + ' and '.join(authors_bibtex_filtered) + '}'
+        return self
 
     def add_doi(self):
         if 'doi' in self.cffobj.keys():

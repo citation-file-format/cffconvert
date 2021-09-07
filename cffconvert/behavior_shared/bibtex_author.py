@@ -1,6 +1,3 @@
-from abc import abstractmethod
-
-
 class BibtexAuthorShared:
 
     def __init__(self, author_cff):

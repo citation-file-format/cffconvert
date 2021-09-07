@@ -1,7 +1,3 @@
-import json
-from abc import abstractmethod
-
-
 class SchemaorgAuthorShared:
 
     def __init__(self, author_cff):

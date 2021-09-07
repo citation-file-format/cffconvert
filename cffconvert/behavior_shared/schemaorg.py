@@ -2,6 +2,241 @@ import json
 from abc import abstractmethod
 
 
+class SchemaorgAuthorShared:
+
+    def __init__(self, author_cff):
+        self._author_cff = author_cff
+        self._behaviors = None
+
+    def _exists_nonempty(self, key):
+        value = self._author_cff.get(key, None)
+        return value is not None and value != ''
+
+    def _from_affiliation(self):
+        return {
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            }
+        }
+
+    def _from_affiliation_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            }
+        }
+
+    def _from_alias(self):
+        return {
+            '@type': 'Person',
+            'name': self._author_cff.get('alias')
+        }
+
+    def _from_alias_and_affiliation(self):
+        return {
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'name': self._author_cff.get('alias')
+        }
+
+    def _from_alias_and_affiliation_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'name': self._author_cff.get('alias')
+        }
+
+    def _from_alias_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'name': self._author_cff.get('alias')
+        }
+
+    def _from_given(self):
+        return {
+            '@type': 'Person',
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_given_and_affiliation(self):
+        return {
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_given_and_affiliation_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_given_and_last(self):
+        return {
+            '@type': 'Person',
+            'familyName': self._get_full_last_name(),
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_given_and_last_and_affiliation(self):
+        return {
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'familyName': self._get_full_last_name(),
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_given_and_last_and_affiliation_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'familyName': self._get_full_last_name(),
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_given_and_last_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'familyName': self._get_full_last_name(),
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_given_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'givenName': self._author_cff.get('given-names')
+        }
+
+    def _from_last(self):
+        return {
+            '@type': 'Person',
+            'familyName': self._get_full_last_name()
+        }
+
+    def _from_last_and_affiliation(self):
+        return {
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'familyName': self._get_full_last_name()
+        }
+
+    def _from_last_and_affiliation_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'familyName': self._get_full_last_name()
+        }
+
+    def _from_last_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'familyName': self._get_full_last_name()
+        }
+
+    def _from_name(self):
+        return {
+            '@type': 'Person',
+            'name': self._author_cff.get('name')
+        }
+
+    def _from_name_and_affiliation(self):
+        return {
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'name': self._author_cff.get('name')
+        }
+
+    def _from_name_and_affiliation_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'affiliation': {
+                '@type': 'Organization',
+                'legalName': self._author_cff.get('affiliation')
+            },
+            'name': self._author_cff.get('name')
+        }
+
+    def _from_name_and_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person',
+            'name': self._author_cff.get('name')
+        }
+
+    def _from_orcid(self):
+        return {
+            '@id': self._author_cff.get('orcid'),
+            '@type': 'Person'
+        }
+
+    @staticmethod
+    def _from_thin_air():
+        return None
+
+    def _get_full_last_name(self):
+        nameparts = [
+            self._author_cff.get('name-particle'),
+            self._author_cff.get('family-names'),
+            self._author_cff.get('name-suffix')
+        ]
+        return ' '.join([n for n in nameparts if n is not None])
+
+    def as_dict(self):
+        state = [
+            self._exists_nonempty('given-names'),
+            self._exists_nonempty('family-names'),
+            self._exists_nonempty('alias'),
+            self._exists_nonempty('name'),
+            self._exists_nonempty('affiliation'),
+            self._exists_nonempty('orcid')
+        ]
+        key = ''.join(['T' if item is True else 'F' for item in state])
+        return self._behaviors[key]()
+
+
+
 class SchemaorgObjectShared:
 
     supported_schemaorg_props = [
@@ -35,7 +270,7 @@ class SchemaorgObjectShared:
             self.check_cffobj()
             self.add_all()
 
-    def __str__(self):
+    def __str__(self, sort_keys=True, indent=2):
         d = {
             "@context": self.context,
             "@type": "SoftwareSourceCode",
@@ -50,8 +285,7 @@ class SchemaorgObjectShared:
             "version": self.version
         }
         filtered = [item for item in d.items() if item[1] is not None]
-        return json.dumps(dict(filtered), sort_keys=True, indent=3,
-                          separators=(', ', ': '), ensure_ascii=False) + '\n'
+        return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + '\n'
 
     def add_all(self):
         self.add_author()           \
@@ -65,44 +299,9 @@ class SchemaorgObjectShared:
             .add_version()
         return self
 
+    @abstractmethod
     def add_author(self):
-        if 'authors' in self.cffobj.keys():
-            self.author = list()
-            for author in self.cffobj['authors']:
-                d = dict()
-                keys = author.keys()
-                if 'orcid' in author.keys():
-                    if author['orcid'].startswith('https://orcid.org/'):
-                        d['@id'] = author['orcid']
-                d["@type"] = "Person"
-                if 'affiliation' in author.keys():
-                    d['affiliation'] = {
-                        "@type": "Organization",
-                        "legalName": author['affiliation']
-                    }
-                nameparts = [
-                    author['name-particle'] if 'name-particle' in keys else None,
-                    author['family-names'] if 'family-names' in keys else None,
-                    author['name-suffix'] if 'name-suffix' in keys else None
-                ]
-                family_name = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                given_name = author['given-names'] if 'given-names' in keys and             \
-                                                      author['given-names'] is not None and \
-                                                      author['given-names'] != '' else None
-                alias = author['alias'] if 'alias' in keys and             \
-                                           author['alias'] is not None and \
-                                           author['alias'] != '' else None
-                if family_name or given_name:
-                    if family_name:
-                        d['familyName'] = family_name
-                    if given_name:
-                        d['givenName'] = given_name
-                elif alias:
-                    d['name'] = alias
-                else:
-                    continue
-                self.author.append(d)
-        return self
+        pass
 
     def add_code_repository(self):
         if 'repository-code' in self.cffobj.keys():

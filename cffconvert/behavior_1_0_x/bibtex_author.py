@@ -9,9 +9,9 @@ class BibtexAuthor(Shared):
             'GFN': self._from_given_and_last,
             'GF.': self._from_given_and_last,
             'G.N': self._from_name,
-            'G..': self._from_given_only,
-            '.FN': self._from_last_only,
-            '.F.': self._from_last_only,
+            'G..': self._from_given,
+            '.FN': self._from_last,
+            '.F.': self._from_last,
             '..N': self._from_name,
             '...': Shared._from_thin_air
         }

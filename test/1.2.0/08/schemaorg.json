@@ -1,27 +1,27 @@
 {
-   "@context": "https://schema.org", 
-   "@type": "SoftwareSourceCode", 
-   "author": [
-      {
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Springsteen"
-         }, 
-         "familyName": "Van Zandt", 
-         "givenName": "Steven"
-      }, 
-      {
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "coverband"
-         }, 
-         "familyName": "van Zandt", 
-         "givenName": "Steven"
-      }
-   ], 
-   "datePublished": "2018-01-16", 
-   "name": "cff-converter-python", 
-   "version": "1.0.0"
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "legalName": "Springsteen"
+      },
+      "familyName": "Van Zandt",
+      "givenName": "Steven"
+    },
+    {
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "legalName": "coverband"
+      },
+      "familyName": "van Zandt",
+      "givenName": "Steven"
+    }
+  ],
+  "datePublished": "2018-01-16",
+  "name": "cff-converter-python",
+  "version": "1.0.0"
 }

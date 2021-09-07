@@ -1,14 +1,14 @@
 {
-   "@context": "https://schema.org", 
-   "@type": "SoftwareSourceCode", 
-   "author": [
-      {
-         "@type": "Person", 
-         "familyName": "Fernández de Córdoba Jr.", 
-         "givenName": "Gonzalo"
-      }
-   ], 
-   "datePublished": "1999-12-31", 
-   "name": "example title", 
-   "version": "1.0.0"
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Fernández de Córdoba Jr.",
+      "givenName": "Gonzalo"
+    }
+  ],
+  "datePublished": "1999-12-31",
+  "name": "example title",
+  "version": "1.0.0"
 }

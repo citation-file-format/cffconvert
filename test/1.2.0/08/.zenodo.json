@@ -1,15 +1,15 @@
 {
-   "creators": [
-      {
-         "affiliation": "Springsteen", 
-         "name": "Van Zandt, Steven"
-      }, 
-      {
-         "affiliation": "coverband", 
-         "name": "van Zandt, Steven"
-      }
-   ], 
-   "publication_date": "2018-01-16", 
-   "title": "cff-converter-python", 
-   "version": "1.0.0"
+  "creators": [
+    {
+      "affiliation": "Springsteen",
+      "name": "Van Zandt, Steven"
+    },
+    {
+      "affiliation": "coverband",
+      "name": "van Zandt, Steven"
+    }
+  ],
+  "publication_date": "2018-01-16",
+  "title": "cff-converter-python",
+  "version": "1.0.0"
 }

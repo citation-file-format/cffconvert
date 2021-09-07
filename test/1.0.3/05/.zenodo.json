@@ -1,28 +1,28 @@
 {
-   "creators": [
-      {
-         "affiliation": "Netherlands eScience Center", 
-         "name": "Spaaks, Jurriaan H."
-      }, 
-      {
-         "affiliation": "Netherlands eScience Center", 
-         "name": "Klaver, Tom"
-      }, 
-      {
-         "affiliation": "Netherlands eScience Center", 
-         "name": "Verhoeven, Stefan"
-      }
-   ], 
-   "keywords": [
-      "citation", 
-      "bibliography", 
-      "cff", 
-      "CITATION.cff"
-   ], 
-   "license": {
-      "id": "Apache-2.0"
-   }, 
-   "publication_date": "2018-05-09", 
-   "title": "cffconvert", 
-   "version": "0.0.4"
+  "creators": [
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Spaaks, Jurriaan H."
+    },
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Klaver, Tom"
+    },
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Verhoeven, Stefan"
+    }
+  ],
+  "keywords": [
+    "citation",
+    "bibliography",
+    "cff",
+    "CITATION.cff"
+  ],
+  "license": {
+    "id": "Apache-2.0"
+  },
+  "publication_date": "2018-05-09",
+  "title": "cffconvert",
+  "version": "0.0.4"
 }

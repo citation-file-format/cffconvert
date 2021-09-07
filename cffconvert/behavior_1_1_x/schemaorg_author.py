@@ -69,7 +69,7 @@ class SchemaorgAuthor(Shared):
             '....AO': self._from_affiliation_and_orcid,
             '....A.': self._from_affiliation,
             '.....O': self._from_orcid,
-            '......': self._from_thin_air
+            '......': Shared._from_thin_air
         }
 
     def as_dict(self):

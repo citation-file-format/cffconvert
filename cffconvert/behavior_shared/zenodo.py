@@ -30,7 +30,7 @@ class ZenodoObjectShared:
             self.check_cffobj()
             self.add_all()
 
-    def __str__(self):
+    def __str__(self, sort_keys=True, indent=2):
         d = {
             "creators": self.creators,
             "description": self.description,
@@ -41,7 +41,7 @@ class ZenodoObjectShared:
             "version": self.version
         }
         filtered = [item for item in d.items() if item[1] is not None]
-        return json.dumps(dict(filtered), sort_keys=True, indent=3, separators=(', ', ': '), ensure_ascii=False) + '\n'
+        return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + '\n'
 
     def add_all(self):
         self.add_creators()          \
@@ -53,33 +53,35 @@ class ZenodoObjectShared:
             .add_version()
         return self
 
+    @abstractmethod
     def add_creators(self):
-        if 'authors' in self.cffobj.keys():
-            self.creators = list()
-            for author in self.cffobj['authors']:
-                d = dict()
-                keys = author.keys()
-                nameparts = [
-                    author['name-particle'] if 'name-particle' in keys else None,
-                    author['family-names'] if 'family-names' in keys else None,
-                    author['name-suffix'] if 'name-suffix' in keys else None
-                ]
-                tmp = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
-                if fullname != '':
-                    d['name'] = fullname
-                elif 'alias' in keys and author['alias'] is not None and author['alias'] != '':
-                    d['name'] = author['alias']
-                else:
-                    continue
-                if 'affiliation' in author.keys():
-                    d['affiliation'] = author['affiliation']
-                if 'orcid' in author.keys():
-                    if author['orcid'].startswith('https://orcid.org/'):
-                        d['orcid'] = author['orcid'][len('https://orcid.org/'):]
-
-                self.creators.append(d)
-        return self
+        pass
+        # if 'authors' in self.cffobj.keys():
+        #     self.creators = list()
+        #     for author in self.cffobj['authors']:
+        #         d = dict()
+        #         keys = author.keys()
+        #         nameparts = [
+        #             author['name-particle'] if 'name-particle' in keys else None,
+        #             author['family-names'] if 'family-names' in keys else None,
+        #             author['name-suffix'] if 'name-suffix' in keys else None
+        #         ]
+        #         tmp = ' '.join([namepart for namepart in nameparts if namepart is not None])
+        #         fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
+        #         if fullname != '':
+        #             d['name'] = fullname
+        #         elif 'alias' in keys and author['alias'] is not None and author['alias'] != '':
+        #             d['name'] = author['alias']
+        #         else:
+        #             continue
+        #         if 'affiliation' in author.keys():
+        #             d['affiliation'] = author['affiliation']
+        #         if 'orcid' in author.keys():
+        #             if author['orcid'].startswith('https://orcid.org/'):
+        #                 d['orcid'] = author['orcid'][len('https://orcid.org/'):]
+        #
+        #         self.creators.append(d)
+        # return self
 
     def add_description(self):
         if 'abstract' in self.cffobj.keys():

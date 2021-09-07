@@ -14,7 +14,7 @@ def apalike_object():
         return ApalikeObject(citation.cffobj, initialize_empty=True)
 
 
-class ApalikeObjectTest(Contract):
+class TestApalikeObject(Contract):
 
     def test_author(self, apalike_object):
         apalike_object.add_author()

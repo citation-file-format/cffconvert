@@ -14,7 +14,7 @@ def ris_object():
         return RisObject(citation.cffobj, initialize_empty=True)
 
 
-class RisObjectTest(Contract):
+class TestRisObject(Contract):
 
     def test_abstract(self, ris_object):
         ris_object.add_abstract()

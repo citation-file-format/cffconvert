@@ -14,7 +14,7 @@ def endnote_object():
         return EndnoteObject(citation.cffobj, initialize_empty=True)
 
 
-class EndnoteObjectTest(Contract):
+class TestEndnoteObject(Contract):
 
     def test_check_cffobj(self, endnote_object):
         endnote_object.check_cffobj()

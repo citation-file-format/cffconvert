@@ -14,7 +14,7 @@ def bibtex_object():
         return BibtexObject(citation.cffobj, initialize_empty=True)
 
 
-class BibtexObjectTest(Contract):
+class TestBibtexObject(Contract):
 
     def test_author(self, bibtex_object):
         bibtex_object.add_author()

@@ -14,7 +14,7 @@ def codemeta_object():
         return CodemetaObject(citation.cffobj, initialize_empty=True)
 
 
-class CodemetaObjectTest(Contract):
+class TestCodemetaObject(Contract):
 
     def test_check_cffobj(self, codemeta_object):
         codemeta_object.check_cffobj()

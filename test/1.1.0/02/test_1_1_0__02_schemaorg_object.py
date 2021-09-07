@@ -14,7 +14,7 @@ def schemorg_object():
         return SchemaorgObject(citation.cffobj, initialize_empty=True)
 
 
-class SchemaorgObjectTest(Contract):
+class TestSchemaorgObject(Contract):
 
     def test_check_cffobj(self, schemorg_object):
         schemorg_object.check_cffobj()

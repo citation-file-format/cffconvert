@@ -5,7 +5,7 @@ import ruamel.yaml as yaml
 from cffconvert.version import __version__ as expected_version
 
 
-class ConsistencyTests(unittest.TestCase):
+class TestFilenamingConsistency(unittest.TestCase):
     # These tests are included to check whether the version numbers are consistent across the various files (e.g.
     # cffvonvert/version.py, codemeta.json, .zenodo.json, CITATION.cff
     #

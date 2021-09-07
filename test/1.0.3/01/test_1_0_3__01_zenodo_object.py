@@ -14,7 +14,7 @@ def zenodo_object():
         return ZenodoObject(citation.cffobj, initialize_empty=True)
 
 
-class ZenodoObjectTest(Contract):
+class TestZenodoObject(Contract):
 
     def test_check_cffobj(self, zenodo_object):
         zenodo_object.check_cffobj()

@@ -5,7 +5,24 @@ class BibtexAuthorShared:
 
     def __init__(self, author_cff):
         self._author_cff = author_cff
-        self._behaviors = None
+        self._behaviors = {
+            'GFAN': self._from_given_and_last,
+            'GFA.': self._from_given_and_last,
+            'GF.N': self._from_given_and_last,
+            'GF..': self._from_given_and_last,
+            'G.AN': self._from_name,
+            'G.A.': self._from_alias,
+            'G..N': self._from_name,
+            'G...': self._from_given,
+            '.FAN': self._from_last,
+            '.FA.': self._from_last,
+            '.F.N': self._from_last,
+            '.F..': self._from_last,
+            '..AN': self._from_name,
+            '..A.': self._from_alias,
+            '...N': self._from_name,
+            '....': BibtexAuthorShared._from_thin_air
+        }
 
     def _exists_nonempty(self, key):
         value = self._author_cff.get(key, None)

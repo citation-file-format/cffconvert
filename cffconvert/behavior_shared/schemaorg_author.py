@@ -1,3 +1,6 @@
+from abc import abstractmethod
+
+
 class SchemaorgAuthorShared:
 
     def __init__(self, author_cff):
@@ -219,14 +222,6 @@ class SchemaorgAuthorShared:
         ]
         return ' '.join([n for n in nameparts if n is not None])
 
+    @abstractmethod
     def as_dict(self):
-        state = [
-            self._exists_nonempty('given-names'),
-            self._exists_nonempty('family-names'),
-            self._exists_nonempty('alias'),
-            self._exists_nonempty('name'),
-            self._exists_nonempty('affiliation'),
-            self._exists_nonempty('orcid')
-        ]
-        key = ''.join(['T' if item is True else 'F' for item in state])
-        return self._behaviors[key]()
+        pass

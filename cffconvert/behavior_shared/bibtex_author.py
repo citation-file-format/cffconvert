@@ -1,3 +1,6 @@
+from abc import abstractmethod
+
+
 class BibtexAuthorShared:
 
     def __init__(self, author_cff):
@@ -31,3 +34,7 @@ class BibtexAuthorShared:
     @staticmethod
     def _from_thin_air():
         return None
+
+    @abstractmethod
+    def as_string(self):
+        pass

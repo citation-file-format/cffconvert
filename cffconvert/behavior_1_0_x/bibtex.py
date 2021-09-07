@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.bibtex import BibtexAuthorShared
+from cffconvert.behavior_shared.bibtex_author import BibtexAuthorShared
 from cffconvert.behavior_shared.bibtex import BibtexObjectShared
 
 

@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.schemaorg import SchemaorgAuthorShared
+from cffconvert.behavior_shared.schemaorg_author import SchemaorgAuthorShared
 from cffconvert.behavior_shared.schemaorg import SchemaorgObjectShared
 
 

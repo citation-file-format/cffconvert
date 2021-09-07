@@ -6,21 +6,21 @@ class BibtexAuthor(Shared):
     def __init__(self, author_cff):
         super().__init__(author_cff)
         self._behaviors = {
-            'TTT': self._from_given_and_last,
-            'TTF': self._from_given_and_last,
-            'TFT': self._from_name,
-            'TFF': self._from_given_only,
-            'FTT': self._from_last_only,
-            'FTF': self._from_last_only,
-            'FFT': self._from_name,
-            'FFF': Shared._from_thin_air
+            'GFN': self._from_given_and_last,
+            'GF.': self._from_given_and_last,
+            'G.N': self._from_name,
+            'G..': self._from_given_only,
+            '.FN': self._from_last_only,
+            '.F.': self._from_last_only,
+            '..N': self._from_name,
+            '...': Shared._from_thin_air
         }
 
     def as_string(self):
         state = [
-            self._exists_nonempty('given-names'),
-            self._exists_nonempty('family-names'),
-            self._exists_nonempty('name')
+            ('G', self._exists_nonempty('given-names')),
+            ('F', self._exists_nonempty('family-names')),
+            ('N', self._exists_nonempty('name'))
         ]
-        key = ''.join(['T' if item is True else 'F' for item in state])
+        key = ''.join([item[0] if item[1] is True else '.' for item in state])
         return self._behaviors[key]()

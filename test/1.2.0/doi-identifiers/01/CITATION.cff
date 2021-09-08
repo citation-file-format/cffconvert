@@ -1,0 +1,13 @@
+authors:
+  - name: "The Authors"
+cff-version: "1.2.0"
+doi: "10.0000/somedoi.0001"
+identifiers:
+  - description: "a doi"
+    value: 10.0000/somedoi.0002
+    type: doi
+  - description: "a doi"
+    value: 10.0000/somedoi.0003
+    type: doi
+message: "test for constructing dois"
+title: test

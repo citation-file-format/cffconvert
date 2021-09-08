@@ -48,5 +48,5 @@ class TestBibtexObject(Contract):
         assert bibtex_object.url == 'url = {https://github.com/citation-file-format/cff-converter-python}'
 
     def test_year(self, bibtex_object):
-       bibtex_object.add_year()
-       assert bibtex_object.year == 'year = {2018}'
+        bibtex_object.add_year()
+        assert bibtex_object.year == 'year = {2018}'

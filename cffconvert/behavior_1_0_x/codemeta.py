@@ -12,4 +12,3 @@ class CodemetaObject(SchemaorgObject):
 
     def __init__(self, cffobj, initialize_empty=False):
         super().__init__(cffobj, initialize_empty, context="https://doi.org/10.5063/schema/codemeta-2.0")
-

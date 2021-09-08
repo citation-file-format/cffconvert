@@ -15,7 +15,8 @@ class Citation:
     }
     supported_cff_versions = _implementations.keys()
 
-    def __init__(self, cffstr):
+    def __init__(self, cffstr, src=None):
+        self.src = src
         cffversion = self._get_cff_version(cffstr)
         self._implementation = Citation._implementations[cffversion](cffstr, cffversion)
 

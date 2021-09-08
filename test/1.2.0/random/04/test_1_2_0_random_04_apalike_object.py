@@ -38,7 +38,7 @@ class TestApalikeObject(Contract):
 
     def test_doi(self, apalike_object):
         apalike_object.add_doi()
-        assert apalike_object.doi =='doi: 10.5281/zenodo.1162057. '
+        assert apalike_object.doi == 'doi: 10.5281/zenodo.1162057. '
 
     def test_url(self, apalike_object):
         apalike_object.add_url()

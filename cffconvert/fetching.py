@@ -10,8 +10,7 @@ def read_from_url(url):
     r = requests.get(url_fetch)
     if r.ok:
         return r.text
-    else:
-        raise Exception("Error while trying to retrieve {0}".format(url_fetch))
+    raise Exception("Error while trying to retrieve {0}".format(url_fetch))
 
 
 def rawify_github_link(url):

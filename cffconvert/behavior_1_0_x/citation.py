@@ -12,7 +12,7 @@ from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 
 
-class Citation_1_0_x(Contract):
+class Citation_1_0_x(Contract):  # nopep8
 
     supported_cff_versions = [
         "1.0.1",

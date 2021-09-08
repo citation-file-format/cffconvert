@@ -1,5 +1,4 @@
 from flask import Response
-from flask import request
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
 
@@ -53,8 +52,8 @@ href="https://pypi.org/project/cffconvert/">cffconvert</a></span>.
 With this page, you can read a CFF formatted CITATION file from a supplied
 string or a GitHub url, and convert it to BibTeX, EndNote, Codemeta, RIS, schema.org,
 plain JSON, Zenodo JSON. The way to do that is by supplying various
-combinations of arguments as query parameters in the URL (see examples 
-below).
+combinations of arguments as query parameters in the URL (see examples
+ below).
 
 <h2>Authorized arguments</h2>
 
@@ -113,8 +112,8 @@ part of the URL, like so:
 Oftentimes, the version information found in a CITATION.cff file is out of date.
 When converting it can be convenient to ignore some suspect keys like <span
 style="font-family:monospace">date-released</span>, <span
-style="font-family:monospace">commit</span>, and 
-<span
+style="font-family:monospace">commit</span>, and
+ <span
 style="font-family:monospace">version</span>, by using the <span
 style="font-family:monospace">ignore_suspect_keys</span> parameter, as follows:
 
@@ -164,10 +163,6 @@ def cffconvert(request):
             url = request.args.get('url')
         if 'validate' in request.args:
             validate = True
-        if 'ignore_suspect_keys' in request.args:
-            ignore_suspect_keys = True
-        if 'verbose' in request.args:
-            verbose = True
         if 'version' in request.args:
             version = True
     else:
@@ -190,13 +185,8 @@ def cffconvert(request):
         outstr += "\n\n{0}\n".format("Error: can't have both url and cffstr.")
         return Response(outstr, mimetype='text/plain')
 
-    remove = None
-    override = None
-    suspect_keys = None
-
     try:
-        citation = Citation(url=url, cffstr=cffstr, ignore_suspect_keys=ignore_suspect_keys, override=override,
-                            remove=remove, suspect_keys=suspect_keys, validate=validate, raise_exception=True)
+        citation = Citation(cffstr=cffstr, src=url)
     except Exception as e:
         if str(e) == "Provided CITATION.cff does not seem valid YAML.":
             outstr += "\n\nError: Provided 'cffstr' does not seem valid YAML."
@@ -214,7 +204,8 @@ def cffconvert(request):
 
     if outputformat is None:
         return
-    elif outputformat == "bibtex":
+
+    if outputformat == "bibtex":
         outstr += citation.as_bibtex()
     elif outputformat == "cff":
         outstr += citation.cffstr

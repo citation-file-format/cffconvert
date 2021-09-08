@@ -23,16 +23,20 @@ def _create_citation(infile, url):
     if condition == (True, True):
         # neither has been defined, raise
         raise ValueError("Define either a URL or a local file as the input.")
-    elif condition == (False, False):
+
+    if condition == (False, False):
         # both have been defined, raise
         raise ValueError("Define either a URL or a local file as the input, not both.")
-    elif condition == (True, False):
+
+    if condition == (True, False):
         cffstr = read_from_url(url)
-    elif condition == (False, True):
+        return Citation(cffstr, src=url)
+
+    if condition == (False, True):
         cffstr = _read_from_file(infile)
-    else:
-        raise ValueError("Something went wrong creating the citation object.")
-    return Citation(cffstr)
+        return Citation(cffstr, src=infile)
+
+    raise ValueError("Something went wrong creating the citation object.")
 
 
 def _read_from_file(infile):
@@ -49,8 +53,8 @@ def _validate_or_write_output(outfile, outputformat, validate_only, citation):
     elif condition == (True, True):
         # just validate, ignore the target outputformat
         citation.validate()
-        print("Ignoring output format. Citation metadata are valid according to schema version {0}.".format(
-            citation.cffversion))
+        print("Ignoring output format. Citation metadata are valid according to " +
+              "schema version {0}.".format(citation.cffversion))
     elif condition == (False, False):
         # user hasn't indicated what they want
         print('Indicate whether you want to validate or convert the citation metadata.')
@@ -59,7 +63,7 @@ def _validate_or_write_output(outfile, outputformat, validate_only, citation):
         try:
             citation.validate()
         except (PykwalifySchemaError, JsonschemaSchemaError):
-            print("'{0}' does not pass validation. Conversion aborted.".format(infile))
+            print("'{0}' does not pass validation. Conversion aborted.".format(citation.src))
             ctx = click.get_current_context()
             ctx.exit()
         outstr = {
@@ -146,6 +150,7 @@ options = {
 @click.option("--show-trace", "show_trace", **options["show_trace"])
 @click.option("--validate", "validate_only", **options["validate_only"])
 @click.option("--version", "version", **options["version"])
+# pylint: disable=too-many-arguments
 def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only, version):
 
     _check_early_exits(show_help, version)
@@ -163,7 +168,3 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only
 
     # either validate and exit, or convert to the selected output format
     _validate_or_write_output(outfile, outputformat, validate_only, citation)
-
-
-if __name__ == "__main__":
-    cli()

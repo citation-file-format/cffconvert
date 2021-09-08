@@ -43,3 +43,6 @@ jobs:
 
       - name: Run unit tests for Citation File Format schema version 1.2.0
         run: python3 -m pytest test/1.2.0
+
+      - name: Run consistency checks
+        run: python3 -m pytest test/test_consistent_versioning.py

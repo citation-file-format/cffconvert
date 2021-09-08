@@ -1,15 +1,15 @@
 import os
-from pykwalify.core import Core
-from ruamel.yaml import YAML
-from cffconvert.contracts.citation import Contract
-from cffconvert.root import get_package_root
 from cffconvert.behavior_1_0_x.apalike import ApalikeObject
 from cffconvert.behavior_1_0_x.bibtex import BibtexObject
 from cffconvert.behavior_1_0_x.codemeta import CodemetaObject
 from cffconvert.behavior_1_0_x.endnote import EndnoteObject
-from cffconvert.behavior_1_0_x.schemaorg import SchemaorgObject
 from cffconvert.behavior_1_0_x.ris import RisObject
+from cffconvert.behavior_1_0_x.schemaorg import SchemaorgObject
 from cffconvert.behavior_1_0_x.zenodo import ZenodoObject
+from cffconvert.contracts.citation import Contract
+from cffconvert.root import get_package_root
+from pykwalify.core import Core
+from ruamel.yaml import YAML
 
 
 class Citation_1_0_x(Contract):

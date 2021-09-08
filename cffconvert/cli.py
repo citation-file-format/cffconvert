@@ -1,11 +1,11 @@
 import os
 import sys
 import click
-from pykwalify.errors import SchemaError as PykwalifySchemaError
-from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
 from cffconvert.citation import Citation
-from cffconvert.version import __version__ as cffconvert_version
 from cffconvert.fetching import read_from_url
+from cffconvert.version import __version__ as cffconvert_version
+from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
+from pykwalify.errors import SchemaError as PykwalifySchemaError
 
 
 def _check_early_exits(show_help, version):

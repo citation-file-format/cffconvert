@@ -4,10 +4,12 @@
   "author": [
     {
       "@type": "Person",
+      "alternateName": "Rafa",
       "givenName": "Rafael"
     },
     {
       "@type": "Person",
+      "alternateName": "Ronaldo",
       "givenName": "Cristiano Ronaldo"
     }
   ],

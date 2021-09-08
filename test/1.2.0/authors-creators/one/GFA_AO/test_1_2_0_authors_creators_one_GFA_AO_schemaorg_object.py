@@ -29,6 +29,7 @@ class TestSchemaorgObject(Contract):
                 "@type": "Organization",
                 "legalName": "Netherlands eScience Center"
             },
+            "alternateName": "jspaaks",
             "familyName": "von der Spaaks Jr.",
             "givenName": "Jurriaan H."
         }]

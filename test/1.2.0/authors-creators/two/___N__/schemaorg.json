@@ -1,0 +1,15 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "The soccer team members"
+    },
+    {
+      "@type": "Person",
+      "name": "The support staff"
+    }
+  ],
+  "name": "the title"
+}

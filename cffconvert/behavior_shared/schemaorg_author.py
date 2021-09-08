@@ -104,22 +104,22 @@ class SchemaorgAuthorShared:
     def _from_alias_and_affiliation(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
             'affiliation': {
                 '@type': 'Organization',
                 'legalName': self._author_cff.get('affiliation')
-            }
+            },
+            'alternateName': self._author_cff.get('alias'),
         }
 
     def _from_alias_and_affiliation_and_orcid(self):
         return {
             '@id': self._author_cff.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
             'affiliation': {
                 '@type': 'Organization',
                 'legalName': self._author_cff.get('affiliation')
-            }
+            },
+            'alternateName': self._author_cff.get('alias'),
         }
 
     def _from_alias_and_name_and_affiliation_and_orcid(self):
@@ -270,10 +270,6 @@ class SchemaorgAuthorShared:
         return {
             '@id': self._author_cff.get('orcid'),
             '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
-            },
             'alternateName': self._author_cff.get('alias'),
             'givenName': self._author_cff.get('given-names')
         }

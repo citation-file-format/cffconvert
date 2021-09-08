@@ -1,10 +1,10 @@
-name: testing
+name: linting
 
 on: [push, pull_request]
 
 jobs:
 
-  testing:
+  linting:
     name: py${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:

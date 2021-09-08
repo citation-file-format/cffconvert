@@ -1,37 +1,37 @@
 {
-   "@context": "https://schema.org", 
-   "@type": "SoftwareSourceCode", 
-   "author": [
-      {
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Attema", 
-         "givenName": "Jisk"
-      }, 
-      {
-         "@id": "https://orcid.org/0000-0002-0989-929X", 
-         "@type": "Person", 
-         "affiliation": {
-            "@type": "Organization", 
-            "legalName": "Netherlands eScience Center"
-         }, 
-         "familyName": "Diblen", 
-         "givenName": "Faruk"
-      }
-   ], 
-   "codeRepository": "https://github.com/NLeSC/spot", 
-   "datePublished": "2017-10-07", 
-   "identifier": "https://doi.org/10.5281/zenodo.1003346", 
-   "keywords": [
-      "visualization", 
-      "big data", 
-      "visual data analytics", 
-      "multi-dimensional data"
-   ], 
-   "license": "https://spdx.org/licenses/Apache-2.0", 
-   "name": "spot", 
-   "version": "0.1.0"
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "legalName": "Netherlands eScience Center"
+      },
+      "familyName": "Attema",
+      "givenName": "Jisk"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-0989-929X",
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "legalName": "Netherlands eScience Center"
+      },
+      "familyName": "Diblen",
+      "givenName": "Faruk"
+    }
+  ],
+  "codeRepository": "https://github.com/NLeSC/spot",
+  "datePublished": "2017-10-07",
+  "identifier": "https://doi.org/10.5281/zenodo.1003346",
+  "keywords": [
+    "visualization",
+    "big data",
+    "visual data analytics",
+    "multi-dimensional data"
+  ],
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "name": "spot",
+  "version": "0.1.0"
 }

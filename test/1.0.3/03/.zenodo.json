@@ -1,25 +1,25 @@
 {
-   "creators": [
-      {
-         "affiliation": "Netherlands eScience Center", 
-         "name": "Attema, Jisk"
-      }, 
-      {
-         "affiliation": "Netherlands eScience Center", 
-         "name": "Diblen, Faruk", 
-         "orcid": "0000-0002-0989-929X"
-      }
-   ], 
-   "keywords": [
-      "visualization", 
-      "big data", 
-      "visual data analytics", 
-      "multi-dimensional data"
-   ], 
-   "license": {
-      "id": "Apache-2.0"
-   }, 
-   "publication_date": "2017-10-07", 
-   "title": "spot", 
-   "version": "0.1.0"
+  "creators": [
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Attema, Jisk"
+    },
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Diblen, Faruk",
+      "orcid": "0000-0002-0989-929X"
+    }
+  ],
+  "keywords": [
+    "visualization",
+    "big data",
+    "visual data analytics",
+    "multi-dimensional data"
+  ],
+  "license": {
+    "id": "Apache-2.0"
+  },
+  "publication_date": "2017-10-07",
+  "title": "spot",
+  "version": "0.1.0"
 }

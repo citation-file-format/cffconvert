@@ -1,0 +1,8 @@
+authors:
+  - given-names: Rafael
+    name-particle: van der
+    family-names: Vaart
+    name-suffix: III
+cff-version: "1.2.0"
+message: "test of author inputs"
+title: the title

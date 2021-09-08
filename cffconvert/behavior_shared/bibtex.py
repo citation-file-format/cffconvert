@@ -46,24 +46,9 @@ class BibtexObjectShared:
             .add_year()
         return self
 
+    @abstractmethod
     def add_author(self):
-        if 'authors' in self.cffobj.keys():
-            fullnames = []
-            for author in self.cffobj['authors']:
-                keys = author.keys()
-                nameparts = [
-                    author['given-names'] if 'given-names' in keys else None,
-                    author['name-particle'] if 'name-particle' in keys else None,
-                    author['family-names'] if 'family-names' in keys else None,
-                    author['name-suffix'] if 'name-suffix' in keys else None
-                ]
-                fullname = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                if fullname == '' and 'alias' in keys and author['alias'] is not None:
-                    fullname = author['alias'] if author['alias'] != '' else None
-                if fullname is not None and fullname != '':
-                    fullnames.append(fullname)
-            self.author = 'author = {' + ' and '.join(fullnames) + '}'
-        return self
+        pass
 
     @abstractmethod
     def add_doi(self):

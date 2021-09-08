@@ -1,3 +1,4 @@
+from cffconvert.behavior_1_2_x.schemaorg_author import SchemaorgAuthor
 from cffconvert.behavior_shared.schemaorg import SchemaorgObjectShared as Shared
 
 
@@ -9,6 +10,12 @@ class SchemaorgObject(Shared):
 
     def __init__(self, cffobj, initialize_empty=False, context="https://schema.org"):
         super().__init__(cffobj, initialize_empty, context)
+
+    def add_author(self):
+        authors_cff = self.cffobj.get('authors', list())
+        authors_schemaorg = [SchemaorgAuthor(a).as_dict() for a in authors_cff]
+        self.author = [a for a in authors_schemaorg if a is not None]
+        return self
 
     def add_date_published(self):
         if 'date-released' in self.cffobj.keys():

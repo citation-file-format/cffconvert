@@ -203,7 +203,7 @@ def cffconvert(request):
         return Response(outstr, mimetype='text/plain')
 
     if outputformat is None:
-        return
+        return Response(outstr, mimetype='text/plain')
 
     if outputformat == "bibtex":
         outstr += citation.as_bibtex()

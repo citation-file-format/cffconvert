@@ -221,7 +221,6 @@ class SchemaorgAuthorShared:
                 'legalName': self._author_cff.get('affiliation')
             },
             'alternateName': self._author_cff.get('alias'),
-            'familyName': self._get_full_last_name(),
             'givenName': self._author_cff.get('given-names')
         }
 

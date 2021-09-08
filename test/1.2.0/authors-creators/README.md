@@ -11,7 +11,7 @@ The subdirectories here contain various combinations of author properties, mirro
 
 There are tests for a singular author (`./one`) and tests for when there are two authors (`./two`).
 
-The table below lists the naming convention based on the state of `CITATION.cff`:
+The table below lists the naming convention based on the state of an author in `CITATION.cff`:
 
 | subdirectory | has_given_name | has_family_name | has_alias | has_name | has_affiliation | has_orcid | notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |

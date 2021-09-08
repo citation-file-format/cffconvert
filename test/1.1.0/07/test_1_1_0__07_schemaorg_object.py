@@ -28,6 +28,7 @@ class TestSchemaorgObject(Contract):
                 "@type": "Organization",
                 "legalName": "Netherlands eScience Center"
             },
+            "alternateName": "jspaaks",
             "familyName": "Spaaks",
             "givenName": "Jurriaan H."
         }, {
@@ -44,7 +45,7 @@ class TestSchemaorgObject(Contract):
                 "@type": "Organization",
                 "legalName": "MyAffiliation"
             },
-            "name": "mysteryauthor"
+            "alternateName": "mysteryauthor"
         }]
         assert schemaorg_object.author == expected_author
 

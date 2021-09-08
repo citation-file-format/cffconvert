@@ -4,11 +4,13 @@
   "author": [
     {
       "@type": "Person",
-      "name": "Rafa"
+      "alternateName": "Rafa",
+      "name": "The soccer team members"
     },
     {
       "@type": "Person",
-      "name": "coach"
+      "alternateName": "coach",
+      "name": "The trainers"
     }
   ],
   "name": "the title"

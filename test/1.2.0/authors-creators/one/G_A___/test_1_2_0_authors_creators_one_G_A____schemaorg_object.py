@@ -24,6 +24,7 @@ class TestSchemaorgObject(Contract):
         schemaorg_object.add_author()
         expected_author = [{
             "@type": "Person",
+            "alternateName": "Rafa",
             "givenName": "Rafael"
         }]
         assert schemaorg_object.author == expected_author

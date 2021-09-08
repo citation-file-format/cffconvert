@@ -8,6 +8,7 @@
         "@type": "Organization",
         "legalName": "Netherlands eScience Center"
       },
+      "alternateName": "jspaaks",
       "familyName": "Spaaks",
       "givenName": "Jurriaan H."
     },
@@ -22,7 +23,7 @@
     },
     {
       "@type": "Person",
-      "name": "mysteryauthor"
+      "alternateName": "mysteryauthor"
     }
   ],
   "codeRepository": "https://github.com/citation-file-format/cff-converter-python",

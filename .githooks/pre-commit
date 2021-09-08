@@ -18,12 +18,12 @@ fi
 echo "Starting isort analysis using configuration from setup.cfg..."
 
 # recursively run isort on cffconvert/ directory, don't try to automatically fix anything
-isort --recursive --check-only cffconvert
+isort --check-only cffconvert
 
 if [ $? != "0" ]; then
     echo "Commit aborted."
-    echo "  Run 'isort --recursive --check-only --diff cffconvert' to see what's wrong."
-    echo "  Run 'isort --recursive cffconvert' to let isort fix problems automatically."
+    echo "  Run 'isort --check-only --diff cffconvert' to see what's wrong."
+    echo "  Run 'isort cffconvert' to let isort fix problems automatically."
     exit 1
 fi
 

@@ -26,14 +26,14 @@ jobs:
           which python3
           python3 --version
 
+      # pinned setuptools https://github.com/PyCQA/prospector/issues/438
       - name: Upgrade pip, setuptools and wheel
-        run: python3 -m pip install --upgrade pip setuptools wheel
+        run: |
+          python3 -m pip install --upgrade pip wheel
+          python3 -m pip install setuptools==57
 
       - name: Install runtime dependencies
         run: python3 -m pip install .
-
-      - name: hotfix setoptconf
-        run: pip install setoptconf==0.2.0
 
       - name: Install development dependencies
         run: python3 -m pip install .[dev]

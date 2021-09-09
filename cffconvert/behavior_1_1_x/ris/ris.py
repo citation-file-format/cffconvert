@@ -1,5 +1,5 @@
-from cffconvert.behavior_shared.ris.ris import RisObjectShared as Shared
 from cffconvert.behavior_1_1_x.ris.author import RisAuthor
+from cffconvert.behavior_shared.ris.ris import RisObjectShared as Shared
 
 
 class RisObject(Shared):

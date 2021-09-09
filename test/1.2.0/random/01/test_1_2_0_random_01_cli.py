@@ -1,6 +1,6 @@
 import os
 from click.testing import CliRunner
-from cffconvert import cli as cffconvert_cli
+from cffconvert.cli.cli import cli as cffconvert_cli
 
 
 def read_sibling_file(filename):

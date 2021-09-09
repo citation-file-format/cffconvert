@@ -1,4 +1,5 @@
 import requests
+from cffconvert.cli.rawify_github_link import rawify_github_link
 
 
 def read_from_url(url):
@@ -11,11 +12,3 @@ def read_from_url(url):
     if r.ok:
         return r.text
     raise Exception("Error while trying to retrieve {0}".format(url_fetch))
-
-
-def rawify_github_link(url):
-    # just a placeholder replacement for the moment
-    if url == "https://github.com/citation-file-format/cff-converter-python":
-        return "https://raw.githubusercontent.com/citation-file-format/cff-converter-python/main/CITATION.cff"
-    # return unrecognized URLs as-is
-    return url

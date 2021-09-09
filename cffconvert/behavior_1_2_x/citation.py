@@ -2,13 +2,13 @@ import json
 import os
 import jsonschema
 from ruamel.yaml import YAML
-from cffconvert.behavior_1_2_x.apalike import ApalikeObject
-from cffconvert.behavior_1_2_x.bibtex import BibtexObject
-from cffconvert.behavior_1_2_x.codemeta import CodemetaObject
-from cffconvert.behavior_1_2_x.endnote import EndnoteObject
-from cffconvert.behavior_1_2_x.ris import RisObject
-from cffconvert.behavior_1_2_x.schemaorg import SchemaorgObject
-from cffconvert.behavior_1_2_x.zenodo import ZenodoObject
+from cffconvert.behavior_1_2_x.apalike.apalike import ApalikeObject
+from cffconvert.behavior_1_2_x.bibtex.bibtex import BibtexObject
+from cffconvert.behavior_1_2_x.codemeta.codemeta import CodemetaObject
+from cffconvert.behavior_1_2_x.endnote.endnote import EndnoteObject
+from cffconvert.behavior_1_2_x.ris.ris import RisObject
+from cffconvert.behavior_1_2_x.schemaorg.schemaorg import SchemaorgObject
+from cffconvert.behavior_1_2_x.zenodo.zenodo import ZenodoObject
 from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 

@@ -32,6 +32,9 @@ jobs:
       - name: Install runtime dependencies
         run: python3 -m pip install .
 
+      - name: hotfix setoptconf
+        run: pip install setoptconf==0.2.0
+
       - name: Install development dependencies
         run: python3 -m pip install .[dev]
 

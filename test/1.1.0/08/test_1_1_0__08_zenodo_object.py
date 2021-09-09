@@ -1,6 +1,6 @@
 import os
 import pytest
-from test.contracts.ZenodoObject import Contract
+from test.contracts.zenodo_object import Contract
 from cffconvert.behavior_1_1_x.zenodo.zenodo import ZenodoObject
 from cffconvert import Citation
 

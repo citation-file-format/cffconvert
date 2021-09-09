@@ -30,7 +30,7 @@ jobs:
       - name: Upgrade pip, setuptools and wheel
         run: |
           python3 -m pip install --upgrade pip wheel
-          python3 -m pip install setuptools==57
+          python3 -m pip install setuptools<=57
 
       - name: Install runtime dependencies
         run: python3 -m pip install .

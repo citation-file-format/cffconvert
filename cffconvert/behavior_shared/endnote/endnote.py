@@ -34,7 +34,7 @@ class EndnoteObjectShared:
                                    self.doi,
                                    self.name,
                                    self.url] if item is not None]
-        return '%0 Generic\n' + ''.join(items) + '%9 source code\n'
+        return '%0 Generic\n' + ''.join(items)
 
     def add_all(self):
         self.add_author() \
@@ -45,28 +45,9 @@ class EndnoteObjectShared:
             .add_year()
         return self
 
+    @abstractmethod
     def add_author(self):
-        if 'authors' in self.cffobj.keys():
-            authors = list()
-            for author in self.cffobj['authors']:
-                keys = author.keys()
-                nameparts = [
-                    author['name-particle'] if 'name-particle' in keys else None,
-                    author['family-names'] if 'family-names' in keys else None,
-                    author['name-suffix'] if 'name-suffix' in keys else None
-                ]
-                tmp = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
-                alias = author['alias'] if 'alias' in keys and author['alias'] is not None \
-                    and author['alias'] != '' else None
-                if fullname:
-                    authors.append('%A {}\n'.format(fullname))
-                elif alias:
-                    authors.append('%A {}\n'.format(alias))
-                else:
-                    continue
-            self.author = ''.join(authors)
-        return self
+        pass
 
     @abstractmethod
     def add_doi(self):

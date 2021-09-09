@@ -1,10 +1,13 @@
+import os
 from flask import Response
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
 
 
 def get_help_text():
-    return
+    p = os.path.join(os.path.dirname(__file__), "index.html")
+    with open(p, 'rt') as fid:
+        return fid.read()
 
 
 def cffconvert(request):

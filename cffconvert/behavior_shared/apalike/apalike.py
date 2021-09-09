@@ -72,7 +72,7 @@ class ApalikeObjectShared:
                     for i in range(len(num_names)):
                         name = num_names[i]
                         # adds the capital first character
-                        initials += (name[0].upper()+'.')
+                        initials += (name[0].upper() + '.')
                     return initials
                 keys = author.keys()
                 nameparts = [
@@ -82,9 +82,8 @@ class ApalikeObjectShared:
                     extract_initials(author['given-names']) if 'given-names' in keys else None
                 ]
                 fullname = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                # fullname = lastnames + ' ' + author['given-names'] if 'given-names' in keys else lastnames
-                # fullname = lastnames + ' ' + self.extract_initials() if 'given-names' in keys else lastnames
-                alias = author['alias'] if 'alias' in keys and author['alias'] is not None and author['alias'] != '' else None
+                alias = author['alias'] if 'alias' in keys and author['alias'] is not None \
+                    and author['alias'] != '' else None
                 if fullname:
                     authors.append(format(fullname))
                 elif alias:

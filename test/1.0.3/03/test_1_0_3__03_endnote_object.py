@@ -1,6 +1,6 @@
 import os
 import pytest
-from test.contracts.EndnoteObject import Contract
+from test.contracts.endnote_object import Contract
 from cffconvert.behavior_1_0_x.endnote.endnote import EndnoteObject
 from cffconvert import Citation
 
@@ -30,7 +30,8 @@ class TestEndnoteObject(Contract):
 
     def test_keyword(self, endnote_object):
         endnote_object.add_keyword()
-        assert endnote_object.keyword == '%K visualization\n%K big data\n%K visual data analytics\n%K multi-dimensional data\n'
+        assert endnote_object.keyword == '%K visualization\n%K big data\n' + \
+                                         '%K visual data analytics\n%K multi-dimensional data\n'
 
     def test_name(self, endnote_object):
         endnote_object.add_name()

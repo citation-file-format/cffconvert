@@ -1,6 +1,6 @@
 import os
 import pytest
-from test.contracts.RisObject import Contract
+from test.contracts.ris_object import Contract
 from cffconvert.behavior_1_2_x.ris.ris import RisObject
 from cffconvert import Citation
 
@@ -58,4 +58,3 @@ class TestRisObject(Contract):
     def test_year(self, ris_object):
         ris_object.add_year()
         assert ris_object.year is None
-

@@ -4,19 +4,27 @@
 
 output-format: grouped
 
-strictness: medium
+strictness: veryhigh
 doc-warnings: false
 test-warnings: true
 member-warnings: false
 
 ignore-paths:
   - docs
+  - cffconvert/gcloud/gcloud.py
 
 pyroma:
     run: true
 
 pep8:
   full: true
+  options:
+    max-line-length: 120
+
+pylint:
+  full: true
+  options:
+    max-line-length: 120
 
 pep257:
   disable:

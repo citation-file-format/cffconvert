@@ -57,7 +57,8 @@ class EndnoteObjectShared:
                 ]
                 tmp = ' '.join([namepart for namepart in nameparts if namepart is not None])
                 fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
-                alias = author['alias'] if 'alias' in keys and author['alias'] is not None and author['alias'] != '' else None
+                alias = author['alias'] if 'alias' in keys and author['alias'] is not None \
+                    and author['alias'] != '' else None
                 if fullname:
                     authors.append('%A {}\n'.format(fullname))
                 elif alias:

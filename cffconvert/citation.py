@@ -4,6 +4,7 @@ from cffconvert.behavior_1_1_x.citation import Citation_1_1_x
 from cffconvert.behavior_1_2_x.citation import Citation_1_2_x
 
 
+# pylint: disable=too-few-public-methods
 class Citation:
 
     _implementations = {

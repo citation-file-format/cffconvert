@@ -1,6 +1,6 @@
 import os
 import pytest
-from test.contracts.BibtexObject import Contract
+from test.contracts.bibtex_object import Contract
 from cffconvert.behavior_1_0_x.bibtex.bibtex import BibtexObject
 from cffconvert import Citation
 
@@ -18,7 +18,8 @@ class TestBibtexObject(Contract):
 
     def test_author(self, bibtex_object):
         bibtex_object.add_author()
-        assert bibtex_object.author == 'author = {Spaaks, Jurriaan H. and Klaver, Tom and Verhoeven, Stefan and Druskat, Stephan}'
+        assert bibtex_object.author == 'author = {Spaaks, Jurriaan H. and Klaver, Tom and ' + \
+                                       'Verhoeven, Stefan and Druskat, Stephan}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()

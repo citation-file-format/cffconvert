@@ -1,6 +1,6 @@
 import os
 import pytest
-from test.contracts.EndnoteObject import Contract
+from test.contracts.endnote_object import Contract
 from cffconvert.behavior_1_2_x.endnote.endnote import EndnoteObject
 from cffconvert import Citation
 

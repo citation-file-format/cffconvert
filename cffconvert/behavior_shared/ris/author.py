@@ -58,4 +58,3 @@ class RisAuthorShared:
     @abstractmethod
     def as_string(self):
         pass
-

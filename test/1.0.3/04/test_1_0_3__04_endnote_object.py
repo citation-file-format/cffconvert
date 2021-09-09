@@ -1,6 +1,6 @@
 import os
 import pytest
-from test.contracts.EndnoteObject import Contract
+from test.contracts.endnote_object import Contract
 from cffconvert.behavior_1_0_x.endnote.endnote import EndnoteObject
 from cffconvert import Citation
 
@@ -22,7 +22,8 @@ class TestEndnoteObject(Contract):
 
     def test_author(self, endnote_object):
         endnote_object.add_author()
-        assert endnote_object.author == '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n%A Verhoeven, Stefan\n%A Druskat, Stephan\n'
+        assert endnote_object.author == '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n' + \
+                                        '%A Verhoeven, Stefan\n%A Druskat, Stephan\n'
 
     def test_doi(self, endnote_object):
         endnote_object.add_doi()

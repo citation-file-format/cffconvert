@@ -11,6 +11,7 @@ member-warnings: false
 
 ignore-paths:
   - docs
+  - cffconvert/gcloud/gcloud.py
 
 pyroma:
     run: true

@@ -3,8 +3,8 @@ from abc import abstractmethod
 
 class RisAuthorShared:
 
-    def __init__(self, author_cff):
-        self._author_cff = author_cff
+    def __init__(self, author):
+        self._author = author
         self._behaviors = {
             'GFAN': self._from_given_and_last,
             'GFA_': self._from_given_and_last,
@@ -25,23 +25,23 @@ class RisAuthorShared:
         }
 
     def _exists_nonempty(self, key):
-        value = self._author_cff.get(key, None)
+        value = self._author.get(key, None)
         return value is not None and value != ''
 
     def _from_alias(self):
-        return 'AU  - ' + self._author_cff.get('alias') + '\n'
+        return 'AU  - ' + self._author.get('alias') + '\n'
 
     def _from_given_and_last(self):
-        return 'AU  - ' + self._get_full_last_name() + ', ' + self._author_cff.get('given-names') + '\n'
+        return 'AU  - ' + self._get_full_last_name() + ', ' + self._author.get('given-names') + '\n'
 
     def _from_given(self):
-        return 'AU  - ' + self._author_cff.get('given-names') + '\n'
+        return 'AU  - ' + self._author.get('given-names') + '\n'
 
     def _from_last(self):
         return 'AU  - ' + self._get_full_last_name() + '\n'
 
     def _from_name(self):
-        return 'AU  - ' + self._author_cff.get('name') + '\n'
+        return 'AU  - ' + self._author.get('name') + '\n'
 
     @staticmethod
     def _from_thin_air():
@@ -49,9 +49,9 @@ class RisAuthorShared:
 
     def _get_full_last_name(self):
         nameparts = [
-            self._author_cff.get('name-particle'),
-            self._author_cff.get('family-names'),
-            self._author_cff.get('name-suffix')
+            self._author.get('name-particle'),
+            self._author.get('family-names'),
+            self._author.get('name-suffix')
         ]
         return ' '.join([n for n in nameparts if n is not None])
 

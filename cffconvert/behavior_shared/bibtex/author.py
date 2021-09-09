@@ -3,8 +3,8 @@ from abc import abstractmethod
 
 class BibtexAuthorShared:
 
-    def __init__(self, author_cff):
-        self._author_cff = author_cff
+    def __init__(self, author):
+        self._author = author
         self._behaviors = {
             'GFAN': self._from_given_and_last,
             'GFA_': self._from_given_and_last,
@@ -25,28 +25,28 @@ class BibtexAuthorShared:
         }
 
     def _exists_nonempty(self, key):
-        value = self._author_cff.get(key, None)
+        value = self._author.get(key, None)
         return value is not None and value != ''
 
     def _from_alias(self):
-        return self._author_cff.get('alias')
+        return self._author.get('alias')
 
     def _from_given_and_last(self):
         return self._from_last() + ", " + self._from_given()
 
     def _from_given(self):
-        return self._author_cff.get('given-names')
+        return self._author.get('given-names')
 
     def _from_last(self):
         nameparts = [
-            self._author_cff.get('name-particle'),
-            self._author_cff.get('family-names'),
-            self._author_cff.get('name-suffix')
+            self._author.get('name-particle'),
+            self._author.get('family-names'),
+            self._author.get('name-suffix')
         ]
         return ' '.join([n for n in nameparts if n is not None])
 
     def _from_name(self):
-        return self._author_cff.get('name')
+        return self._author.get('name')
 
     @staticmethod
     def _from_thin_air():

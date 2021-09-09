@@ -3,8 +3,8 @@ from abc import abstractmethod
 
 class SchemaorgAuthorShared:
 
-    def __init__(self, author_cff):
-        self._author_cff = author_cff
+    def __init__(self, author):
+        self._author = author
         self._behaviors = {
             'GFANAO': self._from_given_and_last_and_alias_and_name_and_affiliation_and_orcid,
             'GFANA_': self._from_given_and_last_and_alias_and_name_and_affiliation,
@@ -73,7 +73,7 @@ class SchemaorgAuthorShared:
         }
 
     def _exists_nonempty(self, key):
-        value = self._author_cff.get(key, None)
+        value = self._author.get(key, None)
         return value is not None and value != ''
 
     def _from_affiliation(self):
@@ -81,24 +81,24 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             }
         }
 
     def _from_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             }
         }
 
     def _from_alias(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias')
+            'alternateName': self._author.get('alias')
         }
 
     def _from_alias_and_affiliation(self):
@@ -106,32 +106,32 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
         }
 
     def _from_alias_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
         }
 
     def _from_alias_and_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'name': self._author.get('name')
         }
 
     def _from_alias_and_name_and_affiliation(self):
@@ -139,38 +139,38 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'name': self._author.get('name')
         }
 
     def _from_alias_and_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'name': self._author.get('name')
         }
 
     def _from_alias_and_name(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'name': self._author.get('name')
         }
 
     def _from_alias_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias')
+            'alternateName': self._author.get('alias')
         }
 
     def _from_given(self):
         return {
             '@type': 'Person',
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_affiliation(self):
@@ -178,27 +178,27 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_alias(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_alias_and_affiliation(self):
@@ -206,35 +206,35 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_alias_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_alias_and_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_alias_and_name_and_affiliation(self):
@@ -242,43 +242,43 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_alias_and_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_alias_and_name(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_alias_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
-            'givenName': self._author_cff.get('given-names')
+            'alternateName': self._author.get('alias'),
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last(self):
         return {
             '@type': 'Person',
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last_and_affiliation(self):
@@ -286,30 +286,30 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last_and_alias(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last_and_alias_and_affiliation(self):
@@ -317,38 +317,38 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last_and_alias_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last_and_alias_and_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_alias_and_name_and_affiliation(self):
@@ -356,53 +356,53 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_alias_and_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_alias_and_name(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_alias_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_last_and_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_name_and_affiliation(self):
@@ -410,48 +410,48 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_name(self):
         return {
             '@type': 'Person',
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_last_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'familyName': self._get_full_last_name(),
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_given_and_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_name_and_affiliation(self):
@@ -459,32 +459,32 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_name(self):
         return {
             '@type': 'Person',
-            'givenName': self._author_cff.get('given-names'),
-            'name': self._author_cff.get('name')
+            'givenName': self._author.get('given-names'),
+            'name': self._author.get('name')
         }
 
     def _from_given_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'givenName': self._author_cff.get('given-names')
+            'givenName': self._author.get('given-names')
         }
 
     def _from_last(self):
@@ -498,18 +498,18 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name()
         }
 
     def _from_last_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name()
         }
@@ -517,7 +517,7 @@ class SchemaorgAuthorShared:
     def _from_last_and_alias(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name()
         }
 
@@ -526,35 +526,35 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name()
         }
 
     def _from_last_and_alias_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name()
         }
 
     def _from_last_and_alias_and_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_alias_and_name_and_affiliation(self):
@@ -562,48 +562,48 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_alias_and_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_alias_and_name(self):
         return {
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_alias_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'alternateName': self._author_cff.get('alias'),
+            'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name()
         }
 
     def _from_last_and_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_name_and_affiliation(self):
@@ -611,30 +611,30 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_name(self):
         return {
             '@type': 'Person',
             'familyName': self._get_full_last_name(),
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_last_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'familyName': self._get_full_last_name()
         }
@@ -642,7 +642,7 @@ class SchemaorgAuthorShared:
     def _from_name(self):
         return {
             '@type': 'Person',
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_name_and_affiliation(self):
@@ -650,32 +650,32 @@ class SchemaorgAuthorShared:
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_name_and_affiliation_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author_cff.get('affiliation')
+                'legalName': self._author.get('affiliation')
             },
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_name_and_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person',
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_orcid(self):
         return {
-            '@id': self._author_cff.get('orcid'),
+            '@id': self._author.get('orcid'),
             '@type': 'Person'
         }
 
@@ -685,9 +685,9 @@ class SchemaorgAuthorShared:
 
     def _get_full_last_name(self):
         nameparts = [
-            self._author_cff.get('name-particle'),
-            self._author_cff.get('family-names'),
-            self._author_cff.get('name-suffix')
+            self._author.get('name-particle'),
+            self._author.get('family-names'),
+            self._author.get('name-suffix')
         ]
         return ' '.join([n for n in nameparts if n is not None])
 

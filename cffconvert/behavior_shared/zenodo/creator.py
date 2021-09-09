@@ -3,8 +3,8 @@ from abc import abstractmethod
 
 class ZenodoCreatorShared:
 
-    def __init__(self, author_cff):
-        self._author_cff = author_cff
+    def __init__(self, author):
+        self._author = author
         self._behaviors = {
             'GFANAO': self._from_given_and_last_and_affiliation_and_orcid,
             'GFANA_': self._from_given_and_last_and_affiliation,
@@ -73,90 +73,90 @@ class ZenodoCreatorShared:
         }
 
     def _exists_nonempty(self, key):
-        value = self._author_cff.get(key, None)
+        value = self._author.get(key, None)
         return value is not None and value != ''
 
     def _from_affiliation(self):
         return {
-            'affiliation': self._author_cff.get('affiliation')
+            'affiliation': self._author.get('affiliation')
         }
 
     def _from_affiliation_and_orcid(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'affiliation': self._author.get('affiliation'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_alias(self):
         return {
-            'name': self._author_cff.get('alias')
+            'name': self._author.get('alias')
         }
 
     def _from_alias_and_affiliation(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._author_cff.get('alias')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._author.get('alias')
         }
 
     def _from_alias_and_affiliation_and_orcid(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._author_cff.get('alias'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._author.get('alias'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_alias_and_orcid(self):
         return {
-            'name': self._author_cff.get('alias'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'name': self._author.get('alias'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_given(self):
         return {
-            'name': self._author_cff.get('given-names')
+            'name': self._author.get('given-names')
         }
 
     def _from_given_and_affiliation(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._author_cff.get('given-names')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._author.get('given-names')
         }
 
     def _from_given_and_affiliation_and_orcid(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._author_cff.get('given-names'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._author.get('given-names'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_given_and_last(self):
         return {
-            'name': self._get_full_last_name() + ', ' + self._author_cff.get('given-names')
+            'name': self._get_full_last_name() + ', ' + self._author.get('given-names')
         }
 
     def _from_given_and_last_and_affiliation(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._get_full_last_name() + ', ' + self._author_cff.get('given-names')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._get_full_last_name() + ', ' + self._author.get('given-names')
         }
 
     def _from_given_and_last_and_affiliation_and_orcid(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._get_full_last_name() + ', ' + self._author_cff.get('given-names'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._get_full_last_name() + ', ' + self._author.get('given-names'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_given_and_last_and_orcid(self):
         return {
-            'name': self._get_full_last_name() + ', ' + self._author_cff.get('given-names'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'name': self._get_full_last_name() + ', ' + self._author.get('given-names'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_given_and_orcid(self):
         return {
-            'name': self._author_cff.get('given-names'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'name': self._author.get('given-names'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_last(self):
@@ -166,50 +166,50 @@ class ZenodoCreatorShared:
 
     def _from_last_and_affiliation(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
+            'affiliation': self._author.get('affiliation'),
             'name': self._get_full_last_name()
         }
 
     def _from_last_and_affiliation_and_orcid(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
+            'affiliation': self._author.get('affiliation'),
             'name': self._get_full_last_name(),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_last_and_orcid(self):
         return {
             'name': self._get_full_last_name(),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_name(self):
         return {
-            'name': self._author_cff.get('name')
+            'name': self._author.get('name')
         }
 
     def _from_name_and_affiliation(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._author_cff.get('name')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._author.get('name')
         }
 
     def _from_name_and_affiliation_and_orcid(self):
         return {
-            'affiliation': self._author_cff.get('affiliation'),
-            'name': self._author_cff.get('name'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'affiliation': self._author.get('affiliation'),
+            'name': self._author.get('name'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_name_and_orcid(self):
         return {
-            'name': self._author_cff.get('name'),
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'name': self._author.get('name'),
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     def _from_orcid(self):
         return {
-            'orcid': self._author_cff.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
         }
 
     @staticmethod
@@ -218,9 +218,9 @@ class ZenodoCreatorShared:
 
     def _get_full_last_name(self):
         nameparts = [
-            self._author_cff.get('name-particle'),
-            self._author_cff.get('family-names'),
-            self._author_cff.get('name-suffix')
+            self._author.get('name-particle'),
+            self._author.get('family-names'),
+            self._author.get('name-suffix')
         ]
         return ' '.join([n for n in nameparts if n is not None])
 

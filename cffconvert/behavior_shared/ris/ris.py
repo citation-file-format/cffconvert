@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from cffconvert.behavior_1_2_x.ris.author import RisAuthor
 
 
 class RisObjectShared:
@@ -59,26 +60,31 @@ class RisObjectShared:
         return self
 
     def add_author(self):
-        if 'authors' in self.cffobj.keys():
-            authors = list()
-            for author in self.cffobj['authors']:
-                keys = author.keys()
-                nameparts = [
-                    author['name-particle'] if 'name-particle' in keys else None,
-                    author['family-names'] if 'family-names' in keys else None,
-                    author['name-suffix'] if 'name-suffix' in keys else None
-                ]
-                tmp = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
-                alias = author['alias'] if 'alias' in keys and author['alias'] is not None and author['alias'] != '' else None
-                if fullname:
-                    authors.append('AU  - {}\n'.format(fullname))
-                elif alias:
-                    authors.append('AU  - {}\n'.format(alias))
-                else:
-                    continue
-            self.author = ''.join(authors)
+        authors_cff = self.cffobj.get('authors', list())
+        authors_bibtex = [RisAuthor(a).as_string() for a in authors_cff]
+        authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
+        self.author = ''.join(authors_bibtex_filtered)
         return self
+        # if 'authors' in self.cffobj.keys():
+        #     authors = list()
+        #     for author in self.cffobj['authors']:
+        #         keys = author.keys()
+        #         nameparts = [
+        #             author['name-particle'] if 'name-particle' in keys else None,
+        #             author['family-names'] if 'family-names' in keys else None,
+        #             author['name-suffix'] if 'name-suffix' in keys else None
+        #         ]
+        #         tmp = ' '.join([namepart for namepart in nameparts if namepart is not None])
+        #         fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
+        #         alias = author['alias'] if 'alias' in keys and author['alias'] is not None and author['alias'] != '' else None
+        #         if fullname:
+        #             authors.append('AU  - {}\n'.format(fullname))
+        #         elif alias:
+        #             authors.append('AU  - {}\n'.format(alias))
+        #         else:
+        #             continue
+        #     self.author = ''.join(authors)
+        # return self
 
     @abstractmethod
     def add_date(self):

@@ -37,7 +37,12 @@ class TestZenodoObject(Contract):
 
     def test_keywords(self, zenodo_object):
         zenodo_object.add_keywords()
-        assert zenodo_object.keywords == ['visualization', 'big data', 'visual data analytics', 'multi-dimensional data']
+        assert zenodo_object.keywords == [
+            'visualization',
+            'big data',
+            'visual data analytics',
+            'multi-dimensional data'
+        ]
 
     def test_license(self, zenodo_object):
         zenodo_object.add_license()

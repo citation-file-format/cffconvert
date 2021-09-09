@@ -27,9 +27,7 @@ jobs:
           python3 --version
 
       - name: Upgrade pip, setuptools and wheel
-        run: |
-          python3 -m pip install --upgrade pip wheel
-          python3 -m pip install setuptools==58.0.0
+        run: python3 -m pip install --upgrade pip setuptools wheel
 
       - name: Install runtime dependencies
         run: python3 -m pip install .

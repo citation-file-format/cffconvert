@@ -57,10 +57,6 @@ combinations of arguments as query parameters in the URL (see examples
 
 <h2>Authorized arguments</h2>
 
-Try adding <a href="?verbose"><span
-style="font-family:monospace">?verbose</span></a> to the URL to see which
-arguments exist.
-
 <h2>Converting from a GitHub URL</h2>
 
 For the examples below, we use the repository
@@ -147,8 +143,6 @@ def cffconvert(request):
     outputformat = None
     url = None
     validate = False
-    ignore_suspect_keys = False
-    verbose = False
     version = False
 
     outstr = ''
@@ -171,15 +165,6 @@ def cffconvert(request):
     if version is True:
         outstr += "{0}\n".format(cffconvert_version.__version__)
         return Response(outstr, mimetype='text/plain')
-
-    if verbose is True:
-        outstr += "{0} = {1}\n".format("cffstr", cffstr)
-        outstr += "{0} = {1}\n".format("outputformat", outputformat)
-        outstr += "{0} = {1}\n".format("url", url)
-        outstr += "{0} = {1}\n".format("validate", validate)
-        outstr += "{0} = {1}\n".format("ignore_suspect_keys", ignore_suspect_keys)
-        outstr += "{0} = {1}\n".format("verbose", verbose)
-        outstr += "{0} = {1}\n".format("version", version)
 
     if url is not None and cffstr is not None:
         outstr += "\n\n{0}\n".format("Error: can't have both url and cffstr.")
@@ -205,19 +190,15 @@ def cffconvert(request):
     if outputformat is None:
         return Response(outstr, mimetype='text/plain')
 
-    if outputformat == "bibtex":
-        outstr += citation.as_bibtex()
-    elif outputformat == "cff":
-        outstr += citation.cffstr
-    elif outputformat == "codemeta":
-        outstr += citation.as_codemeta()
-    elif outputformat == "endnote":
-        outstr += citation.as_enw()
-    elif outputformat == "ris":
-        outstr += citation.as_ris()
-    elif outputformat == "schema.org":
-        outstr += citation.as_schema_dot_org()
-    elif outputformat == "zenodo":
-        outstr += citation.as_zenodojson()
+    outstr += {
+        "apalike": citation.as_apalike,
+        "bibtex": citation.as_bibtex,
+        "cff": citation.as_cff,
+        "codemeta": citation.as_codemeta,
+        "endnote": citation.as_endnote,
+        "ris": citation.as_ris,
+        "schema.org": citation.as_schemaorg,
+        "zenodo": citation.as_zenodo
+    }[outputformat]()
 
     return Response(outstr, mimetype='text/plain')

@@ -18,7 +18,7 @@ class TestBibtexObject(Contract):
 
     def test_author(self, bibtex_object):
         bibtex_object.add_author()
-        assert bibtex_object.author == 'author = {The soccer team members and The trainers}'
+        assert bibtex_object.author == 'author = {Rafa and coach}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()

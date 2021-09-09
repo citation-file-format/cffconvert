@@ -7,21 +7,21 @@ class BibtexAuthorShared:
         self._author_cff = author_cff
         self._behaviors = {
             'GFAN': self._from_given_and_last,
-            'GFA.': self._from_given_and_last,
-            'GF.N': self._from_given_and_last,
-            'GF..': self._from_given_and_last,
-            'G.AN': self._from_name,
-            'G.A.': self._from_alias,
-            'G..N': self._from_name,
-            'G...': self._from_given,
-            '.FAN': self._from_last,
-            '.FA.': self._from_last,
-            '.F.N': self._from_last,
-            '.F..': self._from_last,
-            '..AN': self._from_name,
-            '..A.': self._from_alias,
-            '...N': self._from_name,
-            '....': BibtexAuthorShared._from_thin_air
+            'GFA_': self._from_given_and_last,
+            'GF_N': self._from_given_and_last,
+            'GF__': self._from_given_and_last,
+            'G_AN': self._from_name,
+            'G_A_': self._from_alias,
+            'G__N': self._from_name,
+            'G___': self._from_given,
+            '_FAN': self._from_last,
+            '_FA_': self._from_last,
+            '_F_N': self._from_last,
+            '_F__': self._from_last,
+            '__AN': self._from_name,
+            '__A_': self._from_alias,
+            '___N': self._from_name,
+            '____': BibtexAuthorShared._from_thin_air
         }
 
     def _exists_nonempty(self, key):

@@ -13,5 +13,5 @@ class BibtexAuthor(Shared):
             ('A', False),
             ('N', self._exists_nonempty('name'))
         ]
-        key = ''.join([item[0] if item[1] is True else '.' for item in state])
+        key = ''.join([item[0] if item[1] is True else '_' for item in state])
         return self._behaviors[key]()

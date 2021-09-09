@@ -1,4 +1,5 @@
 from cffconvert.behavior_shared.ris.ris import RisObjectShared as Shared
+from cffconvert.behavior_1_0_x.ris.author import RisAuthor
 
 
 class RisObject(Shared):
@@ -11,6 +12,14 @@ class RisObject(Shared):
 
     def __init__(self, cffobj, initialize_empty=False):
         super().__init__(cffobj, initialize_empty)
+
+    def add_author(self):
+        pass
+        authors_cff = self.cffobj.get('authors', list())
+        authors_bibtex = [RisAuthor(a).as_string() for a in authors_cff]
+        authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
+        self.author = ''.join(authors_bibtex_filtered)
+        return self
 
     def add_date(self):
         if 'date-released' in self.cffobj.keys():

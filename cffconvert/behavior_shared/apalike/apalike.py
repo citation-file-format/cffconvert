@@ -82,7 +82,8 @@ class ApalikeObjectShared:
                     extract_initials(author['given-names']) if 'given-names' in keys else None
                 ]
                 fullname = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                alias = author['alias'] if 'alias' in keys and author['alias'] is not None and author['alias'] != '' else None
+                alias = author['alias'] if 'alias' in keys and author['alias'] is not None \
+                    and author['alias'] != '' else None
                 if fullname:
                     authors.append(format(fullname))
                 elif alias:

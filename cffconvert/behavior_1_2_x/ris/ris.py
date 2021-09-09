@@ -1,5 +1,5 @@
-from cffconvert.behavior_shared.ris.ris import RisObjectShared as Shared
 from cffconvert.behavior_1_2_x.ris.author import RisAuthor
+from cffconvert.behavior_shared.ris.ris import RisObjectShared as Shared
 
 
 class RisObject(Shared):
@@ -12,7 +12,6 @@ class RisObject(Shared):
         super().__init__(cffobj, initialize_empty)
 
     def add_author(self):
-        pass
         authors_cff = self.cffobj.get('authors', list())
         authors_bibtex = [RisAuthor(a).as_string() for a in authors_cff]
         authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]

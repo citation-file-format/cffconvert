@@ -3,8 +3,8 @@ from cffconvert.behavior_shared.schemaorg.author import SchemaorgAuthorShared as
 
 class SchemaorgAuthor(Shared):
 
-    def __init__(self, author_cff):
-        super().__init__(author_cff)
+    def __init__(self, author):
+        super().__init__(author)
 
     def as_dict(self):
         state = [

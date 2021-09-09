@@ -3,8 +3,8 @@ from cffconvert.behavior_shared.zenodo.creator import ZenodoCreatorShared as Sha
 
 class ZenodoCreator(Shared):
 
-    def __init__(self, author_cff):
-        super().__init__(author_cff)
+    def __init__(self, author):
+        super().__init__(author)
 
     def as_dict(self):
         state = [

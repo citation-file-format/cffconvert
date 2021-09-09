@@ -58,4 +58,3 @@ class TestRisObject(Contract):
     def test_year(self, ris_object):
         ris_object.add_year()
         assert ris_object.year is None
-

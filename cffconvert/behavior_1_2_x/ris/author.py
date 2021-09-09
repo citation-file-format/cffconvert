@@ -3,8 +3,8 @@ from cffconvert.behavior_shared.ris.author import RisAuthorShared as Shared
 
 class RisAuthor(Shared):
 
-    def __init__(self, author_cff):
-        super().__init__(author_cff)
+    def __init__(self, author):
+        super().__init__(author)
 
     def as_string(self):
         state = [

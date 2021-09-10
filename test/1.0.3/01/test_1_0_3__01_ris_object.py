@@ -8,7 +8,7 @@ from cffconvert import Citation
 @pytest.fixture(scope="module")
 def ris_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "r", encoding="utf8") as f:
+    with open(fixture, "rt", encoding="utf-8") as f:
         cffstr = f.read()
         citation = Citation(cffstr)
         return RisObject(citation.cffobj, initialize_empty=True)
@@ -43,7 +43,7 @@ class TestRisObject(Contract):
     def test_print(self, ris_object):
         actual_ris = ris_object.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "ris.txt")
-        with open(fixture, "r", encoding="utf8") as f:
+        with open(fixture, "rt", encoding="utf-8") as f:
             expected_ris = f.read()
         assert actual_ris == expected_ris
 

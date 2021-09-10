@@ -5,7 +5,7 @@ from cffconvert.cli.cli import cli as cffconvert_cli
 
 def read_sibling_file(filename):
     f = os.path.join(os.path.dirname(__file__), filename)
-    with open(f, "r") as f:
+    with open(f, "rt") as f:
         return f.read()
 
 
@@ -38,7 +38,7 @@ def test_printing_on_stdout_as_bibtex():
     expected = read_sibling_file("bibtex.bib")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "bibtex"])
     assert result.exit_code == 0
@@ -50,7 +50,7 @@ def test_printing_on_stdout_as_cff():
     cffstr = read_sibling_file("CITATION.cff")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "cff"])
     assert result.exit_code == 0
@@ -62,7 +62,7 @@ def test_printing_on_stdout_as_codemeta():
     expected = read_sibling_file("codemeta.json")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "codemeta"])
     assert result.exit_code == 0
@@ -75,7 +75,7 @@ def test_printing_on_stdout_as_endnote():
     expected = read_sibling_file("endnote.enw")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "endnote"])
     assert result.exit_code == 0
@@ -88,7 +88,7 @@ def test_printing_on_stdout_as_ris():
     expected = read_sibling_file("ris.txt")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "ris"])
     assert result.exit_code == 0
@@ -101,7 +101,7 @@ def test_printing_on_stdout_as_schemaorg():
     expected = read_sibling_file("schemaorg.json")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "schema.org"])
     assert result.exit_code == 0
@@ -113,7 +113,7 @@ def test_raising_error_on_unsupported_format():
     cffstr = read_sibling_file("CITATION.cff")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "unsupported_97491"])
     assert result.exit_code == 2
@@ -134,10 +134,10 @@ def test_writing_as_bibtex():
     expected = read_sibling_file("bibtex.bib")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "bibtex", "-o", "bibtex.bib"])
-        with open("bibtex.bib", "r") as f:
+        with open("bibtex.bib", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
     assert expected == actual
@@ -148,10 +148,10 @@ def test_writing_as_codemeta():
     expected = read_sibling_file("codemeta.json")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "codemeta", "-o", "codemeta.json"])
-        with open("codemeta.json", "r") as f:
+        with open("codemeta.json", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
     assert expected == actual
@@ -162,10 +162,10 @@ def test_writing_as_endnote():
     expected = read_sibling_file("endnote.enw")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "endnote", "-o", "endnote.enw"])
-        with open("endnote.enw", "r") as f:
+        with open("endnote.enw", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
     assert expected == actual
@@ -176,10 +176,10 @@ def test_writing_as_ris():
     expected = read_sibling_file("ris.txt")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "ris", "-o", "ris.txt"])
-        with open("ris.txt", "r") as f:
+        with open("ris.txt", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
     assert expected == actual
@@ -190,10 +190,10 @@ def test_writing_as_schemaorg():
     expected = read_sibling_file("schemaorg.json")
     runner = CliRunner()
     with runner.isolated_filesystem():
-        with open("CITATION.cff", "w") as f:
+        with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
         result = runner.invoke(cffconvert_cli, ["-f", "schema.org", "-o", "schemaorg.json"])
-        with open("schemaorg.json", "r") as f:
+        with open("schemaorg.json", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
     assert expected == actual

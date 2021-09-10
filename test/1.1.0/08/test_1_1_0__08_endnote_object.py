@@ -8,7 +8,7 @@ from cffconvert import Citation
 @pytest.fixture(scope="module")
 def endnote_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "r", encoding="utf8") as f:
+    with open(fixture, "rt", encoding="utf-8") as f:
         cffstr = f.read()
         citation = Citation(cffstr)
         return EndnoteObject(citation.cffobj, initialize_empty=True)
@@ -39,7 +39,7 @@ class TestEndnoteObject(Contract):
     def test_print(self, endnote_object):
         actual_endnote = endnote_object.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
-        with open(fixture, "r", encoding="utf8") as f:
+        with open(fixture, "rt", encoding="utf-8") as f:
             expected_endnote = f.read()
         assert actual_endnote == expected_endnote
 

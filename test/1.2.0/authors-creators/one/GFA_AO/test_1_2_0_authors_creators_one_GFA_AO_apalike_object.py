@@ -8,7 +8,7 @@ from cffconvert import Citation
 @pytest.fixture(scope="module")
 def apalike_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "r") as f:
+    with open(fixture, "rt", encoding="utf-8") as f:
         cffstr = f.read()
         citation = Citation(cffstr)
         return ApalikeObject(citation.cffobj, initialize_empty=True)
@@ -29,7 +29,7 @@ class TestApalikeObject(Contract):
     def test_print(self, apalike_object):
         actual_apalike = apalike_object.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "apalike.txt")
-        with open(fixture, "r") as f:
+        with open(fixture, "rt", encoding="utf-8") as f:
             expected_apalike = f.read()
         assert actual_apalike == expected_apalike
 

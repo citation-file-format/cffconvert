@@ -17,29 +17,30 @@ def apalike_object():
 class TestApalikeObject(Contract):
 
     def test_author(self, apalike_object):
-        apalike_object.add_author()
-        assert apalike_object.author == 'Attema J., Diblen F.'
+        assert apalike_object.add_author().author == 'Attema J., Diblen F.'
 
     def test_check_cffobj(self, apalike_object):
         apalike_object.check_cffobj()
         # doesn't need an assert
 
-    def test_year(self, apalike_object):
-        apalike_object.add_year()
-        assert apalike_object.year == ' (2017). '
+    def test_doi(self, apalike_object):
+        assert apalike_object.add_doi().doi == 'DOI: http://doi.org/10.5281/zenodo.1003346 '
+
+    def test_print(self, apalike_object):
+        actual_apalike = apalike_object.add_all().print()
+        fixture = os.path.join(os.path.dirname(__file__), "apalike.txt")
+        with open(fixture, "r") as f:
+            expected_apalike = f.read()
+        assert actual_apalike == expected_apalike
 
     def test_title(self, apalike_object):
-        apalike_object.add_title()
-        assert apalike_object.title == 'spot'
-
-    def test_version(self, apalike_object):
-        apalike_object.add_version()
-        assert apalike_object.version == ' (version 0.1.0). '
-
-    def test_doi(self, apalike_object):
-        apalike_object.add_doi()
-        assert apalike_object.doi == 'DOI: http://doi.org/10.5281/zenodo.1003346 '
+        assert apalike_object.add_title().title == 'spot'
 
     def test_url(self, apalike_object):
-        apalike_object.add_url()
-        assert apalike_object.url == 'URL: https://github.com/NLeSC/spot\n'
+        assert apalike_object.add_url().url == 'URL: https://github.com/NLeSC/spot\n'
+
+    def test_version(self, apalike_object):
+        assert apalike_object.add_version().version == ' (version 0.1.0). '
+
+    def test_year(self, apalike_object):
+        assert apalike_object.add_year().year == ' (2017). '

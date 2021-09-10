@@ -44,4 +44,3 @@ class TestApalikeObject(Contract):
 
     def test_year(self, apalike_object):
         assert apalike_object.add_year().year == ' (2018). '
-

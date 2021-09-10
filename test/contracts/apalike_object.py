@@ -35,4 +35,3 @@ class Contract(ABC):
     @abstractmethod
     def test_year(self, fixture):
         pass
-

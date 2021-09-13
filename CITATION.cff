@@ -138,3 +138,9 @@ references:
     title: "Netherlands eScience Center Python Template"
     type: software
     version: "0.4.0"
+  - authors:
+      - family-names: McAdoo
+        given-names: Timothy
+    title: How to Cite Software in APA Style
+    type: blog 
+    url: https://blog.apastyle.org/apastyle/2015/01/how-to-cite-software-in-apa-style.html

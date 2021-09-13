@@ -46,7 +46,7 @@ class ApalikeObjectShared:
                                    self.version,
                                    self.doi,
                                    self.url] if item is not None]
-        return ''.join(items)
+        return ' '.join(items) + '\n'
 
     def add_all(self):
         self.add_author()   \
@@ -57,41 +57,9 @@ class ApalikeObjectShared:
             .add_url()
         return self
 
+    @abstractmethod
     def add_author(self):
-        if 'authors' in self.cffobj.keys():
-            authors = list()
-            for author in self.cffobj['authors']:
-                def extract_initials(self):
-                    # Print initials of 'given-name'. Adapted from
-                    # https://www.geeksforgeeks.org/python-print-initials-name-last-name-full/
-                    # split the string into a list
-                    name = self
-                    num_names = name.split()
-                    initials = ""
-                    # traverse in the list
-                    for i in range(len(num_names)):
-                        name = num_names[i]
-                        # adds the capital first character
-                        initials += (name[0].upper() + '.')
-                    return initials
-                keys = author.keys()
-                nameparts = [
-                    author['name-particle'] if 'name-particle' in keys else None,
-                    author['family-names'] if 'family-names' in keys else None,
-                    author['name-suffix'] if 'name-suffix' in keys else None,
-                    extract_initials(author['given-names']) if 'given-names' in keys else None
-                ]
-                fullname = ' '.join([namepart for namepart in nameparts if namepart is not None])
-                alias = author['alias'] if 'alias' in keys and author['alias'] is not None \
-                    and author['alias'] != '' else None
-                if fullname:
-                    authors.append(format(fullname))
-                elif alias:
-                    authors.append(format(alias))
-                else:
-                    continue
-            self.author = ', '.join(authors)
-        return self
+        pass
 
     @abstractmethod
     def add_year(self):
@@ -99,12 +67,12 @@ class ApalikeObjectShared:
 
     def add_title(self):
         if 'title' in self.cffobj.keys():
-            self.title = format(self.cffobj['title'])
+            self.title = self.cffobj['title']
         return self
 
     def add_version(self):
         if 'version' in self.cffobj.keys():
-            self.version = ' (version ' + str(self.cffobj['version']) + '). '
+            self.version = '(version ' + str(self.cffobj['version']) + ').'
         return self
 
     @abstractmethod
@@ -113,7 +81,7 @@ class ApalikeObjectShared:
 
     def add_url(self):
         if 'repository-code' in self.cffobj.keys():
-            self.url = 'URL: ' + format(self.cffobj['repository-code']) + '\n'
+            self.url = 'URL: ' + self.cffobj['repository-code']
         return self
 
     @abstractmethod

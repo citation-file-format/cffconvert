@@ -8,7 +8,7 @@ from cffconvert import Citation
 @pytest.fixture(scope="module")
 def bibtex_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "r", encoding="utf8") as f:
+    with open(fixture, "rt", encoding="utf-8") as f:
         cffstr = f.read()
         citation = Citation(cffstr)
         return BibtexObject(citation.cffobj, initialize_empty=True)
@@ -35,7 +35,7 @@ class TestBibtexObject(Contract):
     def test_print(self, bibtex_object):
         actual_bibtex = bibtex_object.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")
-        with open(fixture, "r", encoding="utf8") as f:
+        with open(fixture, "rt", encoding="utf-8") as f:
             expected_bibtex = f.read()
         assert actual_bibtex == expected_bibtex
 

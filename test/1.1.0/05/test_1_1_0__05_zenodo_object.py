@@ -8,7 +8,7 @@ from cffconvert import Citation
 @pytest.fixture(scope="module")
 def zenodo_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "r", encoding="utf8") as f:
+    with open(fixture, "rt", encoding="utf-8") as f:
         cffstr = f.read()
         citation = Citation(cffstr)
         return ZenodoObject(citation.cffobj, initialize_empty=True)
@@ -48,7 +48,7 @@ class TestZenodoObject(Contract):
     def test_print(self, zenodo_object):
         actual_zenodo = zenodo_object.add_all().print()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
-        with open(fixture, "r", encoding="utf8") as f:
+        with open(fixture, "rt", encoding="utf-8") as f:
             expected_zenodo = f.read()
         assert actual_zenodo == expected_zenodo
 

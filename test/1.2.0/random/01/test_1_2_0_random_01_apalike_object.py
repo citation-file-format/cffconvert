@@ -26,7 +26,7 @@ class TestApalikeObject(Contract):
 
     def test_doi(self, apalike_object):
         apalike_object.add_doi()
-        assert apalike_object.doi == 'DOI: http://doi.org/10.5281/zenodo.1162057 '
+        assert apalike_object.doi == 'DOI: 10.5281/zenodo.1162057'
 
     def test_print(self, apalike_object):
         actual_apalike = apalike_object.add_all().print()
@@ -41,12 +41,12 @@ class TestApalikeObject(Contract):
 
     def test_url(self, apalike_object):
         apalike_object.add_url()
-        assert apalike_object.url == 'URL: https://github.com/citation-file-format/cff-converter-python\n'
+        assert apalike_object.url == 'URL: https://github.com/citation-file-format/cff-converter-python'
 
     def test_version(self, apalike_object):
         apalike_object.add_version()
-        assert apalike_object.version == ' (version 1.0.0). '
+        assert apalike_object.version == '(version 1.0.0).'
 
     def test_year(self, apalike_object):
         apalike_object.add_year()
-        assert apalike_object.year == ' (2018). '
+        assert apalike_object.year == '(2018).'

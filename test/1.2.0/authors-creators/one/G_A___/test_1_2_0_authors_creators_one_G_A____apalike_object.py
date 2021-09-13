@@ -17,7 +17,7 @@ def apalike_object():
 class TestApalikeObject(Contract):
 
     def test_author(self, apalike_object):
-        assert apalike_object.add_author().author == 'R.'
+        assert apalike_object.add_author().author == 'Rafael'
 
     def test_check_cffobj(self, apalike_object):
         apalike_object.check_cffobj()

@@ -24,7 +24,7 @@ class TestApalikeObject(Contract):
         # doesn't need an assert
 
     def test_doi(self, apalike_object):
-        assert apalike_object.add_doi().doi == 'DOI: http://doi.org/10.5281/zenodo.1003346 '
+        assert apalike_object.add_doi().doi == 'DOI: 10.5281/zenodo.1003346'
 
     def test_print(self, apalike_object):
         actual_apalike = apalike_object.add_all().print()
@@ -37,10 +37,10 @@ class TestApalikeObject(Contract):
         assert apalike_object.add_title().title == 'spot'
 
     def test_url(self, apalike_object):
-        assert apalike_object.add_url().url == 'URL: https://github.com/NLeSC/spot\n'
+        assert apalike_object.add_url().url == 'URL: https://github.com/NLeSC/spot'
 
     def test_version(self, apalike_object):
-        assert apalike_object.add_version().version == ' (version 0.1.0). '
+        assert apalike_object.add_version().version == '(version 0.1.0).'
 
     def test_year(self, apalike_object):
-        assert apalike_object.add_year().year == ' (2017). '
+        assert apalike_object.add_year().year == '(2017).'

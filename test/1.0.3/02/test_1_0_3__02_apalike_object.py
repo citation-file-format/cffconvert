@@ -40,7 +40,7 @@ class TestApalikeObject(Contract):
         assert apalike_object.add_url().url is None
 
     def test_version(self, apalike_object):
-        assert apalike_object.add_version().version == ' (version 1.0.0). '
+        assert apalike_object.add_version().version == '(version 1.0.0).'
 
     def test_year(self, apalike_object):
-        assert apalike_object.add_year().year == ' (1999). '
+        assert apalike_object.add_year().year == '(1999).'

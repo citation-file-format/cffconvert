@@ -1,15 +1,4 @@
-# This style loosely tries to implement the guidelines set in the
-# "How to Cite Software in APA Style"[1] blog post. The general idea of an
-# APA-like format is not to rigidly follow APA rules[2], but mostly to provide an
-# output that resembles something that one would find in a scientific
-# publication, particularly following the "usual who-when-what-where format".
-#
-# Example references [1]:
-# Esolang, A. N. (2014). Obscure Reference Generator [Computer software]. Washington, DC: E & K Press.
-# Customized Synergy [Computer software]. (2014). Retrieved from http://customizedsynergy.com
-#
-# [1] https://blog.apastyle.org/apastyle/2015/01/how-to-cite-software-in-apa-style.html
-# [2] https://apastyle.apa.org
+from cffconvert.behavior_1_0_x.apalike.author import ApalikeAuthor
 from cffconvert.behavior_shared.apalike.apalike import ApalikeObjectShared as Shared
 
 
@@ -24,14 +13,22 @@ class ApalikeObject(Shared):
     def __init__(self, cffobj, initialize_empty=False):
         super().__init__(cffobj, initialize_empty)
 
+    def add_author(self):
+        authors_cff = self.cffobj.get('authors', list())
+        authors_apalike = [ApalikeAuthor(a).as_string() for a in authors_cff]
+        authors_apalike_filtered = [a for a in authors_apalike if a is not None]
+        if len(authors_apalike_filtered) > 0:
+            self.author = ', '.join(authors_apalike_filtered)
+        return self
+
     def add_year(self):
         if 'date-released' in self.cffobj.keys():
-            self.year = ' (' + str(self.cffobj['date-released'].year) + '). '
+            self.year = '(' + str(self.cffobj['date-released'].year) + ').'
         return self
 
     def add_doi(self):
         if 'doi' in self.cffobj.keys():
-            self.doi = 'DOI: http://doi.org/' + format(self.cffobj['doi']) + ' '
+            self.doi = 'DOI: ' + self.cffobj['doi']
         return self
 
     def check_cffobj(self):

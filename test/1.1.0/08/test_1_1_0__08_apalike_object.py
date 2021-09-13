@@ -45,8 +45,8 @@ class TestApalikeObject(Contract):
 
     def test_version(self, apalike_object):
         apalike_object.add_version()
-        assert apalike_object.version == ' (version 1.0.0). '
+        assert apalike_object.version == '(version 1.0.0).'
 
     def test_year(self, apalike_object):
         apalike_object.add_year()
-        assert apalike_object.year == ' (2018). '
+        assert apalike_object.year == '(2018).'

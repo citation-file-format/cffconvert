@@ -13,6 +13,7 @@ class RisObjectShared:
         'url',
         'year'
     ]
+    supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):
         self.cffobj = cffobj
@@ -90,9 +91,14 @@ class RisObjectShared:
     def add_year(self):
         pass
 
-    @abstractmethod
     def check_cffobj(self):
-        pass
+        if not isinstance(self.cffobj, dict):
+            raise ValueError('Expected cffobj to be of type \'dict\'.')
+        if 'cff-version' not in self.cffobj.keys():
+            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+        if self.cffobj['cff-version'] not in self.supported_cff_versions:
+            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
+                             .format(self.cffobj['cff-version']))
 
     def print(self):
         return self.__str__()

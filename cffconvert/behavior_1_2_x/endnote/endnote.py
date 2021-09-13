@@ -33,12 +33,3 @@ class EndnoteObject(Shared):
         if 'date-released' in self.cffobj.keys():
             self.year = '%D {}\n'.format(self.cffobj['date-released'][:4])
         return self
-
-    def check_cffobj(self):
-        if not isinstance(self.cffobj, dict):
-            raise ValueError('Expected cffobj to be of type \'dict\'.')
-        if 'cff-version' not in self.cffobj.keys():
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
-        if self.cffobj['cff-version'] not in EndnoteObject.supported_cff_versions:
-            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
-                             .format(self.cffobj['cff-version']))

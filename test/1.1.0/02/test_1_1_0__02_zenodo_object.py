@@ -42,8 +42,8 @@ class TestZenodoObject(Contract):
         zenodo_object.add_license()
         assert zenodo_object.license == dict(id='Apache-2.0')
 
-    def test_print(self, zenodo_object):
-        actual_zenodo = zenodo_object.add_all().print()
+    def test_as_string(self, zenodo_object):
+        actual_zenodo = zenodo_object.add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
         with open(fixture, "rt", encoding="utf-8") as f:
             expected_zenodo = f.read()

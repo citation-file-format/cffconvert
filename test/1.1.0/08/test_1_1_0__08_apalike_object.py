@@ -28,8 +28,8 @@ class TestApalikeObject(Contract):
         apalike_object.add_doi()
         assert apalike_object.doi is None
 
-    def test_print(self, apalike_object):
-        actual_apalike = apalike_object.add_all().print()
+    def test_as_string(self, apalike_object):
+        actual_apalike = apalike_object.add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "apalike.txt")
         with open(fixture, "rt", encoding="utf-8") as f:
             expected_apalike = f.read()

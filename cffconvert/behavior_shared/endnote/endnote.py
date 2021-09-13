@@ -74,6 +74,9 @@ class EndnoteObjectShared:
     def add_year(self):
         pass
 
+    def as_string(self):
+        return self.__str__()
+
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
             raise ValueError('Expected cffobj to be of type \'dict\'.')
@@ -82,6 +85,3 @@ class EndnoteObjectShared:
         if self.cffobj['cff-version'] not in self.supported_cff_versions:
             raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
                              .format(self.cffobj['cff-version']))
-
-    def print(self):
-        return self.__str__()

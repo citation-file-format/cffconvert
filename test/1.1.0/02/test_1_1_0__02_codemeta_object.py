@@ -74,8 +74,8 @@ class TestCodemetaObject(Contract):
         codemeta_object.add_version()
         assert codemeta_object.version == '1.0.0'
 
-    def test_print(self, codemeta_object):
-        actual_codemeta = codemeta_object.add_all().print()
+    def test_as_string(self, codemeta_object):
+        actual_codemeta = codemeta_object.add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "codemeta.json")
         with open(fixture, "rt", encoding="utf-8") as f:
             expected_codemeta = f.read()

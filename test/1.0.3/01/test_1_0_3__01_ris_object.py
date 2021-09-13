@@ -40,8 +40,8 @@ class TestRisObject(Contract):
         ris_object.add_keywords()
         assert ris_object.keywords == 'KW  - citation\nKW  - bibliography\nKW  - cff\nKW  - CITATION.cff\n'
 
-    def test_print(self, ris_object):
-        actual_ris = ris_object.add_all().print()
+    def test_as_string(self, ris_object):
+        actual_ris = ris_object.add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "ris.txt")
         with open(fixture, "rt", encoding="utf-8") as f:
             expected_ris = f.read()

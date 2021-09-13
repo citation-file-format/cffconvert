@@ -33,8 +33,8 @@ class TestBibtexObject(Contract):
         bibtex_object.add_month()
         assert bibtex_object.month == 'month = {7}'
 
-    def test_print(self, bibtex_object):
-        actual_bibtex = bibtex_object.add_all().print()
+    def test_as_string(self, bibtex_object):
+        actual_bibtex = bibtex_object.add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")
         with open(fixture, "rt", encoding="utf-8") as f:
             expected_bibtex = f.read()

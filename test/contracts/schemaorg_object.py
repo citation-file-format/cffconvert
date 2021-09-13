@@ -45,5 +45,5 @@ class Contract(ABC):
         pass
 
     @abstractmethod
-    def test_print(self, fixture):
+    def test_as_string(self, fixture):
         pass

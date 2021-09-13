@@ -32,8 +32,8 @@ class TestEndnoteObject(Contract):
     def test_name(self, endnote_object):
         assert endnote_object.add_name().name == '%T the title\n'
 
-    def test_print(self, endnote_object):
-        actual_endnote = endnote_object.add_all().print()
+    def test_as_string(self, endnote_object):
+        actual_endnote = endnote_object.add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
         with open(fixture, "rt", encoding="utf-8") as f:
             expected_endnote = f.read()

@@ -74,8 +74,8 @@ class TestSchemaorgObject(Contract):
         schemorg_object.add_version()
         assert schemorg_object.version == '1.0.0'
 
-    def test_print(self, schemorg_object):
-        actual_schemaorg = schemorg_object.add_all().print()
+    def test_as_string(self, schemorg_object):
+        actual_schemaorg = schemorg_object.add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
         with open(fixture, "rt", encoding="utf-8") as f:
             expected_schemaorg = f.read()

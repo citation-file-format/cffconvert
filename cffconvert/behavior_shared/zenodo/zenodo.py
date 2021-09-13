@@ -13,6 +13,7 @@ class ZenodoObjectShared:
         'title',
         'version'
     ]
+    supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):
         self.cffobj = cffobj
@@ -56,32 +57,6 @@ class ZenodoObjectShared:
     @abstractmethod
     def add_creators(self):
         pass
-        # if 'authors' in self.cffobj.keys():
-        #     self.creators = list()
-        #     for author in self.cffobj['authors']:
-        #         d = dict()
-        #         keys = author.keys()
-        #         nameparts = [
-        #             author['name-particle'] if 'name-particle' in keys else None,
-        #             author['family-names'] if 'family-names' in keys else None,
-        #             author['name-suffix'] if 'name-suffix' in keys else None
-        #         ]
-        #         tmp = ' '.join([namepart for namepart in nameparts if namepart is not None])
-        #         fullname = tmp + ', ' + author['given-names'] if 'given-names' in keys else tmp
-        #         if fullname != '':
-        #             d['name'] = fullname
-        #         elif 'alias' in keys and author['alias'] is not None and author['alias'] != '':
-        #             d['name'] = author['alias']
-        #         else:
-        #             continue
-        #         if 'affiliation' in author.keys():
-        #             d['affiliation'] = author['affiliation']
-        #         if 'orcid' in author.keys():
-        #             if author['orcid'].startswith('https://orcid.org/'):
-        #                 d['orcid'] = author['orcid'][len('https://orcid.org/'):]
-        #
-        #         self.creators.append(d)
-        # return self
 
     def add_description(self):
         if 'abstract' in self.cffobj.keys():
@@ -112,9 +87,14 @@ class ZenodoObjectShared:
             self.version = self.cffobj['version']
         return self
 
-    @abstractmethod
     def check_cffobj(self):
-        pass
+        if not isinstance(self.cffobj, dict):
+            raise ValueError('Expected cffobj to be of type \'dict\'.')
+        if 'cff-version' not in self.cffobj.keys():
+            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+        if self.cffobj['cff-version'] not in self.supported_cff_versions:
+            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
+                             .format(self.cffobj['cff-version']))
 
     def print(self):
         return self.__str__()

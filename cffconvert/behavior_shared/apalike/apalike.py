@@ -46,7 +46,7 @@ class ApalikeObjectShared:
                                    self.version,
                                    self.doi,
                                    self.url] if item is not None]
-        return ' '.join(items)
+        return ' '.join(items) + '\n'
 
     def add_all(self):
         self.add_author()   \

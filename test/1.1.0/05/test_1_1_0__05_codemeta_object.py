@@ -51,7 +51,8 @@ class TestCodemetaObject(Contract):
         # doesn't need an assert
 
     def test_code_repository(self, codemeta_object):
-        assert codemeta_object.add_code_repository().code_repository == 'https://github.com/citation-file-format/cff-converter-python'
+        assert codemeta_object.add_code_repository().code_repository == 'https://github.com/citation-file-format' + \
+                                                                        '/cff-converter-python'
 
     def test_date_published(self, codemeta_object):
         assert codemeta_object.add_date_published().date_published == '2018-01-16'

@@ -29,7 +29,7 @@ class TestSchemaorgObject(Contract):
             "alternateName": "Rafa",
             "familyName": "van der Vaart III",
             "givenName": "Rafael"
-        }] 
+        }]
 
     def test_check_cffobj(self, schemaorg_object):
         schemaorg_object.check_cffobj()

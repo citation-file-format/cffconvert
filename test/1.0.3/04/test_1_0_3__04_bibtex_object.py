@@ -25,7 +25,7 @@ class TestBibtexObject(Contract):
 
     def test_author(self, bibtex_object):
         assert bibtex_object.add_author().author == 'author = {Spaaks, Jurriaan H. and Klaver, Tom and ' + \
-                                       'Verhoeven, Stefan and Druskat, Stephan}'
+                                                    'Verhoeven, Stefan and Druskat, Stephan}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()

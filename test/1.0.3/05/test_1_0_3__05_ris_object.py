@@ -27,7 +27,8 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self, ris_object):
-        assert ris_object.add_author().author == 'AU  - Spaaks, Jurriaan H.\nAU  - Klaver, Tom\nAU  - Verhoeven, Stefan\n'
+        assert ris_object.add_author().author == 'AU  - Spaaks, Jurriaan H.\nAU  - Klaver, Tom\n' + \
+                                                 'AU  - Verhoeven, Stefan\n'
 
     def test_check_cffobj(self, ris_object):
         ris_object.check_cffobj()
@@ -40,7 +41,8 @@ class TestRisObject(Contract):
         assert ris_object.add_doi().doi == 'DO  - 10.5281/zenodo.1162057\n'
 
     def test_keywords(self, ris_object):
-        assert ris_object.add_keywords().keywords == 'KW  - citation\nKW  - bibliography\nKW  - cff\nKW  - CITATION.cff\n'
+        assert ris_object.add_keywords().keywords == 'KW  - citation\nKW  - bibliography\n' + \
+                                                     'KW  - cff\nKW  - CITATION.cff\n'
 
     def test_title(self, ris_object):
         assert ris_object.add_title().title == 'TI  - cffconvert\n'

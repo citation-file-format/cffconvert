@@ -24,7 +24,8 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_author(self, bibtex_object):
-        assert bibtex_object.add_author().author == 'author = {van der Vaart III, Rafael and dos Santos Aveiro, Cristiano Ronaldo}'
+        assert bibtex_object.add_author().author == 'author = {van der Vaart III, Rafael and dos ' + \
+                                                    'Santos Aveiro, Cristiano Ronaldo}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()

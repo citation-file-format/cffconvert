@@ -35,7 +35,7 @@ class TestEndnoteObject(Contract):
 
     def test_keyword(self, endnote_object):
         assert endnote_object.add_keyword().keyword == '%K visualization\n%K big data\n' + \
-                                         '%K visual data analytics\n%K multi-dimensional data\n'
+                                                       '%K visual data analytics\n%K multi-dimensional data\n'
 
     def test_name(self, endnote_object):
         assert endnote_object.add_name().name == '%T spot\n'

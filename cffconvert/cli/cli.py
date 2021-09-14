@@ -62,9 +62,9 @@ options = {
 
 
 @click.command()
-@click.option("-i", "infile", **options["infile"])
-@click.option("-o", "outfile", **options["outfile"])
-@click.option("-f", "outputformat", **options["outputformat"])
+@click.option("-i", "--infile", "infile", **options["infile"])
+@click.option("-o", "--outfile", "outfile", **options["outfile"])
+@click.option("-f", "--format", "outputformat", **options["outputformat"])
 @click.option("-u", "--url", "url", **options["url"])
 @click.option("-h", "--help", "show_help", **options["show_help"])
 @click.option("--show-trace", "show_trace", **options["show_trace"])

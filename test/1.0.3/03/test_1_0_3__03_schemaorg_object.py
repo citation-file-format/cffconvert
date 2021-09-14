@@ -24,8 +24,7 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self, schemaorg_object):
-        schemaorg_object.add_author()
-        expected_author = [{
+        assert schemaorg_object.add_author().author == [{
             "@type": "Person",
             "givenName": "Jisk",
             "familyName": "Attema",
@@ -43,41 +42,36 @@ class TestSchemaorgObject(Contract):
                 "legalName": "Netherlands eScience Center"
             }
         }]
-        assert schemaorg_object.author == expected_author
 
     def test_check_cffobj(self, schemaorg_object):
         schemaorg_object.check_cffobj()
         # doesn't need an assert
 
     def test_code_repository(self, schemaorg_object):
-        schemaorg_object.add_code_repository()
-        assert schemaorg_object.code_repository == 'https://github.com/NLeSC/spot'
+        assert schemaorg_object.add_code_repository().code_repository == 'https://github.com/NLeSC/spot'
 
     def test_date_published(self, schemaorg_object):
-        schemaorg_object.add_date_published()
-        assert schemaorg_object.date_published == '2017-10-07'
+        assert schemaorg_object.add_date_published().date_published == '2017-10-07'
 
     def test_description(self, schemaorg_object):
-        schemaorg_object.add_description()
-        assert schemaorg_object.description is None
+        assert schemaorg_object.add_description().description is None
 
     def test_identifier(self, schemaorg_object):
-        schemaorg_object.add_identifier()
-        assert schemaorg_object.identifier == 'https://doi.org/10.5281/zenodo.1003346'
+        assert schemaorg_object.add_identifier().identifier == 'https://doi.org/10.5281/zenodo.1003346'
 
     def test_keywords(self, schemaorg_object):
-        schemaorg_object.add_keywords()
-        expected_keywords = ['visualization', 'big data', 'visual data analytics', 'multi-dimensional data']
-        assert schemaorg_object.keywords == expected_keywords
+        assert schemaorg_object.add_keywords().keywords == [
+            'visualization',
+            'big data',
+            'visual data analytics',
+            'multi-dimensional data'
+        ]
 
     def test_license(self, schemaorg_object):
-        schemaorg_object.add_license()
-        assert schemaorg_object.license == 'https://spdx.org/licenses/Apache-2.0'
+        assert schemaorg_object.add_license().license == 'https://spdx.org/licenses/Apache-2.0'
 
     def test_name(self, schemaorg_object):
-        schemaorg_object.add_name()
-        assert schemaorg_object.name == 'spot'
+        assert schemaorg_object.add_name().name == 'spot'
 
     def test_version(self, schemaorg_object):
-        schemaorg_object.add_version()
-        assert schemaorg_object.version == '0.1.0'
+        assert schemaorg_object.add_version().version == '0.1.0'

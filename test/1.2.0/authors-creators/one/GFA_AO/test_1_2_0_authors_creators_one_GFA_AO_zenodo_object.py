@@ -28,32 +28,25 @@ class TestZenodoObject(Contract):
         # doesn't need an assert
 
     def test_creators(self, zenodo_object):
-        zenodo_object.add_creators()
-        expected_creators = [
+        assert zenodo_object.add_creators().creators == [
             {
                 "affiliation": "Netherlands eScience Center",
                 "name": "von der Spaaks Jr., Jurriaan H.",
                 "orcid": "0000-0002-7064-4069"
             }
         ]
-        assert zenodo_object.creators == expected_creators
 
     def test_keywords(self, zenodo_object):
-        zenodo_object.add_keywords()
-        assert zenodo_object.keywords is None
+        assert zenodo_object.add_keywords().keywords is None
 
     def test_license(self, zenodo_object):
-        zenodo_object.add_license()
-        assert zenodo_object.license is None
+        assert zenodo_object.add_license().license is None
 
     def test_publication_date(self, zenodo_object):
-        zenodo_object.add_publication_date()
-        assert zenodo_object.publication_date is None
+        assert zenodo_object.add_publication_date().publication_date is None
 
     def test_title(self, zenodo_object):
-        zenodo_object.add_title()
-        assert zenodo_object.title == 'the title'
+        assert zenodo_object.add_title().title == 'the title'
 
     def test_version(self, zenodo_object):
-        zenodo_object.add_version()
-        assert zenodo_object.version is None
+        assert zenodo_object.add_version().version is None

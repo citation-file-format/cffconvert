@@ -24,46 +24,36 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self, schemaorg_object):
-        schemaorg_object.add_author()
-        expected_author = [{
+        assert schemaorg_object.add_author().author == [{
             "@type": "Person",
             "alternateName": "Rafa",
             "familyName": "van der Vaart III"
         }]
-        assert schemaorg_object.author == expected_author
 
     def test_check_cffobj(self, schemaorg_object):
         schemaorg_object.check_cffobj()
         # doesn't need an assert
 
     def test_code_repository(self, schemaorg_object):
-        schemaorg_object.add_code_repository()
-        assert schemaorg_object.code_repository is None
+        assert schemaorg_object.add_code_repository().code_repository is None
 
     def test_date_published(self, schemaorg_object):
-        schemaorg_object.add_date_published()
-        assert schemaorg_object.date_published is None
+        assert schemaorg_object.add_date_published().date_published is None
 
     def test_description(self, schemaorg_object):
-        schemaorg_object.add_description()
-        assert schemaorg_object.description is None
+        assert schemaorg_object.add_description().description is None
 
     def test_identifier(self, schemaorg_object):
-        schemaorg_object.add_identifier()
-        assert schemaorg_object.identifier is None
+        assert schemaorg_object.add_identifier().identifier is None
 
     def test_keywords(self, schemaorg_object):
-        schemaorg_object.add_keywords()
-        assert schemaorg_object.keywords is None
+        assert schemaorg_object.add_keywords().keywords is None
 
     def test_license(self, schemaorg_object):
-        schemaorg_object.add_license()
-        assert schemaorg_object.license is None
+        assert schemaorg_object.add_license().license is None
 
     def test_name(self, schemaorg_object):
-        schemaorg_object.add_name()
-        assert schemaorg_object.name == 'the title'
+        assert schemaorg_object.add_name().name == 'the title'
 
     def test_version(self, schemaorg_object):
-        schemaorg_object.add_version()
-        assert schemaorg_object.version is None
+        assert schemaorg_object.add_version().version is None

@@ -28,8 +28,7 @@ class TestZenodoObject(Contract):
         # doesn't need an assert
 
     def test_creators(self, zenodo_object):
-        zenodo_object.add_creators()
-        expected_creators = [
+        assert zenodo_object.add_creators().creators == [
             {
                 "affiliation": "Netherlands eScience Center",
                 "name": "Spaaks, Jurriaan H."
@@ -48,24 +47,18 @@ class TestZenodoObject(Contract):
                 "orcid": "0000-0003-4925-7248"
             }
         ]
-        assert zenodo_object.creators == expected_creators
 
     def test_keywords(self, zenodo_object):
-        zenodo_object.add_keywords()
-        assert zenodo_object.keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']
+        assert zenodo_object.add_keywords().keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']
 
     def test_license(self, zenodo_object):
-        zenodo_object.add_license()
-        assert zenodo_object.license == dict(id='Apache-2.0')
+        assert zenodo_object.add_license().license == dict(id='Apache-2.0')
 
     def test_publication_date(self, zenodo_object):
-        zenodo_object.add_publication_date()
-        assert zenodo_object.publication_date == '2018-07-25'
+        assert zenodo_object.add_publication_date().publication_date == '2018-07-25'
 
     def test_title(self, zenodo_object):
-        zenodo_object.add_title()
-        assert zenodo_object.title == 'cffconvert'
+        assert zenodo_object.add_title().title == 'cffconvert'
 
     def test_version(self, zenodo_object):
-        zenodo_object.add_version()
-        assert zenodo_object.version == '1.0.1'
+        assert zenodo_object.add_version().version == '1.0.1'

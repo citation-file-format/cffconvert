@@ -24,29 +24,24 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_author(self, bibtex_object):
-        bibtex_object.add_author()
-        assert bibtex_object.author == 'author = {Spaaks, Jurriaan H. and Klaver, Tom and Verhoeven, Stefan}'
+        assert bibtex_object.add_author().author == 'author = {Spaaks, Jurriaan H. and Klaver' + \
+                                                    ', Tom and Verhoeven, Stefan}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()
         # doesn't need an assert
 
     def test_doi(self, bibtex_object):
-        bibtex_object.add_doi()
-        assert bibtex_object.doi == 'doi = {10.5281/zenodo.1162057}'
+        assert bibtex_object.add_doi().doi == 'doi = {10.5281/zenodo.1162057}'
 
     def test_month(self, bibtex_object):
-        bibtex_object.add_month()
-        assert bibtex_object.month == 'month = {5}'
+        assert bibtex_object.add_month().month == 'month = {5}'
 
     def test_title(self, bibtex_object):
-        bibtex_object.add_title()
-        assert bibtex_object.title == 'title = {cffconvert}'
+        assert bibtex_object.add_title().title == 'title = {cffconvert}'
 
     def test_url(self, bibtex_object):
-        bibtex_object.add_url()
-        assert bibtex_object.url == 'url = {https://github.com/citation-file-format/cff-converter-python}'
+        assert bibtex_object.add_url().url == 'url = {https://github.com/citation-file-format/cff-converter-python}'
 
     def test_year(self, bibtex_object):
-        bibtex_object.add_year()
-        assert bibtex_object.year == 'year = {2018}'
+        assert bibtex_object.add_year().year == 'year = {2018}'

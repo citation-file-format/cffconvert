@@ -16,9 +16,12 @@ def schemaorg_object():
 
 class TestSchemaorgObject(Contract):
 
-    def test_check_cffobj(self, schemaorg_object):
-        schemaorg_object.check_cffobj()
-        # doesn't need an assert
+    def test_as_string(self, schemaorg_object):
+        actual_schemaorg = schemaorg_object.add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_schemaorg = f.read()
+        assert actual_schemaorg == expected_schemaorg
 
     def test_author(self, schemaorg_object):
         schemaorg_object.add_author()
@@ -40,6 +43,10 @@ class TestSchemaorgObject(Contract):
             "givenName": "Steven"
         }]
         assert schemaorg_object.author == expected_author
+
+    def test_check_cffobj(self, schemaorg_object):
+        schemaorg_object.check_cffobj()
+        # doesn't need an assert
 
     def test_code_repository(self, schemaorg_object):
         schemaorg_object.add_code_repository()
@@ -73,9 +80,3 @@ class TestSchemaorgObject(Contract):
         schemaorg_object.add_version()
         assert schemaorg_object.version == '1.0.0'
 
-    def test_as_string(self, schemaorg_object):
-        actual_schemaorg = schemaorg_object.add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_schemaorg = f.read()
-        assert actual_schemaorg == expected_schemaorg

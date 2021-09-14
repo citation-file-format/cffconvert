@@ -16,6 +16,13 @@ def zenodo_object():
 
 class TestZenodoObject(Contract):
 
+    def test_as_string(self, zenodo_object):
+        actual_zenodo = zenodo_object.add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_zenodo = f.read()
+        assert actual_zenodo == expected_zenodo
+
     def test_check_cffobj(self, zenodo_object):
         zenodo_object.check_cffobj()
         # doesn't need an assert
@@ -36,13 +43,6 @@ class TestZenodoObject(Contract):
     def test_license(self, zenodo_object):
         zenodo_object.add_license()
         assert zenodo_object.license is None
-
-    def test_as_string(self, zenodo_object):
-        actual_zenodo = zenodo_object.add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_zenodo = f.read()
-        assert actual_zenodo == expected_zenodo
 
     def test_publication_date(self, zenodo_object):
         zenodo_object.add_publication_date()

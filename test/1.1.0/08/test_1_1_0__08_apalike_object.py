@@ -16,6 +16,13 @@ def apalike_object():
 
 class TestApalikeObject(Contract):
 
+    def test_as_string(self, apalike_object):
+        actual_apalike = apalike_object.add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "apalike.txt")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_apalike = f.read()
+        assert actual_apalike == expected_apalike
+
     def test_author(self, apalike_object):
         apalike_object.add_author()
         assert apalike_object.author == 'Van Zandt S., van Zandt S.'
@@ -27,13 +34,6 @@ class TestApalikeObject(Contract):
     def test_doi(self, apalike_object):
         apalike_object.add_doi()
         assert apalike_object.doi is None
-
-    def test_as_string(self, apalike_object):
-        actual_apalike = apalike_object.add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), "apalike.txt")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_apalike = f.read()
-        assert actual_apalike == expected_apalike
 
     def test_title(self, apalike_object):
         apalike_object.add_title()

@@ -1,0 +1,7 @@
+TY  - GEN
+AU  - Van Zandt, Steven
+AU  - van Zandt, Steven
+DA  - 2018-01-16
+PY  - 2018
+TI  - cff-converter-python
+ER

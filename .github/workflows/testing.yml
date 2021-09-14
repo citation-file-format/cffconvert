@@ -23,29 +23,29 @@ jobs:
       - name: Show python info
         shell: bash -l {0}
         run: |
-          which python3
-          python3 --version
+          which python
+          python --version
 
       # max version for setuptools https://github.com/PyCQA/prospector/issues/438
       - name: Upgrade pip, setuptools and wheel
         run: |
-          python3 -m pip install --upgrade pip wheel
-          python3 -m pip install "setuptools<=57"
+          python -m pip install --upgrade pip wheel
+          python -m pip install "setuptools<=57"
 
       - name: Install runtime dependencies
-        run: python3 -m pip install .
+        run: python -m pip install .
 
       - name: Install development dependencies
-        run: python3 -m pip install .[dev]
+        run: python -m pip install .[dev]
 
       - name: Run unit tests for Citation File Format schema version 1.0.3
-        run: python3 -m pytest test/1.0.3
+        run: python -m pytest test/1.0.3
 
       - name: Run unit tests for Citation File Format schema version 1.1.0
-        run: python3 -m pytest test/1.1.0
+        run: python -m pytest test/1.1.0
 
       - name: Run unit tests for Citation File Format schema version 1.2.0
-        run: python3 -m pytest test/1.2.0
+        run: python -m pytest test/1.2.0
 
       - name: Run consistency checks
-        run: python3 -m pytest test/test_consistent_versioning.py
+        run: python -m pytest test/test_consistent_versioning.py

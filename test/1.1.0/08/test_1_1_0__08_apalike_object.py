@@ -24,29 +24,23 @@ class TestApalikeObject(Contract):
         assert actual_apalike == expected_apalike
 
     def test_author(self, apalike_object):
-        apalike_object.add_author()
-        assert apalike_object.author == 'Van Zandt S., van Zandt S.'
+        assert apalike_object.add_author().author == 'Van Zandt S., van Zandt S.'
 
     def test_check_cffobj(self, apalike_object):
         apalike_object.check_cffobj()
         # doesn't need an assert
 
     def test_doi(self, apalike_object):
-        apalike_object.add_doi()
-        assert apalike_object.doi is None
+        assert apalike_object.add_doi().doi is None
 
     def test_title(self, apalike_object):
-        apalike_object.add_title()
-        assert apalike_object.title == 'cff-converter-python'
+        assert apalike_object.add_title().title == 'cff-converter-python'
 
     def test_url(self, apalike_object):
-        apalike_object.add_url()
-        assert apalike_object.url is None
+        assert apalike_object.add_url().url is None
 
     def test_version(self, apalike_object):
-        apalike_object.add_version()
-        assert apalike_object.version == '(version 1.0.0).'
+        assert apalike_object.add_version().version == '(version 1.0.0).'
 
     def test_year(self, apalike_object):
-        apalike_object.add_year()
-        assert apalike_object.year == '(2018).'
+        assert apalike_object.add_year().year == '(2018).'

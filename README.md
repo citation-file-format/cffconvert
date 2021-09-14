@@ -22,11 +22,10 @@ Supported input versions of the Citation File Format:
 
 Supported output formats:
 
-1.  BibTeX
-1.  CodeMeta
-1.  EndNote
-1.  JSON
 1.  plaintext APA
+1.  BibTeX
+3.  CodeMeta
+4.  EndNote
 1.  RIS
 1.  schema.org JSON
 1.  Zenodo JSON

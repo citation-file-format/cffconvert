@@ -24,8 +24,7 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self, schemorg_object):
-        schemorg_object.add_author()
-        expected_author = [{
+        assert schemorg_object.add_author().author == [{
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
@@ -42,7 +41,6 @@ class TestSchemaorgObject(Contract):
             "familyName": "Klaver",
             "givenName": "Tom"
         }]
-        assert schemorg_object.author == expected_author
 
     def test_check_cffobj(self, schemorg_object):
         schemorg_object.check_cffobj()
@@ -65,9 +63,7 @@ class TestSchemaorgObject(Contract):
         assert schemorg_object.identifier == 'https://doi.org/10.5281/zenodo.1162057'
 
     def test_keywords(self, schemorg_object):
-        schemorg_object.add_keywords()
-        expected_keywords = ['citation', 'bibliography', 'cff', 'CITATION.cff']
-        assert schemorg_object.keywords == expected_keywords
+        assert schemorg_object.add_keywords().keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']
 
     def test_license(self, schemorg_object):
         schemorg_object.add_license()

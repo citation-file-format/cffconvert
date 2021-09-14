@@ -24,8 +24,7 @@ class TestCodemetaObject(Contract):
         assert actual_codemeta == expected_codemeta
 
     def test_author(self, codemeta_object):
-        codemeta_object.add_author()
-        expected_author = [{
+        assert codemeta_object.add_author().author == [{
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
@@ -43,7 +42,6 @@ class TestCodemetaObject(Contract):
             "familyName": "Klaver",
             "givenName": "Tom"
         }]
-        assert codemeta_object.author == expected_author
 
     def test_check_cffobj(self, codemeta_object):
         codemeta_object.check_cffobj()

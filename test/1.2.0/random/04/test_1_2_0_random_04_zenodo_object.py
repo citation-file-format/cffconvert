@@ -28,8 +28,7 @@ class TestZenodoObject(Contract):
         # doesn't need an assert
 
     def test_creators(self, zenodo_object):
-        zenodo_object.add_creators()
-        expected_creators = [
+        assert zenodo_object.add_creators().creators == [
             {
                 "affiliation": "Netherlands eScience Center",
                 "name": "Spaaks, Jurriaan H."
@@ -39,7 +38,6 @@ class TestZenodoObject(Contract):
                 "name": "Klaver, Tom"
             }
         ]
-        assert zenodo_object.creators == expected_creators
 
     def test_keywords(self, zenodo_object):
         assert zenodo_object.add_keywords().keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']

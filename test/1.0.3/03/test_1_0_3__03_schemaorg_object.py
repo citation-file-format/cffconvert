@@ -24,8 +24,7 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self, schemaorg_object):
-        schemaorg_object.add_author()
-        expected_author = [{
+        assert schemaorg_object.add_author().author == [{
             "@type": "Person",
             "givenName": "Jisk",
             "familyName": "Attema",
@@ -43,7 +42,6 @@ class TestSchemaorgObject(Contract):
                 "legalName": "Netherlands eScience Center"
             }
         }]
-        assert schemaorg_object.author == expected_author
 
     def test_check_cffobj(self, schemaorg_object):
         schemaorg_object.check_cffobj()
@@ -62,9 +60,12 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object.add_identifier().identifier == 'https://doi.org/10.5281/zenodo.1003346'
 
     def test_keywords(self, schemaorg_object):
-        schemaorg_object.add_keywords()
-        expected_keywords = ['visualization', 'big data', 'visual data analytics', 'multi-dimensional data']
-        assert schemaorg_object.keywords == expected_keywords
+        assert schemaorg_object.add_keywords().keywords == [
+            'visualization',
+            'big data',
+            'visual data analytics',
+            'multi-dimensional data'
+        ]
 
     def test_license(self, schemaorg_object):
         assert schemaorg_object.add_license().license == 'https://spdx.org/licenses/Apache-2.0'

@@ -24,8 +24,7 @@ class TestCodemetaObject(Contract):
         assert actual_codemeta == expected_codemeta
 
     def test_author(self, codemeta_object):
-        codemeta_object.add_author()
-        expected_author = [{
+        assert codemeta_object.add_author().author == [{
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
@@ -59,7 +58,6 @@ class TestCodemetaObject(Contract):
             "familyName": "Druskat",
             "givenName": "Stephan"
         }]
-        assert codemeta_object.author == expected_author
 
     def test_check_cffobj(self, codemeta_object):
         codemeta_object.check_cffobj()
@@ -78,9 +76,7 @@ class TestCodemetaObject(Contract):
         assert codemeta_object.add_identifier().identifier == 'https://doi.org/10.5281/zenodo.1162057'
 
     def test_keywords(self, codemeta_object):
-        codemeta_object.add_keywords()
-        expected_keywords = ['citation', 'bibliography', 'cff', 'CITATION.cff']
-        assert codemeta_object.keywords == expected_keywords
+        assert codemeta_object.add_keywords().keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']
 
     def test_license(self, codemeta_object):
         assert codemeta_object.add_license().license == 'https://spdx.org/licenses/Apache-2.0'

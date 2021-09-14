@@ -24,8 +24,7 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self, schemaorg_object):
-        schemaorg_object.add_author()
-        expected_author = [{
+        assert schemaorg_object.add_author().author == [{
             "@type": "Person",
             "familyName": "van der Vaart III",
             "givenName": "Rafael"
@@ -34,7 +33,6 @@ class TestSchemaorgObject(Contract):
             "familyName": "dos Santos Aveiro",
             "givenName": "Cristiano Ronaldo"
         }]
-        assert schemaorg_object.author == expected_author
 
     def test_check_cffobj(self, schemaorg_object):
         schemaorg_object.check_cffobj()

@@ -21,8 +21,7 @@ class TestSchemaorgObject(Contract):
         # doesn't need an assert
 
     def test_author(self, schemaorg_object):
-        schemaorg_object.add_author()
-        expected_author = [{
+        assert schemaorg_object.add_author().author == [{
             "@id": "https://orcid.org/0000-0002-7064-4069",
             "@type": "Person",
             "affiliation": {
@@ -33,7 +32,6 @@ class TestSchemaorgObject(Contract):
             "familyName": "von der Spaaks Jr.",
             "givenName": "Jurriaan H."
         }]
-        assert schemaorg_object.author == expected_author
 
     def test_code_repository(self, schemaorg_object):
         assert schemaorg_object.add_code_repository().code_repository is None

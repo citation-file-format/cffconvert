@@ -24,13 +24,11 @@ class TestZenodoObject(Contract):
         assert actual_zenodo == expected_zenodo
 
     def test_creators(self, zenodo_object):
-        zenodo_object.add_creators()
-        expected_creators = [
+        assert zenodo_object.add_creators().creators == [
             {
                 "name": "The soccer team members"
             }
         ]
-        assert zenodo_object.creators == expected_creators
 
     def test_check_cffobj(self, zenodo_object):
         zenodo_object.check_cffobj()

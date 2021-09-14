@@ -7,7 +7,7 @@ The subdirectories here contain various combinations of sources for a URL
 - `url`: omitted, valid
 
 
-| subdirectory | has_indentifiers_i_url | has_repository | has_repository_artifact | has_repository_code |  has_url | notes |
+| subdirectory | has_indentifiers_url | has_repository | has_repository_artifact | has_repository_code |  has_url | notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | `IRACU` | True | True | True |  True |  True | |
 | `IRAC_` | True | True | True |  True |  False | |

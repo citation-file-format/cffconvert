@@ -40,7 +40,7 @@ class TestBibtexObject(Contract):
         assert bibtex_object.add_title().title == 'title = {Test title}'
 
     def test_url(self, bibtex_object):
-        assert bibtex_object.add_url().url == 'url = {https://github.com/the-url-from-url}'
+        assert bibtex_object.add_url().url == 'url = {https://github.com/the-url-from-repository}'
 
     def test_year(self, bibtex_object):
         assert bibtex_object.add_year().year is None

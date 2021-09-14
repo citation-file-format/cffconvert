@@ -17,7 +17,7 @@ def bibtex_object():
 class TestBibtexObject(Contract):
 
     def test_author(self, bibtex_object):
-        assert bibtex_object.add_author().author == 'author = {von der Spaaks Jr., Jurriaan H.}'
+        assert bibtex_object.add_author().author == 'author = {Test author}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()
@@ -37,10 +37,10 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_title(self, bibtex_object):
-        assert bibtex_object.add_title().title == 'title = {the title}'
+        assert bibtex_object.add_title().title == 'title = {Test title}'
 
     def test_url(self, bibtex_object):
-        assert bibtex_object.add_url().url is None
+        assert bibtex_object.add_url().url == 'url = {https://github.com/the-url-from-url}'
 
     def test_year(self, bibtex_object):
         assert bibtex_object.add_year().year is None

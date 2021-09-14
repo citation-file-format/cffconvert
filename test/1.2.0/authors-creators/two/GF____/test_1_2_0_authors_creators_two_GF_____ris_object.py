@@ -17,8 +17,7 @@ def ris_object():
 class TestRisObject(Contract):
 
     def test_abstract(self, ris_object):
-        ris_object.add_abstract()
-        assert ris_object.abstract is None
+        assert ris_object.add_abstract().abstract is None
 
     def test_as_string(self, ris_object):
         actual_ris = ris_object.add_all().as_string()
@@ -28,33 +27,26 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self, ris_object):
-        ris_object.add_author()
-        assert ris_object.author == 'AU  - van der Vaart III, Rafael\nAU  - dos Santos Aveiro, Cristiano Ronaldo\n'
+        assert ris_object.add_author().author == 'AU  - van der Vaart III, Rafael\nAU  - dos Santos Aveiro, Cristiano Ronaldo\n'
 
     def test_check_cffobj(self, ris_object):
         ris_object.check_cffobj()
         # doesn't need an assert
 
     def test_date(self, ris_object):
-        ris_object.add_date()
-        assert ris_object.date is None
+        assert ris_object.add_date().date is None
 
     def test_doi(self, ris_object):
-        ris_object.add_doi()
-        assert ris_object.doi is None
+        assert ris_object.add_doi().doi is None
 
     def test_keywords(self, ris_object):
-        ris_object.add_keywords()
-        assert ris_object.keywords is None
+        assert ris_object.add_keywords().keywords is None
 
     def test_title(self, ris_object):
-        ris_object.add_title()
-        assert ris_object.title == 'TI  - the title\n'
+        assert ris_object.add_title().title == 'TI  - the title\n'
 
     def test_url(self, ris_object):
-        ris_object.add_url()
-        assert ris_object.url is None
+        assert ris_object.add_url().url is None
 
     def test_year(self, ris_object):
-        ris_object.add_year()
-        assert ris_object.year is None
+        assert ris_object.add_year().year is None

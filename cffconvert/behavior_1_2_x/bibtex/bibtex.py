@@ -1,4 +1,5 @@
 from cffconvert.behavior_1_2_x.bibtex.author import BibtexAuthor
+from cffconvert.behavior_1_2_x.bibtex.url import BibtexUrl
 from cffconvert.behavior_shared.bibtex.bibtex import BibtexObjectShared as Shared
 
 
@@ -33,6 +34,10 @@ class BibtexObject(Shared):
         if 'date-released' in self.cffobj.keys():
             month = self.cffobj['date-released'].split('-')[1].lstrip('0')
             self.month = 'month = {' + month + '}'
+        return self
+
+    def add_url(self):
+        self.url = BibtexUrl(self.cffobj).as_string()
         return self
 
     def add_year(self):

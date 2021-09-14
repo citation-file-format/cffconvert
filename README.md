@@ -22,7 +22,7 @@ Supported input versions of the Citation File Format:
 
 Supported output formats:
 
-1.  plaintext APA
+1.  APA-like plaintext
 1.  BibTeX
 3.  CodeMeta
 4.  EndNote

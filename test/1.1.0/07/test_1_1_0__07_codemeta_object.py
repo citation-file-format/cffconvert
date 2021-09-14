@@ -67,9 +67,7 @@ class TestCodemetaObject(Contract):
         assert codemeta_object.add_identifier().identifier == 'https://doi.org/10.5281/zenodo.1162057'
 
     def test_keywords(self, codemeta_object):
-        codemeta_object.add_keywords()
-        expected_keywords = ['citation', 'bibliography', 'cff', 'CITATION.cff']
-        assert codemeta_object.keywords == expected_keywords
+        assert codemeta_object.add_keywords().keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']
 
     def test_license(self, codemeta_object):
         assert codemeta_object.add_license().license == 'https://spdx.org/licenses/Apache-2.0'

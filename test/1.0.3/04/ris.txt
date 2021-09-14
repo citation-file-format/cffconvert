@@ -1,0 +1,15 @@
+TY  - GEN
+AU  - Spaaks, Jurriaan H.
+AU  - Klaver, Tom
+AU  - Verhoeven, Stefan
+AU  - Druskat, Stephan
+DA  - 2018-07-25
+DO  - 10.5281/zenodo.1162057
+KW  - citation
+KW  - bibliography
+KW  - cff
+KW  - CITATION.cff
+PY  - 2018
+TI  - cffconvert
+UR  - https://github.com/citation-file-format/cff-converter-python
+ER

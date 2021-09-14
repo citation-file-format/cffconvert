@@ -1,0 +1,6 @@
+TY  - GEN
+AU  - Fernández de Córdoba Jr., Gonzalo
+DA  - 1999-12-31
+PY  - 1999
+TI  - example title
+ER

@@ -1,0 +1,13 @@
+TY  - GEN
+AU  - Attema, Jisk
+AU  - Diblen, Faruk
+DA  - 2017-10-07
+DO  - 10.5281/zenodo.1003346
+KW  - visualization
+KW  - big data
+KW  - visual data analytics
+KW  - multi-dimensional data
+PY  - 2017
+TI  - spot
+UR  - https://github.com/NLeSC/spot
+ER

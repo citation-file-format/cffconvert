@@ -24,29 +24,23 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_author(self, bibtex_object):
-        bibtex_object.add_author()
-        assert bibtex_object.author == 'author = {Attema, Jisk and Diblen, Faruk}'
+        assert bibtex_object.add_author().author == 'author = {Attema, Jisk and Diblen, Faruk}'
 
     def test_check_cffobj(self, bibtex_object):
         bibtex_object.check_cffobj()
         # doesn't need an assert
 
     def test_doi(self, bibtex_object):
-        bibtex_object.add_doi()
-        assert bibtex_object.doi == 'doi = {10.5281/zenodo.1003346}'
+        assert bibtex_object.add_doi().doi == 'doi = {10.5281/zenodo.1003346}'
 
     def test_month(self, bibtex_object):
-        bibtex_object.add_month()
-        assert bibtex_object.month == 'month = {10}'
+        assert bibtex_object.add_month().month == 'month = {10}'
 
     def test_title(self, bibtex_object):
-        bibtex_object.add_title()
-        assert bibtex_object.title == 'title = {spot}'
+        assert bibtex_object.add_title().title == 'title = {spot}'
 
     def test_url(self, bibtex_object):
-        bibtex_object.add_url()
-        assert bibtex_object.url == 'url = {https://github.com/NLeSC/spot}'
+        assert bibtex_object.add_url().url == 'url = {https://github.com/NLeSC/spot}'
 
     def test_year(self, bibtex_object):
-        bibtex_object.add_year()
-        assert bibtex_object.year == 'year = {2017}'
+        assert bibtex_object.add_year().year == 'year = {2017}'

@@ -79,4 +79,3 @@ class TestSchemaorgObject(Contract):
     def test_version(self, schemaorg_object):
         schemaorg_object.add_version()
         assert schemaorg_object.version == '1.0.0'
-

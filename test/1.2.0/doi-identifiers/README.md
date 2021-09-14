@@ -4,7 +4,7 @@ The subdirectories here contain various combinations of sources for a doi
 - `identifiers[0].type==doi`: omitted, valid
 - `identifiers[1].type==doi`: omitted, valid
 
-| subdirectory    | has_doi   | has_indentifiers_0_doi | has_identifiers_1_doi | notes |
+| subdirectory    | has_doi   | has_identifiers_0_doi | has_identifiers_1_doi | notes |
 | --- | --- | --- | --- | --- |
 | 01 | True | True | True | |
 | 02 | True | True | False | |

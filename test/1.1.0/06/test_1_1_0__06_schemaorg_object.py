@@ -50,20 +50,16 @@ class TestSchemaorgObject(Contract):
         # doesn't need an assert
 
     def test_code_repository(self, schemaorg_object):
-        schemaorg_object.add_code_repository()
-        assert schemaorg_object.code_repository == 'https://github.com/citation-file-format/cff-converter-python'
+        assert schemaorg_object.add_code_repository().code_repository == 'https://github.com/citation-file-format/cff-converter-python'
 
     def test_date_published(self, schemaorg_object):
-        schemaorg_object.add_date_published()
-        assert schemaorg_object.date_published == '2018-01-16'
+        assert schemaorg_object.add_date_published().date_published == '2018-01-16'
 
     def test_description(self, schemaorg_object):
-        schemaorg_object.add_description()
-        assert schemaorg_object.description is None
+        assert schemaorg_object.add_description().description is None
 
     def test_identifier(self, schemaorg_object):
-        schemaorg_object.add_identifier()
-        assert schemaorg_object.identifier == 'https://doi.org/10.5281/zenodo.1162057'
+        assert schemaorg_object.add_identifier().identifier == 'https://doi.org/10.5281/zenodo.1162057'
 
     def test_keywords(self, schemaorg_object):
         schemaorg_object.add_keywords()
@@ -71,13 +67,10 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object.keywords == expected_keywords
 
     def test_license(self, schemaorg_object):
-        schemaorg_object.add_license()
-        assert schemaorg_object.license == 'https://spdx.org/licenses/Apache-2.0'
+        assert schemaorg_object.add_license().license == 'https://spdx.org/licenses/Apache-2.0'
 
     def test_name(self, schemaorg_object):
-        schemaorg_object.add_name()
-        assert schemaorg_object.name == 'cff-converter-python'
+        assert schemaorg_object.add_name().name == 'cff-converter-python'
 
     def test_version(self, schemaorg_object):
-        schemaorg_object.add_version()
-        assert schemaorg_object.version == '1.0.0'
+        assert schemaorg_object.add_version().version == '1.0.0'

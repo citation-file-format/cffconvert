@@ -17,7 +17,7 @@ def test_local_cff_file_does_not_exist():
     assert result.exception.strerror.startswith("No such file or directory")
 
 
-def test_as_stringing_of_help():
+def test_printing_of_help():
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, ["--help"])
@@ -25,7 +25,7 @@ def test_as_stringing_of_help():
     assert result.output[:6] == "Usage:"
 
 
-def test_as_stringing_of_version():
+def test_printing_of_version():
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, ["--version"])
@@ -33,7 +33,7 @@ def test_as_stringing_of_version():
     assert result.output == "2.0.0-alpha.0\n"
 
 
-def test_as_stringing_on_stdout_as_bibtex():
+def test_printing_on_stdout_as_bibtex():
     cffstr = read_sibling_file("CITATION.cff")
     expected = read_sibling_file("bibtex.bib")
     runner = CliRunner()
@@ -46,7 +46,7 @@ def test_as_stringing_on_stdout_as_bibtex():
     assert expected == actual
 
 
-def test_as_stringing_on_stdout_as_cff():
+def test_printing_on_stdout_as_cff():
     cffstr = read_sibling_file("CITATION.cff")
     runner = CliRunner()
     with runner.isolated_filesystem():
@@ -57,7 +57,7 @@ def test_as_stringing_on_stdout_as_cff():
     assert cffstr == result.output
 
 
-def test_as_stringing_on_stdout_as_codemeta():
+def test_printing_on_stdout_as_codemeta():
     cffstr = read_sibling_file("CITATION.cff")
     expected = read_sibling_file("codemeta.json")
     runner = CliRunner()
@@ -70,7 +70,7 @@ def test_as_stringing_on_stdout_as_codemeta():
     assert expected == actual
 
 
-def test_as_stringing_on_stdout_as_endnote():
+def test_printing_on_stdout_as_endnote():
     cffstr = read_sibling_file("CITATION.cff")
     expected = read_sibling_file("endnote.enw")
     runner = CliRunner()
@@ -83,7 +83,7 @@ def test_as_stringing_on_stdout_as_endnote():
     assert expected == actual
 
 
-def test_as_stringing_on_stdout_as_ris():
+def test_printing_on_stdout_as_ris():
     cffstr = read_sibling_file("CITATION.cff")
     expected = read_sibling_file("ris.txt")
     runner = CliRunner()
@@ -96,7 +96,7 @@ def test_as_stringing_on_stdout_as_ris():
     assert expected == actual
 
 
-def test_as_stringing_on_stdout_as_schemaorg():
+def test_printing_on_stdout_as_schemaorg():
     cffstr = read_sibling_file("CITATION.cff")
     expected = read_sibling_file("schemaorg.json")
     runner = CliRunner()

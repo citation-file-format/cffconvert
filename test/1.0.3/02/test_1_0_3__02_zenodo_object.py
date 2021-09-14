@@ -37,21 +37,16 @@ class TestZenodoObject(Contract):
         assert zenodo_object.creators == expected_creators
 
     def test_keywords(self, zenodo_object):
-        zenodo_object.add_keywords()
-        assert zenodo_object.keywords is None
+        assert zenodo_object.add_keywords().keywords is None
 
     def test_license(self, zenodo_object):
-        zenodo_object.add_license()
-        assert zenodo_object.license is None
+        assert zenodo_object.add_license().license is None
 
     def test_publication_date(self, zenodo_object):
-        zenodo_object.add_publication_date()
-        assert zenodo_object.publication_date == "1999-12-31"
+        assert zenodo_object.add_publication_date().publication_date == "1999-12-31"
 
     def test_title(self, zenodo_object):
-        zenodo_object.add_title()
-        assert zenodo_object.title == 'example title'
+        assert zenodo_object.add_title().title == 'example title'
 
     def test_version(self, zenodo_object):
-        zenodo_object.add_version()
-        assert zenodo_object.version == '1.0.0'
+        assert zenodo_object.add_version().version == '1.0.0'

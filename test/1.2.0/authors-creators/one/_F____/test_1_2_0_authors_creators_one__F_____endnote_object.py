@@ -16,12 +16,19 @@ def endnote_object():
 
 class TestEndnoteObject(Contract):
 
-    def test_check_cffobj(self, endnote_object):
-        endnote_object.check_cffobj()
-        # doesn't need an assert
+    def test_as_string(self, endnote_object):
+        actual_endnote = endnote_object.add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_endnote = f.read()
+        assert actual_endnote == expected_endnote
 
     def test_author(self, endnote_object):
         assert endnote_object.add_author().author == '%A van der Vaart III\n'
+
+    def test_check_cffobj(self, endnote_object):
+        endnote_object.check_cffobj()
+        # doesn't need an assert
 
     def test_doi(self, endnote_object):
         assert endnote_object.add_doi().doi is None
@@ -31,13 +38,6 @@ class TestEndnoteObject(Contract):
 
     def test_name(self, endnote_object):
         assert endnote_object.add_name().name == '%T the title\n'
-
-    def test_print(self, endnote_object):
-        actual_endnote = endnote_object.add_all().print()
-        fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_endnote = f.read()
-        assert actual_endnote == expected_endnote
 
     def test_url(self, endnote_object):
         assert endnote_object.add_url().url is None

@@ -20,6 +20,13 @@ class TestSchemaorgObject(Contract):
         schemaorg_object.check_cffobj()
         # doesn't need an assert
 
+    def test_as_string(self, schemaorg_object):
+        actual_schemaorg = schemaorg_object.add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_schemaorg = f.read()
+        assert actual_schemaorg == expected_schemaorg
+
     def test_author(self, schemaorg_object):
         schemaorg_object.add_author()
         expected_author = [{
@@ -73,10 +80,3 @@ class TestSchemaorgObject(Contract):
     def test_version(self, schemaorg_object):
         schemaorg_object.add_version()
         assert schemaorg_object.version == '1.0.0'
-
-    def test_print(self, schemaorg_object):
-        actual_schemaorg = schemaorg_object.add_all().print()
-        fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_schemaorg = f.read()
-        assert actual_schemaorg == expected_schemaorg

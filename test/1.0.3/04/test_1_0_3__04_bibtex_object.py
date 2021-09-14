@@ -16,6 +16,13 @@ def bibtex_object():
 
 class TestBibtexObject(Contract):
 
+    def test_as_string(self, bibtex_object):
+        actual_bibtex = bibtex_object.add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_bibtex = f.read()
+        assert actual_bibtex == expected_bibtex
+
     def test_author(self, bibtex_object):
         bibtex_object.add_author()
         assert bibtex_object.author == 'author = {Spaaks, Jurriaan H. and Klaver, Tom and ' + \
@@ -32,13 +39,6 @@ class TestBibtexObject(Contract):
     def test_month(self, bibtex_object):
         bibtex_object.add_month()
         assert bibtex_object.month == 'month = {7}'
-
-    def test_print(self, bibtex_object):
-        actual_bibtex = bibtex_object.add_all().print()
-        fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_bibtex = f.read()
-        assert actual_bibtex == expected_bibtex
 
     def test_title(self, bibtex_object):
         bibtex_object.add_title()

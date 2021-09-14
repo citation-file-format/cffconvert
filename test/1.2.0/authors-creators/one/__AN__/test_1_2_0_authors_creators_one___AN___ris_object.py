@@ -20,6 +20,13 @@ class TestRisObject(Contract):
         ris_object.add_abstract()
         assert ris_object.abstract is None
 
+    def test_as_string(self, ris_object):
+        actual_ris = ris_object.add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "ris.txt")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_ris = f.read()
+        assert actual_ris == expected_ris
+
     def test_author(self, ris_object):
         ris_object.add_author()
         assert ris_object.author == 'AU  - Rafa\n'
@@ -39,13 +46,6 @@ class TestRisObject(Contract):
     def test_keywords(self, ris_object):
         ris_object.add_keywords()
         assert ris_object.keywords is None
-
-    def test_print(self, ris_object):
-        actual_ris = ris_object.add_all().print()
-        fixture = os.path.join(os.path.dirname(__file__), "ris.txt")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_ris = f.read()
-        assert actual_ris == expected_ris
 
     def test_title(self, ris_object):
         ris_object.add_title()

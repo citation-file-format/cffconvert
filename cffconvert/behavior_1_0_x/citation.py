@@ -38,28 +38,28 @@ class Citation_1_0_x(Contract):  # nopep8
         return cffobj
 
     def as_apalike(self):
-        return ApalikeObject(self.cffobj).print()
+        return ApalikeObject(self.cffobj).as_string()
 
     def as_bibtex(self, reference='YourReferenceHere'):
-        return BibtexObject(self.cffobj).print(reference)
+        return BibtexObject(self.cffobj).as_string(reference)
 
     def as_cff(self):
         return self.cffstr
 
     def as_codemeta(self):
-        return CodemetaObject(self.cffobj).print()
+        return CodemetaObject(self.cffobj).as_string()
 
     def as_endnote(self):
-        return EndnoteObject(self.cffobj).print()
+        return EndnoteObject(self.cffobj).as_string()
 
     def as_ris(self):
-        return RisObject(self.cffobj).print()
+        return RisObject(self.cffobj).as_string()
 
     def as_schemaorg(self):
-        return SchemaorgObject(self.cffobj).print()
+        return SchemaorgObject(self.cffobj).as_string()
 
     def as_zenodo(self):
-        return ZenodoObject(self.cffobj).print()
+        return ZenodoObject(self.cffobj).as_string()
 
     def validate(self):
         # validation using YAML based schema

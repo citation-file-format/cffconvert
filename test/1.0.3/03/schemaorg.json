@@ -33,5 +33,6 @@
   ],
   "license": "https://spdx.org/licenses/Apache-2.0",
   "name": "spot",
+  "url": "https://github.com/NLeSC/spot",
   "version": "0.1.0"
 }

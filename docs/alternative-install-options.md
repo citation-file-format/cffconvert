@@ -89,3 +89,4 @@ Build the Docker container
 cd <where your CITATION.cff is>
 docker run --rm -ti -v ${PWD}:/app cffconvert
 ```
+

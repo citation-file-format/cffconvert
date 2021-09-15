@@ -1,4 +1,5 @@
 from cffconvert.behavior_1_0_x.schemaorg.author import SchemaorgAuthor
+from cffconvert.behavior_1_0_x.schemaorg.urls import SchemaorgUrls
 from cffconvert.behavior_shared.schemaorg.schemaorg import SchemaorgObjectShared as Shared
 
 
@@ -29,4 +30,8 @@ class SchemaorgObject(Shared):
     def add_identifier(self):
         if 'doi' in self.cffobj.keys():
             self.identifier = 'https://doi.org/{}'.format(self.cffobj['doi'])
+        return self
+
+    def add_urls(self):
+        self.code_repository, self.url = SchemaorgUrls(self.cffobj).as_tuple()
         return self

@@ -41,6 +41,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def test_url(self, fixture):
+        pass
+
+    @abstractmethod
     def test_version(self, fixture):
         pass
 

@@ -13,6 +13,7 @@ class SchemaorgObjectShared:
         'keywords',
         'license',
         'name',
+        'url',
         'version'
     ]
     supported_cff_versions = None
@@ -27,6 +28,7 @@ class SchemaorgObjectShared:
         self.keywords = None
         self.license = None
         self.name = None
+        self.url = None
         self.version = None
         self.context = context
         if initialize_empty:
@@ -48,6 +50,7 @@ class SchemaorgObjectShared:
             "keywords": self.keywords,
             "license": self.license,
             "name": self.name,
+            "url": self.url,
             "version": self.version
         }
         filtered = [item for item in d.items() if item[1] is not None]
@@ -55,24 +58,19 @@ class SchemaorgObjectShared:
 
     def add_all(self):
         self.add_author()           \
-            .add_code_repository()  \
             .add_date_published()   \
             .add_description()      \
             .add_identifier()       \
             .add_keywords()         \
             .add_license()          \
             .add_name()             \
+            .add_urls()             \
             .add_version()
         return self
 
     @abstractmethod
     def add_author(self):
         pass
-
-    def add_code_repository(self):
-        if 'repository-code' in self.cffobj.keys():
-            self.code_repository = self.cffobj['repository-code']
-        return self
 
     @abstractmethod
     def add_date_published(self):
@@ -101,6 +99,10 @@ class SchemaorgObjectShared:
         if 'title' in self.cffobj.keys():
             self.name = self.cffobj['title']
         return self
+
+    @abstractmethod
+    def add_urls(self):
+        pass
 
     def add_version(self):
         if 'version' in self.cffobj.keys():

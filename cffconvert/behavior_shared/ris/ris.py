@@ -82,10 +82,9 @@ class RisObjectShared:
             self.title = 'TI  - {}\n'.format(self.cffobj['title'])
         return self
 
+    @abstractmethod
     def add_url(self):
-        if 'repository-code' in self.cffobj.keys():
-            self.url = 'UR  - {}\n'.format(self.cffobj['repository-code'])
-        return self
+        pass
 
     @abstractmethod
     def add_year(self):

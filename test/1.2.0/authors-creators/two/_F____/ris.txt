@@ -1,5 +1,0 @@
-TY  - GEN
-AU  - van der Vaart III
-AU  - dos Santos Aveiro
-TI  - the title
-ER

@@ -1,5 +1,0 @@
-TY  - GEN
-AU  - The soccer team members
-AU  - The support staff
-TI  - the title
-ER

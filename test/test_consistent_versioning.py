@@ -1,39 +1,116 @@
 import json
 import os
+import re
 from ruamel.yaml import YAML
 from cffconvert.version import __version__ as expected_version
+from cffconvert.root import get_package_root
 
 
-def test_version_number_cff():
-    # CITATION.cff content should have the same semver as setup.cfg / version.py
-    fixture = os.path.join("CITATION.cff")
+def test_citation_cff():
+    fixture = os.path.join(get_package_root(), "..", "CITATION.cff")
     with open(fixture, "rt", encoding="utf-8") as fid:
-        cff_contents = fid.read()
-    actual_version = YAML(typ='safe').load(cff_contents)["version"]
-    assert expected_version == actual_version
+        file_contents = fid.read()
+    actual_version = YAML(typ='safe').load(file_contents)["version"]
+    assert actual_version == expected_version
 
 
-def test_zenodo_has_no_version_number():
-    # .zenodo.json content should not have any semver information, Zenodo retrieves this automatically from the
-    # Zenodo-GitHub integration
-    fixture = os.path.join(".zenodo.json")
+def test_zenodo_json():
+    fixture = os.path.join(get_package_root(), "..", ".zenodo.json")
     with open(fixture, "rt", encoding="utf-8") as fid:
-        zenodojson_contents = fid.read()
-    assert "version" not in json.loads(zenodojson_contents).keys()
+        file_contents = fid.read()
+    actual_version = json.loads(file_contents)["version"]
+    assert actual_version == expected_version
 
 
-def test_zenodo_has_no_doi():
-    # .zenodo.json content should not have any doi information since you cannot tell Zenodo what the doi should be
-    fixture = os.path.join(".zenodo.json")
+def test_dockerfile():
+    fixture = os.path.join(get_package_root(), "..", "Dockerfile")
     with open(fixture, "rt", encoding="utf-8") as fid:
-        zenodojson_contents = fid.read()
-    assert "doi" not in json.loads(zenodojson_contents).keys()
+        file_contents = fid.read()
+    regex = re.compile(r'^RUN .* cffconvert==(?P<version>\S*)$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
 
 
-def test_zenodo_has_no_date_published():
-    # .zenodo.json content should not have any date information, the Zenodo-GitHub integration assigns
-    # the date as today's date
-    fixture = os.path.join(".zenodo.json")
+def test_setup_cfg():
+    fixture = os.path.join(get_package_root(), "..", "setup.cfg")
     with open(fixture, "rt", encoding="utf-8") as fid:
-        zenodojson_contents = fid.read()
-    assert "publication_date" not in json.loads(zenodojson_contents).keys()
+        file_contents = fid.read()
+    regex = re.compile(r'^version = (?P<version>\S*)$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
+def test_alternative_install_options_md():
+    fixture = os.path.join(get_package_root(), "..", "docs", "alternative-install-options.md")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^docker build --tag cffconvert:(?P<version>\S*) .$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
+def test_test_1_0_3__01_cli_py():
+    fixture = os.path.join(get_package_root(), "..", "test", "1.0.3", "01", "test_1_0_3__01_cli.py")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^[ ]{4}assert result\.output == "(?P<version>\S*)\\n"$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
+def test_test_1_1_0__01_cli_py():
+    fixture = os.path.join(get_package_root(), "..", "test", "1.1.0", "01", "test_1_1_0__01_cli.py")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^[ ]{4}assert result\.output == "(?P<version>\S*)\\n"$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
+def test_1_2_0_doi_identifiers_d__cli_py():
+    fixture = os.path.join(get_package_root(), "..", "test", "1.2.0", "doi-identifiers", "D_",
+                           "test_1_2_0_doi_identifiers_D__cli.py")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^[ ]{4}assert result\.output == "(?P<version>\S*)\\n"$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
+def test_readme_dev_md_1():
+    fixture = os.path.join(get_package_root(), "..", "README.dev.md")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^# \(requires (?P<version>\S*) to be downloadable from PyPI\)$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
+def test_readme_dev_md_2():
+    fixture = os.path.join(get_package_root(), "..", "README.dev.md")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^docker build --tag cffconvert:(?P<version>\S*) .$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
+def test_readme_dev_md_3():
+    fixture = os.path.join(get_package_root(), "..", "README.dev.md")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^docker tag cffconvert:(?P<version1>\S*) citationcff/' +
+                       r'cffconvert:(?P<version2>\S*)$', re.MULTILINE)
+    actual_version_1 = re.search(regex, file_contents)['version1']
+    actual_version_2 = re.search(regex, file_contents)['version2']
+    assert actual_version_1 == expected_version
+    assert actual_version_2 == expected_version
+
+
+def test_readme_dev_md_4():
+    fixture = os.path.join(get_package_root(), "..", "README.dev.md")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^docker push citationcff/cffconvert:(?P<version>\S*)$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version

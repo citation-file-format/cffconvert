@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.bibtex_object import Contract
-from cffconvert.behavior_1_1_x.bibtex.bibtex import BibtexObject
+from cffconvert.behavior_1_1_x.bibtex_object import BibtexObject
 from cffconvert import Citation
 
 

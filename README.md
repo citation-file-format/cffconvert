@@ -62,15 +62,15 @@ Shows:
 Usage: cffconvert [OPTIONS]
 
 Options:
-  -i, --infile PATH               Path to the CITATION.cff input file. If
-                                  option is omitted, ./CITATION.cff is used.
+  -i, --infile PATH               Path to the CITATION.cff input file. If this
+                                  option is omitted, './CITATION.cff' is used.
   -o, --outfile PATH              Path to the output file.
   -f, --format [apalike|bibtex|cff|codemeta|endnote|ris|schema.org|zenodo]
                                   Output format.
   -u, --url TEXT                  URL to the CITATION.cff input file.
   -h, --help                      Show help and exit.
   --show-trace                    Show error trace.
-  --validate                      Validate the CITATION.cff and exit.
+  --validate                      Validate the CITATION.cff file and exit.
   --version                       Print version and exit.
 ```
 

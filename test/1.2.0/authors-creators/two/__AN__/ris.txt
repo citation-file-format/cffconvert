@@ -1,5 +1,0 @@
-TY  - GEN
-AU  - Rafa
-AU  - coach
-TI  - the title
-ER

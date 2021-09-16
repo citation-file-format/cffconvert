@@ -10,7 +10,7 @@ options = {
     "infile": dict(
         type=click.Path(),
         default=None,
-        help="Path to the CITATION.cff input file. If option is omitted, .{0}CITATION.cff is used.".format(os.sep)
+        help="Path to the CITATION.cff input file. If this option is omitted, '.{0}CITATION.cff' is used.".format(os.sep)
     ),
     "outfile": dict(
         type=click.Path(),
@@ -51,7 +51,7 @@ options = {
     "validate_only": dict(
         is_flag=True,
         default=False,
-        help="Validate the CITATION.cff and exit."
+        help="Validate the CITATION.cff file and exit."
     ),
     "version": dict(
         is_flag=True,

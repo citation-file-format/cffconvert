@@ -1,4 +1,4 @@
-from cffconvert.behavior_1_0_x.zenodo.creator import ZenodoCreator
+from cffconvert.behavior_1_0_x.zenodo_creator import ZenodoCreator
 from cffconvert.behavior_shared.zenodo.zenodo import ZenodoObjectShared as Shared
 
 

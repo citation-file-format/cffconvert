@@ -1,5 +1,5 @@
-from cffconvert.behavior_1_0_x.schemaorg.author import SchemaorgAuthor
-from cffconvert.behavior_1_0_x.schemaorg.urls import SchemaorgUrls
+from cffconvert.behavior_1_0_x.schemaorg_author import SchemaorgAuthor
+from cffconvert.behavior_1_0_x.schemaorg_urls import SchemaorgUrls
 from cffconvert.behavior_shared.schemaorg.schemaorg import SchemaorgObjectShared as Shared
 
 

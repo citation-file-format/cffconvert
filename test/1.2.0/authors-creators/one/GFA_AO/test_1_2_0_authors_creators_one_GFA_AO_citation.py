@@ -11,10 +11,6 @@ def citation():
         return Citation(cffstr)
 
 
-def test_cffobj(citation):
-    pass
-
-
 def test_cffversion(citation):
     assert citation.cffversion == "1.2.0"
 

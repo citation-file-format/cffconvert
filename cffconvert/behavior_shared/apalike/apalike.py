@@ -80,10 +80,9 @@ class ApalikeObjectShared:
     def add_doi(self):
         pass
 
+    @abstractmethod
     def add_url(self):
-        if 'repository-code' in self.cffobj.keys():
-            self.url = 'URL: ' + self.cffobj['repository-code']
-        return self
+        pass
 
     def as_string(self):
         return self.__str__()

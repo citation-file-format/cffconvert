@@ -1,4 +1,5 @@
 from cffconvert.behavior_1_0_x.ris.author import RisAuthor
+from cffconvert.behavior_1_0_x.ris.url import RisUrl
 from cffconvert.behavior_shared.ris.ris import RisObjectShared as Shared
 
 
@@ -30,6 +31,10 @@ class RisObject(Shared):
     def add_doi(self):
         if 'doi' in self.cffobj.keys():
             self.doi = 'DO  - {}\n'.format(self.cffobj['doi'])
+        return self
+
+    def add_url(self):
+        self.url = RisUrl(self.cffobj).as_string()
         return self
 
     def add_year(self):

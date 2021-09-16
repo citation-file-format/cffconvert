@@ -48,7 +48,7 @@ class TestSchemaorgObject(Contract):
         # doesn't need an assert
 
     def test_code_repository(self, schemaorg_object):
-        assert schemaorg_object.add_code_repository().code_repository == 'https://github.com/NLeSC/spot'
+        assert schemaorg_object.add_urls().code_repository == 'https://github.com/NLeSC/spot'
 
     def test_date_published(self, schemaorg_object):
         assert schemaorg_object.add_date_published().date_published == '2017-10-07'
@@ -72,6 +72,9 @@ class TestSchemaorgObject(Contract):
 
     def test_name(self, schemaorg_object):
         assert schemaorg_object.add_name().name == 'spot'
+
+    def test_url(self, schemaorg_object):
+        assert schemaorg_object.add_urls().url == 'https://github.com/NLeSC/spot'
 
     def test_version(self, schemaorg_object):
         assert schemaorg_object.add_version().version == '0.1.0'

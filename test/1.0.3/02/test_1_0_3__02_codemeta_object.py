@@ -35,7 +35,7 @@ class TestCodemetaObject(Contract):
         # doesn't need an assert
 
     def test_code_repository(self, codemeta_object):
-        assert codemeta_object.add_code_repository().code_repository is None
+        assert codemeta_object.add_urls().code_repository is None
 
     def test_date_published(self, codemeta_object):
         assert codemeta_object.add_date_published().date_published == "1999-12-31"
@@ -54,6 +54,9 @@ class TestCodemetaObject(Contract):
 
     def test_name(self, codemeta_object):
         assert codemeta_object.add_name().name == 'example title'
+
+    def test_url(self, codemeta_object):
+        assert codemeta_object.add_urls().url is None
 
     def test_version(self, codemeta_object):
         assert codemeta_object.add_version().version == '1.0.0'

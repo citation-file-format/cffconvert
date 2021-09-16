@@ -1,4 +1,5 @@
 from cffconvert.behavior_1_1_x.endnote.author import EndnoteAuthor
+from cffconvert.behavior_1_1_x.endnote.url import EndnoteUrl
 from cffconvert.behavior_shared.endnote.endnote import EndnoteObjectShared as Shared
 
 
@@ -23,6 +24,10 @@ class EndnoteObject(Shared):
     def add_doi(self):
         if 'doi' in self.cffobj.keys():
             self.doi = '%R {}\n'.format(self.cffobj['doi'])
+        return self
+
+    def add_url(self):
+        self.url = EndnoteUrl(self.cffobj).as_string()
         return self
 
     def add_year(self):

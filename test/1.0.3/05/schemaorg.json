@@ -41,5 +41,6 @@
   ],
   "license": "https://spdx.org/licenses/Apache-2.0",
   "name": "cffconvert",
+  "url": "https://github.com/citation-file-format/cff-converter-python",
   "version": "0.0.4"
 }

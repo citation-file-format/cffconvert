@@ -1,4 +1,5 @@
 from cffconvert.behavior_1_0_x.apalike.author import ApalikeAuthor
+from cffconvert.behavior_1_0_x.apalike.url import ApalikeUrl
 from cffconvert.behavior_shared.apalike.apalike import ApalikeObjectShared as Shared
 
 
@@ -29,4 +30,8 @@ class ApalikeObject(Shared):
     def add_doi(self):
         if 'doi' in self.cffobj.keys():
             self.doi = 'DOI: ' + self.cffobj['doi']
+        return self
+
+    def add_url(self):
+        self.url = ApalikeUrl(self.cffobj).as_string()
         return self

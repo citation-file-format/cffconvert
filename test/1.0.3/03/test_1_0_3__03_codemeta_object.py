@@ -48,7 +48,7 @@ class TestCodemetaObject(Contract):
         # doesn't need an assert
 
     def test_code_repository(self, codemeta_object):
-        assert codemeta_object.add_code_repository().code_repository == 'https://github.com/NLeSC/spot'
+        assert codemeta_object.add_urls().code_repository == 'https://github.com/NLeSC/spot'
 
     def test_date_published(self, codemeta_object):
         assert codemeta_object.add_date_published().date_published == '2017-10-07'
@@ -72,6 +72,9 @@ class TestCodemetaObject(Contract):
 
     def test_name(self, codemeta_object):
         assert codemeta_object.add_name().name == 'spot'
+
+    def test_url(self, codemeta_object):
+        assert codemeta_object.add_urls().url == 'https://github.com/NLeSC/spot'
 
     def test_version(self, codemeta_object):
         assert codemeta_object.add_version().version == '0.1.0'

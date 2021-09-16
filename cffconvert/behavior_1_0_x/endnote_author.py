@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.endnote.author import EndnoteAuthorShared as Shared
+from cffconvert.behavior_shared.endnote_author_shared import EndnoteAuthorShared as Shared
 
 
 class EndnoteAuthor(Shared):

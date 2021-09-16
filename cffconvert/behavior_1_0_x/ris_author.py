@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.ris.author import RisAuthorShared as Shared
+from cffconvert.behavior_shared.ris_author_shared import RisAuthorShared as Shared
 
 
 class RisAuthor(Shared):

@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.endnote.url import EndnoteUrlShared as Shared
+from cffconvert.behavior_shared.endnote_url_shared import EndnoteUrlShared as Shared
 
 
 class EndnoteUrl(Shared):

@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.apalike.url import ApalikeUrlShared as Shared
+from cffconvert.behavior_shared.apalike_url_shared import ApalikeUrlShared as Shared
 
 
 class ApalikeUrl(Shared):

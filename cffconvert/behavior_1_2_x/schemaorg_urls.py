@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.schemaorg.urls import SchemaorgUrlsShared as Shared
+from cffconvert.behavior_shared.schemaorg_urls_shared import SchemaorgUrlsShared as Shared
 
 
 class SchemaorgUrls(Shared):

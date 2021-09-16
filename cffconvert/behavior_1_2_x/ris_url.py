@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.ris.url import RisUrlShared as Shared
+from cffconvert.behavior_shared.ris_url_shared import RisUrlShared as Shared
 
 
 class RisUrl(Shared):

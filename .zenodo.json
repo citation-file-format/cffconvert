@@ -39,5 +39,6 @@
   "license": {
     "id": "Apache-2.0"
   },
-  "title": "cffconvert"
+  "title": "cffconvert",
+  "version": "2.0.0-alpha.0"
 }

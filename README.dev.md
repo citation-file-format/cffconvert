@@ -38,9 +38,6 @@ bash test/test_consistent_file_naming.sh dir=livetest/
 
 # tests for consistent versioning
 python3 -m pytest test/test_consistent_versioning.py
-
-# run tests against live system (GitHub)
-python3 -m pytest livetest
 ```
 
 ## Running linters locally
@@ -113,8 +110,8 @@ git config --local core.hooksPath .githooks
     # make a source distribution:
     python setup.py sdist
     # install the 'upload to pypi/testpypi tool' aka twine
-    pip install twine
-    # upload the contents of the source distribtion we just made
+    pip install .[publishing]
+    # upload the contents of the source distribution we just made
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
     # checking the package
@@ -127,3 +124,23 @@ git config --local core.hooksPath .githooks
     # FINAL STEP: upload to PyPI
     twine upload dist/*
     ```
+
+### Building the docker image
+
+```shell
+# (requires 2.0.0-alpha.0 to be downloadable from PyPI)
+docker build --tag cffconvert:2.0.0-alpha.0 .
+docker build --tag cffconvert:latest .
+```
+
+### Publishing on DockerHub
+
+See <https://docs.docker.com/docker-hub/repos/#pushing-a-docker-container-image-to-docker-hub> for more information on publishing.
+
+```shell
+# re-tag existing image
+docker tag cffconvert:2.0.0-alpha.0 citationcff/cffconvert:2.0.0-alpha.0
+
+# publish
+docker push citationcff/cffconvert:2.0.0-alpha.0
+```

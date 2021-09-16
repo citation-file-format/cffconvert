@@ -40,7 +40,7 @@ class TestRisObject(Contract):
         assert ris_object.add_doi().doi == 'DO  - 10.0000/from-identifiers\n'
 
     def test_keywords(self, ris_object):
-        assert ris_object.add_keywords().keywords  is None
+        assert ris_object.add_keywords().keywords is None
 
     def test_title(self, ris_object):
         assert ris_object.add_title().title == 'TI  - Test title\n'

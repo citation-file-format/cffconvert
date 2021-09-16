@@ -34,7 +34,7 @@ class TestBibtexObject(Contract):
         assert bibtex_object.add_doi().doi == 'doi = {10.0000/from-identifiers}'
 
     def test_month(self, bibtex_object):
-        assert bibtex_object.add_month().month  is None
+        assert bibtex_object.add_month().month is None
 
     def test_title(self, bibtex_object):
         assert bibtex_object.add_title().title == 'title = {Test title}'

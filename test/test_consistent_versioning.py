@@ -67,6 +67,16 @@ def test_test_1_1_0__01_cli_py():
     assert actual_version == expected_version
 
 
+def test_1_2_0_doi_identifiers_d__cli_py():
+    fixture = os.path.join(get_package_root(), "..", "test", "1.2.0", "doi-identifiers", "D_",
+                           "test_1_2_0_doi_identifiers_D__cli.py")
+    with open(fixture, "rt", encoding="utf-8") as fid:
+        file_contents = fid.read()
+    regex = re.compile(r'^[ ]{4}assert result\.output == "(?P<version>\S*)\\n"$', re.MULTILINE)
+    actual_version = re.search(regex, file_contents)['version']
+    assert actual_version == expected_version
+
+
 def test_readme_dev_md_1():
     fixture = os.path.join(get_package_root(), "..", "README.dev.md")
     with open(fixture, "rt", encoding="utf-8") as fid:

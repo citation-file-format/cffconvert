@@ -1,6 +1,0 @@
-authors:
-  - name: "The Authors"
-cff-version: "1.2.0"
-doi: "10.0000/somedoi.0001"
-message: "test for constructing dois"
-title: test

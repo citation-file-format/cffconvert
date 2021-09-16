@@ -89,7 +89,8 @@ def test_readme_dev_md_3():
     fixture = os.path.join(get_package_root(), "..", "README.dev.md")
     with open(fixture, "rt", encoding="utf-8") as fid:
         file_contents = fid.read()
-    regex = re.compile(r'^docker tag cffconvert:(?P<version1>\S*) citationcff/cffconvert:(?P<version2>\S*)$', re.MULTILINE)
+    regex = re.compile(r'^docker tag cffconvert:(?P<version1>\S*) citationcff/' +
+                       r'cffconvert:(?P<version2>\S*)$', re.MULTILINE)
     actual_version_1 = re.search(regex, file_contents)['version1']
     actual_version_2 = re.search(regex, file_contents)['version2']
     assert actual_version_1 == expected_version

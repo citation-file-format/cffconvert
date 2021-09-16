@@ -34,7 +34,7 @@ class TestSchemaorgObject(Contract):
         }]
 
     def test_code_repository(self, schemaorg_object):
-        assert schemaorg_object.add_code_repository().code_repository is None
+        assert schemaorg_object.add_urls().code_repository is None
 
     def test_date_published(self, schemaorg_object):
         assert schemaorg_object.add_date_published().date_published is None
@@ -56,6 +56,9 @@ class TestSchemaorgObject(Contract):
 
     def test_version(self, schemaorg_object):
         assert schemaorg_object.add_version().version is None
+
+    def test_url(self, schemaorg_object):
+        assert schemaorg_object.add_urls().url is None
 
     def test_as_string(self, schemaorg_object):
         actual_schemaorg = schemaorg_object.add_all().as_string()

@@ -1,5 +1,5 @@
-from cffconvert.behavior_1_2_x.endnote.author import EndnoteAuthor
-from cffconvert.behavior_1_2_x.endnote.url import EndnoteUrl
+from cffconvert.behavior_1_2_x.endnote_author import EndnoteAuthor
+from cffconvert.behavior_1_2_x.endnote_url import EndnoteUrl
 from cffconvert.behavior_shared.endnote.endnote import EndnoteObjectShared as Shared
 
 

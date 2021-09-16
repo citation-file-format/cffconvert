@@ -1,7 +1,7 @@
 import os
 import pytest
 from test.contracts.schemaorg_object import Contract
-from cffconvert.behavior_1_2_x.schemaorg.schemaorg import SchemaorgObject
+from cffconvert.behavior_1_2_x.schemaorg_object import SchemaorgObject
 from cffconvert import Citation
 
 

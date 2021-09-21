@@ -76,7 +76,7 @@ Options:
 
 ## Example usage
 
-### Validating
+### Validating a local CITATION.cff file
 
 ```shell
 cffconvert --validate
@@ -84,6 +84,17 @@ cffconvert --validate -i CITATION.cff
 cffconvert --validate -i ${PWD}/CITATION.cff
 cffconvert --validate -i ../some-other-dir/CITATION.cff
 ```
+
+### Validating a remote CITATION.cff file
+
+```shell
+cffconvert --validate --url https://github.com/<org>/<repo>
+cffconvert --validate --url https://github.com/<org>/<repo>/commit/<sha>
+cffconvert --validate --url https://github.com/<org>/<repo>/tree/<sha>
+cffconvert --validate --url https://github.com/<org>/<repo>/tree/<tag>
+cffconvert --validate --url https://github.com/<org>/<repo>/tree/<branch>
+```
+
 
 ### Converting metadata to other formats
 

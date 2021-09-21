@@ -8,9 +8,6 @@ class ZenodoObject(Shared):
         '1.2.0'
     ]
 
-    def __init__(self, cffobj, initialize_empty=False):
-        super().__init__(cffobj, initialize_empty)
-
     def add_creators(self):
         authors_cff = self.cffobj.get('authors', [])
         creators_zenodo = [ZenodoCreator(a).as_dict() for a in authors_cff]

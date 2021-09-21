@@ -9,11 +9,8 @@ class BibtexObject(Shared):
         '1.2.0'
     ]
 
-    def __init__(self, cffobj, initialize_empty=False):
-        super().__init__(cffobj, initialize_empty)
-
     def add_author(self):
-        authors_cff = self.cffobj.get('authors', list())
+        authors_cff = self.cffobj.get('authors', [])
         authors_bibtex = [BibtexAuthor(a).as_string() for a in authors_cff]
         authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
         self.author = 'author = {' + ' and '.join(authors_bibtex_filtered) + '}'

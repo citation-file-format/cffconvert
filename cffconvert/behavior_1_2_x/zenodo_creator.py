@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.zenodo_creator_shared import ZenodoCreatorShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class ZenodoCreator(Shared):
-
-    def __init__(self, author):
-        super().__init__(author)
 
     def as_dict(self):
         key = ''.join([

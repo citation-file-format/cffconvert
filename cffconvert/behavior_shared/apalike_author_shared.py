@@ -79,7 +79,6 @@ class ApalikeAuthorShared:
             return 'N'
         return '_'
 
-
     @abstractmethod
     def as_string(self):
         pass

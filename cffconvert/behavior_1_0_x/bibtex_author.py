@@ -8,10 +8,10 @@ class BibtexAuthor(Shared):
 
     def as_string(self):
         state = [
-            ('G', self._exists_nonempty('given-names')),
-            ('F', self._exists_nonempty('family-names')),
+            ('G', self._has_given_name()),
+            ('F', self._has_family_name()),
             ('A', False),
-            ('N', self._exists_nonempty('name'))
+            ('N', self._has_name())
         ]
         key = ''.join([item[0] if item[1] is True else '_' for item in state])
         return self._behaviors[key]()

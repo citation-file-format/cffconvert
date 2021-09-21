@@ -20,6 +20,12 @@ def test_github_url_with_owner_repo_blob_branchname_filename():
     assert actual == expected
 
 
+def test_github_url_with_owner_repo_blob_branchname_filename_deep():
+    actual = rawify_url("https://github.com/theownername/thereponame/blob/thebranchname/somedir/someotherdir/thefilename")
+    expected = "https://raw.githubusercontent.com/theownername/thereponame/thebranchname/somedir/someotherdir/thefilename"
+    assert actual == expected
+
+
 def test_github_url_with_owner_repo_blob_sha():
     actual = rawify_url("https://github.com/theownername/thereponame/blob/0123456789abcdef0123456789abcdef01234567")
     expected = "https://raw.githubusercontent.com/theownername/thereponame/0123456789abcdef0123456789abcdef01234567/CITATION.cff"

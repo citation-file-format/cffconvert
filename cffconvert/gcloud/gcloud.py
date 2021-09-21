@@ -1,7 +1,10 @@
 import os
 from flask import Response
+from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
+from pykwalify.errors import SchemaError as PykwalifySchemaError
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
+from cffconvert.cli.read_from_url import read_from_url
 
 
 def get_help_text():
@@ -20,51 +23,45 @@ def cffconvert(request):
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
 
-    cffstr = None
-    outputformat = None
-    url = None
-    validate = False
-    version = False
-
     outstr = ''
 
-    if request.args:
-
-        if 'cffstr' in request.args:
-            cffstr = request.args.get('cffstr')
-        if 'outputformat' in request.args:
-            outputformat = request.args.get('outputformat')
-        if 'url' in request.args:
-            url = request.args.get('url')
-        if 'validate' in request.args:
-            validate = True
-        if 'version' in request.args:
-            version = True
-    else:
+    if not request.args or 'help' in request.args.keys():
         return Response(get_help_text(), mimetype='text/html')
+
+    cffstr = request.args.get('cffstr', None)
+    outputformat = request.args.get('outputformat', None)
+    url = request.args.get('url', None)
+    validate = 'validate' in request.args.keys()
+    version = 'version' in request.args.keys()
 
     if version is True:
         outstr += "{0}\n".format(cffconvert_version.__version__)
         return Response(outstr, mimetype='text/plain')
 
-    if url is not None and cffstr is not None:
+    condition = (url is None, cffstr is None)
+    if condition == (False, False):
         outstr += "\n\n{0}\n".format("Error: can't have both url and cffstr.")
         return Response(outstr, mimetype='text/plain')
+    if condition == (True, True):
+        outstr += "\n\n{0}\n".format("Error: you must specify either url or cffstr.")
+        return Response(outstr, mimetype='text/plain')
+    if condition == (False, True):
+        cffstr = read_from_url(url)
 
+    citation = Citation(cffstr=cffstr)
     try:
-        citation = Citation(cffstr=cffstr, src=url)
-    except Exception as e:
-        if str(e) == "Provided CITATION.cff does not seem valid YAML.":
-            outstr += "\n\nError: Provided 'cffstr' does not seem valid YAML."
-        else:
-            outstr += "\n\nError: " + str(e)
+        citation.validate()
+    except (PykwalifySchemaError, JsonschemaSchemaError):
+        outstr += f"Data does not pass validation according to Citation File Format schema version {citation.cffversion}."
+        return Response(outstr, mimetype='text/plain')
+
+    if validate:
+        outstr += f"Data passes validation according to Citation File Format schema version {citation.cffversion}."
         return Response(outstr, mimetype='text/plain')
 
     acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
     if outputformat not in acceptable_output_formats:
         outstr += "\n\n'outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats))
-        return Response(outstr, mimetype='text/plain')
-    if outputformat is None:
         return Response(outstr, mimetype='text/plain')
 
     outstr += {

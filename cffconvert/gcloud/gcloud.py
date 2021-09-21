@@ -2,6 +2,7 @@ import os
 from flask import Response
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
+from cffconvert.cli.read_from_url import read_from_url
 
 
 def get_help_text():
@@ -20,26 +21,14 @@ def cffconvert(request):
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
 
-    cffstr = None
-    outputformat = None
-    url = None
-    validate = False
-    version = False
-
     outstr = ''
 
     if request.args:
-
-        if 'cffstr' in request.args:
-            cffstr = request.args.get('cffstr')
-        if 'outputformat' in request.args:
-            outputformat = request.args.get('outputformat')
-        if 'url' in request.args:
-            url = request.args.get('url')
-        if 'validate' in request.args:
-            validate = True
-        if 'version' in request.args:
-            version = True
+        cffstr = request.args.get('cffstr', None)
+        outputformat = request.args.get('outputformat', None)
+        url = request.args.get('url', None)
+        validate = 'validate' in request.args
+        version = 'version' in request.args
     else:
         return Response(get_help_text(), mimetype='text/html')
 
@@ -47,12 +36,21 @@ def cffconvert(request):
         outstr += "{0}\n".format(cffconvert_version.__version__)
         return Response(outstr, mimetype='text/plain')
 
-    if url is not None and cffstr is not None:
+    condition = (url is None, cffstr is None)
+    if condition == (True, True):
         outstr += "\n\n{0}\n".format("Error: can't have both url and cffstr.")
         return Response(outstr, mimetype='text/plain')
+    if condition == (False, False):
+        outstr += "\n\n{0}\n".format("Error: you must specify either url or cffstr.")
+        return Response(outstr, mimetype='text/plain')
+
+    if url is not None:
+        cffstr = read_from_url(url)
 
     try:
         citation = Citation(cffstr=cffstr, src=url)
+        if validate:
+            return Response(outstr, mimetype='text/plain')
     except Exception as e:
         if str(e) == "Provided CITATION.cff does not seem valid YAML.":
             outstr += "\n\nError: Provided 'cffstr' does not seem valid YAML."

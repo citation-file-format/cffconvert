@@ -60,8 +60,7 @@ arguments. For more detailed explanation and examples, see
 On Google Cloud Function, set `requirements.txt` to:
 
 ```text
-Flask
-cffconvert
+cffconvert[gcloud]
 ```
 
 and use the following as `main.py`:

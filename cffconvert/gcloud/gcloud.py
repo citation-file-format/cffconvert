@@ -52,7 +52,7 @@ def cffconvert(request):
     try:
         citation.validate()
     except (PykwalifySchemaError, JsonschemaSchemaError):
-        outstr += f"Data does not pass validation according to Citation File Format schema version {citation.cffstr}."
+        outstr += f"Data does not pass validation according to Citation File Format schema version {citation.cffversion}."
         return Response(outstr, mimetype='text/plain')
 
     if validate:

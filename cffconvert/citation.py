@@ -18,8 +18,8 @@ class Citation:
 
     def __init__(self, cffstr, src=None):
         self.src = src
-        cffversion = self._get_cff_version(cffstr)
-        self._implementation = Citation._implementations[cffversion](cffstr, cffversion)
+        self.cffversion = self._get_cff_version(cffstr)
+        self._implementation = Citation._implementations[self.cffversion](cffstr, self.cffversion)
 
     @staticmethod
     def _get_cff_version(cffstr):

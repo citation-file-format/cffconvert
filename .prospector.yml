@@ -20,6 +20,8 @@ pep8:
   full: true
   options:
     max-line-length: 120
+  disable:
+    - E501 # test line length with pylint, can be disabled per file and or line if needed
 
 pylint:
   full: true

@@ -222,27 +222,39 @@ class ZenodoCreatorShared:
 
     def _has_affiliation(self):
         value = self._author.get('affiliation', None)
-        return value is not None and value != ''
+        if value is not None and value != '':
+            return 'A'
+        return '_'
 
     def _has_alias(self):
         value = self._author.get('alias', None)
-        return value is not None and value != ''
+        if value is not None and value != '':
+            return 'A'
+        return '_'
 
     def _has_given_name(self):
         value = self._author.get('given-names', None)
-        return value is not None and value != ''
+        if value is not None and value != '':
+            return 'G'
+        return '_'
 
     def _has_family_name(self):
         value = self._author.get('family-names', None)
-        return value is not None and value != ''
+        if value is not None and value != '':
+            return 'F'
+        return '_'
 
     def _has_name(self):
         value = self._author.get('name', None)
-        return value is not None and value != ''
+        if value is not None and value != '':
+            return 'N'
+        return '_'
 
     def _has_orcid(self):
         value = self._author.get('orcid', None)
-        return value is not None and value != ''
+        if value is not None and value != '':
+            return 'O'
+        return '_'
 
     @abstractmethod
     def as_dict(self):

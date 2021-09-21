@@ -66,23 +66,33 @@ class ApalikeUrlShared:
     def _has_identifiers_url(self):
         identifiers = self._cffobj.get('identifiers', list())
         urls = [identifier for identifier in identifiers if identifier.get('type') == 'url']
-        return len(urls) > 0
+        if len(urls) > 0:
+            return 'I'
+        return '_'
 
     def _has_repository(self):
         tmp = self._cffobj.get('repository', None)
-        return tmp is not None and tmp != ''
+        if tmp is not None and tmp != '':
+            return 'R'
+        return '_'
 
     def _has_repository_artifact(self):
         tmp = self._cffobj.get('repository-artifact', None)
-        return tmp is not None and tmp != ''
+        if tmp is not None and tmp != '':
+            return 'A'
+        return '_'
 
     def _has_repository_code(self):
         tmp = self._cffobj.get('repository-code', None)
-        return tmp is not None and tmp != ''
+        if tmp is not None and tmp != '':
+            return 'C'
+        return '_'
 
     def _has_url(self):
         tmp = self._cffobj.get('url', None)
-        return tmp is not None and tmp != ''
+        if tmp is not None and tmp != '':
+            return 'U'
+        return '_'
 
     @abstractmethod
     def as_string(self):

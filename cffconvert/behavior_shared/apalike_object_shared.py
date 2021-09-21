@@ -93,5 +93,4 @@ class ApalikeObjectShared:
         if 'cff-version' not in self.cffobj.keys():
             raise ValueError('Missing key "cff-version" in CITATION.cff file.')
         if self.cffobj['cff-version'] not in self.supported_cff_versions:
-            raise ValueError("'cff-version': '{}' isn't a supported version."
-                             .format(self.cffobj['cff-version']))
+            raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")

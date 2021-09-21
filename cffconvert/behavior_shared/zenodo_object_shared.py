@@ -2,6 +2,7 @@ import json
 from abc import abstractmethod
 
 
+# pylint: disable=too-many-instance-attributes
 class ZenodoObjectShared:
 
     supported_zenodo_props = [
@@ -32,7 +33,7 @@ class ZenodoObjectShared:
             self.add_all()
 
     def __str__(self, sort_keys=True, indent=2):
-        d = {
+        data = {
             "creators": self.creators,
             "description": self.description,
             "keywords": self.keywords,
@@ -41,7 +42,7 @@ class ZenodoObjectShared:
             "title": self.title,
             "version": self.version
         }
-        filtered = [item for item in d.items() if item[1] is not None]
+        filtered = [item for item in data.items() if item[1] is not None]
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + '\n'
 
     def add_all(self):
@@ -92,9 +93,8 @@ class ZenodoObjectShared:
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
-            raise ValueError('Expected cffobj to be of type \'dict\'.')
+            raise ValueError("Expected cffobj to be of type 'dict'.")
         if 'cff-version' not in self.cffobj.keys():
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+            raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
         if self.cffobj['cff-version'] not in self.supported_cff_versions:
-            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
-                             .format(self.cffobj['cff-version']))
+            raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")

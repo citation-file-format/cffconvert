@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 
+# pylint: disable=too-few-public-methods
 class BibtexAuthorShared:
 
     def __init__(self, author):

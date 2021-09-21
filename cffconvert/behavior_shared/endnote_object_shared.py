@@ -56,13 +56,13 @@ class EndnoteObjectShared:
 
     def add_keyword(self):
         if 'keywords' in self.cffobj.keys():
-            keywords = ['%K {}\n'.format(keyword) for keyword in self.cffobj['keywords']]
+            keywords = [f"%K {keyword}\n" for keyword in self.cffobj['keywords']]
             self.keyword = ''.join(keywords)
         return self
 
     def add_name(self):
         if 'title' in self.cffobj.keys():
-            self.name = '%T {}\n'.format(self.cffobj['title'])
+            self.name = f"%T {self.cffobj['title']}\n"
         return self
 
     @abstractmethod
@@ -78,9 +78,8 @@ class EndnoteObjectShared:
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
-            raise ValueError('Expected cffobj to be of type \'dict\'.')
+            raise ValueError("Expected cffobj to be of type 'dict'.")
         if 'cff-version' not in self.cffobj.keys():
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+            raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
         if self.cffobj['cff-version'] not in self.supported_cff_versions:
-            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
-                             .format(self.cffobj['cff-version']))
+            raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")

@@ -13,7 +13,7 @@ class RisObject(Shared):
         super().__init__(cffobj, initialize_empty)
 
     def add_author(self):
-        authors_cff = self.cffobj.get('authors', list())
+        authors_cff = self.cffobj.get('authors', [])
         authors_bibtex = [RisAuthor(a).as_string() for a in authors_cff]
         authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
         self.author = ''.join(authors_bibtex_filtered)

@@ -2,6 +2,7 @@ import json
 from abc import abstractmethod
 
 
+# pylint: disable=too-many-instance-attributes
 class SchemaorgObjectShared:
 
     supported_schemaorg_props = [
@@ -39,7 +40,7 @@ class SchemaorgObjectShared:
             self.add_all()
 
     def __str__(self, sort_keys=True, indent=2):
-        d = {
+        data = {
             "@context": self.context,
             "@type": "SoftwareSourceCode",
             "author": self.author,
@@ -53,7 +54,7 @@ class SchemaorgObjectShared:
             "url": self.url,
             "version": self.version
         }
-        filtered = [item for item in d.items() if item[1] is not None]
+        filtered = [item for item in data.items() if item[1] is not None]
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + '\n'
 
     def add_all(self):
@@ -92,7 +93,7 @@ class SchemaorgObjectShared:
 
     def add_license(self):
         if 'license' in self.cffobj.keys():
-            self.license = 'https://spdx.org/licenses/{}'.format(self.cffobj['license'])
+            self.license = f"https://spdx.org/licenses/{self.cffobj['license']}"
         return self
 
     def add_name(self):
@@ -114,9 +115,8 @@ class SchemaorgObjectShared:
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
-            raise ValueError('Expected cffobj to be of type \'dict\'.')
+            raise ValueError("Expected cffobj to be of type 'dict'.")
         if 'cff-version' not in self.cffobj.keys():
-            raise ValueError('Missing key "cff-version" in CITATION.cff file.')
+            raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
         if self.cffobj['cff-version'] not in self.supported_cff_versions:
-            raise ValueError('\'cff-version\': \'{}\' isn\'t a supported version.'
-                             .format(self.cffobj['cff-version']))
+            raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")

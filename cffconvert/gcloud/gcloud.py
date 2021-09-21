@@ -56,6 +56,7 @@ def cffconvert(request):
         return Response(outstr, mimetype='text/plain')
 
     if validate:
+        outstr += f"Data passes validation according to Citation File Format schema version {citation.cffversion}."
         return Response(outstr, mimetype='text/plain')
 
     acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]

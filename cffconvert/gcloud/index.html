@@ -45,14 +45,19 @@
          href="https://pypi.org/project/cffconvert/">cffconvert</a></span>.
 
    With this page, you can read a CFF formatted CITATION file from a supplied
-   string or a GitHub url, and convert it to BibTeX, EndNote, Codemeta, RIS, schema.org,
-   plain JSON, Zenodo JSON. The way to do that is by supplying various
+   string or a GitHub url, and convert it to Apalike, BibTeX, EndNote, Codemeta, RIS, schema.org, or
+   Zenodo JSON. The way to do that is by supplying various
    combinations of arguments as query parameters in the URL (see examples
    below).
 
-   <h2>Authorized arguments</h2>
+   <h2>Version</h2>
+   Display the version of the <span style="font-family:monospace">cffconvert</span> tool, as follows
 
-   <h2>Converting from a GitHub URL</h2>
+   <ul>
+      <li><a href="?version"><span style="font-family:monospace">?version</span></a></li>
+   </ul>
+
+   <h2>Converting from a URL</h2>
 
    For the examples below, we use the repository
    <a href="https://github.com/citation-file-format/cff-converter-python">
@@ -120,19 +125,6 @@
             href="?cffstr=%23%20YAML%201.2%0A---%0Aauthors%3A%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Netherlands%20eScience%20Center%22%0A%20%20%20%20family-names%3A%20Spaaks%0A%20%20%20%20given-names%3A%20Jurriaan%20H.%0A%20%20%20%20orcid%3A%20https%3A%2F%2Forcid.org%2F0000-0002-7064-4069%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Netherlands%20eScience%20Center%22%0A%20%20%20%20family-names%3A%20Klaver%0A%20%20%20%20given-names%3A%20Tom%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Netherlands%20eScience%20Center%22%0A%20%20%20%20family-names%3A%20Verhoeven%0A%20%20%20%20given-names%3A%20Stefan%0A%20%20%20%20orcid%3A%20https%3A%2F%2Forcid.org%2F0000-0002-5821-2060%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Humboldt-Universit%C3%A4t%20zu%20Berlin%22%0A%20%20%20%20family-names%3A%20Druskat%0A%20%20%20%20given-names%3A%20Stephan%0A%20%20%20%20orcid%3A%20https%3A%2F%2Forcid.org%2F0000-0003-4925-7248%0Acff-version%3A%20%221.0.3%22%0Adate-released%3A%202019-07-16%0Adoi%3A%2010.5281%2Fzenodo.1162057%0Akeywords%3A%0A%20%20-%20%22citation%22%0A%20%20-%20%22bibliography%22%0A%20%20-%20%22cff%22%0A%20%20-%20%22CITATION.cff%22%0Alicense%3A%20Apache-2.0%0Amessage%3A%20%22If%20you%20use%20this%20software%2C%20please%20cite%20it%20using%20these%20metadata.%22%0Arepository-code%3A%20%22https%3A%2F%2Fgithub.com%2Fcitation-file-format%2Fcff-converter-python%22%0Atitle%3A%20cffconvert%0Aversion%3A%20%221.2.1%22%0A&outputformat=zenodo"><span
                style="font-family:monospace">?cffstr=%23%20YAML%201.2%0A---%0Aauthors%3A%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Netherlands%20eScience%20Center%22%0A%20%20%20%20family-names%3A%20Spaaks%0A%20%20%20%20given-names%3A%20Jurriaan%20H.%0A%20%20%20%20orcid%3A%20https%3A%2F%2Forcid.org%2F0000-0002-7064-4069%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Netherlands%20eScience%20Center%22%0A%20%20%20%20family-names%3A%20Klaver%0A%20%20%20%20given-names%3A%20Tom%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Netherlands%20eScience%20Center%22%0A%20%20%20%20family-names%3A%20Verhoeven%0A%20%20%20%20given-names%3A%20Stefan%0A%20%20%20%20orcid%3A%20https%3A%2F%2Forcid.org%2F0000-0002-5821-2060%0A%20%20-%0A%20%20%20%20affiliation%3A%20%22Humboldt-Universit%C3%A4t%20zu%20Berlin%22%0A%20%20%20%20family-names%3A%20Druskat%0A%20%20%20%20given-names%3A%20Stephan%0A%20%20%20%20orcid%3A%20https%3A%2F%2Forcid.org%2F0000-0003-4925-7248%0Acff-version%3A%20%221.0.3%22%0Adate-released%3A%202019-07-16%0Adoi%3A%2010.5281%2Fzenodo.1162057%0Akeywords%3A%0A%20%20-%20%22citation%22%0A%20%20-%20%22bibliography%22%0A%20%20-%20%22cff%22%0A%20%20-%20%22CITATION.cff%22%0Alicense%3A%20Apache-2.0%0Amessage%3A%20%22If%20you%20use%20this%20software%2C%20please%20cite%20it%20using%20these%20metadata.%22%0Arepository-code%3A%20%22https%3A%2F%2Fgithub.com%2Fcitation-file-format%2Fcff-converter-python%22%0Atitle%3A%20cffconvert%0Aversion%3A%20%221.2.1%22%0A&outputformat=zenodo</span></a>
       </li>
-      </li>
-   </ul>
-
-   Oftentimes, the version information found in a CITATION.cff file is out of date.
-   When converting it can be convenient to ignore some suspect keys like <span
-      style="font-family:monospace">date-released</span>, <span style="font-family:monospace">commit</span>, and
-   <span style="font-family:monospace">version</span>, by using the <span
-      style="font-family:monospace">ignore_suspect_keys</span> parameter, as follows:
-
-   <ul>
-      <li><a
-            href="?url=https://github.com/citation-file-format/cff-converter-python&outputformat=zenodo&ignore_suspect_keys"><span
-               style="font-family:monospace">?url=https://github.com/citation-file-format/cff-converter-python&outputformat=zenodo&ignore_suspect_keys</span></a>
       </li>
    </ul>
 

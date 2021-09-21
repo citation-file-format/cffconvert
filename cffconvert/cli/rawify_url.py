@@ -2,7 +2,8 @@ def rawify_url(url):
     github_base_url = "https://github.com"
     if url.startswith(github_base_url):
         n = len("https://github.com") + 1
-        ownername, reponame, reftype, refvalue, filename = (url[n:].split('/') + [None] * 3)[:5]
+        urlparts = (url[n:].rstrip('/').split('/') + [None] * 3)[:5]
+        ownername, reponame, reftype, refvalue, filename = urlparts
         if refvalue is None:
             refvalue = "main"
         if filename is None:

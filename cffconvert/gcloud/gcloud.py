@@ -43,19 +43,12 @@ def cffconvert(request):
     if condition == (False, False):
         outstr += "\n\n{0}\n".format("Error: you must specify either url or cffstr.")
         return Response(outstr, mimetype='text/plain')
-
-    if url is not None:
+    if condition == (False, True):
         cffstr = read_from_url(url)
 
-    try:
-        citation = Citation(cffstr=cffstr, src=url)
-        if validate:
-            return Response(outstr, mimetype='text/plain')
-    except Exception as e:
-        if str(e) == "Provided CITATION.cff does not seem valid YAML.":
-            outstr += "\n\nError: Provided 'cffstr' does not seem valid YAML."
-        else:
-            outstr += "\n\nError: " + str(e)
+    citation = Citation(cffstr=cffstr)
+    if validate:
+        citation.validate()
         return Response(outstr, mimetype='text/plain')
 
     acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]

@@ -1,5 +1,7 @@
 import os
 from flask import Response
+from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
+from pykwalify.errors import SchemaError as PykwalifySchemaError
 from cffconvert import Citation
 from cffconvert import version as cffconvert_version
 from cffconvert.cli.read_from_url import read_from_url
@@ -47,15 +49,15 @@ def cffconvert(request):
         cffstr = read_from_url(url)
 
     citation = Citation(cffstr=cffstr)
-    if validate:
+    try:
         citation.validate()
-        return Response(outstr, mimetype='text/plain')
+    except (PykwalifySchemaError, JsonschemaSchemaError):
+        outstr += "Data does not pass validation."
+    return Response(outstr, mimetype='text/plain')
 
     acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
     if outputformat not in acceptable_output_formats:
         outstr += "\n\n'outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats))
-        return Response(outstr, mimetype='text/plain')
-    if outputformat is None:
         return Response(outstr, mimetype='text/plain')
 
     outstr += {

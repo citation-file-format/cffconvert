@@ -27,7 +27,7 @@ authors:
     given-names: Waldir
     name-suffix: Netto
 cff-version: 1.2.0
-date-released: FIXME
+date-released: 1900-01-01 #FIXME
 identifiers:
   - type: doi
     value: 10.5281/zenodo.1162057

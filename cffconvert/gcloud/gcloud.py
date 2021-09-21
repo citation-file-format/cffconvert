@@ -52,8 +52,10 @@ def cffconvert(request):
     try:
         citation.validate()
     except (PykwalifySchemaError, JsonschemaSchemaError):
-        outstr += "Data does not pass validation."
-    return Response(outstr, mimetype='text/plain')
+        outstr += f"Data does not pass validation according to Citation File Format schema version {citation.cffstr}."
+
+    if validate:
+        return Response(outstr, mimetype='text/plain')
 
     acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
     if outputformat not in acceptable_output_formats:

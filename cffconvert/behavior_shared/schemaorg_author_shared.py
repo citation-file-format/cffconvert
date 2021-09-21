@@ -72,10 +72,6 @@ class SchemaorgAuthorShared:
             '______': SchemaorgAuthorShared._from_thin_air
         }
 
-    def _exists_nonempty(self, key):
-        value = self._author.get(key, None)
-        return value is not None and value != ''
-
     def _from_affiliation(self):
         return {
             '@type': 'Person',
@@ -690,6 +686,30 @@ class SchemaorgAuthorShared:
             self._author.get('name-suffix')
         ]
         return ' '.join([n for n in nameparts if n is not None])
+
+    def _has_affiliation(self):
+        value = self._author.get('affiliation', None)
+        return value is not None and value != ''
+
+    def _has_alias(self):
+        value = self._author.get('alias', None)
+        return value is not None and value != ''
+
+    def _has_given_name(self):
+        value = self._author.get('given-names', None)
+        return value is not None and value != ''
+
+    def _has_family_name(self):
+        value = self._author.get('family-names', None)
+        return value is not None and value != ''
+
+    def _has_name(self):
+        value = self._author.get('name', None)
+        return value is not None and value != ''
+
+    def _has_orcid(self):
+        value = self._author.get('orcid', None)
+        return value is not None and value != ''
 
     @abstractmethod
     def as_dict(self):

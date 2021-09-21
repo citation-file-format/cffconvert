@@ -67,7 +67,7 @@ cffconvert
 and use the following as `main.py`:
 
 ```python
-from cffconvert.gcloud import cffconvert
+from cffconvert.gcloud.gcloud import cffconvert
 
 def main(request):
    return cffconvert(request)

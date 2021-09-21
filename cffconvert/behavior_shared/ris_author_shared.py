@@ -24,10 +24,6 @@ class RisAuthorShared:
             '____': RisAuthorShared._from_thin_air
         }
 
-    def _exists_nonempty(self, key):
-        value = self._author.get(key, None)
-        return value is not None and value != ''
-
     def _from_alias(self):
         return 'AU  - ' + self._author.get('alias') + '\n'
 
@@ -54,6 +50,30 @@ class RisAuthorShared:
             self._author.get('name-suffix')
         ]
         return ' '.join([n for n in nameparts if n is not None])
+
+    def _has_alias(self):
+        value = self._author.get('alias', None)
+        if value is not None and value != '':
+            return 'A'
+        return '_'
+
+    def _has_given_name(self):
+        value = self._author.get('given-names', None)
+        if value is not None and value != '':
+            return 'G'
+        return '_'
+
+    def _has_family_name(self):
+        value = self._author.get('family-names', None)
+        if value is not None and value != '':
+            return 'F'
+        return '_'
+
+    def _has_name(self):
+        value = self._author.get('name', None)
+        if value is not None and value != '':
+            return 'N'
+        return '_'
 
     @abstractmethod
     def as_string(self):

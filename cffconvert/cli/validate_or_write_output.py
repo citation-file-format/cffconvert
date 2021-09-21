@@ -8,12 +8,11 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation):
     if condition == (True, False):
         # just validate, there is no target outputformat
         citation.validate()
-        print("Citation metadata are valid according to schema version {0}.".format(citation.cffversion))
+        print(f"Citation metadata are valid according to schema version {citation.cffversion}.")
     elif condition == (True, True):
         # just validate, ignore the target outputformat
         citation.validate()
-        print("Ignoring output format. Citation metadata are valid according to " +
-              "schema version {0}.".format(citation.cffversion))
+        print(f"Ignoring output format. Citation metadata are valid according to schema version {citation.cffversion}.")
     elif condition == (False, False):
         # user hasn't indicated what they want
         print('Indicate whether you want to validate or convert the citation metadata.')
@@ -22,7 +21,7 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation):
         try:
             citation.validate()
         except (PykwalifySchemaError, JsonschemaSchemaError):
-            print("'{0}' does not pass validation. Conversion aborted.".format(citation.src))
+            print(f"'{citation.src}' does not pass validation. Conversion aborted.")
             ctx = click.get_current_context()
             ctx.exit()
         outstr = {
@@ -38,8 +37,8 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation):
         if outfile is None:
             print(outstr, end='')
         else:
-            with open(outfile, "w", encoding="utf8") as f:
-                f.write(outstr)
+            with open(outfile, "w", encoding="utf8") as fid:
+                fid.write(outstr)
     else:
         # shouldn't happen
         raise ValueError('Something went wrong validating or writing the output')

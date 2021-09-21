@@ -9,5 +9,5 @@ def check_early_exits(show_help, version):
         click.echo(ctx.get_help())
         ctx.exit()
     if version is True:
-        print("{0}".format(cffconvert_version))
+        print(f"{cffconvert_version}")
         ctx.exit()

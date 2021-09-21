@@ -60,14 +60,10 @@ def cffconvert(request):
             outstr += "\n\nError: " + str(e)
         return Response(outstr, mimetype='text/plain')
 
-    acceptable_output_formats = ["bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
-    if validate:
-        # when validating, there's no need to convert to anything yet
-        pass
-    elif outputformat not in acceptable_output_formats:
+    acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
+    if outputformat not in acceptable_output_formats:
         outstr += "\n\n'outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats))
         return Response(outstr, mimetype='text/plain')
-
     if outputformat is None:
         return Response(outstr, mimetype='text/plain')
 

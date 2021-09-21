@@ -23,24 +23,24 @@ def cffconvert(request):
 
     outstr = ''
 
-    if request.args:
-        cffstr = request.args.get('cffstr', None)
-        outputformat = request.args.get('outputformat', None)
-        url = request.args.get('url', None)
-        validate = 'validate' in request.args
-        version = 'version' in request.args
-    else:
+    if not request.args or 'help' in request.args.keys():
         return Response(get_help_text(), mimetype='text/html')
+
+    cffstr = request.args.get('cffstr', None)
+    outputformat = request.args.get('outputformat', None)
+    url = request.args.get('url', None)
+    validate = 'validate' in request.args.keys()
+    version = 'version' in request.args.keys()
 
     if version is True:
         outstr += "{0}\n".format(cffconvert_version.__version__)
         return Response(outstr, mimetype='text/plain')
 
     condition = (url is None, cffstr is None)
-    if condition == (True, True):
+    if condition == (False, False):
         outstr += "\n\n{0}\n".format("Error: can't have both url and cffstr.")
         return Response(outstr, mimetype='text/plain')
-    if condition == (False, False):
+    if condition == (True, True):
         outstr += "\n\n{0}\n".format("Error: you must specify either url or cffstr.")
         return Response(outstr, mimetype='text/plain')
     if condition == (False, True):

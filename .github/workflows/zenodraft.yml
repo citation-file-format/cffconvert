@@ -1,0 +1,28 @@
+name: zenodraft
+on:
+  # Trigger when you publish a release via GitHub's release page
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout the contents of your repository
+          uses: actions/checkout@v2
+        - name: Create a draft snapshot of your repository contents as a new
+                version in collection 1162057 on Zenodo using metadata
+                from repository file .zenodo.json
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
+          uses: zenodraft/action@0.10.0
+          with:
+            compression: zip
+            collection: 1162057
+            metadata: .zenodo.json
+            publish: false
+            sandbox: false
+            upsert-doi: true
+            upsert-location: identifiers[1]

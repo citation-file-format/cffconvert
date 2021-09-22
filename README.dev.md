@@ -135,6 +135,8 @@ git config --local core.hooksPath .githooks
     ```shell
     twine upload dist/*
     ```
+1. Make the release on GitHub
+1. Go to Zenodo, log in to inspect the draft. Then click `Publish` to finalize it.
 
 ### Building the docker image
 

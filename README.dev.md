@@ -87,8 +87,9 @@ git config --local core.hooksPath .githooks
     python3 -m pip pytest test
 
     # git push everything, merge into main as appropriate
+    ```
     
-1. &nbsp;
+1. publishing on test instance of PyPI
 
     ```shell
     # verify that everything has been pushed and merged by testing as follows
@@ -112,8 +113,12 @@ git config --local core.hooksPath .githooks
     pip install .[publishing]
     # upload the contents of the source distribution we just made
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+    ```
+1. checking the package
 
-    # checking the package
+    Keep the other shell, but open a new one. We'll return to the first shell momentarily.
+
+    ```shell
     python3 -m pip -v install --user --no-cache-dir \
     --index-url https://test.pypi.org/simple/ \
     --extra-index-url https://pypi.org/simple cffconvert

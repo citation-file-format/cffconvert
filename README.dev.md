@@ -51,14 +51,14 @@ development tools installed.
 prospector
 
 # recursively check import style for the cffconvert module only
-isort --recursive --check-only cffconvert
+isort --check-only cffconvert
 
 # recursively check import style for the cffconvert module only and show
 # any proposed changes as a diff
-isort --recursive --check-only --diff cffconvert
+isort --check-only --diff cffconvert
 
 # recursively fix import style for the cffconvert module only
-isort --recursive cffconvert
+isort cffconvert
 ```
 
 To fix readability of your code style you can use [yapf](https://github.com/google/yapf).

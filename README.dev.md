@@ -146,6 +146,14 @@ docker build --tag cffconvert:2.0.0 .
 docker build --tag cffconvert:latest .
 ```
 
+See if the Docker image works as expected:
+```shell
+docker run --rm -ti -v $PWD:/app cffconvert --validate
+docker run --rm -ti -v $PWD:/app cffconvert --version
+docker run --rm -ti -v $PWD:/app cffconvert
+# etc
+```
+
 ### Publishing on DockerHub
 
 See <https://docs.docker.com/docker-hub/repos/#pushing-a-docker-container-image-to-docker-hub> for more information on publishing.

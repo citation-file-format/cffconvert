@@ -9,11 +9,8 @@ class SchemaorgObject(Shared):
         '1.2.0'
     ]
 
-    def __init__(self, cffobj, initialize_empty=False, context="https://schema.org"):
-        super().__init__(cffobj, initialize_empty, context)
-
     def add_author(self):
-        authors_cff = self.cffobj.get('authors', list())
+        authors_cff = self.cffobj.get('authors', [])
         authors_schemaorg = [SchemaorgAuthor(a).as_dict() for a in authors_cff]
         self.author = [a for a in authors_schemaorg if a is not None]
         return self
@@ -25,12 +22,12 @@ class SchemaorgObject(Shared):
 
     def add_identifier(self):
         if 'doi' in self.cffobj.keys():
-            self.identifier = 'https://doi.org/{}'.format(self.cffobj['doi'])
+            self.identifier = f"https://doi.org/{self.cffobj['doi']}"
         if 'identifiers' in self.cffobj.keys():
             identifiers = self.cffobj['identifiers']
             for identifier in identifiers:
                 if identifier['type'] == 'doi':
-                    self.identifier = 'https://doi.org/{}'.format(identifier['value'])
+                    self.identifier = f"https://doi.org/{identifier['value']}"
                     break
         return self
 

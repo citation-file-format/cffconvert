@@ -13,6 +13,7 @@ from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 
 
+# pylint: disable=invalid-name
 class Citation_1_2_x(Contract):  # nopep8
 
     supported_cff_versions = [
@@ -27,7 +28,7 @@ class Citation_1_2_x(Contract):  # nopep8
 
     def _get_schema(self):
         schema_path = os.path.join(get_package_root(), "schemas", "1.2.0", "schema.json")
-        with open(schema_path, "rt") as fid:
+        with open(schema_path, "rt", encoding="utf-8") as fid:
             return json.loads(fid.read())
 
     def _parse(self):
@@ -35,8 +36,8 @@ class Citation_1_2_x(Contract):  # nopep8
         yaml = YAML(typ="safe")
 
         # while loading, convert timestamps to string
-        yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:timestamp'] = \
-            yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:str']
+        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = \
+            yaml.constructor.yaml_constructors["tag:yaml.org,2002:str"]
 
         cffobj = yaml.load(self.cffstr)
 

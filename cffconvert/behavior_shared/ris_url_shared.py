@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 
+# pylint: disable=too-few-public-methods
 class RisUrlShared:
 
     def __init__(self, cffobj):
@@ -41,7 +42,7 @@ class RisUrlShared:
         }
 
     def _from_identifiers_url(self):
-        identifiers = self._cffobj.get('identifiers', list())
+        identifiers = self._cffobj.get('identifiers', [])
         urls = [identifier for identifier in identifiers if identifier.get('type') == 'url']
         if len(urls) > 0:
             return 'UR  - ' + urls[0].get('value') + '\n'
@@ -64,7 +65,7 @@ class RisUrlShared:
         return 'UR  - ' + self._cffobj.get('url') + '\n'
 
     def _has_identifiers_url(self):
-        identifiers = self._cffobj.get('identifiers', list())
+        identifiers = self._cffobj.get('identifiers', [])
         urls = [identifier for identifier in identifiers if identifier.get('type') == 'url']
         if len(urls) > 0:
             return 'I'

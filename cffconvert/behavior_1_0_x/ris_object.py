@@ -11,11 +11,8 @@ class RisObject(Shared):
         '1.0.3'
     ]
 
-    def __init__(self, cffobj, initialize_empty=False):
-        super().__init__(cffobj, initialize_empty)
-
     def add_author(self):
-        authors_cff = self.cffobj.get('authors', list())
+        authors_cff = self.cffobj.get('authors', [])
         authors_bibtex = [RisAuthor(a).as_string() for a in authors_cff]
         authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
         self.author = ''.join(authors_bibtex_filtered)
@@ -23,14 +20,15 @@ class RisObject(Shared):
 
     def add_date(self):
         if 'date-released' in self.cffobj.keys():
-            self.date = "DA  - {:d}-{:02d}-{:02d}\n".format(self.cffobj['date-released'].year,
-                                                            self.cffobj['date-released'].month,
-                                                            self.cffobj['date-released'].day)
+            year = self.cffobj['date-released'].year
+            month = self.cffobj['date-released'].month
+            day = self.cffobj['date-released'].day
+            self.date = f"DA  - {year:d}-{month:02d}-{day:02d}\n"
         return self
 
     def add_doi(self):
         if 'doi' in self.cffobj.keys():
-            self.doi = 'DO  - {}\n'.format(self.cffobj['doi'])
+            self.doi = f"DO  - {self.cffobj['doi']}\n"
         return self
 
     def add_url(self):
@@ -39,5 +37,5 @@ class RisObject(Shared):
 
     def add_year(self):
         if 'date-released' in self.cffobj.keys():
-            self.year = 'PY  - {}\n'.format(self.cffobj['date-released'].year)
+            self.year = f"PY  - {self.cffobj['date-released'].year}\n"
         return self

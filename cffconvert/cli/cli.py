@@ -11,7 +11,7 @@ options = {
         type=click.Path(),
         default=None,
         help="Path to the CITATION.cff input file. If this option is omitted" +
-             ", '.{0}CITATION.cff' is used.".format(os.sep)
+             f", '.{os.sep}CITATION.cff' is used."
     ),
     "outfile": dict(
         type=click.Path(),

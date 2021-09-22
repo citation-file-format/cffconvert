@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.schemaorg_urls_shared import SchemaorgUrlsShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class SchemaorgUrls(Shared):
-
-    def __init__(self, cffobj):
-        super().__init__(cffobj)
 
     def as_tuple(self):
         key = ''.join([

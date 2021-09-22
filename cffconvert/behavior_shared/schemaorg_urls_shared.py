@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 
+# pylint: disable=too-few-public-methods
 class SchemaorgUrlsShared:
 
     def __init__(self, cffobj):
@@ -84,7 +85,7 @@ class SchemaorgUrlsShared:
         return None, self._cffobj.get('url')
 
     def _get_urls_from_identifiers(self):
-        identifiers = self._cffobj.get('identifiers', list())
+        identifiers = self._cffobj.get('identifiers', [])
         return [identifier for identifier in identifiers if identifier.get('type') == 'url']
 
     def _has_identifiers_url(self):

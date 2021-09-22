@@ -8,7 +8,7 @@ def read_from_url(url):
 
     url_raw = rawify(url)
 
-    r = requests.get(url_raw)
-    if r.ok:
-        return r.text
-    raise Exception("Error while trying to retrieve {0}".format(url_raw))
+    response = requests.get(url_raw)
+    if response.ok:
+        return response.text
+    raise Exception(f"Error while trying to retrieve {url_raw}")

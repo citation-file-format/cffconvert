@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.ris_author_shared import RisAuthorShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class RisAuthor(Shared):
-
-    def __init__(self, author):
-        super().__init__(author)
 
     def as_string(self):
         key = ''.join([

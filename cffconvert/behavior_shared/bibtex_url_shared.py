@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
 
+# pylint: disable=too-few-public-methods
 class BibtexUrlShared:
 
     def __init__(self, cffobj):
@@ -41,7 +42,7 @@ class BibtexUrlShared:
         }
 
     def _from_identifiers_url(self):
-        identifiers = self._cffobj.get('identifiers', list())
+        identifiers = self._cffobj.get('identifiers', [])
         urls = [identifier for identifier in identifiers if identifier.get('type') == 'url']
         if len(urls) > 0:
             return 'url = {' + urls[0].get('value') + '}'
@@ -64,7 +65,7 @@ class BibtexUrlShared:
         return 'url = {' + self._cffobj.get('url') + '}'
 
     def _has_identifiers_url(self):
-        identifiers = self._cffobj.get('identifiers', list())
+        identifiers = self._cffobj.get('identifiers', [])
         urls = [identifier for identifier in identifiers if identifier.get('type') == 'url']
         if len(urls) > 0:
             return 'I'

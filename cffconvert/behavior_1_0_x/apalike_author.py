@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.apalike_author_shared import ApalikeAuthorShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class ApalikeAuthor(Shared):
-
-    def __init__(self, author):
-        super().__init__(author)
 
     def as_string(self):
         key = ''.join([

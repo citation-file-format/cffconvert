@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.bibtex_url_shared import BibtexUrlShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class BibtexUrl(Shared):
-
-    def __init__(self, cffobj):
-        super().__init__(cffobj)
 
     def as_string(self):
         key = ''.join([

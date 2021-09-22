@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.ris_url_shared import RisUrlShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class RisUrl(Shared):
-
-    def __init__(self, cffobj):
-        super().__init__(cffobj)
 
     def as_string(self):
         key = ''.join([

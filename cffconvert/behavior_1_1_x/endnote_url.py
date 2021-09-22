@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.endnote_url_shared import EndnoteUrlShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class EndnoteUrl(Shared):
-
-    def __init__(self, cffobj):
-        super().__init__(cffobj)
 
     def as_string(self):
         key = ''.join([

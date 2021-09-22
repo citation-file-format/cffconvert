@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.bibtex_author_shared import BibtexAuthorShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class BibtexAuthor(Shared):
-
-    def __init__(self, author):
-        super().__init__(author)
 
     def as_string(self):
         key = ''.join([

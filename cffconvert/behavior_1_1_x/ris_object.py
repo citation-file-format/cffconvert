@@ -26,7 +26,7 @@ class RisObject(Shared):
 
     def add_doi(self):
         if 'doi' in self.cffobj.keys():
-            self.doi = "DO  - {self.cffobj['doi']}\n"
+            self.doi = f"DO  - {self.cffobj['doi']}\n"
         if 'identifiers' in self.cffobj.keys():
             identifiers = self.cffobj['identifiers']
             for identifier in identifiers:

@@ -116,7 +116,7 @@ git config --local core.hooksPath .githooks
     ```
 1. checking the package
 
-    Keep the other shell, but open a new one. We'll return to the first shell momentarily.
+    Open another shell but keep the other one. We'll return to the first shell momentarily.
 
     ```shell
     python3 -m pip -v install --user --no-cache-dir \

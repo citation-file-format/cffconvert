@@ -70,8 +70,7 @@ git config --local core.hooksPath .githooks
 
 
 1. make sure the release notes are up to date
-1. run the live tests and unit tests, make sure they pass
-1. 
+1. preparation
 
     ```shell
     # remove old cffconvert from your system if you have it
@@ -84,15 +83,21 @@ git config --local core.hooksPath .githooks
     python3 -m pip install --user --no-cache-dir --editable .
     # check if cffconvert works, e.g.
     cffconvert --version
+    
+    # run the tests, make sure they pass
+    python3 -m pip pytest test
 
     # git push everything, merge into main as appropriate
+    
+1. &nbsp;
 
+    ```shell
     # verify that everything has been pushed and merged by testing as follows
     cd $(mktemp -d --tmpdir cffconvert-release.XXXXXX)
     git clone https://github.com/citation-file-format/cff-converter-python.git .
     python3 -m venv env
     source env/bin/activate
-    pip install --no-cache-dir .[dev]
+    python3 -m pip install --no-cache-dir .[dev]
 
     # run the tests according to section above
 

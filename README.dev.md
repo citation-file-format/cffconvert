@@ -128,8 +128,8 @@ git config --local core.hooksPath .githooks
 ### Building the docker image
 
 ```shell
-# (requires 2.0.0-alpha.0 to be downloadable from PyPI)
-docker build --tag cffconvert:2.0.0-alpha.0 .
+# (requires 2.0.0 to be downloadable from PyPI)
+docker build --tag cffconvert:2.0.0 .
 docker build --tag cffconvert:latest .
 ```
 
@@ -139,8 +139,8 @@ See <https://docs.docker.com/docker-hub/repos/#pushing-a-docker-container-image-
 
 ```shell
 # re-tag existing image
-docker tag cffconvert:2.0.0-alpha.0 citationcff/cffconvert:2.0.0-alpha.0
+docker tag cffconvert:2.0.0 citationcff/cffconvert:2.0.0
 
 # publish
-docker push citationcff/cffconvert:2.0.0-alpha.0
+docker push citationcff/cffconvert:2.0.0
 ```

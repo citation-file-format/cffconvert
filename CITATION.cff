@@ -56,7 +56,7 @@ message: "If you use this software, please cite it using these metadata."
 repository-artifact: "https://pypi.org/project/cffconvert"
 repository-code: "https://github.com/citation-file-format/cff-converter-python"
 title: cffconvert
-version: "2.0.0-alpha.0"
+version: "2.0.0"
 references:
   - authors:
       -

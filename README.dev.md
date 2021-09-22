@@ -114,9 +114,12 @@ git config --local core.hooksPath .githooks
     # upload the contents of the source distribution we just made
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
     ```
-1. checking the package
+    
+1. Checking the package
 
     Open another shell but keep the other one. We'll return to the first shell momentarily.
+    
+    Verify that there is a new version of the package on Test PyPI https://test.pypi.org/project/cffconvert/
 
     ```shell
     python3 -m pip -v install --user --no-cache-dir \

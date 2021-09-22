@@ -13,3 +13,4 @@ def read_from_url(url):
         return response.text
     print(f"Error while trying to retrieve {url_raw}")
     response.raise_for_status()
+    return None

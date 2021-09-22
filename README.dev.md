@@ -97,9 +97,7 @@ git config --local core.hooksPath .githooks
     python3 -m venv env
     source env/bin/activate
     python3 -m pip install --upgrade pip wheel setuptools
-    python3 -m pip install --no-cache-dir .[dev]
-
-    # run the tests according to section above
+    python3 -m pip install --no-cache-dir .
 
     # register with PyPI test instance https://test.pypi.org
 
@@ -108,6 +106,8 @@ git config --local core.hooksPath .githooks
     rm -rf cffconvert-egg.info
     # make a source distribution:
     python setup.py sdist
+    # make a wheel
+    python setup.py bdist_wheel 
     # install the 'upload to pypi/testpypi tool' aka twine
     pip install .[publishing]
     # upload the contents of the source distribution we just made

@@ -39,6 +39,7 @@
   "license": {
     "id": "Apache-2.0"
   },
+  "publication_date": "2021-09-22",
   "title": "cffconvert",
   "version": "2.0.0-alpha.0"
 }

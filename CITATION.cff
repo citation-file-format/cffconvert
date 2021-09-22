@@ -27,11 +27,14 @@ authors:
     given-names: Waldir
     name-suffix: Netto
 cff-version: 1.2.0
-date-released: 1900-01-01 #FIXME
+date-released: 2021-09-22
 identifiers:
   - type: doi
     value: 10.5281/zenodo.1162057
     description: "Persistent identifier for all versions of cffconvert"
+  - type: doi
+    value: 10.0000/FIXME
+    description: "Persistent identifier for this version of cffconvert"
   - type: url
     value: https://github.com/citation-file-format/cff-converter-python
     description: "URL to the GitHub repository for cffconvert"

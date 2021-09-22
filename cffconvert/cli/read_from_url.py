@@ -11,4 +11,5 @@ def read_from_url(url):
     response = requests.get(url_raw)
     if response.ok:
         return response.text
-    raise Exception(f"Error while trying to retrieve {url_raw}")
+    print(f"Error while trying to retrieve {url_raw}")
+    response.raise_for_status()

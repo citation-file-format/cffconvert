@@ -1,7 +1,8 @@
 # `cffconvert`
 
 [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1162057.svg)](https://doi.org/10.5281/zenodo.1162057)
-[![Travis build status](https://travis-ci.org/citation-file-format/cff-converter-python.svg?branch=master)](https://travis-ci.org/citation-file-format/cff-converter-python)
+[![testing](https://github.com/citation-file-format/cff-converter-python/actions/workflows/testing.yml/badge.svg)](https://github.com/citation-file-format/cff-converter-python/actions/workflows/testing.yml)
+[![linting](https://github.com/citation-file-format/cff-converter-python/actions/workflows/linting.yml/badge.svg)](https://github.com/citation-file-format/cff-converter-python/actions/workflows/linting.yml)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=citation-file-format_cff-converter-python&metric=code_smells)](https://sonarcloud.io/dashboard?id=citation-file-format_cff-converter-python)
 [![PyPI Badge](https://img.shields.io/pypi/v/cffconvert.svg?colorB=blue)](https://pypi.python.org/pypi/cffconvert/)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1811/badge)](https://bestpractices.coreinfrastructure.org/projects/1811)

@@ -81,7 +81,7 @@ class ZenodoCreatorShared:
     def _from_affiliation_and_orcid(self):
         return {
             'affiliation': self._author.get('affiliation'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_alias(self):
@@ -99,13 +99,13 @@ class ZenodoCreatorShared:
         return {
             'affiliation': self._author.get('affiliation'),
             'name': self._author.get('alias'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_alias_and_orcid(self):
         return {
             'name': self._author.get('alias'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_given(self):
@@ -123,7 +123,7 @@ class ZenodoCreatorShared:
         return {
             'affiliation': self._author.get('affiliation'),
             'name': self._author.get('given-names'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_given_and_last(self):
@@ -141,19 +141,19 @@ class ZenodoCreatorShared:
         return {
             'affiliation': self._author.get('affiliation'),
             'name': self._get_full_last_name() + ', ' + self._author.get('given-names'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_given_and_last_and_orcid(self):
         return {
             'name': self._get_full_last_name() + ', ' + self._author.get('given-names'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_given_and_orcid(self):
         return {
             'name': self._author.get('given-names'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_last(self):
@@ -171,13 +171,13 @@ class ZenodoCreatorShared:
         return {
             'affiliation': self._author.get('affiliation'),
             'name': self._get_full_last_name(),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_last_and_orcid(self):
         return {
             'name': self._get_full_last_name(),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_name(self):
@@ -195,18 +195,18 @@ class ZenodoCreatorShared:
         return {
             'affiliation': self._author.get('affiliation'),
             'name': self._author.get('name'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_name_and_orcid(self):
         return {
             'name': self._author.get('name'),
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     def _from_orcid(self):
         return {
-            'orcid': self._author.get('orcid').replace('https://orcid.org/', '')
+            'orcid': self._get_id_from_orcid_url()
         }
 
     @staticmethod
@@ -256,6 +256,9 @@ class ZenodoCreatorShared:
         if value is not None and value != '':
             return 'O'
         return '_'
+
+    def _get_id_from_orcid_url(self):
+        return self._author.get('orcid').replace('https://orcid.org/', '')
 
     @abstractmethod
     def as_dict(self):

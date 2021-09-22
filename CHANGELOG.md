@@ -1,14 +1,35 @@
-# 2.0.0 (Unreleased)
+# 2.0.0
+
+## CLI
 
 - added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
+- added support for validation and conversion of `CITATION.cff` files with `cff-version: 1.2.0`
+- argument `--outputformat` was renamed to `--format`
+- argument `-ig`, `--ignore-suspect-keys` was removed
+- argument `--verbose` was removed
+- argument `--show-trace` was added
+ 
+## Library
+
+- added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
+- added support for validation and conversion of `CITATION.cff` files with `cff-version: 1.2.0`
+- simplified the `Citation` class and its interface
+- `cli` is no longer part of the public interface of the library
+- URLs are now constructed from `identifiers`, `repository`, `repository-artifact`, `repository-code`, or `url`, with a transparent mechanism to choose what to use given the data that is available from a given `CITATION.cff` file
+- Authors are now constructed from `given-names`, `family-names` (including `name-particle` and `name-suffix`), `alias`, `name`, `affiliation` and `orcid`, with a transparent mechanism to choose what to use given the data that is available from a given `CITATION.cff` file
+
+## Other
+
 - switched to static configuration (setup.cfg over setup.py)
 - dependencies are now in `setup.cfg` as opposed to `requirements[-dev].txt`
 - updated version ranges for dependencies
 - tests are no longer `unittest.TestCase` based, but pytest with fixtures
 - added jsonschema based validation for CITATION.cff files with `cff-version: 1.2.0`
-- added support for conversion of CITATION.cff files with `cff-version: 1.2.0` 
-- simplified the `Citation` class, it was doing too much
 - implemented _State pattern_ for `Citation` to help it deal with multiple behaviors under past and future versions of the Citation File Format.
+- switched from TravisCI to GitHub Actions workflows, added linting and publishing workflows
+- CI is now testing against Python 3.6, 3.7, 3.8, and 3.9 on Mac, Linux and Windows
+- copies of the relevant schemas are now bundled with the package 
+- organized the tests to be more orthogonal to each other / less overlap between tests
 
 # 1.3.3
 

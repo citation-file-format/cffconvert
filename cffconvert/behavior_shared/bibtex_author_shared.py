@@ -1,11 +1,12 @@
 from abc import abstractmethod
+from cffconvert.behavior_shared.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods
-class BibtexAuthorShared:
+class BibtexAuthorShared(AbstractAuthorShared):
 
     def __init__(self, author):
-        self._author = author
+        super().__init__(author)
         self._behaviors = {
             'GFAN': self._from_given_and_last,
             'GFA_': self._from_given_and_last,
@@ -44,34 +45,6 @@ class BibtexAuthorShared:
 
     def _from_name(self):
         return self._author.get('name')
-
-    @staticmethod
-    def _from_thin_air():
-        return None
-
-    def _has_alias(self):
-        value = self._author.get('alias', None)
-        if value is not None and value != '':
-            return 'A'
-        return '_'
-
-    def _has_given_name(self):
-        value = self._author.get('given-names', None)
-        if value is not None and value != '':
-            return 'G'
-        return '_'
-
-    def _has_family_name(self):
-        value = self._author.get('family-names', None)
-        if value is not None and value != '':
-            return 'F'
-        return '_'
-
-    def _has_name(self):
-        value = self._author.get('name', None)
-        if value is not None and value != '':
-            return 'N'
-        return '_'
 
     @abstractmethod
     def as_string(self):

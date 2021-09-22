@@ -16,7 +16,7 @@ jobs:
                 from repository file .zenodo.json
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
+            ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
           uses: zenodraft/action@0.10.0
           with:
             compression: zip

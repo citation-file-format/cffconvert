@@ -36,8 +36,8 @@ class Citation_1_2_x(Contract):  # nopep8
         yaml = YAML(typ="safe")
 
         # while loading, convert timestamps to string
-        yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:timestamp'] = \
-            yaml.constructor.yaml_constructors[u'tag:yaml.org,2002:str']
+        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = \
+            yaml.constructor.yaml_constructors["tag:yaml.org,2002:str"]
 
         cffobj = yaml.load(self.cffstr)
 

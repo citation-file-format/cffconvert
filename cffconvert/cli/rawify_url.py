@@ -7,7 +7,7 @@ def rawify_url(url):
         assert reponame is not None, "URL should include the name of the repository."
         if refvalue is None:
             refvalue = "main"
-        if filename is None or filename == '':
+        if filename == '':
             filename = "CITATION.cff"
         return f"https://raw.githubusercontent.com/{ownername}/{reponame}/{refvalue}/{filename}"
 

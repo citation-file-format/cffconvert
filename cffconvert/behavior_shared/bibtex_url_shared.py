@@ -45,24 +45,24 @@ class BibtexUrlShared:
         identifiers = self._cffobj.get('identifiers', [])
         urls = [identifier for identifier in identifiers if identifier.get('type') == 'url']
         if len(urls) > 0:
-            return 'url = {' + urls[0].get('value') + '}'
+            return f"url = { '{' + urls[0].get('value') + '}' }"
         return None
 
     def _from_repository(self):
-        return 'url = {' + self._cffobj.get('repository') + '}'
+        return f"url = { '{' + self._cffobj.get('repository') + '}' }"
 
     def _from_repository_artifact(self):
-        return 'url = {' + self._cffobj.get('repository-artifact') + '}'
+        return f"url = { '{' + self._cffobj.get('repository-artifact') + '}' }"
 
     def _from_repository_code(self):
-        return 'url = {' + self._cffobj.get('repository-code') + '}'
+        return f"url = { '{' + self._cffobj.get('repository-code') + '}' }"
 
     @staticmethod
     def _from_thin_air():
         return None
 
     def _from_url(self):
-        return 'url = {' + self._cffobj.get('url') + '}'
+        return f"url = { '{' + self._cffobj.get('url') + '}' }"
 
     def _has_identifiers_url(self):
         identifiers = self._cffobj.get('identifiers', [])

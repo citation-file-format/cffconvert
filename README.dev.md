@@ -80,7 +80,7 @@ git config --local core.hooksPath .githooks
     which cffconvert
 
     # install the package to user space, using no caching (can bring to light dependency problems)
-    python3 -m pip install --user --no-cache-dir --editable .
+    python3 -m pip install --user --no-cache-dir .
     # check if cffconvert works, e.g.
     cffconvert --version
     

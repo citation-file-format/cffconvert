@@ -111,7 +111,7 @@ git config --local core.hooksPath .githooks
     python setup.py bdist_wheel 
     # install the 'upload to pypi/testpypi tool' aka twine
     pip install .[publishing]
-    # upload the contents of the source distribution we just made
+    # upload the contents of the source distribution we just made (requires credentials for test.pypi.org)
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
     ```
     
@@ -127,8 +127,12 @@ git config --local core.hooksPath .githooks
     --extra-index-url https://pypi.org/simple cffconvert
 
     # check that the package works as it should when installed from pypitest
+    ```
+1. FINAL STEP: upload to PyPI
 
-    # FINAL STEP: upload to PyPI
+    Go back to the first shell, then (requires credentials for pypi.org)
+
+    ```shell
     twine upload dist/*
     ```
 

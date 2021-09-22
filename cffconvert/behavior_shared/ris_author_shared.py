@@ -26,19 +26,19 @@ class RisAuthorShared:
         }
 
     def _from_alias(self):
-        return 'AU  - ' + self._author.get('alias') + '\n'
+        return f"AU  - { self._author.get('alias') }\n"
 
     def _from_given_and_last(self):
-        return 'AU  - ' + self._get_full_last_name() + ', ' + self._author.get('given-names') + '\n'
+        return f"AU  - { self._get_full_last_name() }, { self._author.get('given-names') }\n"
 
     def _from_given(self):
-        return 'AU  - ' + self._author.get('given-names') + '\n'
+        return f"AU  - { self._author.get('given-names') }\n"
 
     def _from_last(self):
-        return 'AU  - ' + self._get_full_last_name() + '\n'
+        return f"AU  - { self._get_full_last_name() }\n"
 
     def _from_name(self):
-        return 'AU  - ' + self._author.get('name') + '\n'
+        return f"AU  - { self._author.get('name') }\n"
 
     @staticmethod
     def _from_thin_air():

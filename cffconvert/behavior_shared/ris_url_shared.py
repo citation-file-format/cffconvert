@@ -45,24 +45,24 @@ class RisUrlShared:
         identifiers = self._cffobj.get('identifiers', [])
         urls = [identifier for identifier in identifiers if identifier.get('type') == 'url']
         if len(urls) > 0:
-            return 'UR  - ' + urls[0].get('value') + '\n'
+            return f"UR  - { urls[0].get('value') }\n"
         return None
 
     def _from_repository(self):
-        return 'UR  - ' + self._cffobj.get('repository') + '\n'
+        return f"UR  - { self._cffobj.get('repository') }\n"
 
     def _from_repository_artifact(self):
-        return 'UR  - ' + self._cffobj.get('repository-artifact') + '\n'
+        return f"UR  - { self._cffobj.get('repository-artifact') }\n"
 
     def _from_repository_code(self):
-        return 'UR  - ' + self._cffobj.get('repository-code') + '\n'
+        return f"UR  - { self._cffobj.get('repository-code') }\n"
 
     @staticmethod
     def _from_thin_air():
         return None
 
     def _from_url(self):
-        return 'UR  - ' + self._cffobj.get('url') + '\n'
+        return f"UR  - { self._cffobj.get('url') }\n"
 
     def _has_identifiers_url(self):
         identifiers = self._cffobj.get('identifiers', [])

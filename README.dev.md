@@ -2,7 +2,6 @@
 
 ## Install
 
-
 ```shell
 # get a copy of the cff-converter-python software
 git clone https://github.com/citation-file-format/cff-converter-python.git
@@ -13,9 +12,9 @@ python3 -m venv env
 # activate the virtual environment
 source env/bin/activate
 # upgrade pip, wheel, setuptools
-pip install --upgrade pip wheel setuptools
+python3 -m pip install --upgrade pip wheel setuptools
 # install cffconvert and the 'dev' set of additional dependencies
-pip install --editable .[dev]
+python3 -m pip install --editable .[dev]
 ```
 
 ## Running tests
@@ -97,6 +96,7 @@ git config --local core.hooksPath .githooks
     git clone https://github.com/citation-file-format/cff-converter-python.git .
     python3 -m venv env
     source env/bin/activate
+    python3 -m pip install --upgrade pip wheel setuptools
     python3 -m pip install --no-cache-dir .[dev]
 
     # run the tests according to section above

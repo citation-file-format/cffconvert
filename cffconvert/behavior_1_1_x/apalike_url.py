@@ -1,10 +1,8 @@
 from cffconvert.behavior_shared.apalike_url_shared import ApalikeUrlShared as Shared
 
 
+# pylint: disable=too-few-public-methods
 class ApalikeUrl(Shared):
-
-    def __init__(self, cffobj):
-        super().__init__(cffobj)
 
     def as_string(self):
         key = ''.join([

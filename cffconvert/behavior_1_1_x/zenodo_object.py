@@ -8,18 +8,16 @@ class ZenodoObject(Shared):
         '1.1.0'
     ]
 
-    def __init__(self, cffobj, initialize_empty=False):
-        super().__init__(cffobj, initialize_empty)
-
     def add_creators(self):
-        authors_cff = self.cffobj.get('authors', list())
+        authors_cff = self.cffobj.get('authors', [])
         creators_zenodo = [ZenodoCreator(a).as_dict() for a in authors_cff]
         self.creators = [c for c in creators_zenodo if c is not None]
         return self
 
     def add_publication_date(self):
         if 'date-released' in self.cffobj.keys():
-            self.publication_date = '{:d}-{:02d}-{:02d}'.format(self.cffobj['date-released'].year,
-                                                                self.cffobj['date-released'].month,
-                                                                self.cffobj['date-released'].day)
+            year = self.cffobj['date-released'].year
+            month = self.cffobj['date-released'].month
+            day = self.cffobj['date-released'].day
+            self.publication_date = f"{year:d}-{month:02d}-{day:02d}"
         return self

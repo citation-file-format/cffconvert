@@ -14,9 +14,7 @@ python3 -m venv env
 source env/bin/activate
 # upgrade pip, wheel, setuptools
 pip install --upgrade pip wheel setuptools
-# install cffconvert itself
-pip install --editable .
-# install any packages used for development such as for testing
+# install cffconvert and the 'dev' set of additional dependencies
 pip install --editable .[dev]
 ```
 
@@ -27,10 +25,8 @@ Running the tests requires an activated virtual environment with the development
 ```shell
 # (from the project root)
 
-# run unit tests
-python3 -m pytest test/1.2.0
-python3 -m pytest test/1.1.0
-python3 -m pytest test/1.0.3
+# run all tests
+python3 -m pytest test/
 
 # tests for consistent file naming
 bash test/test_consistent_file_naming.sh dir=test/
@@ -60,8 +56,6 @@ isort --check-only --diff cffconvert
 # recursively fix import style for the cffconvert module only
 isort cffconvert
 ```
-
-To fix readability of your code style you can use [yapf](https://github.com/google/yapf).
 
 Developers should consider enabling automatic linting with `prospector` and `isort` on commit by enabling the git hook from `.githooks/pre-commit`, like so:
 

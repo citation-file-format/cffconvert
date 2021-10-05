@@ -52,7 +52,7 @@ See [docs/alternative-install-options.md](docs/alternative-install-options.md) f
 
 ## Docker
 
-`cffconvert` is available from DockerHub: https://hub.docker.com/repository/docker/citationcff/cffconvert
+`cffconvert` is available from DockerHub: https://hub.docker.com/r/citationcff/cffconvert
 
 Example usage:
 

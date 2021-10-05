@@ -57,9 +57,9 @@ See [docs/alternative-install-options.md](docs/alternative-install-options.md) f
 Example usage:
 
 ```shell
-docker run --rm -ti -v $PWD:/app citationcff/cffconvert --validate
-docker run --rm -ti -v $PWD:/app citationcff/cffconvert --version
-docker run --rm -ti -v $PWD:/app citationcff/cffconvert --help
+docker run --rm -v $PWD:/app citationcff/cffconvert --validate
+docker run --rm -v $PWD:/app citationcff/cffconvert --version
+docker run --rm -v $PWD:/app citationcff/cffconvert --help
 # etc
 ```
 

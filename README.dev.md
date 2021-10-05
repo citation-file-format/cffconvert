@@ -159,9 +159,17 @@ docker run --rm -ti -v $PWD:/app cffconvert
 See <https://docs.docker.com/docker-hub/repos/#pushing-a-docker-container-image-to-docker-hub> for more information on publishing.
 
 ```shell
-# re-tag existing image
+# log out of any dockerhub credentials
+docker logout
+
+# log back in with username 'citationcff' credentials
+docker login
+
+# re-tag existing images
 docker tag cffconvert:2.0.0 citationcff/cffconvert:2.0.0
+docker tag cffconvert:latest citationcff/cffconvert:latest
 
 # publish
 docker push citationcff/cffconvert:2.0.0
+docker push citationcff/cffconvert:latest
 ```

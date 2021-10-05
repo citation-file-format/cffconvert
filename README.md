@@ -12,7 +12,7 @@
 
 Command line program to validate and convert [`CITATION.cff`](https://github.com/citation-file-format/citation-file-format) files.
 
-Supported input versions of the Citation File Format:
+## Supported input versions of the Citation File Format
 
 | Citation File Format schema version | Link to Zenodo release |
 | --- | --- |
@@ -22,7 +22,7 @@ Supported input versions of the Citation File Format:
 | `1.0.2` | [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1120256.svg)](https://doi.org/10.5281/zenodo.1120256) |
 | `1.0.1` | [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1117789.svg)](https://doi.org/10.5281/zenodo.1117789) |
 
-Supported output formats:
+## Supported output formats
 
 1.  APA-like plaintext
 1.  BibTeX

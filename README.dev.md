@@ -148,9 +148,9 @@ docker build --tag cffconvert:latest .
 
 See if the Docker image works as expected:
 ```shell
-docker run --rm -ti -v $PWD:/app cffconvert --validate
-docker run --rm -ti -v $PWD:/app cffconvert --version
-docker run --rm -ti -v $PWD:/app cffconvert
+docker run --rm -v $PWD:/app cffconvert --validate
+docker run --rm -v $PWD:/app cffconvert --version
+docker run --rm -v $PWD:/app cffconvert
 # etc
 ```
 

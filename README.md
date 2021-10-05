@@ -50,6 +50,19 @@ should now return the location of the program.
 
 See [docs/alternative-install-options.md](docs/alternative-install-options.md) for alternative install options.
 
+## Docker
+
+`cffconvert` is available from DockerHub: https://hub.docker.com/repository/docker/citationcff/cffconvert
+
+Example usage:
+
+```shell
+docker run --rm -ti -v $PWD:/app citationcff/cffconvert --validate
+docker run --rm -ti -v $PWD:/app citationcff/cffconvert --version
+docker run --rm -ti -v $PWD:/app citationcff/cffconvert --help
+# etc
+```
+
 ## Command line interface
 
 See `cffconvert`'s options:

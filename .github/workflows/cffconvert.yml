@@ -5,6 +5,7 @@ on:
     paths:
       - CITATION.cff
   workflow_dispatch:
+
 jobs:
   validate:
     name: "validate"

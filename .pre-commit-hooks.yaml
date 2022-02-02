@@ -1,0 +1,8 @@
+- id: cffconvert
+  name: cffconvert
+  description: Validate and convert CITATION.cff files
+  entry: cffconvert --validate -i
+  language: python
+  files: \.cff$
+  types: [text]
+  require_serial: true

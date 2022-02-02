@@ -1,6 +1,6 @@
-- id: cffconvert
-  name: cffconvert
-  description: Validate and convert CITATION.cff files
+- id: validate-cff
+  name: Validate CITATION.cff files
+  description: Runs `cffconvert --validate` on `.cff` files.
   entry: cffconvert --validate -i
   language: python
   files: \.cff$

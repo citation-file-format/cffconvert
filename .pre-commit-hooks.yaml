@@ -1,8 +1,9 @@
 - id: validate-cff
-  name: Validate CITATION.cff files
-  description: Runs `cffconvert --validate` on `.cff` files.
-  entry: cffconvert --validate -i
+  name: Validate repo CITATION.cff file
+  description: Runs `cffconvert --validate`.
+  entry: cffconvert --validate
   language: python
-  files: \.cff$
+  files: ^CITATION.cff$
+  pass_filenames: false
   types: [text]
   require_serial: true

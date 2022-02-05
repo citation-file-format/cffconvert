@@ -1,0 +1,9 @@
+- id: validate-cff
+  name: Validate repo CITATION.cff file
+  description: Runs `cffconvert --validate`.
+  entry: cffconvert --validate
+  language: python
+  files: ^CITATION.cff$
+  pass_filenames: false
+  types: [text]
+  require_serial: true

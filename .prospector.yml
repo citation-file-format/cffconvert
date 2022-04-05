@@ -16,7 +16,7 @@ ignore-paths:
 pyroma:
     run: true
 
-pep8:
+pycodestyle:
   full: true
   disable:
     - E501 # test line length with pylint instead, as that can be disabled per file and/or per line if needed
@@ -26,7 +26,7 @@ pylint:
   options:
     max-line-length: 120
 
-pep257:
+pydocstyle:
   disable:
     # Disable because not part of PEP257 official convention:
     # see http://pep257.readthedocs.io/en/latest/error_codes.html

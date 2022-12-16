@@ -3,15 +3,15 @@ from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
 from pykwalify.errors import SchemaError as PykwalifySchemaError
 
 
-def validate_or_write_output(outfile, outputformat, validate_only, citation):
+def validate_or_write_output(outfile, outputformat, validate_only, citation, verbose=True):
     condition = (validate_only, outputformat is not None)
     if condition == (True, False):
         # just validate, there is no target outputformat
-        citation.validate()
+        citation.validate(verbose)
         print(f"Citation metadata are valid according to schema version {citation.cffversion}.")
     elif condition == (True, True):
         # just validate, ignore the target outputformat
-        citation.validate()
+        citation.validate(verbose)
         print(f"Ignoring output format. Citation metadata are valid according to schema version {citation.cffversion}.")
     elif condition == (False, False):
         # user hasn't indicated what they want
@@ -19,7 +19,7 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation):
     elif condition == (False, True):
         # validate the input, then write to target outputformat
         try:
-            citation.validate()
+            citation.validate(verbose)
         except (PykwalifySchemaError, JsonschemaSchemaError):
             print(f"'{citation.src}' does not pass validation. Conversion aborted.")
             ctx = click.get_current_context()

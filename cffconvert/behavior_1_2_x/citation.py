@@ -1,6 +1,7 @@
 import json
 import os
 import jsonschema
+from jsonschema.exceptions import ValidationError
 from ruamel.yaml import YAML
 from cffconvert.behavior_1_2_x.apalike_object import ApalikeObject
 from cffconvert.behavior_1_2_x.bibtex_object import BibtexObject
@@ -70,5 +71,19 @@ class Citation_1_2_x(Contract):  # nopep8
     def as_zenodo(self):
         return ZenodoObject(self.cffobj).as_string()
 
-    def validate(self):
-        jsonschema.validate(instance=self.cffobj, schema=self.schema, format_checker=jsonschema.FormatChecker())
+    def validate(self, verbose=True):
+        try:
+            jsonschema.validate(instance=self.cffobj, schema=self.schema, format_checker=jsonschema.FormatChecker())
+        except ValidationError as error:
+            error_lines = str(error).splitlines()
+            is_long = len(error_lines) > 25
+
+            if is_long and not verbose:
+                truncated_message = "\n".join(
+                        [ *error_lines[0:25], "", "...truncated output...", "Add --verbose flag for full output."]
+                        )
+                raise ValidationError(truncated_message)
+            raise
+
+
+            

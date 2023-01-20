@@ -87,7 +87,7 @@ class ZenodoObjectShared:
             if self.cffobj['type'] == "software":
                 self.type = "software"
             if self.cffobj['type'] == "dataset":
-                self.type = "data"
+                self.type = "dataset"
         return self
 
     def add_title(self):

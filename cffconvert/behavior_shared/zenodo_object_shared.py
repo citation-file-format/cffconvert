@@ -12,7 +12,8 @@ class ZenodoObjectShared:
         'license',
         'publication_date',
         'title',
-        'version'
+        'version',
+        'upload_type'
     ]
     supported_cff_versions = None
 
@@ -25,6 +26,7 @@ class ZenodoObjectShared:
         self.publication_date = None
         self.title = None
         self.version = None
+        self.upload_type = None
         if initialize_empty:
             # clause for testing purposes
             pass
@@ -40,7 +42,8 @@ class ZenodoObjectShared:
             "license": self.license,
             "publication_date": self.publication_date,
             "title": self.title,
-            "version": self.version
+            "version": self.version,
+            "upload_type": self.type
         }
         filtered = [item for item in data.items() if item[1] is not None]
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + '\n'
@@ -52,7 +55,8 @@ class ZenodoObjectShared:
             .add_license()           \
             .add_publication_date()  \
             .add_title()             \
-            .add_version()
+            .add_version()           \
+            .add_type()
         return self
 
     @abstractmethod
@@ -77,6 +81,14 @@ class ZenodoObjectShared:
     @abstractmethod
     def add_publication_date(self):
         pass
+
+    def add_type(self):
+        if 'type' in self.cffobj.keys():
+            if self.cffobj['type'] == "software":
+                self.type = "software"
+            if self.cffobj['type'] == "dataset":
+                self.type = "data"
+        return self
 
     def add_title(self):
         if 'title' in self.cffobj.keys():

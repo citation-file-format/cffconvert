@@ -134,7 +134,7 @@ class SchemaorgAuthorShared(AbstractAuthorShared):
             '____AO_': self._from_affiliation_and_orcid,
             '____A__': self._from_affiliation,
             '_____O_': self._from_orcid,
-            '______': SchemaorgAuthorShared._from_thin_air
+            '_______': SchemaorgAuthorShared._from_thin_air
         }
 
     def _from_affiliation_and_email(self):

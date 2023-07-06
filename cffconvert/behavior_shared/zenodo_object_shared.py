@@ -1,4 +1,3 @@
-import json
 from abc import abstractmethod
 
 
@@ -12,12 +11,11 @@ class ZenodoObjectShared:
         'license',
         'publication_date',
         'title',
-        'version',
-        'upload_type'
+        'version'
     ]
     supported_cff_versions = None
 
-    def __init__(self, cffobj, initialize_empty=False):
+    def __init__(self, cffobj):
         self.cffobj = cffobj
         self.creators = None
         self.description = None
@@ -26,38 +24,10 @@ class ZenodoObjectShared:
         self.publication_date = None
         self.title = None
         self.version = None
-        self.upload_type = None
-        if initialize_empty:
-            # clause for testing purposes
-            pass
-        else:
-            self.check_cffobj()
-            self.add_all()
 
-    def __str__(self, sort_keys=True, indent=2):
-        data = {
-            "creators": self.creators,
-            "description": self.description,
-            "keywords": self.keywords,
-            "license": self.license,
-            "publication_date": self.publication_date,
-            "title": self.title,
-            "version": self.version,
-            "upload_type": self.type
-        }
-        filtered = [item for item in data.items() if item[1] is not None]
-        return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + '\n'
-
+    @abstractmethod
     def add_all(self):
-        self.add_creators()          \
-            .add_description()       \
-            .add_keywords()          \
-            .add_license()           \
-            .add_publication_date()  \
-            .add_title()             \
-            .add_version()           \
-            .add_type()
-        return self
+        pass
 
     @abstractmethod
     def add_creators(self):
@@ -81,14 +51,6 @@ class ZenodoObjectShared:
     @abstractmethod
     def add_publication_date(self):
         pass
-
-    def add_type(self):
-        if 'type' in self.cffobj.keys():
-            if self.cffobj['type'] == "software":
-                self.type = "software"
-            if self.cffobj['type'] == "dataset":
-                self.type = "dataset"
-        return self
 
     def add_title(self):
         if 'title' in self.cffobj.keys():

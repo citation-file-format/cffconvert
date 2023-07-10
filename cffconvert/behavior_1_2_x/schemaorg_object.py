@@ -85,7 +85,8 @@ class SchemaorgObject(Shared):
         elif typ == "software":
             self.type = "SoftwareSourceCode"
         else:
-            self.type = "CreativeWork"
+            # default value for 'type' is 'software'
+            self.type = "SoftwareSourceCode"
         return self
 
     def add_urls(self):

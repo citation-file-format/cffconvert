@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org",
-  "@type": "CreativeWork",
+  "@type": "SoftwareSourceCode",
   "author": [
     {
       "@id": "https://orcid.org/0000-0002-7064-4069",

@@ -59,9 +59,12 @@ class ZenodoObject(Shared):
         return self
 
     def add_upload_type(self):
-        if "type" in self.cffobj.keys():
-            if self.cffobj["type"] == "software":
-                self.upload_type = "software"
-            if self.cffobj["type"] == "dataset":
-                self.upload_type = "dataset"
+        typ = self.cffobj.get("type", "")
+        if typ == "dataset":
+            self.upload_type = "dataset"
+        elif typ == "software":
+            self.upload_type = "software"
+        else:
+            # default value for type is 'software'
+            self.upload_type = "software"
         return self

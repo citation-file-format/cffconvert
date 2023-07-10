@@ -49,5 +49,8 @@ class TestZenodoObject(Contract):
     def test_title(self, zenodo_object):
         assert zenodo_object.add_title().title == 'the title'
 
+    def test_upload_type(self, zenodo_object):
+        assert zenodo_object.add_upload_type().upload_type == 'software'
+
     def test_version(self, zenodo_object):
         assert zenodo_object.add_version().version is None

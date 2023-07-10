@@ -1,0 +1,18 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "author": [
+    {
+      "@id": "https://orcid.org/0000-0002-7064-4069",
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "legalName": "Netherlands eScience Center"
+      },
+      "alternateName": "jspaaks",
+      "familyName": "von der Spaaks Jr.",
+      "givenName": "Jurriaan H."
+    }
+  ],
+  "name": "the title"
+}

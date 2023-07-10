@@ -1,4 +1,3 @@
-import json
 from abc import abstractmethod
 
 
@@ -6,20 +5,20 @@ from abc import abstractmethod
 class SchemaorgObjectShared:
 
     supported_schemaorg_props = [
-        'author',
-        'codeRepository',
-        'datePublished',
-        'description',
-        'identifier',
-        'keywords',
-        'license',
-        'name',
-        'url',
-        'version'
+        "author",
+        "codeRepository",
+        "datePublished",
+        "description",
+        "identifier",
+        "keywords",
+        "license",
+        "name",
+        "url",
+        "version"
     ]
     supported_cff_versions = None
 
-    def __init__(self, cffobj, initialize_empty=False, context="https://schema.org"):
+    def __init__(self, cffobj):
         self.cffobj = cffobj
         self.author = None
         self.code_repository = None
@@ -31,43 +30,14 @@ class SchemaorgObjectShared:
         self.name = None
         self.url = None
         self.version = None
-        self.context = context
-        if initialize_empty:
-            # clause for testing purposes
-            pass
-        else:
-            self.check_cffobj()
-            self.add_all()
 
-    def __str__(self, sort_keys=True, indent=2):
-        data = {
-            "@context": self.context,
-            "@type": "SoftwareSourceCode",
-            "author": self.author,
-            "codeRepository": self.code_repository,
-            "datePublished": self.date_published,
-            "description": self.description,
-            "identifier": self.identifier,
-            "keywords": self.keywords,
-            "license": self.license,
-            "name": self.name,
-            "url": self.url,
-            "version": self.version
-        }
-        filtered = [item for item in data.items() if item[1] is not None]
-        return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + '\n'
+    @abstractmethod
+    def __str__(self):
+        pass
 
+    @abstractmethod
     def add_all(self):
-        self.add_author()           \
-            .add_date_published()   \
-            .add_description()      \
-            .add_identifier()       \
-            .add_keywords()         \
-            .add_license()          \
-            .add_name()             \
-            .add_urls()             \
-            .add_version()
-        return self
+        pass
 
     @abstractmethod
     def add_author(self):
@@ -78,8 +48,8 @@ class SchemaorgObjectShared:
         pass
 
     def add_description(self):
-        if 'abstract' in self.cffobj.keys():
-            self.description = self.cffobj['abstract']
+        if "abstract" in self.cffobj.keys():
+            self.description = self.cffobj["abstract"]
         return self
 
     @abstractmethod
@@ -87,18 +57,18 @@ class SchemaorgObjectShared:
         pass
 
     def add_keywords(self):
-        if 'keywords' in self.cffobj.keys():
-            self.keywords = self.cffobj['keywords']
+        if "keywords" in self.cffobj.keys():
+            self.keywords = self.cffobj["keywords"]
         return self
 
     def add_license(self):
-        if 'license' in self.cffobj.keys():
+        if "license" in self.cffobj.keys():
             self.license = f"https://spdx.org/licenses/{self.cffobj['license']}"
         return self
 
     def add_name(self):
-        if 'title' in self.cffobj.keys():
-            self.name = self.cffobj['title']
+        if "title" in self.cffobj.keys():
+            self.name = self.cffobj["title"]
         return self
 
     @abstractmethod
@@ -106,7 +76,7 @@ class SchemaorgObjectShared:
         pass
 
     def add_version(self):
-        if 'version' in self.cffobj.keys():
+        if "version" in self.cffobj.keys():
             self.version = self.cffobj['version']
         return self
 
@@ -116,7 +86,7 @@ class SchemaorgObjectShared:
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
             raise ValueError("Expected cffobj to be of type 'dict'.")
-        if 'cff-version' not in self.cffobj.keys():
+        if "cff-version" not in self.cffobj.keys():
             raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
-        if self.cffobj['cff-version'] not in self.supported_cff_versions:
+        if self.cffobj["cff-version"] not in self.supported_cff_versions:
             raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")

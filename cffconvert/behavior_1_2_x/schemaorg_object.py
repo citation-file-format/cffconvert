@@ -90,4 +90,8 @@ class SchemaorgObject(Shared):
 
     def add_urls(self):
         self.code_repository, self.url = SchemaorgUrls(self.cffobj).as_tuple()
+        # schema.org does not specify a target conversion key for
+        # repository-code when type == 'dataset', so remove it
+        if self.cffobj.get("type", "") == "dataset":
+            self.code_repository = None
         return self

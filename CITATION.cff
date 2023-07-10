@@ -49,6 +49,7 @@ message: If you use this software, please cite it using these metadata.
 repository-artifact: https://pypi.org/project/cffconvert
 repository-code: https://github.com/citation-file-format/cff-converter-python
 title: cffconvert
+type: software
 version: 2.0.0
 references:
   - authors:

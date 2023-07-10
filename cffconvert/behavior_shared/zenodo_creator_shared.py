@@ -27,7 +27,7 @@ class ZenodoCreatorShared(AbstractAuthorShared):
             'G_ANAO': self._from_given_and_affiliation_and_orcid,
             'G_ANA_': self._from_given_and_affiliation,
             'G_AN_O': self._from_given_and_orcid,
-            'G_AT__': self._from_given,
+            'G_AN__': self._from_given,
             'G_A_AO': self._from_given_and_affiliation_and_orcid,
             'G_A_A_': self._from_given_and_affiliation,
             'G_A__O': self._from_given_and_orcid,

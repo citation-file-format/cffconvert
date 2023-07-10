@@ -57,6 +57,9 @@ class TestSchemaorgObject(Contract):
     def test_version(self, schemaorg_object):
         assert schemaorg_object.add_version().version is None
 
+    def test_upload_type(self, schemaorg_object):
+        assert schemaorg_object.add_type().type == "SoftwareSourceCode"
+
     def test_url(self, schemaorg_object):
         assert schemaorg_object.add_urls().url is None
 

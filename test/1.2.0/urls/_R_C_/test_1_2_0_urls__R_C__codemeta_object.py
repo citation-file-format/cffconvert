@@ -47,6 +47,9 @@ class TestCodemetaObject(Contract):
     def test_name(self, codemeta_object):
         assert codemeta_object.add_name().name == 'Test title'
 
+    def test_upload_type(self, codemeta_object):
+        assert codemeta_object.add_type().type == "SoftwareSourceCode"
+
     def test_url(self, codemeta_object):
         assert codemeta_object.add_urls().url == "https://github.com/the-url-from-repository"
 

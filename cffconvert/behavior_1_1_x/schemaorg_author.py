@@ -11,6 +11,7 @@ class SchemaorgAuthor(Shared):
             self._has_alias(),
             self._has_name(),
             self._has_affiliation(),
-            self._has_orcid()
+            self._has_orcid(),
+            self._has_email()
         ])
         return self._behaviors[key]()

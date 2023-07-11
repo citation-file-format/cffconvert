@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+authors = [
+    { name = "Jurriaan H. Spaaks", email = "j.spaaks@esciencecenter.nl" }
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "click >= 7.0, <9",
+    "requests >=2.20, <3",
+    "ruamel.yaml >=0.16.0",
+    "pykwalify >=1.6",
+    "jsonschema >=3.0, <5",
+]
+description = "Command line program to validate and convert CITATION.cff files."
+keywords = [
+    "citation",
+    "credit",
+    "CITATION.cff",
+    "BibTeX",
+    "EndNote",
+    "RIS",
+    "CodeMeta",
+    "Zenodo"
+]
+license = {text = "Apache Software License"}
+name = "cffconvert"
+readme = "README.md"
+requires-python = ">=3.7"
+version = "2.0.0"
+
+[project.urls]
+Changelog = "https://github.com/citation-file-format/cff-converter-python/blob/main/CHANGELOG.md"
+Repository = "https://github.com/citation-file-format/cff-converter-python"
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "isort",
+    "prospector[with_pyroma] >= 1.4"
+]
+gcloud = [
+    "flask"
+]
+linting = [
+    "pre-commit"
+]
+publishing = [
+    "twine",
+    "wheel"
+]
+testing = [
+    "pytest >= 6",
+    "pytest-cov"
+]
+
+[project.scripts]
+cffconvert = "cffconvert.cli.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.isort]
+force_alphabetical_sort_within_sections = true
+force_single_line = true
+line_length = 120
+lines_after_imports = 2
+lines_between_sections = 0
+src_paths = ["src", "tests"]

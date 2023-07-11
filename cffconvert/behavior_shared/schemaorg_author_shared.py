@@ -71,6 +71,7 @@ class SchemaorgAuthorShared(AbstractAuthorShared):
             '____AOE': self._from_affiliation_and_orcid_and_email,
             '____A_E': self._from_affiliation_and_email,
             '_____OE': self._from_orcid_and_email,
+            '______E': self._from_email,
             'GFANAO_': self._from_given_and_last_and_alias_and_affiliation_and_orcid,
             'GFANA__': self._from_given_and_last_and_alias_and_affiliation,
             'GFAN_O_': self._from_given_and_last_and_alias_and_orcid,
@@ -235,6 +236,12 @@ class SchemaorgAuthorShared(AbstractAuthorShared):
             '@id': self._author.get('orcid'),
             '@type': 'Person',
             'alternateName': self._author.get('alias'),
+            'email': self._author.get('email')
+        }
+
+    def _from_email(self):
+        return {
+            '@type': 'Person',
             'email': self._author.get('email')
         }
 

@@ -58,6 +58,11 @@ options = {
         is_flag=True,
         default=False,
         help="Print version and exit."
+    ),
+    "verbose": dict(
+        is_flag=True,
+        default=False,
+        help="Control output verbosity."
     )
 }
 
@@ -71,8 +76,9 @@ options = {
 @click.option("--show-trace", "show_trace", **options["show_trace"])
 @click.option("--validate", "validate_only", **options["validate_only"])
 @click.option("--version", "version", **options["version"])
+@click.option("--verbose", "verbose", **options["verbose"])
 # pylint: disable=too-many-arguments
-def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only, version):
+def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only, version, verbose):
 
     check_early_exits(show_help, version)
 
@@ -88,4 +94,4 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only
     citation = create_citation(infile, url)
 
     # either validate and exit, or convert to the selected output format
-    validate_or_write_output(outfile, outputformat, validate_only, citation)
+    validate_or_write_output(outfile, outputformat, validate_only, citation, verbose)

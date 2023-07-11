@@ -60,6 +60,6 @@ class Citation_1_1_x(Contract):  # nopep8
     def as_zenodo(self):
         return ZenodoObject(self.cffobj).as_string()
 
-    def validate(self):
+    def validate(self, verbose=True):
         # validation using YAML based schema
         Core(source_data=self.cffobj, schema_data=self.schema).validate(raise_exception=True)

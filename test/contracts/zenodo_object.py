@@ -33,5 +33,9 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def test_upload_type(self, fixture):
+        pass
+
+    @abstractmethod
     def test_version(self, fixture):
         pass

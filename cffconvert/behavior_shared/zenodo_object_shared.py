@@ -1,3 +1,4 @@
+import json
 from abc import abstractmethod
 
 
@@ -11,11 +12,12 @@ class ZenodoObjectShared:
         "license",
         "publication_date",
         "title",
+        "upload_type",
         "version"
     ]
     supported_cff_versions = None
 
-    def __init__(self, cffobj):
+    def __init__(self, cffobj, initialize_empty=False):
         self.cffobj = cffobj
         self.creators = None
         self.description = None
@@ -23,15 +25,39 @@ class ZenodoObjectShared:
         self.license = None
         self.publication_date = None
         self.title = None
+        self.upload_type = None
         self.version = None
+        if initialize_empty:
+            # clause for testing purposes
+            pass
+        else:
+            self.check_cffobj()
+            self.add_all()
 
-    @abstractmethod
-    def __str__(self):
-        pass
+    def __str__(self, sort_keys=True, indent=2):
+        data = {
+            "creators": self.creators,
+            "description": self.description,
+            "keywords": self.keywords,
+            "license": self.license,
+            "publication_date": self.publication_date,
+            "title": self.title,
+            "upload_type": self.upload_type,
+            "version": self.version
+        }
+        filtered = [item for item in data.items() if item[1] is not None]
+        return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + "\n"
 
-    @abstractmethod
     def add_all(self):
-        pass
+        self.add_creators()          \
+            .add_description()       \
+            .add_keywords()          \
+            .add_license()           \
+            .add_publication_date()  \
+            .add_title()             \
+            .add_upload_type()       \
+            .add_version()
+        return self
 
     @abstractmethod
     def add_creators(self):
@@ -68,6 +94,10 @@ class ZenodoObjectShared:
 
     def as_string(self):
         return self.__str__()
+
+    @abstractmethod
+    def add_upload_type(self):
+        pass
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):

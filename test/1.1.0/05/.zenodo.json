@@ -23,5 +23,6 @@
   },
   "publication_date": "2018-01-16",
   "title": "cff-converter-python",
+  "upload_type": "software",
   "version": "1.0.0"
 }

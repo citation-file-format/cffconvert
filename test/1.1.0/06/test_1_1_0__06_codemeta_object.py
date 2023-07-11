@@ -1,8 +1,8 @@
 import os
-import pytest
 from test.contracts.codemeta_object import Contract
-from cffconvert.behavior_1_1_x.codemeta_object import CodemetaObject
+import pytest
 from cffconvert import Citation
+from cffconvert.behavior_1_1_x.codemeta_object import CodemetaObject
 
 
 @pytest.fixture(scope="module")

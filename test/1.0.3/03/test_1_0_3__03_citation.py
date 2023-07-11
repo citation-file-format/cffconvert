@@ -1,8 +1,8 @@
-import os
 import datetime
+import os
+import pykwalify
 import pytest
 from cffconvert.citation import Citation
-import pykwalify
 
 
 @pytest.fixture(scope="module")

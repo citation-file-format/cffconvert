@@ -1,8 +1,8 @@
 import os
-import pytest
 from test.contracts.ris_object import Contract
-from cffconvert.behavior_1_1_x.ris_object import RisObject
+import pytest
 from cffconvert import Citation
+from cffconvert.behavior_1_1_x.ris_object import RisObject
 
 
 @pytest.fixture(scope="module")

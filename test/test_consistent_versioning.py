@@ -2,8 +2,8 @@ import json
 import os
 import re
 from ruamel.yaml import YAML
-from cffconvert.version import __version__ as expected_version
 from cffconvert.root import get_package_root
+from cffconvert.version import __version__ as expected_version
 
 
 def test_citation_cff():

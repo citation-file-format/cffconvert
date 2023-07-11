@@ -1,8 +1,8 @@
 import os
-import pytest
 from test.contracts.endnote_object import Contract
-from cffconvert.behavior_1_0_x.endnote_object import EndnoteObject
+import pytest
 from cffconvert import Citation
+from cffconvert.behavior_1_0_x.endnote_object import EndnoteObject
 
 
 @pytest.fixture(scope="module")

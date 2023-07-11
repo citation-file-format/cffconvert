@@ -1,8 +1,8 @@
 import os
-import pytest
 from test.contracts.apalike_object import Contract
-from cffconvert.behavior_1_1_x.apalike_object import ApalikeObject
+import pytest
 from cffconvert import Citation
+from cffconvert.behavior_1_1_x.apalike_object import ApalikeObject
 
 
 @pytest.fixture(scope="module")

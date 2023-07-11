@@ -1,8 +1,8 @@
 import os
-import pytest
 from test.contracts.bibtex_object import Contract
-from cffconvert.behavior_1_2_x.bibtex_object import BibtexObject
+import pytest
 from cffconvert import Citation
+from cffconvert.behavior_1_2_x.bibtex_object import BibtexObject
 
 
 @pytest.fixture(scope="module")

@@ -1,8 +1,8 @@
 import os
-import pytest
 from test.contracts.schemaorg_object import Contract
-from cffconvert.behavior_1_0_x.schemaorg_object import SchemaorgObject
+import pytest
 from cffconvert import Citation
+from cffconvert.behavior_1_0_x.schemaorg_object import SchemaorgObject
 
 
 @pytest.fixture(scope="module")

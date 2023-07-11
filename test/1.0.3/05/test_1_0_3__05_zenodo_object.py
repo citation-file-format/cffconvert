@@ -1,8 +1,8 @@
 import os
-import pytest
 from test.contracts.zenodo_object import Contract
-from cffconvert.behavior_1_0_x.zenodo_object import ZenodoObject
+import pytest
 from cffconvert import Citation
+from cffconvert.behavior_1_0_x.zenodo_object import ZenodoObject
 
 
 @pytest.fixture(scope="module")

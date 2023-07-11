@@ -30,6 +30,7 @@ class TestSchemaorgObject(Contract):
                 "@type": "Organization",
                 "legalName": "Netherlands eScience Center"
             },
+            "email": "my@email.notexist",
             "familyName": "Spaaks",
             "givenName": "Jurriaan H."
         }, {

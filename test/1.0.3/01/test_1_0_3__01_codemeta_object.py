@@ -31,7 +31,8 @@ class TestCodemetaObject(Contract):
                 "legalName": "Netherlands eScience Center"
             },
             "familyName": "Spaaks",
-            "givenName": "Jurriaan H."
+            "givenName": "Jurriaan H.",
+            "email": "my@email.notexist"
         }, {
             "@type": "Person",
             "affiliation": {

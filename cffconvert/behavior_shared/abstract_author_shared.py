@@ -55,3 +55,9 @@ class AbstractAuthorShared(ABC):
         if value is not None and value != '':
             return 'O'
         return '_'
+
+    def _has_email(self):
+        value = self._author.get('email', None)
+        if value is not None and value != '':
+            return 'E'
+        return '_'

@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@id": "https://orcid.org/0000-0002-7064-4069",
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "legalName": "Netherlands eScience Center"
+      },
+      "alternateName": "jspaaks",
+      "email": "my@email.notexist",
+      "familyName": "von der Spaaks Jr.",
+      "givenName": "Jurriaan H."
+    }
+  ],
+  "name": "the title"
+}

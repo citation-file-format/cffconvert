@@ -76,14 +76,14 @@ class Citation_1_2_x(Contract):  # nopep8
             jsonschema.validate(instance=self.cffobj, schema=self.schema, format_checker=jsonschema.FormatChecker())
         except ValidationError as error:
             error_lines = str(error).splitlines()
-            is_long = len(error_lines) > 25
-
+            n_lines_max = 15
+            is_long = len(error_lines) > n_lines_max
             if is_long and not verbose:
-                truncated_message = "\n".join(
-                        [ *error_lines[0:25], "", "...truncated output...", "Add --verbose flag for full output."]
-                        )
+                truncated_message = "\n".join([
+                    *error_lines[:n_lines_max],
+                    "",
+                    "...truncated output...",
+                    "Add --verbose flag for full output."
+                ])
                 raise ValidationError(truncated_message)
             raise
-
-
-            

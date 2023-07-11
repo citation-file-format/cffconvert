@@ -64,4 +64,6 @@ class Citation_1_0_x(Contract):  # nopep8
 
     def validate(self, verbose=True):
         # validation using YAML based schema
+        if verbose:
+            print("--verbose behavior not implemented for cff-version 1.0.x, continuing...")
         Core(source_data=self.cffobj, schema_data=self.schema).validate(raise_exception=True)

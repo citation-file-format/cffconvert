@@ -22,9 +22,12 @@ pycodestyle:
     - E501 # test line length with pylint instead, as that can be disabled per file and/or per line if needed
 
 pylint:
+  disable:
+    - invalid-name
   full: true
   options:
     max-line-length: 120
+
 
 pydocstyle:
   disable:

@@ -31,7 +31,7 @@ jobs:
 
       - name: Upgrade pip, setuptools and wheel
         run: |
-          python3 -m pip install --upgrade pip wheel
+          python3 -m pip install --upgrade pip setuptools wheel
 
       - name: Install runtime dependencies
         run: python3 -m pip install .

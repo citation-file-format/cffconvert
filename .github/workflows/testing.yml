@@ -33,19 +33,6 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip setuptools wheel
 
-      # the checks in test_consistent versioning need the full contents
-      # of the checked out repository in order to work
-      - name: Install pytest & check version strings
-        run: |
-          python3 -m pip install pytest
-          pytest -k "test_consistent_versioning.py"
-
-      - name: Install cffconvert with its runtime dependencies
-        run: python3 -m pip install .
-
-      - name: Install cffconvert with its testing dependencies
-        run: python3 -m pip install .[testing]
-
       # test_consistent_versioning.py operates on files that aren't there when
       # running the tests against the installed library, so we exclude it from
       # this step

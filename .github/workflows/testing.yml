@@ -36,8 +36,8 @@ jobs:
       - name: Install runtime dependencies
         run: python3 -m pip install .
 
-      - name: Install development dependencies
-        run: python3 -m pip install .[dev]
+      - name: Install testing dependencies
+        run: python3 -m pip install .[testing]
 
       - name: Run tests
         run: python3 -m pytest test

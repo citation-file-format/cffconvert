@@ -90,15 +90,11 @@ lines_after_imports = 2
 lines_between_sections = 0
 src_paths = ["src", "test"]
 
-# Some leftovers from setup.cfg:
-#
-# [coverage:run]
-# branch = True
-# source = cffconvert
-# omit = test/* livetest/*
-#
-# [tool:pytest]
-# # Note that visual debugger in some editors like pycharm gets confused by coverage calculation.
-# # As a workaround, configure the test configuration in pycharm et al with a --no-cov argument
-# addopts = --no-cov --verbose
-
+# Note that visual debugger in some editors like pycharm gets confused by coverage calculation.
+# As a workaround, configure the test configuration in pycharm et al with a --no-cov argument
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--no-cov --verbose"
+testpaths = [
+    "tests"
+]

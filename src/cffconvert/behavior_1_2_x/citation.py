@@ -50,8 +50,8 @@ class Citation_1_2_x(Contract):  # nopep8
     def as_apalike(self):
         return ApalikeObject(self.cffobj).as_string()
 
-    def as_bibtex(self, reference='YourReferenceHere'):
-        return BibtexObject(self.cffobj).as_string(reference)
+    def as_bibtex(self):
+        return BibtexObject(self.cffobj).as_string()
 
     def as_cff(self):
         return self.cffstr
@@ -85,5 +85,5 @@ class Citation_1_2_x(Contract):  # nopep8
                     "...truncated output...",
                     "Add --verbose flag for full output."
                 ])
-                raise ValidationError(truncated_message)
+                raise ValidationError(truncated_message) from error
             raise

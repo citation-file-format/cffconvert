@@ -1,24 +1,29 @@
 from abc import abstractmethod
 
 
-class EndnoteObjectShared:
+# pylint: disable=too-many-instance-attributes
+class RisObjectShared:
 
-    supported_endnote_props = [
+    supported_ris_props = [
+        'abstract',
         'author',
-        'year',
-        'keyword',
+        'date',
         'doi',
-        'name',
-        'url'
+        'keywords',
+        'title',
+        'url',
+        'year'
     ]
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):
         self.cffobj = cffobj
+        self.abstract = None
         self.author = None
+        self.date = None
         self.doi = None
-        self.keyword = None
-        self.name = None
+        self.keywords = None
+        self.title = None
         self.url = None
         self.year = None
         if initialize_empty:
@@ -29,21 +34,30 @@ class EndnoteObjectShared:
             self.add_all()
 
     def __str__(self):
-        items = [item for item in [self.author,
-                                   self.year,
-                                   self.keyword,
+        items = [item for item in [self.abstract,
+                                   self.author,
+                                   self.date,
                                    self.doi,
-                                   self.name,
+                                   self.keywords,
+                                   self.year,
+                                   self.title,
                                    self.url] if item is not None]
-        return '%0 Generic\n' + ''.join(items)
+        return 'TY  - GEN\n' + ''.join(items) + 'ER\n'
 
     def add_all(self):
-        self.add_author() \
-            .add_doi() \
-            .add_keyword() \
-            .add_name() \
-            .add_url() \
+        self.add_abstract() \
+            .add_author()   \
+            .add_date()     \
+            .add_doi()      \
+            .add_keywords()  \
+            .add_title()    \
+            .add_url()      \
             .add_year()
+        return self
+
+    def add_abstract(self):
+        if 'abstract' in self.cffobj.keys():
+            self.abstract = f"AB  - {self.cffobj['abstract']}\n"
         return self
 
     @abstractmethod
@@ -51,18 +65,22 @@ class EndnoteObjectShared:
         pass
 
     @abstractmethod
+    def add_date(self):
+        pass
+
+    @abstractmethod
     def add_doi(self):
         pass
 
-    def add_keyword(self):
+    def add_keywords(self):
         if 'keywords' in self.cffobj.keys():
-            keywords = [f"%K {keyword}\n" for keyword in self.cffobj['keywords']]
-            self.keyword = ''.join(keywords)
+            keywords = [f"KW  - {keyword}\n" for keyword in self.cffobj['keywords']]
+            self.keywords = ''.join(keywords)
         return self
 
-    def add_name(self):
+    def add_title(self):
         if 'title' in self.cffobj.keys():
-            self.name = f"%T {self.cffobj['title']}\n"
+            self.title = f"TI  - {self.cffobj['title']}\n"
         return self
 
     @abstractmethod
@@ -74,7 +92,7 @@ class EndnoteObjectShared:
         pass
 
     def as_string(self):
-        return self.__str__()
+        return str(self)
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):

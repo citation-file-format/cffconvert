@@ -1,6 +1,6 @@
-include cffconvert/schemas/1.0.1/schema.yaml
-include cffconvert/schemas/1.0.2/schema.yaml
-include cffconvert/schemas/1.0.3/schema.yaml
-include cffconvert/schemas/1.1.0/schema.yaml
-include cffconvert/schemas/1.2.0/schema.json
-include cffconvert/gcloud/index.html
+include src/cffconvert/schemas/1.0.1/schema.yaml
+include src/cffconvert/schemas/1.0.2/schema.yaml
+include src/cffconvert/schemas/1.0.3/schema.yaml
+include src/cffconvert/schemas/1.1.0/schema.yaml
+include src/cffconvert/schemas/1.2.0/schema.json
+include src/cffconvert/gcloud/index.html

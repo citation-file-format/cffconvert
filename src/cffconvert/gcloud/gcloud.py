@@ -1,3 +1,4 @@
+# pylint: disable=too-many-return-statements
 import os
 from flask import Response
 from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
@@ -9,7 +10,7 @@ from cffconvert.cli.read_from_url import read_from_url
 
 def get_help_text():
     p = os.path.join(os.path.dirname(__file__), "index.html")
-    with open(p, 'rt') as fid:
+    with open(p, "rt", encoding="utf-8") as fid:
         return fid.read()
 
 
@@ -38,15 +39,15 @@ def cffconvert(request):
     version = 'version' in request.args.keys()
 
     if version is True:
-        outstr += "{0}\n".format(cffconvert_version.__version__)
+        outstr += f"{cffconvert_version.__version__}\n"
         return Response(outstr, mimetype=mimetype_plain)
 
     condition = (url is None, cffstr is None)
     if condition == (False, False):
-        outstr += "\n\n{0}\n".format("Error: can't have both url and cffstr.")
+        outstr += "\n\nError: can't have both url and cffstr.\n"
         return Response(outstr, mimetype=mimetype_plain)
     if condition == (True, True):
-        outstr += "\n\n{0}\n".format("Error: you must specify either url or cffstr.")
+        outstr += "\n\nError: you must specify either url or cffstr.\n"
         return Response(outstr, mimetype=mimetype_plain)
     if condition == (False, True):
         cffstr = read_from_url(url)
@@ -55,7 +56,8 @@ def cffconvert(request):
     try:
         citation.validate()
     except (PykwalifySchemaError, JsonschemaSchemaError):
-        outstr += f"Data does not pass validation according to Citation File Format schema version {citation.cffversion}."
+        outstr += "Data does not pass validation according to Citation "
+        outstr += f"File Format schema version {citation.cffversion}."
         return Response(outstr, mimetype=mimetype_plain)
 
     if validate:
@@ -64,7 +66,7 @@ def cffconvert(request):
 
     acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
     if outputformat not in acceptable_output_formats:
-        outstr += "\n\n'outputformat' should be one of [{0}]".format(", ".join(acceptable_output_formats))
+        outstr += f"\n\n'outputformat' should be one of [{', '.join(acceptable_output_formats)}]"
         return Response(outstr, mimetype=mimetype_plain)
 
     outstr += {

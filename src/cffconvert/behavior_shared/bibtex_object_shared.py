@@ -1,15 +1,12 @@
 from abc import abstractmethod
 
 
-# pylint: disable=too-many-instance-attributes
-class RisObjectShared:
+class BibtexObjectShared:
 
-    supported_ris_props = [
-        'abstract',
+    supported_bibtex_props = [
         'author',
-        'date',
         'doi',
-        'keywords',
+        'month',
         'title',
         'url',
         'year'
@@ -18,11 +15,9 @@ class RisObjectShared:
 
     def __init__(self, cffobj, initialize_empty=False):
         self.cffobj = cffobj
-        self.abstract = None
         self.author = None
-        self.date = None
         self.doi = None
-        self.keywords = None
+        self.month = None
         self.title = None
         self.url = None
         self.year = None
@@ -34,30 +29,22 @@ class RisObjectShared:
             self.add_all()
 
     def __str__(self):
-        items = [item for item in [self.abstract,
-                                   self.author,
-                                   self.date,
+        items = [item for item in [self.author,
                                    self.doi,
-                                   self.keywords,
-                                   self.year,
+                                   self.month,
                                    self.title,
-                                   self.url] if item is not None]
-        return 'TY  - GEN\n' + ''.join(items) + 'ER\n'
+                                   self.url,
+                                   self.year] if item is not None]
+        joined = ',\n'.join(items)
+        return '@misc{YourReferenceHere,\n' + joined + '\n}\n'
 
     def add_all(self):
-        self.add_abstract() \
-            .add_author()   \
-            .add_date()     \
+        self.add_author()   \
             .add_doi()      \
-            .add_keywords()  \
+            .add_month()    \
             .add_title()    \
             .add_url()      \
             .add_year()
-        return self
-
-    def add_abstract(self):
-        if 'abstract' in self.cffobj.keys():
-            self.abstract = f"AB  - {self.cffobj['abstract']}\n"
         return self
 
     @abstractmethod
@@ -65,22 +52,16 @@ class RisObjectShared:
         pass
 
     @abstractmethod
-    def add_date(self):
-        pass
-
-    @abstractmethod
     def add_doi(self):
         pass
 
-    def add_keywords(self):
-        if 'keywords' in self.cffobj.keys():
-            keywords = [f"KW  - {keyword}\n" for keyword in self.cffobj['keywords']]
-            self.keywords = ''.join(keywords)
-        return self
+    @abstractmethod
+    def add_month(self):
+        pass
 
     def add_title(self):
         if 'title' in self.cffobj.keys():
-            self.title = f"TI  - {self.cffobj['title']}\n"
+            self.title = 'title = {' + self.cffobj['title'] + '}'
         return self
 
     @abstractmethod
@@ -92,7 +73,7 @@ class RisObjectShared:
         pass
 
     def as_string(self):
-        return self.__str__()
+        return str(self)
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
@@ -100,4 +81,4 @@ class RisObjectShared:
         if 'cff-version' not in self.cffobj.keys():
             raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
         if self.cffobj['cff-version'] not in self.supported_cff_versions:
-            raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")
+            raise ValueError(f"cff-version: {self.cffobj['cff-version']} isn't a supported version.")

@@ -29,17 +29,18 @@ jobs:
           which python3
           python3 --version
 
-      # max version for setuptools https://github.com/PyCQA/prospector/issues/438
       - name: Upgrade pip, setuptools and wheel
         run: |
-          python3 -m pip install --upgrade pip wheel
-          python3 -m pip install "setuptools<=57"
+          python3 -m pip install --upgrade pip setuptools wheel
 
-      - name: Install runtime dependencies
+      - name: Install cffconvert with its runtime dependencies
         run: python3 -m pip install .
 
-      - name: Install development dependencies
-        run: python3 -m pip install .[dev]
+      - name: Install cffconvert with its testing dependencies
+        run: python3 -m pip install .[testing]
 
+      # test_consistent_versioning.py operates on files that aren't there when
+      # running the tests against the installed library, so we exclude it from
+      # this step
       - name: Run tests
-        run: python3 -m pytest test
+        run: python3 -m pytest test -k "not test_consistent_versioning.py"

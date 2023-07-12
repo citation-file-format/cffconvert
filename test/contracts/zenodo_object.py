@@ -5,37 +5,37 @@ from abc import abstractmethod
 class Contract(ABC):
 
     @abstractmethod
-    def test_check_cffobj(self, fixture):
+    def test_check_cffobj(self):
         pass
 
     @abstractmethod
-    def test_creators(self, fixture):
+    def test_creators(self):
         pass
 
     @abstractmethod
-    def test_keywords(self, fixture):
+    def test_keywords(self):
         pass
 
     @abstractmethod
-    def test_license(self, fixture):
+    def test_license(self):
         pass
 
     @abstractmethod
-    def test_as_string(self, fixture):
+    def test_as_string(self):
         pass
 
     @abstractmethod
-    def test_publication_date(self, fixture):
+    def test_publication_date(self):
         pass
 
     @abstractmethod
-    def test_title(self, fixture):
+    def test_title(self):
         pass
 
     @abstractmethod
-    def test_upload_type(self, fixture):
+    def test_upload_type(self):
         pass
 
     @abstractmethod
-    def test_version(self, fixture):
+    def test_version(self):
         pass

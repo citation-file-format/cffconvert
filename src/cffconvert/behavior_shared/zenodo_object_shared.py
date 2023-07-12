@@ -75,7 +75,7 @@ class ZenodoObjectShared:
 
     def add_license(self):
         if "license" in self.cffobj.keys():
-            self.license = dict(id=self.cffobj["license"])
+            self.license = {"id": self.cffobj["license"]}
         return self
 
     @abstractmethod
@@ -93,7 +93,7 @@ class ZenodoObjectShared:
         return self
 
     def as_string(self):
-        return self.__str__()
+        return str(self)
 
     @abstractmethod
     def add_upload_type(self):

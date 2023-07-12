@@ -37,7 +37,7 @@ jobs:
         run: python3 -m pip install .
 
       - name: Install development dependencies
-        run: python3 -m pip install .[dev]
+        run: python3 -m pip install .[dev,gcloud,testing]
 
       - name: Check sorting of imports
         run: isort --check-only --diff src/cffconvert test/

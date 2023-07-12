@@ -1,5 +1,5 @@
 import os
-from test.contracts.ris_object import Contract
+from tests.contracts.ris_object import Contract
 from cffconvert import Citation
 from cffconvert.behavior_1_1_x.ris_object import RisObject
 

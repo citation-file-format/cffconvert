@@ -1,5 +1,5 @@
 import os
-from test.contracts.codemeta_object import Contract
+from tests.contracts.codemeta_object import Contract
 from cffconvert import Citation
 from cffconvert.behavior_1_1_x.codemeta_object import CodemetaObject
 

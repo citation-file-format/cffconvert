@@ -1,5 +1,5 @@
 import os
-from test.contracts.schemaorg_object import Contract
+from tests.contracts.schemaorg_object import Contract
 from cffconvert import Citation
 from cffconvert.behavior_1_2_x.schemaorg_object import SchemaorgObject
 

@@ -1,5 +1,5 @@
 import os
-from test.contracts.zenodo_object import Contract
+from tests.contracts.zenodo_object import Contract
 from cffconvert import Citation
 from cffconvert.behavior_1_2_x.zenodo_object import ZenodoObject
 

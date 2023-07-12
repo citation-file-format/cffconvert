@@ -1,5 +1,5 @@
 import os
-from test.contracts.apalike_object import Contract
+from tests.contracts.apalike_object import Contract
 from cffconvert import Citation
 from cffconvert.behavior_1_0_x.apalike_object import ApalikeObject
 

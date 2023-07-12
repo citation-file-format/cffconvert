@@ -1,5 +1,5 @@
 import os
-from test.contracts.bibtex_object import Contract
+from tests.contracts.bibtex_object import Contract
 from cffconvert import Citation
 from cffconvert.behavior_1_0_x.bibtex_object import BibtexObject
 

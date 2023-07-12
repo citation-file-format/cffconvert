@@ -33,6 +33,12 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip setuptools wheel
 
+      - name: Install cffconvert with its runtime dependencies
+        run: python3 -m pip install .
+
+      - name: Install cffconvert with its testing dependencies
+        run: python3 -m pip install .[testing]
+
       # test_consistent_versioning.py operates on files that aren't there when
       # running the tests against the installed library, so we exclude it from
       # this step

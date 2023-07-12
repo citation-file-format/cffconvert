@@ -1,3 +1,4 @@
+# pylint: disable=too-many-return-statements
 import os
 from flask import Response
 from jsonschema.exceptions import ValidationError as JsonschemaSchemaError

@@ -39,7 +39,7 @@ class TestRisObject(Contract):
 
     def test_keywords(self):
         assert ris_object().add_keywords().keywords == 'KW  - visualization\nKW  - big data\n' + \
-                                                     'KW  - visual data analytics\nKW  - multi-dimensional data\n'
+                                                       'KW  - visual data analytics\nKW  - multi-dimensional data\n'
 
     def test_title(self):
         assert ris_object().add_title().title == 'TI  - spot\n'

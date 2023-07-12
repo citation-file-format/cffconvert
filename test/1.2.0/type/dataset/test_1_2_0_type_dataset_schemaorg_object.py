@@ -60,4 +60,3 @@ class TestSchemaorgObject(Contract):
 
     def test_version(self):
         assert schemaorg_object().add_version().version is None
-

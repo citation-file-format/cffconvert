@@ -17,7 +17,7 @@ class Contract(ABC):
         pass
 
     @abstractmethod
-    def as_bibtex(self, reference='YourReferenceHere'):
+    def as_bibtex(self):
         pass
 
     @abstractmethod

@@ -5,7 +5,7 @@ from cffconvert.cli.cli import cli as cffconvert_cli
 
 def read_sibling_file(filename):
     f = os.path.join(os.path.dirname(__file__), filename)
-    with open(f, "rt") as f:
+    with open(f, "rt", encoding="utf-8") as f:
         return f.read()
 
 

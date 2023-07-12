@@ -23,7 +23,7 @@ class TestBibtexObject(Contract):
 
     def test_author(self):
         assert bibtex_object().add_author().author == 'author = {van der Vaart III, Rafael and dos ' + \
-                                                    'Santos Aveiro, Cristiano Ronaldo}'
+                                                      'Santos Aveiro, Cristiano Ronaldo}'
 
     def test_check_cffobj(self):
         bibtex_object().check_cffobj()

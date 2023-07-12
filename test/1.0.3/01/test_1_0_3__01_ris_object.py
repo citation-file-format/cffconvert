@@ -39,7 +39,7 @@ class TestRisObject(Contract):
 
     def test_keywords(self):
         assert ris_object().add_keywords().keywords == 'KW  - citation\nKW  - bibliography\n' + \
-                                                     'KW  - cff\nKW  - CITATION.cff\n'
+                                                       'KW  - cff\nKW  - CITATION.cff\n'
 
     def test_title(self):
         assert ris_object().add_title().title == 'TI  - cff-converter-python\n'

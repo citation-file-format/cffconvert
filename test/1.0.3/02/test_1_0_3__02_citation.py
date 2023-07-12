@@ -11,7 +11,7 @@ def citation():
 
 
 def test_cffobj():
-    assert type(citation().cffobj["date-released"]) is datetime.date
+    assert isinstance(citation().cffobj["date-released"], datetime.date)
     assert citation().cffobj["date-released"] == datetime.date(year=1999, month=12, day=31)
 
 

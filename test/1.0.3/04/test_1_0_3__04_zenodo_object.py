@@ -50,7 +50,7 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_keywords().keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']
 
     def test_license(self):
-        assert zenodo_object().add_license().license == dict(id='Apache-2.0')
+        assert zenodo_object().add_license().license == {"id": "Apache-2.0"}
 
     def test_publication_date(self):
         assert zenodo_object().add_publication_date().publication_date == '2018-07-25'

@@ -23,7 +23,7 @@ class TestEndnoteObject(Contract):
 
     def test_author(self):
         assert endnote_object().add_author().author == '%A van der Vaart III, Rafael\n' + \
-                                                     '%A dos Santos Aveiro, Cristiano Ronaldo\n'
+                                                       '%A dos Santos Aveiro, Cristiano Ronaldo\n'
 
     def test_check_cffobj(self):
         endnote_object().check_cffobj()

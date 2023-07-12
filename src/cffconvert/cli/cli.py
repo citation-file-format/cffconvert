@@ -7,19 +7,19 @@ from cffconvert.cli.validate_or_write_output import validate_or_write_output
 
 
 options = {
-    "infile": dict(
-        type=click.Path(),
-        default=None,
-        help="Path to the CITATION.cff input file. If this option is omitted" +
-             f", '.{os.sep}CITATION.cff' is used."
-    ),
-    "outfile": dict(
-        type=click.Path(),
-        default=None,
-        help="Path to the output file."
-    ),
-    "outputformat": dict(
-        type=click.Choice([
+    "infile": {
+        "type": click.Path(),
+        "default": None,
+        "help": "Path to the CITATION.cff input file. If this option is omitted" +
+                f", '.{os.sep}CITATION.cff' is used."
+    },
+    "outfile": {
+        "type": click.Path(),
+        "default": None,
+        "help": "Path to the output file."
+    },
+    "outputformat": {
+        "type": click.Choice([
             "apalike",
             "bibtex",
             "cff",
@@ -29,41 +29,41 @@ options = {
             "schema.org",
             "zenodo"
         ]),
-        default=None,
-        help="Output format."
-    ),
-    "url": dict(
-        type=str,
-        default=None,
-        help="URL to the CITATION.cff input file."
-    ),
-    "show_help": dict(
-        is_flag=True,
-        flag_value=True,
-        default=False,
-        help="Show help and exit."
-    ),
-    "show_trace": dict(
-        is_flag=True,
-        flag_value=True,
-        default=False,
-        help="Show error trace."
-    ),
-    "validate_only": dict(
-        is_flag=True,
-        default=False,
-        help="Validate the CITATION.cff file and exit."
-    ),
-    "version": dict(
-        is_flag=True,
-        default=False,
-        help="Print version and exit."
-    ),
-    "verbose": dict(
-        is_flag=True,
-        default=False,
-        help="Control output verbosity."
-    )
+        "default": None,
+        "help": "Output format."
+    },
+    "url": {
+        "type": str,
+        "default": None,
+        "help": "URL to the CITATION.cff input file."
+    },
+    "show_help": {
+        "is_flag": True,
+        "flag_value": True,
+        "default": False,
+        "help": "Show help and exit."
+    },
+    "show_trace": {
+        "is_flag": True,
+        "flag_value": True,
+        "default": False,
+        "help": "Show error trace."
+    },
+    "validate_only": {
+        "is_flag": True,
+        "default": False,
+        "help": "Validate the CITATION.cff file and exit."
+    },
+    "version": {
+        "is_flag": True,
+        "default": False,
+        "help": "Print version and exit."
+    },
+    "verbose": {
+        "is_flag": True,
+        "default": False,
+        "help": "Control output verbosity."
+    }
 }
 
 

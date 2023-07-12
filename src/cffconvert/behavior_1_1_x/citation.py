@@ -39,8 +39,8 @@ class Citation_1_1_x(Contract):  # nopep8
     def as_apalike(self):
         return ApalikeObject(self.cffobj).as_string()
 
-    def as_bibtex(self, reference='YourReferenceHere'):
-        return BibtexObject(self.cffobj).as_string(reference)
+    def as_bibtex(self):
+        return BibtexObject(self.cffobj).as_string()
 
     def as_cff(self):
         return self.cffstr

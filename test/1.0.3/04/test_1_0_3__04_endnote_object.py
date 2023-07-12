@@ -23,7 +23,7 @@ class TestEndnoteObject(Contract):
 
     def test_author(self):
         assert endnote_object().add_author().author == '%A Spaaks, Jurriaan H.\n%A Klaver, Tom\n' + \
-                                                     '%A Verhoeven, Stefan\n%A Druskat, Stephan\n'
+                                                       '%A Verhoeven, Stefan\n%A Druskat, Stephan\n'
 
     def test_check_cffobj(self):
         endnote_object().check_cffobj()

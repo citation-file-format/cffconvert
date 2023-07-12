@@ -28,7 +28,7 @@ class BibtexObjectShared:
             self.check_cffobj()
             self.add_all()
 
-    def __str__(self, reference='YourReferenceHere'):
+    def __str__(self):
         items = [item for item in [self.author,
                                    self.doi,
                                    self.month,
@@ -36,7 +36,7 @@ class BibtexObjectShared:
                                    self.url,
                                    self.year] if item is not None]
         joined = ',\n'.join(items)
-        return '@misc{' + reference + ',\n' + joined + '\n}\n'
+        return '@misc{YourReferenceHere,\n' + joined + '\n}\n'
 
     def add_all(self):
         self.add_author()   \
@@ -72,8 +72,8 @@ class BibtexObjectShared:
     def add_year(self):
         pass
 
-    def as_string(self, reference='YourReferenceHere'):
-        return self.__str__(reference)
+    def as_string(self):
+        return str(self)
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):

@@ -81,7 +81,7 @@ class SchemaorgObjectShared:
         return self
 
     def as_string(self):
-        return self.__str__()
+        return str(self)
 
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):

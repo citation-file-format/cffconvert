@@ -26,7 +26,7 @@ class TestRisObject(Contract):
 
     def test_author(self):
         assert ris_object().add_author().author == 'AU  - van der Vaart III, Rafael\n' + \
-                                                 'AU  - dos Santos Aveiro, Cristiano Ronaldo\n'
+                                                   'AU  - dos Santos Aveiro, Cristiano Ronaldo\n'
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()

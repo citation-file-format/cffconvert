@@ -13,7 +13,7 @@ def test_local_cff_file_does_not_exist():
     runner = CliRunner()
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, ["-f", "bibtex"])
-    assert type(result.exception) == FileNotFoundError
+    assert isinstance(result.exception, FileNotFoundError)
     assert result.exit_code == 1
     assert "No such file or directory" in str(result.exception)
 

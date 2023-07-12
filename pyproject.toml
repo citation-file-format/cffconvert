@@ -94,7 +94,7 @@ src_paths = ["src", "test"]
 # As a workaround, configure the test configuration in pycharm et al with a --no-cov argument
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--no-cov --verbose"
+addopts = "--no-cov --verbose --maxfail=1"
 testpaths = [
     "tests"
 ]

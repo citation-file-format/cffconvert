@@ -1,7 +1,7 @@
 import datetime
 import os
-import pytest
 import pykwalify
+import pytest
 from cffconvert.citation import Citation
 
 

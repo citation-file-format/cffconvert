@@ -87,7 +87,7 @@ def test_readme_dev_md_4():
 
 
 def test_authors_keys_readme():
-    fixture = os.path.join(os.path.dirname(__file__), "..", "tests", "cff_1_2_0", "authors", "README.md")
+    fixture = os.path.join(os.path.dirname(__file__), "..", "README.dev.md")
     with open(fixture, "rt", encoding="utf-8") as fid:
         file_contents = fid.read()
     regex = re.compile(r'blob/(?P<version>\S*)/cffconvert', re.MULTILINE)

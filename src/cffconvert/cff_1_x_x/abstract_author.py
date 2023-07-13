@@ -20,6 +20,17 @@ class AbstractAuthor(ABC):
         ]
         return ' '.join([n for n in nameparts if n is not None])
 
+    def _get_key(self):
+        return ''.join([
+            self._has_given_name(),
+            self._has_family_name(),
+            self._has_alias(),
+            self._has_name(),
+            self._has_affiliation(),
+            self._has_orcid(),
+            self._has_email()
+        ])
+
     def _has_affiliation(self):
         value = self._author.get('affiliation', None)
         if value is not None and value != '':

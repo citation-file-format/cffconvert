@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "author": [
     {
-      "@type": "Person",
+      "@type": "Organization",
       "name": "The soccer team members"
     }
   ],

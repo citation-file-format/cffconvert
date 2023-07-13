@@ -3,7 +3,7 @@
   "@type": "Dataset",
   "author": [
     {
-      "@type": "Person",
+      "@type": "Organization",
       "name": "The name"
     }
   ],

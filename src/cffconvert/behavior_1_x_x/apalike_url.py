@@ -1,9 +1,8 @@
-from abc import abstractmethod
 from cffconvert.behavior_1_x_x.abstract_url_shared import AbstractUrlShared
 
 
 # pylint: disable=too-few-public-methods
-class ApalikeUrlShared(AbstractUrlShared):
+class ApalikeUrl(AbstractUrlShared):
 
     def __init__(self, cffobj):
         super().__init__(cffobj)
@@ -39,7 +38,7 @@ class ApalikeUrlShared(AbstractUrlShared):
             '___CU': self._from_url,
             '___C_': self._from_repository_code,
             '____U': self._from_url,
-            '_____': ApalikeUrlShared._from_thin_air
+            '_____': ApalikeUrl._from_thin_air
         }
 
     def _from_identifiers_url(self):
@@ -64,6 +63,12 @@ class ApalikeUrlShared(AbstractUrlShared):
     def _from_url(self):
         return 'URL: ' + self._cffobj.get('url')
 
-    @abstractmethod
     def as_string(self):
-        pass
+        key = ''.join([
+            self._has_identifiers_url(),
+            self._has_repository(),
+            self._has_repository_artifact(),
+            self._has_repository_code(),
+            self._has_url()
+        ])
+        return self._behaviors[key]()

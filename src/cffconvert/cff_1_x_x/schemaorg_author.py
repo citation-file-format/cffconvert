@@ -1,8 +1,8 @@
-from cffconvert.cff_1_x_x.abstract_author import AbstractAuthor
+from cffconvert.cff_1_x_x.base_author import BaseAuthor
 
 
 # pylint: disable=too-few-public-methods
-class SchemaorgAuthor(AbstractAuthor):
+class SchemaorgAuthor(BaseAuthor):
 
     def __init__(self, author):
         super().__init__(author)

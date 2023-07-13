@@ -1,8 +1,8 @@
-from cffconvert.cff_1_x_x.abstract_url_shared import AbstractUrlShared
+from cffconvert.cff_1_x_x.base_url import BaseUrl
 
 
 # pylint: disable=too-few-public-methods
-class RisUrl(AbstractUrlShared):
+class RisUrl(BaseUrl):
 
     def __init__(self, cffobj):
         super().__init__(cffobj)

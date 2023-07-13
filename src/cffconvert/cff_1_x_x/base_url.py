@@ -2,7 +2,7 @@ from abc import ABC
 
 
 # pylint: disable=too-few-public-methods
-class AbstractUrlShared(ABC):
+class BaseUrl(ABC):
 
     def __init__(self, cffobj):
         self._cffobj = cffobj

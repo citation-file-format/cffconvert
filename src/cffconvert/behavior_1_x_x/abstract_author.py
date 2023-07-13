@@ -2,7 +2,7 @@ from abc import ABC
 
 
 # pylint: disable=too-few-public-methods
-class AbstractAuthorShared(ABC):
+class AbstractAuthor(ABC):
 
     def __init__(self, author):
         self._author = author

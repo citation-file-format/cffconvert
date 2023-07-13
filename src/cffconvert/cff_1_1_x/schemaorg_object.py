@@ -1,7 +1,7 @@
 import json
 from cffconvert.cff_1_x_x.schemaorg_author import SchemaorgAuthor
-from cffconvert.cff_1_x_x.schemaorg_urls import SchemaorgUrls
 from cffconvert.cff_1_x_x.schemaorg_object_shared import SchemaorgObjectShared as Shared
+from cffconvert.cff_1_x_x.schemaorg_urls import SchemaorgUrls
 
 
 class SchemaorgObject(Shared):

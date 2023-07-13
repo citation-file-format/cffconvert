@@ -15,5 +15,3 @@ def get_every_key():
         url_values
     ]
     return ["".join(combo) for combo in itertools.product(*combined)]
-
-

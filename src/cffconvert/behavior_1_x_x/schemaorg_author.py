@@ -1,9 +1,8 @@
-from abc import abstractmethod
 from cffconvert.behavior_1_x_x.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods
-class SchemaorgAuthorShared(AbstractAuthorShared):
+class SchemaorgAuthor(AbstractAuthorShared):
 
     def __init__(self, author):
         super().__init__(author)
@@ -135,7 +134,7 @@ class SchemaorgAuthorShared(AbstractAuthorShared):
             '____AO_': self._from_affiliation_and_orcid,
             '____A__': self._from_affiliation,
             '_____O_': self._from_orcid,
-            '_______': SchemaorgAuthorShared._from_thin_air
+            '_______': SchemaorgAuthor._from_thin_air
         }
 
     def _from_affiliation_and_email(self):
@@ -893,6 +892,14 @@ class SchemaorgAuthorShared(AbstractAuthorShared):
             '@type': 'Person'
         }
 
-    @abstractmethod
     def as_dict(self):
-        pass
+        key = ''.join([
+            self._has_given_name(),
+            self._has_family_name(),
+            self._has_alias(),
+            self._has_name(),
+            self._has_affiliation(),
+            self._has_orcid(),
+            self._has_email()
+        ])
+        return self._behaviors[key]()

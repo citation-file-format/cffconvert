@@ -23,7 +23,7 @@ class TestCodemetaObject(Contract):
 
     def test_author(self):
         assert codemeta_object().add_author().author == [{
-            "@type": "Person",
+            "@type": "Organization",
             "name": "Test author"
         }]
 

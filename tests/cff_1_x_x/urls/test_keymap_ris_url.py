@@ -1,4 +1,5 @@
 # pylint:disable = protected-access
+import inspect
 import types
 import pytest
 from cffconvert.cff_1_x_x.ris_url import RisUrl
@@ -16,3 +17,13 @@ def test_number_of_keys():
     expected = len(get_every_key())
     actual = len(RisUrl({})._behaviors)
     assert actual == expected
+
+
+def test_all_methods_used():
+    author = RisUrl({})
+    used_method_names = [elem.__name__ for elem in author._behaviors.values()]
+    implementation_names = [
+        k for k, v in inspect.getmembers(author, predicate=inspect.ismethod) if k.startswith("_from")
+    ]
+    for implementation_name in implementation_names:
+        assert implementation_name in used_method_names

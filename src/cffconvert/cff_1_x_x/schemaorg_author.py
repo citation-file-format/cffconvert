@@ -55,16 +55,16 @@ class SchemaorgAuthor(BaseAuthor):
             '_F__A_E': self._from_last_and_affiliation_and_email,
             '_F___OE': self._from_last_and_orcid_and_email,
             '_F____E': self._from_last_and_email,
-            '__ANAOE': self._from_alias_and_name_and_affiliation_and_orcid_and_email,
-            '__ANA_E': self._from_alias_and_name_and_affiliation_and_email,
+            '__ANAOE': self._from_alias_and_name_and_orcid_and_email,
+            '__ANA_E': self._from_alias_and_name_and_email,
             '__AN_OE': self._from_alias_and_name_and_orcid_and_email,
             '__AN__E': self._from_alias_and_name_and_email,
             '__A_AOE': self._from_alias_and_affiliation_and_orcid_and_email,
             '__A_A_E': self._from_alias_and_affiliation_and_email,
             '__A__OE': self._from_alias_and_orcid_and_email,
             '__A___E': self._from_alias_and_email,
-            '___NAOE': self._from_name_and_affiliation_and_orcid_and_email,
-            '___NA_E': self._from_name_and_affiliation_and_email,
+            '___NAOE': self._from_name_and_orcid_and_email,
+            '___NA_E': self._from_name_and_email,
             '___N_OE': self._from_name_and_orcid_and_email,
             '___N__E': self._from_name_and_email,
             '____AOE': self._from_affiliation_and_orcid_and_email,
@@ -119,16 +119,16 @@ class SchemaorgAuthor(BaseAuthor):
             '_F__A__': self._from_last_and_affiliation,
             '_F___O_': self._from_last_and_orcid,
             '_F_____': self._from_last,
-            '__ANAO_': self._from_alias_and_name_and_affiliation_and_orcid,
-            '__ANA__': self._from_alias_and_name_and_affiliation,
+            '__ANAO_': self._from_alias_and_name_and_orcid,
+            '__ANA__': self._from_alias_and_name,
             '__AN_O_': self._from_alias_and_name_and_orcid,
             '__AN___': self._from_alias_and_name,
             '__A_AO_': self._from_alias_and_affiliation_and_orcid,
             '__A_A__': self._from_alias_and_affiliation,
             '__A__O_': self._from_alias_and_orcid,
             '__A____': self._from_alias,
-            '___NAO_': self._from_name_and_affiliation_and_orcid,
-            '___NA__': self._from_name_and_affiliation,
+            '___NAO_': self._from_name_and_orcid,
+            '___NA__': self._from_name,
             '___N_O_': self._from_name_and_orcid,
             '___N___': self._from_name,
             '____AO_': self._from_affiliation_and_orcid,
@@ -185,31 +185,6 @@ class SchemaorgAuthor(BaseAuthor):
                 'legalName': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
-            'email': self._author.get('email')
-        }
-
-    def _from_alias_and_name_and_affiliation_and_orcid_and_email(self):
-        return {
-            '@id': self._author.get('orcid'),
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
-            'alternateName': self._author.get('alias'),
-            'name': self._author.get('name'),
-            'email': self._author.get('email')
-        }
-
-    def _from_alias_and_name_and_affiliation_and_email(self):
-        return {
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
-            'alternateName': self._author.get('alias'),
-            'name': self._author.get('name'),
             'email': self._author.get('email')
         }
 
@@ -499,33 +474,10 @@ class SchemaorgAuthor(BaseAuthor):
             'email': self._author.get('email')
         }
 
-    def _from_name_and_affiliation_and_email(self):
-        return {
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
-            'name': self._author.get('name'),
-            'email': self._author.get('email')
-        }
-
-    def _from_name_and_affiliation_and_orcid_and_email(self):
-        return {
-            '@id': self._author.get('orcid'),
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
-            'name': self._author.get('name'),
-            'email': self._author.get('email')
-        }
-
     def _from_name_and_orcid_and_email(self):
         return {
             '@id': self._author.get('orcid'),
-            '@type': 'Person',
+            '@type': 'Organization',
             'name': self._author.get('name'),
             'email': self._author.get('email')
         }
@@ -581,29 +533,6 @@ class SchemaorgAuthor(BaseAuthor):
                 'legalName': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
-        }
-
-    def _from_alias_and_name_and_affiliation_and_orcid(self):
-        return {
-            '@id': self._author.get('orcid'),
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
-            'alternateName': self._author.get('alias'),
-            'name': self._author.get('name')
-        }
-
-    def _from_alias_and_name_and_affiliation(self):
-        return {
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
-            'alternateName': self._author.get('alias'),
-            'name': self._author.get('name')
         }
 
     def _from_alias_and_name_and_orcid(self):
@@ -854,28 +783,7 @@ class SchemaorgAuthor(BaseAuthor):
 
     def _from_name(self):
         return {
-            '@type': 'Person',
-            'name': self._author.get('name')
-        }
-
-    def _from_name_and_affiliation(self):
-        return {
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
-            'name': self._author.get('name')
-        }
-
-    def _from_name_and_affiliation_and_orcid(self):
-        return {
-            '@id': self._author.get('orcid'),
-            '@type': 'Person',
-            'affiliation': {
-                '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
-            },
+            '@type': 'Organization',
             'name': self._author.get('name')
         }
 

@@ -1,4 +1,4 @@
-from cffconvert.behavior_1_2_x.ris_author import RisAuthor
+from cffconvert.behavior_1_x_x.ris_author import RisAuthor
 from cffconvert.behavior_1_2_x.ris_url import RisUrl
 from cffconvert.behavior_1_x_x.ris_object_shared import RisObjectShared as Shared
 

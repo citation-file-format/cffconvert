@@ -1,9 +1,8 @@
-from abc import abstractmethod
 from cffconvert.behavior_1_x_x.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods
-class RisAuthorShared(AbstractAuthorShared):
+class RisAuthor(AbstractAuthorShared):
 
     def __init__(self, author):
         super().__init__(author)
@@ -23,7 +22,7 @@ class RisAuthorShared(AbstractAuthorShared):
             '__AN': self._from_alias,
             '__A_': self._from_alias,
             '___N': self._from_name,
-            '____': RisAuthorShared._from_thin_air
+            '____': RisAuthor._from_thin_air
         }
 
     def _from_alias(self):
@@ -41,6 +40,11 @@ class RisAuthorShared(AbstractAuthorShared):
     def _from_name(self):
         return f"AU  - { self._author.get('name') }\n"
 
-    @abstractmethod
     def as_string(self):
-        pass
+        key = ''.join([
+            self._has_given_name(),
+            self._has_family_name(),
+            self._has_alias(),
+            self._has_name()
+        ])
+        return self._behaviors[key]()

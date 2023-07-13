@@ -1,7 +1,7 @@
 import itertools
 import types
 import pytest
-from cffconvert.behavior_1_2_x.ris_author import RisAuthor
+from cffconvert.behavior_1_x_x.ris_author import RisAuthor
 
 
 def get_every_key():

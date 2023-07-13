@@ -85,5 +85,6 @@ class Citation_1_2_x(Contract):  # nopep8
                     "...truncated output...",
                     "Add --verbose flag for full output."
                 ])
-                raise ValidationError(truncated_message) from error
+                # pylint:disable = raise-missing-from
+                raise ValidationError(truncated_message)
             raise

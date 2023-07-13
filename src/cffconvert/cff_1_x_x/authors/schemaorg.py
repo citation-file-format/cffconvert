@@ -191,7 +191,7 @@ class SchemaorgAuthor(BaseAuthor):
     def _from_alias_and_name_and_orcid_and_email(self):
         return {
             '@id': self._author.get('orcid'),
-            '@type': 'Person',
+            '@type': 'Organization',
             'alternateName': self._author.get('alias'),
             'name': self._author.get('name'),
             'email': self._author.get('email')
@@ -199,7 +199,7 @@ class SchemaorgAuthor(BaseAuthor):
 
     def _from_alias_and_name_and_email(self):
         return {
-            '@type': 'Person',
+            '@type': 'Organization',
             'alternateName': self._author.get('alias'),
             'name': self._author.get('name'),
             'email': self._author.get('email')
@@ -469,7 +469,7 @@ class SchemaorgAuthor(BaseAuthor):
 
     def _from_name_and_email(self):
         return {
-            '@type': 'Person',
+            '@type': 'Organization',
             'name': self._author.get('name'),
             'email': self._author.get('email')
         }
@@ -538,14 +538,14 @@ class SchemaorgAuthor(BaseAuthor):
     def _from_alias_and_name_and_orcid(self):
         return {
             '@id': self._author.get('orcid'),
-            '@type': 'Person',
+            '@type': 'Organization',
             'alternateName': self._author.get('alias'),
             'name': self._author.get('name')
         }
 
     def _from_alias_and_name(self):
         return {
-            '@type': 'Person',
+            '@type': 'Organization',
             'alternateName': self._author.get('alias'),
             'name': self._author.get('name')
         }
@@ -790,7 +790,7 @@ class SchemaorgAuthor(BaseAuthor):
     def _from_name_and_orcid(self):
         return {
             '@id': self._author.get('orcid'),
-            '@type': 'Person',
+            '@type': 'Organization',
             'name': self._author.get('name')
         }
 

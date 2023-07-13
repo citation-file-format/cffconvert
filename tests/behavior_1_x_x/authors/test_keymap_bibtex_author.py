@@ -1,7 +1,7 @@
 import itertools
 import types
 import pytest
-from cffconvert.behavior_1_2_x.bibtex_author import BibtexAuthor
+from cffconvert.behavior_1_x_x.bibtex_author import BibtexAuthor
 
 
 def get_every_key():

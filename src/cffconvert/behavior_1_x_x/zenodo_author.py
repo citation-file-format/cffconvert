@@ -1,9 +1,8 @@
-from abc import abstractmethod
 from cffconvert.behavior_1_x_x.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods
-class ZenodoCreatorShared(AbstractAuthorShared):
+class ZenodoAuthor(AbstractAuthorShared):
 
     def __init__(self, author):
         super().__init__(author)
@@ -71,7 +70,7 @@ class ZenodoCreatorShared(AbstractAuthorShared):
             '____AO': self._from_affiliation_and_orcid,
             '____A_': self._from_affiliation,
             '_____O': self._from_orcid,
-            '______': ZenodoCreatorShared._from_thin_air
+            '______': ZenodoAuthor._from_thin_air
         }
 
     def _from_affiliation(self):
@@ -213,6 +212,13 @@ class ZenodoCreatorShared(AbstractAuthorShared):
     def _get_id_from_orcid_url(self):
         return self._author.get('orcid').replace('https://orcid.org/', '')
 
-    @abstractmethod
     def as_dict(self):
-        pass
+        key = ''.join([
+            self._has_given_name(),
+            self._has_family_name(),
+            self._has_alias(),
+            self._has_name(),
+            self._has_affiliation(),
+            self._has_orcid()
+        ])
+        return self._behaviors[key]()

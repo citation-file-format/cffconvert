@@ -7,10 +7,10 @@
 git clone https://github.com/citation-file-format/cff-converter-python.git
 # change directory into cff-converter-python
 cd cff-converter-python
-# make a virtual environment named env
-python3 -m venv env
+# make a virtual environment named venv
+python3 -m venv venv
 # activate the virtual environment
-source env/bin/activate
+source venv/bin/activate
 # upgrade pip, wheel, setuptools
 python3 -m pip install --upgrade pip wheel setuptools
 # install cffconvert and the 'dev' set of additional dependencies
@@ -25,14 +25,10 @@ Running the tests requires an activated virtual environment with the development
 # (from the project root)
 
 # run all tests
-python3 -m pytest test/
-
-# tests for consistent file naming
-bash test/test_consistent_file_naming.sh dir=test/
-bash test/test_consistent_file_naming.sh dir=livetest/
+python3 -m pytest tests/
 
 # tests for consistent versioning
-python3 -m pytest test/test_consistent_versioning.py
+python3 -m pytest tests/test_consistent_versioning.py
 ```
 
 ## Running linters locally
@@ -304,7 +300,7 @@ The table below lists how the key name is constructed based what information was
     cffconvert --version
     
     # run the tests, make sure they pass
-    python3 -m pip pytest test
+    python3 -m pip pytest tests
 
     # git push everything, merge into main as appropriate
     ```
@@ -315,8 +311,8 @@ The table below lists how the key name is constructed based what information was
     # verify that everything has been pushed and merged by testing as follows
     cd $(mktemp -d --tmpdir cffconvert-release.XXXXXX)
     git clone https://github.com/citation-file-format/cff-converter-python.git .
-    python3 -m venv env
-    source env/bin/activate
+    python3 -m venv venv
+    source venv/bin/activate
     python3 -m pip install --upgrade pip wheel setuptools
     python3 -m pip install --no-cache-dir .
 

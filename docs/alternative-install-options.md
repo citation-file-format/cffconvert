@@ -3,11 +3,11 @@
 ## Install in virtual environment
 
 ```shell
-# use venv to make a virtual environment named env
-python3 -m venv env
+# use venv to make a virtual environment named venv
+python3 -m venv venv
 
 # activate the environment
-source env/bin/activate
+source venv/bin/activate
 
 # install cffconvert in it
 pip install cffconvert
@@ -26,7 +26,7 @@ sudo -H python3 -m pip install cffconvert
 Make an environment definition file `environment.yml` with the following contents:
 
 ```yaml
-name: env
+name: venv
 channels:
   - conda-forge
   - defaults
@@ -39,8 +39,8 @@ dependencies:
 Then run:
 
 ```shell
-conda env create --file environment.yml
-conda activate env
+conda venv create --file environment.yml
+conda activate venv
 ```
 
 ## No-install options

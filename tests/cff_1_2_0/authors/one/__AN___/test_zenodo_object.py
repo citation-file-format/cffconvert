@@ -28,7 +28,7 @@ class TestZenodoObject(Contract):
     def test_creators(self):
         assert zenodo_object().add_creators().creators == [
             {
-                "name": "Rafa"
+                "name": "The soccer team members"
             }
         ]
 

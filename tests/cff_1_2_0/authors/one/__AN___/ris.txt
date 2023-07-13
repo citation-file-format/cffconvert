@@ -1,4 +1,4 @@
 TY  - GEN
-AU  - Rafa
+AU  - The soccer team members
 TI  - the title
 ER

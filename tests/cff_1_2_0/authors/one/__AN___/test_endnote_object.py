@@ -22,7 +22,7 @@ class TestEndnoteObject(Contract):
         assert actual_endnote == expected_endnote
 
     def test_author(self):
-        assert endnote_object().add_author().author == '%A Rafa\n'
+        assert endnote_object().add_author().author == '%A The soccer team members\n'
 
     def test_check_cffobj(self):
         endnote_object().check_cffobj()

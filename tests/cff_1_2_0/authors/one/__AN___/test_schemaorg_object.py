@@ -23,7 +23,7 @@ class TestSchemaorgObject(Contract):
 
     def test_author(self):
         assert schemaorg_object().add_author().author == [{
-            "@type": "Person",
+            "@type": "Organization",
             "alternateName": "Rafa",
             "name": "The soccer team members"
         }]

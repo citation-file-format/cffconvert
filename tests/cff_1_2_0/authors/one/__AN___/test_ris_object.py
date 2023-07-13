@@ -25,7 +25,7 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self):
-        assert ris_object().add_author().author == 'AU  - Rafa\n'
+        assert ris_object().add_author().author == 'AU  - The soccer team members\n'
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()

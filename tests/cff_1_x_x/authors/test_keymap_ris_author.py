@@ -2,7 +2,7 @@
 import inspect
 import types
 import pytest
-from cffconvert.cff_1_x_x.ris_author import RisAuthor
+from cffconvert.cff_1_x_x.authors.ris import RisAuthor
 from .get_every_key import get_every_key
 
 

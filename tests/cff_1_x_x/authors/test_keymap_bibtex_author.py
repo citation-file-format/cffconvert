@@ -2,7 +2,7 @@
 import inspect
 import types
 import pytest
-from cffconvert.cff_1_x_x.bibtex_author import BibtexAuthor
+from cffconvert.cff_1_x_x.authors.bibtex import BibtexAuthor
 from .get_every_key import get_every_key
 
 

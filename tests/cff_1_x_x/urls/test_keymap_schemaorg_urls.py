@@ -2,7 +2,7 @@
 import inspect
 import types
 import pytest
-from cffconvert.cff_1_x_x.schemaorg_urls import SchemaorgUrls
+from cffconvert.cff_1_x_x.urls.schemaorg import SchemaorgUrls
 from .get_every_key import get_every_key
 
 

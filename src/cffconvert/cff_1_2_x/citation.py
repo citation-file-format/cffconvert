@@ -3,13 +3,13 @@ import os
 import jsonschema
 from jsonschema.exceptions import ValidationError
 from ruamel.yaml import YAML
-from cffconvert.cff_1_2_x.apalike_object import ApalikeObject
-from cffconvert.cff_1_2_x.bibtex_object import BibtexObject
-from cffconvert.cff_1_2_x.codemeta_object import CodemetaObject
-from cffconvert.cff_1_2_x.endnote_object import EndnoteObject
-from cffconvert.cff_1_2_x.ris_object import RisObject
-from cffconvert.cff_1_2_x.schemaorg_object import SchemaorgObject
-from cffconvert.cff_1_2_x.zenodo_object import ZenodoObject
+from cffconvert.cff_1_2_x.apalike import ApalikeObject
+from cffconvert.cff_1_2_x.bibtex import BibtexObject
+from cffconvert.cff_1_2_x.codemeta import CodemetaObject
+from cffconvert.cff_1_2_x.endnote import EndnoteObject
+from cffconvert.cff_1_2_x.ris import RisObject
+from cffconvert.cff_1_2_x.schemaorg import SchemaorgObject
+from cffconvert.cff_1_2_x.zenodo import ZenodoObject
 from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 

@@ -2,7 +2,7 @@
 import inspect
 import types
 import pytest
-from cffconvert.cff_1_x_x.apalike_url import ApalikeUrl
+from cffconvert.cff_1_x_x.urls.apalike import ApalikeUrl
 from .get_every_key import get_every_key
 
 

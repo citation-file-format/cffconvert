@@ -1,7 +1,7 @@
 import re
-from cffconvert.behavior_1_0_x.citation import Citation_1_0_x
-from cffconvert.behavior_1_1_x.citation import Citation_1_1_x
-from cffconvert.behavior_1_2_x.citation import Citation_1_2_x
+from cffconvert.cff_1_0_x.citation import Citation_1_0_x
+from cffconvert.cff_1_1_x.citation import Citation_1_1_x
+from cffconvert.cff_1_2_x.citation import Citation_1_2_x
 
 
 # pylint: disable=too-few-public-methods

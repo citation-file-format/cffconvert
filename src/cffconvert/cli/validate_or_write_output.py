@@ -23,7 +23,7 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation, ver
         except (PykwalifySchemaError, JsonschemaSchemaError):
             print(f"'{citation.src}' does not pass validation. Conversion aborted.")
             ctx = click.get_current_context()
-            ctx.exit()
+            ctx.exit(1)
         outstr = {
             "apalike": citation.as_apalike,
             "bibtex": citation.as_bibtex,

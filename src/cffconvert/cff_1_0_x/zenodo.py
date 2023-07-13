@@ -1,5 +1,5 @@
-from cffconvert.cff_1_x_x.zenodo_author import ZenodoAuthor
-from cffconvert.cff_1_x_x.zenodo_object_shared import ZenodoObjectShared as Shared
+from cffconvert.cff_1_x_x.authors.zenodo import ZenodoAuthor
+from cffconvert.cff_1_x_x.zenodo import ZenodoObjectShared as Shared
 
 
 class ZenodoObject(Shared):

@@ -1,4 +1,4 @@
-from cffconvert.cff_1_x_x.base_author import BaseAuthor
+from cffconvert.cff_1_x_x.authors.base import BaseAuthor
 
 
 # pylint: disable=too-few-public-methods

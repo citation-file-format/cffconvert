@@ -1,4 +1,4 @@
-from cffconvert.cff_1_x_x.base_url import BaseUrl
+from cffconvert.cff_1_x_x.urls.base import BaseUrl
 
 
 # pylint: disable=too-few-public-methods

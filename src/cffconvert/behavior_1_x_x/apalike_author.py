@@ -1,9 +1,8 @@
-from abc import abstractmethod
-from cffconvert.behavior_shared.abstract_author_shared import AbstractAuthorShared
+from cffconvert.behavior_1_x_x.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods
-class RisAuthorShared(AbstractAuthorShared):
+class ApalikeAuthor(AbstractAuthorShared):
 
     def __init__(self, author):
         super().__init__(author)
@@ -23,24 +22,33 @@ class RisAuthorShared(AbstractAuthorShared):
             '__AN': self._from_alias,
             '__A_': self._from_alias,
             '___N': self._from_name,
-            '____': RisAuthorShared._from_thin_air
+            '____': ApalikeAuthor._from_thin_air
         }
 
     def _from_alias(self):
-        return f"AU  - { self._author.get('alias') }\n"
+        return self._author.get('alias')
 
     def _from_given_and_last(self):
-        return f"AU  - { self._get_full_last_name() }, { self._author.get('given-names') }\n"
+        return self._get_full_last_name() + ' ' + self._get_initials()
 
     def _from_given(self):
-        return f"AU  - { self._author.get('given-names') }\n"
+        return self._author.get('given-names')
 
     def _from_last(self):
-        return f"AU  - { self._get_full_last_name() }\n"
+        return self._get_full_last_name()
 
     def _from_name(self):
-        return f"AU  - { self._author.get('name') }\n"
+        return self._author.get('name')
 
-    @abstractmethod
+    def _get_initials(self):
+        given_names = self._author.get('given-names').split(' ')
+        return ''.join([given_name[0] + '.' for given_name in given_names])
+
     def as_string(self):
-        pass
+        key = ''.join([
+            self._has_given_name(),
+            self._has_family_name(),
+            self._has_alias(),
+            self._has_name()
+        ])
+        return self._behaviors[key]()

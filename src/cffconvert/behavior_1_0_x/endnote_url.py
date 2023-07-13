@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.endnote_url_shared import EndnoteUrlShared as Shared
+from cffconvert.behavior_1_x_x.endnote_url_shared import EndnoteUrlShared as Shared
 
 
 # pylint: disable=too-few-public-methods

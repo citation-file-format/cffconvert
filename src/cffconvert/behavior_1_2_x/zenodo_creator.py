@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.zenodo_creator_shared import ZenodoCreatorShared as Shared
+from cffconvert.behavior_1_x_x.zenodo_creator_shared import ZenodoCreatorShared as Shared
 
 
 # pylint: disable=too-few-public-methods

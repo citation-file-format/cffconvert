@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.schemaorg_author_shared import SchemaorgAuthorShared as Shared
+from cffconvert.behavior_1_x_x.schemaorg_author_shared import SchemaorgAuthorShared as Shared
 
 
 # pylint: disable=too-few-public-methods

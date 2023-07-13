@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.bibtex_author_shared import BibtexAuthorShared as Shared
+from cffconvert.behavior_1_x_x.bibtex_author_shared import BibtexAuthorShared as Shared
 
 
 # pylint: disable=too-few-public-methods

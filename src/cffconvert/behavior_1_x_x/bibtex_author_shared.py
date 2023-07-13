@@ -1,9 +1,9 @@
 from abc import abstractmethod
-from cffconvert.behavior_shared.abstract_author_shared import AbstractAuthorShared
+from cffconvert.behavior_1_x_x.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods
-class ApalikeAuthorShared(AbstractAuthorShared):
+class BibtexAuthorShared(AbstractAuthorShared):
 
     def __init__(self, author):
         super().__init__(author)
@@ -23,27 +23,28 @@ class ApalikeAuthorShared(AbstractAuthorShared):
             '__AN': self._from_alias,
             '__A_': self._from_alias,
             '___N': self._from_name,
-            '____': ApalikeAuthorShared._from_thin_air
+            '____': BibtexAuthorShared._from_thin_air
         }
 
     def _from_alias(self):
         return self._author.get('alias')
 
     def _from_given_and_last(self):
-        return self._get_full_last_name() + ' ' + self._get_initials()
+        return self._from_last() + ", " + self._from_given()
 
     def _from_given(self):
         return self._author.get('given-names')
 
     def _from_last(self):
-        return self._get_full_last_name()
+        nameparts = [
+            self._author.get('name-particle'),
+            self._author.get('family-names'),
+            self._author.get('name-suffix')
+        ]
+        return ' '.join([n for n in nameparts if n is not None])
 
     def _from_name(self):
         return self._author.get('name')
-
-    def _get_initials(self):
-        given_names = self._author.get('given-names').split(' ')
-        return ''.join([given_name[0] + '.' for given_name in given_names])
 
     @abstractmethod
     def as_string(self):

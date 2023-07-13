@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from cffconvert.behavior_shared.abstract_author_shared import AbstractAuthorShared
+from cffconvert.behavior_1_x_x.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods

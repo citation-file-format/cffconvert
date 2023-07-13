@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.ris_url_shared import RisUrlShared as Shared
+from cffconvert.behavior_1_x_x.ris_url_shared import RisUrlShared as Shared
 
 
 # pylint: disable=too-few-public-methods

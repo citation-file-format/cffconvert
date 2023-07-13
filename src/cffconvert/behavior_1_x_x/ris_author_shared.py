@@ -1,9 +1,9 @@
 from abc import abstractmethod
-from cffconvert.behavior_shared.abstract_author_shared import AbstractAuthorShared
+from cffconvert.behavior_1_x_x.abstract_author_shared import AbstractAuthorShared
 
 
 # pylint: disable=too-few-public-methods
-class BibtexAuthorShared(AbstractAuthorShared):
+class RisAuthorShared(AbstractAuthorShared):
 
     def __init__(self, author):
         super().__init__(author)
@@ -23,28 +23,23 @@ class BibtexAuthorShared(AbstractAuthorShared):
             '__AN': self._from_alias,
             '__A_': self._from_alias,
             '___N': self._from_name,
-            '____': BibtexAuthorShared._from_thin_air
+            '____': RisAuthorShared._from_thin_air
         }
 
     def _from_alias(self):
-        return self._author.get('alias')
+        return f"AU  - { self._author.get('alias') }\n"
 
     def _from_given_and_last(self):
-        return self._from_last() + ", " + self._from_given()
+        return f"AU  - { self._get_full_last_name() }, { self._author.get('given-names') }\n"
 
     def _from_given(self):
-        return self._author.get('given-names')
+        return f"AU  - { self._author.get('given-names') }\n"
 
     def _from_last(self):
-        nameparts = [
-            self._author.get('name-particle'),
-            self._author.get('family-names'),
-            self._author.get('name-suffix')
-        ]
-        return ' '.join([n for n in nameparts if n is not None])
+        return f"AU  - { self._get_full_last_name() }\n"
 
     def _from_name(self):
-        return self._author.get('name')
+        return f"AU  - { self._author.get('name') }\n"
 
     @abstractmethod
     def as_string(self):

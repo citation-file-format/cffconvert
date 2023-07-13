@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.ris_author_shared import RisAuthorShared as Shared
+from cffconvert.behavior_1_x_x.ris_author_shared import RisAuthorShared as Shared
 
 
 # pylint: disable=too-few-public-methods

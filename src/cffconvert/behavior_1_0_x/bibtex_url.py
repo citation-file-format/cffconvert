@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.bibtex_url_shared import BibtexUrlShared as Shared
+from cffconvert.behavior_1_x_x.bibtex_url_shared import BibtexUrlShared as Shared
 
 
 # pylint: disable=too-few-public-methods

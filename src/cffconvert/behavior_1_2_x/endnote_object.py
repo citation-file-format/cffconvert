@@ -1,6 +1,6 @@
 from cffconvert.behavior_1_2_x.endnote_author import EndnoteAuthor
 from cffconvert.behavior_1_2_x.endnote_url import EndnoteUrl
-from cffconvert.behavior_shared.endnote_object_shared import EndnoteObjectShared as Shared
+from cffconvert.behavior_1_x_x.endnote_object_shared import EndnoteObjectShared as Shared
 
 
 class EndnoteObject(Shared):

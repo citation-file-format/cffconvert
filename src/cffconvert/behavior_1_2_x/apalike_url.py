@@ -1,4 +1,4 @@
-from cffconvert.behavior_shared.apalike_url_shared import ApalikeUrlShared as Shared
+from cffconvert.behavior_1_x_x.apalike_url_shared import ApalikeUrlShared as Shared
 
 
 # pylint: disable=too-few-public-methods

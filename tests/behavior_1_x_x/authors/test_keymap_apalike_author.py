@@ -1,7 +1,7 @@
 import itertools
 import types
 import pytest
-from cffconvert.behavior_1_x_x.apalike_author import ApalikeAuthor
+from cffconvert.cff_1_x_x.apalike_author import ApalikeAuthor
 
 
 def get_every_key():

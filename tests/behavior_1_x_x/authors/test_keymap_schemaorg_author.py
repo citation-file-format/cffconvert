@@ -1,7 +1,7 @@
 import itertools
 import types
 import pytest
-from cffconvert.behavior_1_x_x.schemaorg_author import SchemaorgAuthor
+from cffconvert.cff_1_x_x.schemaorg_author import SchemaorgAuthor
 
 
 def get_every_key():

@@ -1,7 +1,7 @@
 import os
 from tests.contracts.apalike_object import Contract
 from cffconvert import Citation
-from cffconvert.behavior_1_1_x.apalike_object import ApalikeObject
+from cffconvert.cff_1_1_x.apalike_object import ApalikeObject
 
 
 def apalike_object():

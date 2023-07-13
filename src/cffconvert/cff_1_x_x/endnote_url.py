@@ -1,4 +1,4 @@
-from cffconvert.behavior_1_x_x.abstract_url_shared import AbstractUrlShared
+from cffconvert.cff_1_x_x.abstract_url_shared import AbstractUrlShared
 
 
 # pylint: disable=too-few-public-methods

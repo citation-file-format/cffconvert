@@ -1,7 +1,7 @@
 import itertools
 import types
 import pytest
-from cffconvert.behavior_1_x_x.endnote_author import EndnoteAuthor
+from cffconvert.cff_1_x_x.endnote_author import EndnoteAuthor
 
 
 def get_every_key():

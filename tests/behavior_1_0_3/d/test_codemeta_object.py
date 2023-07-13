@@ -1,7 +1,7 @@
 import os
 from tests.contracts.codemeta_object import Contract
 from cffconvert import Citation
-from cffconvert.behavior_1_0_x.codemeta_object import CodemetaObject
+from cffconvert.cff_1_0_x.codemeta_object import CodemetaObject
 
 
 def codemeta_object():

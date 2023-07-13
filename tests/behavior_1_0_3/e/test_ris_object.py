@@ -1,7 +1,7 @@
 import os
 from tests.contracts.ris_object import Contract
 from cffconvert import Citation
-from cffconvert.behavior_1_0_x.ris_object import RisObject
+from cffconvert.cff_1_0_x.ris_object import RisObject
 
 
 def ris_object():

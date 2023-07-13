@@ -1,4 +1,4 @@
-from cffconvert.behavior_1_x_x.abstract_author import AbstractAuthor
+from cffconvert.cff_1_x_x.abstract_author import AbstractAuthor
 
 
 # pylint: disable=too-few-public-methods

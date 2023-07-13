@@ -1,7 +1,7 @@
 import itertools
 import types
 import pytest
-from cffconvert.behavior_1_x_x.zenodo_author import ZenodoAuthor
+from cffconvert.cff_1_x_x.zenodo_author import ZenodoAuthor
 
 
 def get_every_key():

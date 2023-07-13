@@ -1,6 +1,6 @@
-from cffconvert.behavior_1_x_x.apalike_author import ApalikeAuthor
-from cffconvert.behavior_1_x_x.apalike_url import ApalikeUrl
-from cffconvert.behavior_1_x_x.apalike_object_shared import ApalikeObjectShared as Shared
+from cffconvert.cff_1_x_x.apalike_author import ApalikeAuthor
+from cffconvert.cff_1_x_x.apalike_url import ApalikeUrl
+from cffconvert.cff_1_x_x.apalike_object_shared import ApalikeObjectShared as Shared
 
 
 class ApalikeObject(Shared):

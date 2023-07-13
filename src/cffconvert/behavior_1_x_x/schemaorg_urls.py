@@ -1,9 +1,8 @@
-from abc import abstractmethod
 from cffconvert.behavior_1_x_x.abstract_url_shared import AbstractUrlShared
 
 
 # pylint: disable=too-few-public-methods
-class SchemaorgUrlsShared(AbstractUrlShared):
+class SchemaorgUrls(AbstractUrlShared):
 
     def __init__(self, cffobj):
         super().__init__(cffobj)
@@ -39,7 +38,7 @@ class SchemaorgUrlsShared(AbstractUrlShared):
             '___CU': self._from_repository_code_and_url,
             '___C_': self._from_repository_code,
             '____U': self._from_url,
-            '_____': SchemaorgUrlsShared._from_thin_air
+            '_____': SchemaorgUrls._from_thin_air
         }
 
     def _from_identifiers_url_and_repository_code(self):
@@ -85,6 +84,12 @@ class SchemaorgUrlsShared(AbstractUrlShared):
     def _from_url(self):
         return None, self._cffobj.get('url')
 
-    @abstractmethod
     def as_tuple(self):
-        pass
+        key = ''.join([
+            self._has_identifiers_url(),
+            self._has_repository(),
+            self._has_repository_artifact(),
+            self._has_repository_code(),
+            self._has_url()
+        ])
+        return self._behaviors[key]()

@@ -1,0 +1,5 @@
+repos:
+-   repo: https://github.com/citation-file-format/cffconvert
+    rev: 23a1fbb8e33f604f6b3561e45e42ce916ee1de31
+    hooks:
+    -   id: validate-cff

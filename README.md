@@ -26,13 +26,13 @@ Command line program to validate and convert [`CITATION.cff`](https://github.com
 
 ## Supported output formats
 
-1.  APA-like plaintext
-1.  BibTeX
-3.  CodeMeta
-4.  EndNote
-1.  RIS
-1.  schema.org JSON
-1.  Zenodo JSON
+1. APA-like plaintext
+2. BibTeX
+3. CodeMeta
+4. EndNote
+5. RIS
+6. schema.org JSON
+7. Zenodo JSON
 
 `cffconvert` does not support converting items from `references` or `preferred-citation` keys at the moment.
 
@@ -63,6 +63,19 @@ docker run --rm -v $PWD:/app citationcff/cffconvert --validate
 docker run --rm -v $PWD:/app citationcff/cffconvert --version
 docker run --rm -v $PWD:/app citationcff/cffconvert --help
 # etc
+```
+
+## `pre-commit` hook
+
+`cffconvert` is also available as a [pre-commit](https://pre-commit.com) hook. Add the following to your
+`.pre-commit-config.yaml` file to start validating your CITATION.cff automatically whenever you issue a `git commit`:
+
+```yaml
+repos:
+  - repo: https://github.com/citation-file-format/cffconvert
+    rev: 054bda51dbe278b3e86f27c890e3f3ac877d616c
+    hooks:
+      - id: validate-cff
 ```
 
 ## Command line interface

@@ -28,7 +28,6 @@ pylint:
   options:
     max-line-length: 120
 
-
 pydocstyle:
   disable:
     # Disable because not part of PEP257 official convention:

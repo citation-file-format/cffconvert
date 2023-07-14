@@ -68,7 +68,7 @@ docker run --rm -v $PWD:/app citationcff/cffconvert --help
 ## `pre-commit` hook
 
 `cffconvert` is also available as a [pre-commit](https://pre-commit.com) hook. Add the following to your
-`.pre-commit-config.yaml` file to start using it. 
+`.pre-commit-config.yaml` file to start validating your CITATION.cff automatically whenever you issue a `git commit`:
 
 ```yaml
 repos:

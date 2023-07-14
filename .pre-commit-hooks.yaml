@@ -1,4 +1,4 @@
-- id: validate
+- id: validate-cff
   name: Validate repo CITATION.cff file
   description: Runs `cffconvert --validate`.
   entry: cffconvert --validate

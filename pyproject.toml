@@ -64,9 +64,6 @@ dev = [
 gcloud = [
     "flask"
 ]
-linting = [
-    "pre-commit"
-]
 publishing = [
     "twine",
     "wheel"

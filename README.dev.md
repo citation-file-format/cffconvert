@@ -1,43 +1,72 @@
 # Documentation for developers
 
-## Install
+## Installing
 
 ```shell
-# get a copy of the cff-converter-python software
-git clone https://github.com/citation-file-format/cff-converter-python.git
-# change directory into cff-converter-python
-cd cff-converter-python
+# get a copy of the cffconvert software
+git clone https://github.com/citation-file-format/cffconvert.git
+# change directory into cffconvert
+cd cffconvert
 # make a virtual environment named venv
 python3 -m venv venv
 # activate the virtual environment
 source venv/bin/activate
 # upgrade pip, wheel, setuptools
-python3 -m pip install --upgrade pip wheel setuptools
-# install cffconvert and the 'dev' set of additional dependencies
-python3 -m pip install --editable .[dev]
+pip install --upgrade pip wheel setuptools
+# install cffconvert  in editable mode
+pip install --editable .
 ```
 
-## Running tests
+There are various sets of dependencies that you should install depending on the work you're planning to do.
 
-Running the tests requires an activated virtual environment with the development tools installed.
+```shell
+pip install --editable .[dev]
+```
+
+```shell
+pip install --editable .[gcloud]
+```
+
+```shell
+pip install --editable .[publishing]
+```
+
+```shell
+pip install --editable .[testing]
+```
+
+You can combine these into one command like so, e.g.:
+
+```shell
+pip install --editable .[dev,testing]
+```
+
+## Testing
 
 ```shell
 # (from the project root)
+pip install --editable .[testing]
 
 # run all tests
-python3 -m pytest tests/
+pytest tests/
 
-# tests for consistent versioning
-python3 -m pytest tests/test_consistent_versioning.py
+# run tests for consistent versioning
+pytest tests/test_consistent_versioning.py
+
+# run pytest on a subset of the files, e.g.
+cd tests/cff_1_2_0/ && pytest .
 ```
 
-## Running linters locally
+## Linting
 
 For linting we use [prospector](https://pypi.org/project/prospector/) and to sort imports we will use
 [isort](https://pycqa.github.io/isort/). Running the linters requires an activated virtual environment with the
 development tools installed.
 
 ```shell
+# (from the project root)
+pip install --editable .[dev]
+
 # linter
 prospector
 
@@ -49,13 +78,30 @@ isort --check-only cffconvert
 isort --check-only --diff cffconvert
 
 # recursively fix import style for the cffconvert module only
-isort cffconvert
+isort src/cffconvert
 ```
 
-Developers should consider enabling automatic linting with `prospector` and `isort` on commit by enabling the git hook from `.githooks/pre-commit`, like so:
+The linting tools are also usable via [`pre-commit`](https://pre-commit.com/). Usage requires installing the
+`pre-commit` configuration with:
 
 ```shell
-git config --local core.hooksPath .githooks
+pip install --editable .[dev]
+```
+
+You can run the linting via pre-commit using:
+
+```shell
+# Run all tools
+pre-commit run --all-files
+# Run a specific tool, see .pre-commit-config.yaml for their IDs
+pre-commit run --all-files <ID of the task>
+```
+
+Alternatively, the linting tools can be set up to run automatically whenever you issue a `git commit` command, as
+follows:
+ 
+```shell
+pre-commit install
 ```
 
 ## Construction of author keys
@@ -285,7 +331,7 @@ The table below lists how the key name is constructed based what information was
 
 
 1. make sure the release notes are up to date
-1. preparation
+2. preparation
 
     ```shell
     # remove old cffconvert from your system if you have it
@@ -296,6 +342,7 @@ The table below lists how the key name is constructed based what information was
 
     # install the package to user space, using no caching (can bring to light dependency problems)
     python3 -m pip install --user --no-cache-dir .
+
     # check if cffconvert works, e.g.
     cffconvert --version
     
@@ -305,7 +352,7 @@ The table below lists how the key name is constructed based what information was
     # git push everything, merge into main as appropriate
     ```
     
-1. publishing on test instance of PyPI
+3. publishing on test instance of PyPI
 
     ```shell
     # verify that everything has been pushed and merged by testing as follows
@@ -331,7 +378,7 @@ The table below lists how the key name is constructed based what information was
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
     ```
     
-1. Checking the package
+4. Checking the package
 
     Open another shell but keep the other one. We'll return to the first shell momentarily.
     
@@ -344,15 +391,15 @@ The table below lists how the key name is constructed based what information was
 
     # check that the package works as it should when installed from pypitest
     ```
-1. FINAL STEP: upload to PyPI
+5. FINAL STEP: upload to PyPI
 
     Go back to the first shell, then (requires credentials for pypi.org)
 
     ```shell
     twine upload dist/*
     ```
-1. Make the release on GitHub
-1. Go to Zenodo, log in to inspect the draft. Then click `Publish` to finalize it.
+6. Make the release on GitHub
+7. Go to Zenodo, log in to inspect the draft. Then click `Publish` to finalize it.
 
 ### Building the docker image
 

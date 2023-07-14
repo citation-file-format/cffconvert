@@ -65,6 +65,17 @@ docker run --rm -v $PWD:/app citationcff/cffconvert --help
 # etc
 ```
 
+`cffconvert` is also available as a [pre-commit](https://pre-commit.com) hook. Add the following to your
+`.pre-commit-config.yaml` file to start using it. 
+
+```yaml
+repos:
+  - repo: https://github.com/citation-file-format/cffconvert
+    rev: 054bda51dbe278b3e86f27c890e3f3ac877d616c
+    hooks:
+      - id: validate-cff
+```
+
 ## Command line interface
 
 See `cffconvert`'s options:

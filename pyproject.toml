@@ -58,6 +58,7 @@ Repository = "https://github.com/citation-file-format/cff-converter-python"
 dev = [
     "build",
     "isort",
+    "pre-commit",
     "prospector[with_pyroma] >= 1.4"
 ]
 gcloud = [

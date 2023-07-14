@@ -26,13 +26,13 @@ Command line program to validate and convert [`CITATION.cff`](https://github.com
 
 ## Supported output formats
 
-1.  APA-like plaintext
-1.  BibTeX
-3.  CodeMeta
-4.  EndNote
-1.  RIS
-1.  schema.org JSON
-1.  Zenodo JSON
+1. APA-like plaintext
+2. BibTeX
+3. CodeMeta
+4. EndNote
+5. RIS
+6. schema.org JSON
+7. Zenodo JSON
 
 `cffconvert` does not support converting items from `references` or `preferred-citation` keys at the moment.
 

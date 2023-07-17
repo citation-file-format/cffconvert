@@ -14,6 +14,7 @@ class Citation:
         "1.0.3": Citation_1_0_x,
         "1.1.0": Citation_1_1_x,
         "1.2.0": Citation_1_2_x,
+        "1.3.0": Citation_1_3_x
     }
     supported_cff_versions = _implementations.keys()
 

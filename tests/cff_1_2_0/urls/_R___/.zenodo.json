@@ -4,6 +4,13 @@
       "name": "Test author"
     }
   ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/the-url-from-repository",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ],
   "title": "Test title",
   "upload_type": "software"
 }

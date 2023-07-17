@@ -50,6 +50,21 @@ class TestZenodoObject(Contract):
     def test_publication_date(self):
         assert zenodo_object().add_publication_date().publication_date == '2018-01-16'
 
+    def test_related_identifiers(self):
+        assert zenodo_object().add_related_identifiers().related_identifiers == [{
+            "identifier": "10.5281/zenodo.1162057",
+            "relation": "isSupplementedBy",
+            "scheme": "doi"
+        }, {
+            "identifier": "10.0000/FIXME",
+            "relation": "isSupplementedBy",
+            "scheme": "doi"
+        }, {
+            "identifier": "https://github.com/citation-file-format/cffconvert",
+            "relation": "isSupplementedBy",
+            "scheme": "url"
+        }]
+
     def test_title(self):
         assert zenodo_object().add_title().title == 'cffconvert'
 

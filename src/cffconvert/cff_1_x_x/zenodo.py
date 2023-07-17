@@ -11,6 +11,7 @@ class ZenodoObjectShared:
         "keywords",
         "license",
         "publication_date",
+        "related_identifiers",
         "title",
         "upload_type",
         "version"
@@ -24,6 +25,7 @@ class ZenodoObjectShared:
         self.keywords = None
         self.license = None
         self.publication_date = None
+        self.related_identifiers = None
         self.title = None
         self.upload_type = None
         self.version = None
@@ -41,6 +43,7 @@ class ZenodoObjectShared:
             "keywords": self.keywords,
             "license": self.license,
             "publication_date": self.publication_date,
+            "related_identifiers": self.related_identifiers,
             "title": self.title,
             "upload_type": self.upload_type,
             "version": self.version
@@ -49,13 +52,14 @@ class ZenodoObjectShared:
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + "\n"
 
     def add_all(self):
-        self.add_creators()          \
-            .add_description()       \
-            .add_keywords()          \
-            .add_license()           \
-            .add_publication_date()  \
-            .add_title()             \
-            .add_upload_type()       \
+        self.add_creators()            \
+            .add_description()         \
+            .add_keywords()            \
+            .add_license()             \
+            .add_publication_date()    \
+            .add_related_identifiers() \
+            .add_title()               \
+            .add_upload_type()         \
             .add_version()
         return self
 
@@ -64,32 +68,62 @@ class ZenodoObjectShared:
         pass
 
     def add_description(self):
-        if "abstract" in self.cffobj.keys():
-            self.description = self.cffobj["abstract"]
+        self.description = self.cffobj.get("abstract")
         return self
 
     def add_keywords(self):
-        if "keywords" in self.cffobj.keys():
-            self.keywords = self.cffobj["keywords"]
+        self.keywords = self.cffobj.get("keywords")
         return self
 
     def add_license(self):
-        if "license" in self.cffobj.keys():
-            self.license = {"id": self.cffobj["license"]}
+        if "license" in self.cffobj:
+            self.license = {"id": self.cffobj.get("license")}
         return self
 
     @abstractmethod
     def add_publication_date(self):
         pass
 
+    def add_related_identifiers(self):
+        related_identifiers = {}
+        for identifier in self.cffobj.get("identifiers", []):
+            if identifier.get("type") != "other":
+                deduplication_key = identifier.get("value")
+                related_identifiers.update({
+                    deduplication_key: {
+                        "scheme": identifier.get("type"),
+                        "identifier": deduplication_key,
+                        "relation": "isSupplementedBy"
+                    }
+                })
+        if "doi" in self.cffobj:
+            deduplication_key = self.cffobj.get("doi")
+            related_identifiers.update({
+                deduplication_key: {
+                    "scheme": "doi",
+                    "identifier": deduplication_key,
+                    "relation": "isSupplementedBy"
+                }
+            })
+        for cffkey in ["repository", "repository-artifact", "repository-code", "url"]:
+            if cffkey in self.cffobj:
+                deduplication_key = self.cffobj.get(cffkey)
+                related_identifiers.update({
+                    deduplication_key: {
+                        "scheme": "url",
+                        "identifier": deduplication_key,
+                        "relation": "isSupplementedBy"
+                    }
+                })
+        self.related_identifiers = [v for k, v in related_identifiers.items()] if len(related_identifiers) > 0 else None
+        return self
+
     def add_title(self):
-        if "title" in self.cffobj.keys():
-            self.title = self.cffobj["title"]
+        self.title = self.cffobj.get("title")
         return self
 
     def add_version(self):
-        if "version" in self.cffobj.keys():
-            self.version = self.cffobj["version"]
+        self.version = self.cffobj.get("version")
         return self
 
     def as_string(self):

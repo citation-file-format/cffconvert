@@ -1,7 +1,7 @@
 import os
 from tests.contracts.endnote_object import Contract
 from cffconvert import Citation
-from cffconvert.cff_1_2_x.endnote import EndnoteObject
+from cffconvert.cff_1_3_x.endnote import EndnoteObject
 
 
 def endnote_object():

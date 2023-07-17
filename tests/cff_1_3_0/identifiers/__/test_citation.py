@@ -10,7 +10,7 @@ def citation():
 
 
 def test_cffversion():
-    assert citation().cffversion == "1.2.0"
+    assert citation().cffversion == "1.3.0"
 
 
 def test_validate():

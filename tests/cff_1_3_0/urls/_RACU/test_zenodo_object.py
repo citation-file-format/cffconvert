@@ -1,7 +1,7 @@
 import os
 from tests.contracts.zenodo_object import Contract
 from cffconvert import Citation
-from cffconvert.cff_1_2_x.zenodo import ZenodoObject
+from cffconvert.cff_1_3_x.zenodo import ZenodoObject
 
 
 def zenodo_object():

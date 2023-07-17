@@ -33,6 +33,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def test_related_identifiers(self):
+        pass
+
+    @abstractmethod
     def test_upload_type(self):
         pass
 

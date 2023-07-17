@@ -46,6 +46,9 @@ class TestZenodoObject(Contract):
     def test_publication_date(self):
         assert zenodo_object().add_publication_date().publication_date == '2018-01-16'
 
+    def test_related_identifiers(self):
+        assert zenodo_object().add_related_identifiers().related_identifiers is None
+
     def test_title(self):
         assert zenodo_object().add_title().title == 'cffconvert'
 

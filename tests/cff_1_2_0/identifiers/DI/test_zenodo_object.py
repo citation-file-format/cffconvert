@@ -41,6 +41,17 @@ class TestZenodoObject(Contract):
     def test_publication_date(self):
         assert zenodo_object().add_publication_date().publication_date is None
 
+    def test_related_identifiers(self):
+        assert zenodo_object().add_related_identifiers().related_identifiers == [{
+            "identifier": "10.0000/from-identifiers",
+            "relation": "isSupplementTo",
+            "scheme": "doi"
+        }, {
+            "identifier": "10.0000/from-doi",
+            "relation": "isSupplementTo",
+            "scheme": "doi"
+        }]
+
     def test_title(self):
         assert zenodo_object().add_title().title == 'Test title'
 

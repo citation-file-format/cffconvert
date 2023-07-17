@@ -3,22 +3,22 @@ import os
 import jsonschema
 from jsonschema.exceptions import ValidationError
 from ruamel.yaml import YAML
-from cffconvert.cff_1_2_x.apalike import ApalikeObject
-from cffconvert.cff_1_2_x.bibtex import BibtexObject
-from cffconvert.cff_1_2_x.codemeta import CodemetaObject
-from cffconvert.cff_1_2_x.endnote import EndnoteObject
-from cffconvert.cff_1_2_x.ris import RisObject
-from cffconvert.cff_1_2_x.schemaorg import SchemaorgObject
-from cffconvert.cff_1_2_x.zenodo import ZenodoObject
+from cffconvert.cff_1_3_x.apalike import ApalikeObject
+from cffconvert.cff_1_3_x.bibtex import BibtexObject
+from cffconvert.cff_1_3_x.codemeta import CodemetaObject
+from cffconvert.cff_1_3_x.endnote import EndnoteObject
+from cffconvert.cff_1_3_x.ris import RisObject
+from cffconvert.cff_1_3_x.schemaorg import SchemaorgObject
+from cffconvert.cff_1_3_x.zenodo import ZenodoObject
 from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 
 
 # pylint: disable=invalid-name
-class Citation_1_2_x(Contract):  # nopep8
+class Citation_1_3_x(Contract):  # nopep8
 
     supported_cff_versions = [
-        "1.2.0"
+        "1.3.0"
     ]
 
     def __init__(self, cffstr, cffversion):
@@ -28,7 +28,7 @@ class Citation_1_2_x(Contract):  # nopep8
         self.schema = self._get_schema()
 
     def _get_schema(self):
-        schema_path = os.path.join(get_package_root(), "schemas", "1.2.0", "schema.json")
+        schema_path = os.path.join(get_package_root(), "schemas", "1.3.0", "schema.json")
         with open(schema_path, "rt", encoding="utf-8") as fid:
             return json.loads(fid.read())
 

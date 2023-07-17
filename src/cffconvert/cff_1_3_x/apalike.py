@@ -6,7 +6,7 @@ from cffconvert.cff_1_x_x.urls.apalike import ApalikeUrl
 class ApalikeObject(Shared):
 
     supported_cff_versions = [
-        '1.2.0'
+        '1.3.0'
     ]
 
     def add_author(self):

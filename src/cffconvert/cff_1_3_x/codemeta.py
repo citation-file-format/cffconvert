@@ -1,4 +1,4 @@
-from cffconvert.cff_1_2_x.schemaorg import SchemaorgObject
+from cffconvert.cff_1_3_x.schemaorg import SchemaorgObject
 
 
 class CodemetaObject(SchemaorgObject):

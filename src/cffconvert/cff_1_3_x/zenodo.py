@@ -5,7 +5,7 @@ from cffconvert.cff_1_x_x.zenodo import ZenodoObjectShared as Shared
 class ZenodoObject(Shared):
 
     supported_cff_versions = [
-        "1.2.0"
+        "1.3.0"
     ]
 
     def add_creators(self):

@@ -6,7 +6,7 @@ from cffconvert.cff_1_x_x.urls.bibtex import BibtexUrl
 class BibtexObject(Shared):
 
     supported_cff_versions = [
-        '1.2.0'
+        '1.3.0'
     ]
 
     def add_author(self):

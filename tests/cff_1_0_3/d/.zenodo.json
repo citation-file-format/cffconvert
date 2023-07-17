@@ -28,6 +28,13 @@
     "id": "Apache-2.0"
   },
   "publication_date": "2018-07-25",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/citation-file-format/cffconvert",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
   "title": "cffconvert",
   "upload_type": "software",
   "version": "1.0.1"

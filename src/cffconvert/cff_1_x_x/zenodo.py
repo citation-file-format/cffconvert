@@ -87,11 +87,19 @@ class ZenodoObjectShared:
     def add_related_identifiers(self):
         related_identifiers = list()
         for identifier in self.cffobj.get("identifiers", list()):
-            related_identifiers.append({
-                "scheme": identifier.get("type"),
-                "identifier": identifier.get("value"),
-                "relation": "isSupplementTo"
-            })
+            if identifier.get("type") != "other":
+                related_identifiers.append({
+                    "scheme": identifier.get("type"),
+                    "identifier": identifier.get("value"),
+                    "relation": "isSupplementTo"
+                })
+        for key in ["repository", "repository-artifact", "repository-code", "url"]:
+            if key in self.cffobj:
+                related_identifiers.append({
+                    "scheme": "url",
+                    "identifier": self.cffobj.get(key),
+                    "relation": "isSupplementTo"
+                })
         self.related_identifiers = related_identifiers if len(related_identifiers) > 0 else None
         return self
 

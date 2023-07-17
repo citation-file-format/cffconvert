@@ -9,6 +9,16 @@
       "identifier": "https://github.com/the-url-from-identifiers",
       "relation": "isSupplementTo",
       "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-repository",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-repository-artifact",
+      "relation": "isSupplementTo",
+      "scheme": "url"
     }
   ],
   "title": "Test title",

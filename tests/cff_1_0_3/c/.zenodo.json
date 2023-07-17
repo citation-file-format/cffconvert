@@ -20,6 +20,13 @@
     "id": "Apache-2.0"
   },
   "publication_date": "2017-10-07",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/NLeSC/spot",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
   "title": "spot",
   "upload_type": "software",
   "version": "0.1.0"

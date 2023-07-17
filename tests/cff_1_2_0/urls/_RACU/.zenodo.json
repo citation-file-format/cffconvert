@@ -4,6 +4,28 @@
       "name": "Test author"
     }
   ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/the-url-from-repository",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-repository-artifact",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-repository-code",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-url",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
   "title": "Test title",
   "upload_type": "software"
 }

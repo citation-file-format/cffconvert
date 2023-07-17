@@ -44,11 +44,11 @@ class TestZenodoObject(Contract):
     def test_related_identifiers(self):
         assert zenodo_object().add_related_identifiers().related_identifiers == [{
             "identifier": "10.0000/from-identifiers",
-            "relation": "isSupplementTo",
+            "relation": "isSupplementedBy",
             "scheme": "doi"
         }, {
             "identifier": "10.0000/from-doi",
-            "relation": "isSupplementTo",
+            "relation": "isSupplementedBy",
             "scheme": "doi"
         }]
 

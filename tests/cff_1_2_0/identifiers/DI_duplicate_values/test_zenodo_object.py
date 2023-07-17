@@ -44,7 +44,7 @@ class TestZenodoObject(Contract):
     def test_related_identifiers(self):
         assert zenodo_object().add_related_identifiers().related_identifiers == [{
             "identifier": "10.0000/some-doi",
-            "relation": "isSupplementTo",
+            "relation": "isSupplementedBy",
             "scheme": "doi"
         }]
 

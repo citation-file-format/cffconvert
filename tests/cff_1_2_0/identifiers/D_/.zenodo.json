@@ -7,7 +7,7 @@
   "related_identifiers": [
     {
       "identifier": "10.0000/from-doi",
-      "relation": "isSupplementTo",
+      "relation": "isSupplementedBy",
       "scheme": "doi"
     }
   ],

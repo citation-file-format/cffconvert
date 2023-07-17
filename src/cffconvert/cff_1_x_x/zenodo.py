@@ -93,7 +93,7 @@ class ZenodoObjectShared:
                     deduplication_key: {
                         "scheme": identifier.get("type"),
                         "identifier": deduplication_key,
-                        "relation": "isSupplementTo"
+                        "relation": "isSupplementedBy"
                     }
                 })
         if "doi" in self.cffobj:
@@ -102,7 +102,7 @@ class ZenodoObjectShared:
                 deduplication_key: {
                     "scheme": "doi",
                     "identifier": deduplication_key,
-                    "relation": "isSupplementTo"
+                    "relation": "isSupplementedBy"
                 }
             })
         for cffkey in ["repository", "repository-artifact", "repository-code", "url"]:
@@ -112,7 +112,7 @@ class ZenodoObjectShared:
                     deduplication_key: {
                         "scheme": "url",
                         "identifier": deduplication_key,
-                        "relation": "isSupplementTo"
+                        "relation": "isSupplementedBy"
                     }
                 })
         self.related_identifiers = [v for k, v in related_identifiers.items()] if len(related_identifiers) > 0 else None

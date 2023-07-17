@@ -58,11 +58,11 @@ class TestZenodoObject(Contract):
     def test_related_identifiers(self):
         assert zenodo_object().add_related_identifiers().related_identifiers == [{
             "identifier": "10.5281/zenodo.1162057",
-            "relation": "isSupplementTo",
+            "relation": "isSupplementedBy",
             "scheme": "doi"
         }, {
             "identifier": "https://github.com/citation-file-format/cffconvert",
-            "relation": "isSupplementTo",
+            "relation": "isSupplementedBy",
             "scheme": "url"
         }]
 

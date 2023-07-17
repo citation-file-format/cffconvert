@@ -7,7 +7,7 @@
   "related_identifiers": [
     {
       "identifier": "https://github.com/the-url-from-repository-artifact",
-      "relation": "isSupplementTo",
+      "relation": "isSupplementedBy",
       "scheme": "url"
     }
   ],

@@ -42,11 +42,11 @@ class TestZenodoObject(Contract):
     def test_related_identifiers(self):
         assert zenodo_object().add_related_identifiers().related_identifiers == [{
             "identifier": "https://github.com/the-url-from-repository",
-            "relation": "isSupplementTo",
+            "relation": "isSupplementedBy",
             "scheme": "url"
         }, {
             "identifier": "https://github.com/the-url-from-repository-code",
-            "relation": "isSupplementTo",
+            "relation": "isSupplementedBy",
             "scheme": "url"
         }]
 

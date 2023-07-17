@@ -11,6 +11,7 @@ class ZenodoObjectShared:
         "keywords",
         "license",
         "publication_date",
+        "related_identifiers",
         "title",
         "upload_type",
         "version"
@@ -24,6 +25,7 @@ class ZenodoObjectShared:
         self.keywords = None
         self.license = None
         self.publication_date = None
+        self.related_identifiers = None
         self.title = None
         self.upload_type = None
         self.version = None
@@ -41,6 +43,7 @@ class ZenodoObjectShared:
             "keywords": self.keywords,
             "license": self.license,
             "publication_date": self.publication_date,
+            "related_identifiers": self.related_identifiers,
             "title": self.title,
             "upload_type": self.upload_type,
             "version": self.version
@@ -49,13 +52,14 @@ class ZenodoObjectShared:
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + "\n"
 
     def add_all(self):
-        self.add_creators()          \
-            .add_description()       \
-            .add_keywords()          \
-            .add_license()           \
-            .add_publication_date()  \
-            .add_title()             \
-            .add_upload_type()       \
+        self.add_creators()            \
+            .add_description()         \
+            .add_keywords()            \
+            .add_license()             \
+            .add_publication_date()    \
+            .add_related_identifiers() \
+            .add_title()               \
+            .add_upload_type()         \
             .add_version()
         return self
 
@@ -81,6 +85,18 @@ class ZenodoObjectShared:
     @abstractmethod
     def add_publication_date(self):
         pass
+
+    def add_related_identifiers(self):
+        if "identifiers" in self.cffobj.keys():
+            related_identifiers = list()
+            for identifier in self.cffobj.get("identifiers"):
+                related_identifiers.append({
+                    "scheme": identifier.get("type"),
+                    "identifier": identifier.get("value"),
+                    "relation": "isSupplementTo"
+                })
+            self.related_identifiers = related_identifiers
+        return self
 
     def add_title(self):
         if "title" in self.cffobj.keys():

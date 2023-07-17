@@ -85,8 +85,8 @@ class ZenodoObjectShared:
         pass
 
     def add_related_identifiers(self):
-        related_identifiers = list()
-        for identifier in self.cffobj.get("identifiers", list()):
+        related_identifiers = []
+        for identifier in self.cffobj.get("identifiers", []):
             if identifier.get("type") != "other":
                 related_identifiers.append({
                     "scheme": identifier.get("type"),

@@ -93,7 +93,7 @@ class ZenodoObjectShared:
                     deduplication_key: {
                         "scheme": identifier.get("type"),
                         "identifier": deduplication_key,
-                        "relation": "isSupplementedBy"
+                        "relation": identifier.get("relation") or "isSupplementedBy"
                     }
                 })
         if "doi" in self.cffobj:

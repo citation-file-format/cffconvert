@@ -85,28 +85,37 @@ class ZenodoObjectShared:
         pass
 
     def add_related_identifiers(self):
-        related_identifiers = []
+        related_identifiers = {}
         for identifier in self.cffobj.get("identifiers", []):
             if identifier.get("type") != "other":
-                related_identifiers.append({
-                    "scheme": identifier.get("type"),
-                    "identifier": identifier.get("value"),
-                    "relation": "isSupplementTo"
+                deduplication_key = identifier.get("value")
+                related_identifiers.update({
+                    deduplication_key: {
+                        "scheme": identifier.get("type"),
+                        "identifier": deduplication_key,
+                        "relation": "isSupplementTo"
+                    }
                 })
         if "doi" in self.cffobj:
-            related_identifiers.append({
-                "scheme": "doi",
-                "identifier": self.cffobj.get("doi"),
-                "relation": "isSupplementTo"
-            })
-        for key in ["repository", "repository-artifact", "repository-code", "url"]:
-            if key in self.cffobj:
-                related_identifiers.append({
-                    "scheme": "url",
-                    "identifier": self.cffobj.get(key),
+            deduplication_key = self.cffobj.get("doi")
+            related_identifiers.update({
+                deduplication_key: {
+                    "scheme": "doi",
+                    "identifier": deduplication_key,
                     "relation": "isSupplementTo"
+                }
+            })
+        for cffkey in ["repository", "repository-artifact", "repository-code", "url"]:
+            if cffkey in self.cffobj:
+                deduplication_key = self.cffobj.get(cffkey)
+                related_identifiers.update({
+                    deduplication_key: {
+                        "scheme": "url",
+                        "identifier": deduplication_key,
+                        "relation": "isSupplementTo"
+                    }
                 })
-        self.related_identifiers = related_identifiers if len(related_identifiers) > 0 else None
+        self.related_identifiers = [v for k, v in related_identifiers.items()] if len(related_identifiers) > 0 else None
         return self
 
     def add_title(self):

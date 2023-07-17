@@ -5,11 +5,11 @@ authors:
     affiliation: "Netherlands eScience Center"
     family-names: Attema
     given-names: Jisk
+    orcid: "https://orcid.org/0000-0002-0948-1176"
   - 
     affiliation: "Netherlands eScience Center"
     family-names: Diblen
     given-names: Faruk
-    orcid: "https://orcid.org/0000-0002-0989-929X"
 cff-version: "1.0.3"
 commit: aa98969b99151c507d9502a1bf9bd1071e31af8a
 date-released: 2017-10-07

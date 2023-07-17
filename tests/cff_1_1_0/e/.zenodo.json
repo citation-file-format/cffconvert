@@ -22,6 +22,13 @@
     "id": "Apache-2.0"
   },
   "publication_date": "2018-01-16",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.1162057",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    }
+  ],
   "title": "cffconvert",
   "upload_type": "software",
   "version": "1.0.0"

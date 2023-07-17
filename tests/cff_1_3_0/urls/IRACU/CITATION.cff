@@ -1,6 +1,6 @@
 authors: 
   - name: "Test author"
-cff-version: "1.2.0"
+cff-version: "1.3.0"
 identifiers:
   - description: "The URL"
     type: url

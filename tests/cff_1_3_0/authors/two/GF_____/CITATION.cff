@@ -5,6 +5,6 @@ authors:
     name-suffix: III
   - given-names: Cristiano Ronaldo
     family-names: dos Santos Aveiro
-cff-version: "1.2.0"
+cff-version: "1.3.0"
 message: "test of author inputs"
 title: the title

@@ -1,0 +1,11 @@
+authors: 
+  - name: "Test author"
+cff-version: "1.2.0"
+identifiers: 
+  - description: "The URL"
+    type: url
+    value: "https://github.com/the-url-from-identifiers"
+message: "Test message"
+repository-code: "https://github.com/the-url-from-repository-code"
+title: "Test title"
+url: "https://github.com/the-url-from-url"

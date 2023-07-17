@@ -1,0 +1,13 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Organization",
+      "name": "Test author"
+    }
+  ],
+  "codeRepository": "https://github.com/the-url-from-repository",
+  "name": "Test title",
+  "url": "https://github.com/the-url-from-identifiers"
+}

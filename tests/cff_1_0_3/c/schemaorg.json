@@ -3,6 +3,7 @@
   "@type": "SoftwareSourceCode",
   "author": [
     {
+      "@id": "https://orcid.org/0000-0002-0948-1176",
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",
@@ -12,7 +13,6 @@
       "givenName": "Jisk"
     },
     {
-      "@id": "https://orcid.org/0000-0002-0989-929X",
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",

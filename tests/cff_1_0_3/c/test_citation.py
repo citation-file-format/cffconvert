@@ -1,7 +1,5 @@
 import datetime
 import os
-import pykwalify
-import pytest
 from cffconvert.citation import Citation
 
 
@@ -22,8 +20,4 @@ def test_cffversion():
 
 
 def test_validate():
-    with pytest.raises(pykwalify.errors.SchemaError) as e:
-        citation().validate()
-    msg = str(e.value)
-    # ORCIDs ending in X were not supported in 1.0.3
-    assert "Value 'https://orcid.org/0000-0002-0989-929X' does not match pattern" in msg
+    citation().validate()

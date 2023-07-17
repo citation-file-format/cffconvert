@@ -23,6 +23,7 @@ class TestCodemetaObject(Contract):
 
     def test_author(self):
         assert codemeta_object().add_author().author == [{
+            "@id": "https://orcid.org/0000-0002-0948-1176",
             "@type": "Person",
             "givenName": "Jisk",
             "familyName": "Attema",
@@ -31,7 +32,6 @@ class TestCodemetaObject(Contract):
                 "legalName": "Netherlands eScience Center"
             }
         }, {
-            "@id": "https://orcid.org/0000-0002-0989-929X",
             "@type": "Person",
             "givenName": "Faruk",
             "familyName": "Diblen",

@@ -30,6 +30,11 @@
       "scheme": "doi"
     },
     {
+      "identifier": "10.0000/FIXME",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    },
+    {
       "identifier": "https://github.com/citation-file-format/cffconvert",
       "relation": "isSupplementTo",
       "scheme": "url"

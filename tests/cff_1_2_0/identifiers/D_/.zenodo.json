@@ -4,6 +4,13 @@
       "name": "Test author"
     }
   ],
+  "related_identifiers": [
+    {
+      "identifier": "10.0000/from-doi",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    }
+  ],
   "title": "Test title",
   "upload_type": "software"
 }

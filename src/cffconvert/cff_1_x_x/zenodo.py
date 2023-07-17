@@ -93,6 +93,12 @@ class ZenodoObjectShared:
                     "identifier": identifier.get("value"),
                     "relation": "isSupplementTo"
                 })
+        if "doi" in self.cffobj:
+            related_identifiers.append({
+                "scheme": "doi",
+                "identifier": self.cffobj.get("doi"),
+                "relation": "isSupplementTo"
+            })
         for key in ["repository", "repository-artifact", "repository-code", "url"]:
             if key in self.cffobj:
                 related_identifiers.append({

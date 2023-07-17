@@ -46,7 +46,7 @@ class TestSchemaorgObject(Contract):
 
     def test_code_repository(self):
         assert schemaorg_object().add_urls().code_repository == 'https://github.com/citation-file-format' + \
-                                                                '/cff-converter-python'
+                                                                '/cffconvert'
 
     def test_date_published(self):
         assert schemaorg_object().add_date_published().date_published == '2018-01-16'
@@ -64,11 +64,11 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_license().license == 'https://spdx.org/licenses/Apache-2.0'
 
     def test_name(self):
-        assert schemaorg_object().add_name().name == 'cff-converter-python'
+        assert schemaorg_object().add_name().name == 'cffconvert'
 
     def test_url(self):
         assert schemaorg_object().add_urls().url == 'https://github.com/citation-file-format' + \
-                                                    '/cff-converter-python'
+                                                    '/cffconvert'
 
     def test_version(self):
         assert schemaorg_object().add_version().version == '1.0.0'

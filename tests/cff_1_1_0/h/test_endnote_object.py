@@ -35,7 +35,7 @@ class TestEndnoteObject(Contract):
         assert endnote_object().add_keyword().keyword is None
 
     def test_name(self):
-        assert endnote_object().add_name().name == '%T cff-converter-python\n'
+        assert endnote_object().add_name().name == '%T cffconvert\n'
 
     def test_url(self):
         assert endnote_object().add_url().url is None

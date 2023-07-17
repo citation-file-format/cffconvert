@@ -51,7 +51,7 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_publication_date().publication_date == '2018-01-16'
 
     def test_title(self):
-        assert zenodo_object().add_title().title == 'cff-converter-python'
+        assert zenodo_object().add_title().title == 'cffconvert'
 
     def test_upload_type(self):
         assert zenodo_object().add_upload_type().upload_type == 'software'

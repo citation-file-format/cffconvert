@@ -28,6 +28,6 @@ keywords:
   - "CITATION.cff"
 license: Apache-2.0
 message: "If you use this software, please cite it using these metadata."
-repository-code: "https://github.com/citation-file-format/cff-converter-python"
+repository-code: "https://github.com/citation-file-format/cffconvert"
 title: cffconvert
 version: "1.0.1"

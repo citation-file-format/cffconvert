@@ -35,7 +35,7 @@ class TestBibtexObject(Contract):
         assert bibtex_object().add_month().month == 'month = {1}'
 
     def test_title(self):
-        assert bibtex_object().add_title().title == 'title = {cff-converter-python}'
+        assert bibtex_object().add_title().title == 'title = {cffconvert}'
 
     def test_url(self):
         assert bibtex_object().add_url().url is None

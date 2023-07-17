@@ -39,7 +39,7 @@ class TestEndnoteObject(Contract):
         assert endnote_object().add_name().name == '%T cffconvert\n'
 
     def test_url(self):
-        assert endnote_object().add_url().url == '%U https://github.com/citation-file-format/cff-converter-python\n'
+        assert endnote_object().add_url().url == '%U https://github.com/citation-file-format/cffconvert\n'
 
     def test_year(self):
         assert endnote_object().add_year().year == '%D 2018\n'

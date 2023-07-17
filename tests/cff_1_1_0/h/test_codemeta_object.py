@@ -63,7 +63,7 @@ class TestCodemetaObject(Contract):
         assert codemeta_object().add_license().license is None
 
     def test_name(self):
-        assert codemeta_object().add_name().name == 'cff-converter-python'
+        assert codemeta_object().add_name().name == 'cffconvert'
 
     def test_url(self):
         assert codemeta_object().add_urls().url is None

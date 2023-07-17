@@ -21,7 +21,7 @@
       "givenName": "Tom"
     }
   ],
-  "codeRepository": "https://github.com/citation-file-format/cff-converter-python",
+  "codeRepository": "https://github.com/citation-file-format/cffconvert",
   "datePublished": "2018-01-16",
   "identifier": "https://doi.org/10.5281/zenodo.1162057",
   "keywords": [
@@ -31,7 +31,7 @@
     "CITATION.cff"
   ],
   "license": "https://spdx.org/licenses/Apache-2.0",
-  "name": "cff-converter-python",
-  "url": "https://github.com/citation-file-format/cff-converter-python",
+  "name": "cffconvert",
+  "url": "https://github.com/citation-file-format/cffconvert",
   "version": "1.0.0"
 }

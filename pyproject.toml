@@ -51,8 +51,8 @@ requires-python = ">=3.7"
 version = "2.0.0"
 
 [project.urls]
-Changelog = "https://github.com/citation-file-format/cff-converter-python/blob/main/CHANGELOG.md"
-Repository = "https://github.com/citation-file-format/cff-converter-python"
+Changelog = "https://github.com/citation-file-format/cffconvert/blob/main/CHANGELOG.md"
+Repository = "https://github.com/citation-file-format/cffconvert"
 
 [project.optional-dependencies]
 dev = [

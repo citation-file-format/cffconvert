@@ -46,7 +46,7 @@ class TestRisObject(Contract):
         assert ris_object().add_title().title == 'TI  - cffconvert\n'
 
     def test_url(self):
-        assert ris_object().add_url().url == 'UR  - https://github.com/citation-file-format/cff-converter-python\n'
+        assert ris_object().add_url().url == 'UR  - https://github.com/citation-file-format/cffconvert\n'
 
     def test_year(self):
         assert ris_object().add_year().year == 'PY  - 2018\n'

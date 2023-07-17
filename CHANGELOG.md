@@ -8,7 +8,7 @@
 
 ## CLI
 
-- added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
+- added APA output (PR [#149](https://github.com/citation-file-format/cffconvert/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
 - added support for validation and conversion of `CITATION.cff` files with `cff-version: 1.2.0`
 - argument `--outputformat` was renamed to `--format`
 - argument `-ig`, `--ignore-suspect-keys` was removed
@@ -17,7 +17,7 @@
  
 ## Library
 
-- added APA output (PR [#149](https://github.com/citation-file-format/cff-converter-python/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
+- added APA output (PR [#149](https://github.com/citation-file-format/cffconvert/pull/149); thanks [@wleoncio](https://github.com/wleoncio))
 - added support for validation and conversion of `CITATION.cff` files with `cff-version: 1.2.0`
 - simplified the `Citation` class and its interface
 - `cli` is no longer part of the public interface of the library
@@ -41,7 +41,7 @@
 
 -   With recent changes to the release process, the schema will be in a
     different place than before. This release fixes
-    <https://github.com/citation-file-format/cff-converter-python/issues/119>).
+    <https://github.com/citation-file-format/cffconvert/issues/119>).
 
 # 1.3.2
 
@@ -99,7 +99,7 @@
 
 -   corrected an error where cffconvert could not raise an error during
     validation
-    (<https://github.com/citation-file-format/cff-converter-python/issues/94>).
+    (<https://github.com/citation-file-format/cffconvert/issues/94>).
 
 # 1.1.0
 
@@ -123,20 +123,20 @@
 # 1.0.2
 
 -   fixed bug
-    <https://github.com/citation-file-format/cff-converter-python/issues/82>
+    <https://github.com/citation-file-format/cffconvert/issues/82>
     (warnings on stdout)
 
 # 1.0.1
 
 -   fixed bug
-    <https://github.com/citation-file-format/cff-converter-python/issues/73>
+    <https://github.com/citation-file-format/cffconvert/issues/73>
     (orcid format in zenodo export)
 
 # 1.0.0
 
 -   first stable release
 -   solved bug
-    <https://github.com/citation-file-format/cff-converter-python/issues/59>
+    <https://github.com/citation-file-format/cffconvert/issues/59>
     (cffconvert creates local file `data.yaml` and `schema.yaml` on
     validate)
 

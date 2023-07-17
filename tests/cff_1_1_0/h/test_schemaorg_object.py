@@ -63,7 +63,7 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_license().license is None
 
     def test_name(self):
-        assert schemaorg_object().add_name().name == 'cff-converter-python'
+        assert schemaorg_object().add_name().name == 'cffconvert'
 
     def test_url(self):
         assert schemaorg_object().add_urls().url is None

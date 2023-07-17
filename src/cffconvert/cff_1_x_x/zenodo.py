@@ -68,18 +68,16 @@ class ZenodoObjectShared:
         pass
 
     def add_description(self):
-        if "abstract" in self.cffobj.keys():
-            self.description = self.cffobj["abstract"]
+        self.description = self.cffobj.get("abstract")
         return self
 
     def add_keywords(self):
-        if "keywords" in self.cffobj.keys():
-            self.keywords = self.cffobj["keywords"]
+        self.keywords = self.cffobj.get("keywords")
         return self
 
     def add_license(self):
-        if "license" in self.cffobj.keys():
-            self.license = {"id": self.cffobj["license"]}
+        if "license" in self.cffobj:
+            self.license = {"id": self.cffobj.get("license")}
         return self
 
     @abstractmethod
@@ -87,25 +85,22 @@ class ZenodoObjectShared:
         pass
 
     def add_related_identifiers(self):
-        if "identifiers" in self.cffobj.keys():
-            related_identifiers = list()
-            for identifier in self.cffobj.get("identifiers"):
-                related_identifiers.append({
-                    "scheme": identifier.get("type"),
-                    "identifier": identifier.get("value"),
-                    "relation": "isSupplementTo"
-                })
-            self.related_identifiers = related_identifiers
+        related_identifiers = list()
+        for identifier in self.cffobj.get("identifiers", list()):
+            related_identifiers.append({
+                "scheme": identifier.get("type"),
+                "identifier": identifier.get("value"),
+                "relation": "isSupplementTo"
+            })
+        self.related_identifiers = related_identifiers if len(related_identifiers) > 0 else None
         return self
 
     def add_title(self):
-        if "title" in self.cffobj.keys():
-            self.title = self.cffobj["title"]
+        self.title = self.cffobj.get("title")
         return self
 
     def add_version(self):
-        if "version" in self.cffobj.keys():
-            self.version = self.cffobj["version"]
+        self.version = self.cffobj.get("version")
         return self
 
     def as_string(self):

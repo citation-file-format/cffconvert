@@ -41,7 +41,7 @@ class TestRisObject(Contract):
         assert ris_object().add_keywords().keywords is None
 
     def test_title(self):
-        assert ris_object().add_title().title == 'TI  - cff-converter-python\n'
+        assert ris_object().add_title().title == 'TI  - cffconvert\n'
 
     def test_url(self):
         assert ris_object().add_url().url is None

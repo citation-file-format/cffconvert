@@ -29,7 +29,7 @@ identifiers:
     value: 10.5281/zenodo.5521767
     description: Persistent identifier for this version of cffconvert
   - type: url
-    value: https://github.com/citation-file-format/cff-converter-python
+    value: https://github.com/citation-file-format/cffconvert
     description: URL to the GitHub repository for cffconvert
   - type: url
     value: https://pypi.org/project/cffconvert
@@ -47,7 +47,7 @@ keywords:
 license: Apache-2.0
 message: If you use this software, please cite it using these metadata.
 repository-artifact: https://pypi.org/project/cffconvert
-repository-code: https://github.com/citation-file-format/cff-converter-python
+repository-code: https://github.com/citation-file-format/cffconvert
 title: cffconvert
 type: software
 version: 2.0.0

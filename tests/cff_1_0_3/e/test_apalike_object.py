@@ -35,7 +35,7 @@ class TestApalikeObject(Contract):
         assert apalike_object().add_title().title == 'cffconvert'
 
     def test_url(self):
-        assert apalike_object().add_url().url == 'URL: https://github.com/citation-file-format/cff-converter-python'
+        assert apalike_object().add_url().url == 'URL: https://github.com/citation-file-format/cffconvert'
 
     def test_version(self):
         assert apalike_object().add_version().version == '(version 0.0.4).'

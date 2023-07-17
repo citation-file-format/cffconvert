@@ -32,7 +32,7 @@ class TestApalikeObject(Contract):
         assert apalike_object().add_doi().doi is None
 
     def test_title(self):
-        assert apalike_object().add_title().title == 'cff-converter-python'
+        assert apalike_object().add_title().title == 'cffconvert'
 
     def test_url(self):
         assert apalike_object().add_url().url is None

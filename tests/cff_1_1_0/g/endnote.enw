@@ -8,5 +8,5 @@
 %K cff
 %K CITATION.cff
 %R 10.5281/zenodo.1162057
-%T cff-converter-python
-%U https://github.com/citation-file-format/cff-converter-python
+%T cffconvert
+%U https://github.com/citation-file-format/cffconvert

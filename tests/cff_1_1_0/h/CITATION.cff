@@ -13,5 +13,5 @@ authors:
 cff-version: "1.1.0"
 date-released: 2018-01-16
 message: "If you use this software, please cite it using these metadata."
-title: cff-converter-python
+title: cffconvert
 version: "1.0.0"

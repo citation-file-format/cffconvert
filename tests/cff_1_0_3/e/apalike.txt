@@ -1,1 +1,1 @@
-Spaaks J.H., Klaver T., Verhoeven S. (2018). cffconvert (version 0.0.4). DOI: 10.5281/zenodo.1162057 URL: https://github.com/citation-file-format/cff-converter-python
+Spaaks J.H., Klaver T., Verhoeven S. (2018). cffconvert (version 0.0.4). DOI: 10.5281/zenodo.1162057 URL: https://github.com/citation-file-format/cffconvert

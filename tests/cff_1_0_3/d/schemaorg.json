@@ -40,7 +40,7 @@
       "givenName": "Stephan"
     }
   ],
-  "codeRepository": "https://github.com/citation-file-format/cff-converter-python",
+  "codeRepository": "https://github.com/citation-file-format/cffconvert",
   "datePublished": "2018-07-25",
   "identifier": "https://doi.org/10.5281/zenodo.1162057",
   "keywords": [
@@ -51,6 +51,6 @@
   ],
   "license": "https://spdx.org/licenses/Apache-2.0",
   "name": "cffconvert",
-  "url": "https://github.com/citation-file-format/cff-converter-python",
+  "url": "https://github.com/citation-file-format/cffconvert",
   "version": "1.0.1"
 }

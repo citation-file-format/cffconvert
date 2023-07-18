@@ -91,6 +91,7 @@ class ZenodoObjectShared:
         identifiers = self.cffobj.get("identifiers", [])
         for identifier in identifiers:
             if identifier.get("type") == "other" or identifier.get("value") in seen:
+                # identifier type unsupported or identifier value seen already
                 continue
             related_identifiers.append({
                 "identifier": identifier.get("value"),
@@ -101,6 +102,7 @@ class ZenodoObjectShared:
         # add from doi
         doi = self.cffobj.get("doi")
         if doi is None or doi in seen:
+            # doi not available or seen already
             pass
         else:
             related_identifiers.append({
@@ -113,6 +115,7 @@ class ZenodoObjectShared:
         for cffkey in ["repository", "repository-artifact", "repository-code", "url"]:
             url = self.cffobj.get(cffkey)
             if url is None or url in seen:
+                # url not available or seen already
                 continue
             related_identifiers.append({
                 "identifier": url,

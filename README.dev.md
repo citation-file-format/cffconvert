@@ -91,11 +91,11 @@ development tools are installed.
 prospector
 
 # recursively check import style for the cffconvert module only
-isort --check-only cffconvert
+isort --check-only src/cffconvert
 
 # recursively check import style for the cffconvert module only and show
 # any proposed changes as a diff
-isort --check-only --diff cffconvert
+isort --check-only --diff src/cffconvert
 
 # recursively fix import style for the cffconvert module only
 isort src/cffconvert

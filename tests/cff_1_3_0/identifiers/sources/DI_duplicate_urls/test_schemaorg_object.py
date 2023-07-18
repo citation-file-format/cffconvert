@@ -56,7 +56,7 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_type().type == "SoftwareSourceCode"
 
     def test_url(self):
-        assert schemaorg_object().add_urls().url == "https://github.com/somewhere" 
+        assert schemaorg_object().add_urls().url == "https://github.com/somewhere"
 
     def test_version(self):
         assert schemaorg_object().add_version().version is None

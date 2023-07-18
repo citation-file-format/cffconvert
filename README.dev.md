@@ -77,9 +77,9 @@ pytest -m endnote
 
 ## Linting
 
-For linting we use [prospector](https://pypi.org/project/prospector/) and to sort imports we will use
-[isort](https://pycqa.github.io/isort/). Running the linters requires an activated virtual environment with the
-development tools installed.
+For linting we use [prospector](https://pypi.org/project/prospector/) and to sort imports we use
+[isort](https://pycqa.github.io/isort/). Running the linters requires that the
+development tools are installed.
 
 ```shell
 # (from the project root)
@@ -99,18 +99,12 @@ isort --check-only --diff cffconvert
 isort src/cffconvert
 ```
 
-The linting tools are also usable via [`pre-commit`](https://pre-commit.com/). Usage requires installing the
-`pre-commit` configuration with:
-
-```shell
-pip install --editable .[dev]
-```
-
-You can run the linting via pre-commit using:
+The linting tools are also usable via [`pre-commit`](https://pre-commit.com/):
 
 ```shell
 # Run all tools
 pre-commit run --all-files
+
 # Run a specific tool, see .pre-commit-config.yaml for their IDs
 pre-commit run --all-files <ID of the task>
 ```

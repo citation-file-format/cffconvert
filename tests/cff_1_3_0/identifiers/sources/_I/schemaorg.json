@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Organization",
+      "name": "Test author"
+    }
+  ],
+  "identifier": "https://doi.org/10.0000/from-identifiers",
+  "name": "Test title"
+}

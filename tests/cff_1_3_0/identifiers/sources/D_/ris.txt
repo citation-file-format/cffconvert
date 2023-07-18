@@ -1,0 +1,5 @@
+TY  - GEN
+AU  - Test author
+DO  - 10.0000/from-doi
+TI  - Test title
+ER

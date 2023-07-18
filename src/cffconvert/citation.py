@@ -2,6 +2,7 @@ import re
 from cffconvert.cff_1_0_x.citation import Citation_1_0_x
 from cffconvert.cff_1_1_x.citation import Citation_1_1_x
 from cffconvert.cff_1_2_x.citation import Citation_1_2_x
+from cffconvert.cff_1_3_x.citation import Citation_1_3_x
 
 
 # pylint: disable=too-few-public-methods
@@ -13,6 +14,7 @@ class Citation:
         "1.0.3": Citation_1_0_x,
         "1.1.0": Citation_1_1_x,
         "1.2.0": Citation_1_2_x,
+        "1.3.0": Citation_1_3_x
     }
     supported_cff_versions = _implementations.keys()
 

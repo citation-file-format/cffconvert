@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Organization",
+      "name": "Test author"
+    }
+  ],
+  "codeRepository": "https://github.com/somewhere",
+  "name": "Test title",
+  "url": "https://github.com/somewhere"
+}

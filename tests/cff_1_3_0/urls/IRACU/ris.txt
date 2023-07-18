@@ -1,0 +1,5 @@
+TY  - GEN
+AU  - Test author
+TI  - Test title
+UR  - https://github.com/the-url-from-identifiers
+ER

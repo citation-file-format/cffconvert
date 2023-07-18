@@ -1,0 +1,36 @@
+{
+  "creators": [
+    {
+      "name": "Test author"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/the-url-from-identifiers",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-repository",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-repository-artifact",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-repository-code",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/the-url-from-url",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ],
+  "title": "Test title",
+  "upload_type": "software"
+}

@@ -1,0 +1,6 @@
+authors:
+  - given-names: Rafael
+    alias: Rafa
+cff-version: "1.3.0"
+message: "test of author inputs"
+title: the title

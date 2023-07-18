@@ -1,0 +1,6 @@
+authors:
+  - name: The name
+cff-version: "1.3.0"
+message: The message
+title: The title
+type: software

@@ -87,9 +87,6 @@ For linting we use [prospector](https://pypi.org/project/prospector/) and to sor
 development tools are installed.
 
 ```shell
-# (from the project root)
-pip install --editable .[dev]
-
 # linter
 prospector
 

@@ -85,47 +85,41 @@ class ZenodoObjectShared:
         pass
 
     def add_related_identifiers(self):
-        def add_from_doi():
-            doi = self.cffobj.get("doi")
-            if doi is not None and doi not in seen:
-                related_identifiers.append({
-                    "identifier": doi,
-                    "relation": "isSupplementedBy",
-                    "scheme": "doi"
-                })
-                seen.append(doi)
-
-        def add_from_identifiers():
-            identifiers = self.cffobj.get("identifiers", [])
-            for identifier in identifiers:
-                if identifier.get("type") == "other":
-                    continue
-                if identifier.get("value") in seen:
-                    continue
-                new = {
-                    "identifier": identifier.get("value"),
-                    "relation": identifier.get("relation") or "isSupplementedBy",
-                    "scheme": identifier.get("type")
-                }
-                related_identifiers.append(new)
-                seen.append(identifier.get("value"))
-
-        def add_from_url_sources():
-            for cffkey in ["repository", "repository-artifact", "repository-code", "url"]:
-                url = self.cffobj.get(cffkey)
-                if url is not None and url not in seen:
-                    related_identifiers.append({
-                        "identifier": url,
-                        "relation": "isSupplementedBy",
-                        "scheme": "url"
-                    })
-                    seen.append(url)
-
         seen = []
         related_identifiers = []
-        add_from_identifiers()
-        add_from_doi()
-        add_from_url_sources()
+        # add from identifiers
+        identifiers = self.cffobj.get("identifiers", [])
+        for identifier in identifiers:
+            if identifier.get("type") == "other" or identifier.get("value") in seen:
+                continue
+            related_identifiers.append({
+                "identifier": identifier.get("value"),
+                "relation": identifier.get("relation") or "isSupplementedBy",
+                "scheme": identifier.get("type")
+            })
+            seen.append(identifier.get("value"))
+        # add from doi
+        doi = self.cffobj.get("doi")
+        if doi is None or doi in seen:
+            pass
+        else:
+            related_identifiers.append({
+                "identifier": doi,
+                "relation": "isSupplementedBy",
+                "scheme": "doi"
+            })
+            seen.append(doi)
+        # add from url sources
+        for cffkey in ["repository", "repository-artifact", "repository-code", "url"]:
+            url = self.cffobj.get(cffkey)
+            if url is None or url in seen:
+                continue
+            related_identifiers.append({
+                "identifier": url,
+                "relation": "isSupplementedBy",
+                "scheme": "url"
+            })
+            seen.append(url)
         self.related_identifiers = related_identifiers if len(related_identifiers) > 0 else None
         return self
 

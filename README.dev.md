@@ -5,14 +5,19 @@
 ```shell
 # get a copy of the cffconvert software
 git clone https://github.com/citation-file-format/cffconvert.git
+
 # change directory into cffconvert
 cd cffconvert
+
 # make a virtual environment named venv
 python3 -m venv venv
+
 # activate the virtual environment
 source venv/bin/activate
+
 # upgrade pip, wheel, setuptools
 pip install --upgrade pip wheel setuptools
+
 # install cffconvert  in editable mode
 pip install --editable .
 ```

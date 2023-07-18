@@ -10,6 +10,10 @@ class ZenodoObject(Shared):
         "1.0.3"
     ]
 
+    def add_contributors(self):
+        # contributors doesn't exist in CFF v1.0.x
+        return self
+
     def add_creators(self):
         authors_cff = self.cffobj.get("authors", [])
         creators_zenodo = [ZenodoAuthor(a).as_dict() for a in authors_cff]

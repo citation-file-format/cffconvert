@@ -6,6 +6,7 @@ from abc import abstractmethod
 class ZenodoObjectShared:
 
     supported_zenodo_props = [
+        "contributors",
         "creators",
         "description",
         "keywords",
@@ -20,6 +21,7 @@ class ZenodoObjectShared:
 
     def __init__(self, cffobj, initialize_empty=False):
         self.cffobj = cffobj
+        self.contributors = None
         self.creators = None
         self.description = None
         self.keywords = None
@@ -38,6 +40,7 @@ class ZenodoObjectShared:
 
     def __str__(self, sort_keys=True, indent=2):
         data = {
+            "contributors": self.contributors,
             "creators": self.creators,
             "description": self.description,
             "keywords": self.keywords,
@@ -52,7 +55,8 @@ class ZenodoObjectShared:
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + "\n"
 
     def add_all(self):
-        self.add_creators()            \
+        self.add_contributors()        \
+            .add_creators()            \
             .add_description()         \
             .add_keywords()            \
             .add_license()             \
@@ -62,6 +66,10 @@ class ZenodoObjectShared:
             .add_upload_type()         \
             .add_version()
         return self
+
+    @abstractmethod
+    def add_contributors(self):
+        pass
 
     @abstractmethod
     def add_creators(self):

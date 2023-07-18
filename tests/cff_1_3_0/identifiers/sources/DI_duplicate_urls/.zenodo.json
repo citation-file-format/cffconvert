@@ -1,0 +1,16 @@
+{
+  "creators": [
+    {
+      "name": "Test author"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/somewhere",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ],
+  "title": "Test title",
+  "upload_type": "software"
+}

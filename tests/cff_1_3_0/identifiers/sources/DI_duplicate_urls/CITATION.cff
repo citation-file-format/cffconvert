@@ -1,0 +1,12 @@
+authors:
+  - name: "Test author"
+cff-version: "1.3.0"
+identifiers:
+  - value: "https://github.com/somewhere"
+    type: url
+message: "test for constructing urls"
+repository: "https://github.com/somewhere"
+repository-artifact: "https://github.com/somewhere"
+repository-code: "https://github.com/somewhere" 
+title: Test title
+url: "https://github.com/somewhere"

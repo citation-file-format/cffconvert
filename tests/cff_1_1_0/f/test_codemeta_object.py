@@ -1,4 +1,5 @@
 import os
+import pytest
 from tests.contracts.codemeta_object import Contract
 from cffconvert import Citation
 from cffconvert.cff_1_1_x.codemeta import CodemetaObject
@@ -12,6 +13,7 @@ def codemeta_object():
         return CodemetaObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.codemeta
 class TestCodemetaObject(Contract):
 
     def test_as_string(self):

@@ -1,4 +1,5 @@
 import os
+import pytest
 from tests.contracts.zenodo_object import Contract
 from cffconvert import Citation
 from cffconvert.cff_1_3_x.zenodo import ZenodoObject
@@ -12,6 +13,7 @@ def zenodo_object():
         return ZenodoObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.zenodo
 class TestZenodoObject(Contract):
 
     def test_as_string(self):

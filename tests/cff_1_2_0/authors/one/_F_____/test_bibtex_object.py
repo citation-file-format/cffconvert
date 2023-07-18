@@ -1,4 +1,5 @@
 import os
+import pytest
 from tests.contracts.bibtex_object import Contract
 from cffconvert import Citation
 from cffconvert.cff_1_2_x.bibtex import BibtexObject
@@ -12,6 +13,7 @@ def bibtex_object():
         return BibtexObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.bibtex
 class TestBibtexObject(Contract):
 
     def test_as_string(self):

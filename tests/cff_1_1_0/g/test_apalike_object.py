@@ -1,4 +1,5 @@
 import os
+import pytest
 from tests.contracts.apalike_object import Contract
 from cffconvert import Citation
 from cffconvert.cff_1_1_x.apalike import ApalikeObject
@@ -12,6 +13,7 @@ def apalike_object():
         return ApalikeObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.apalike
 class TestApalikeObject(Contract):
 
     def test_as_string(self):

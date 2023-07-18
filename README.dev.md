@@ -57,6 +57,24 @@ pytest tests/test_consistent_versioning.py
 cd tests/cff_1_2_0/ && pytest .
 ```
 
+Tests pertaining to a specific exporter have been marked accordingly with one of the following markers (see also
+`pytest` configuration section in `pyproject.toml`):
+
+1. `apalike`
+2. `bibtex`
+3. `codemeta`
+4. `endnote`
+5. `ris`
+6. `schemaorg`
+7. `zenodo`
+
+You can instruct `pytest` to run only the tests for one or some of these marked sets. As an example, if you want to run
+only the tests related to exporting as Endnote, you should call `pytest` with the `-m` flag as follows:
+
+```shell
+pytest -m endnote
+```
+
 ## Linting
 
 For linting we use [prospector](https://pypi.org/project/prospector/) and to sort imports we will use

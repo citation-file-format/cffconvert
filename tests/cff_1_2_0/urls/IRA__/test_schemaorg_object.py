@@ -1,4 +1,5 @@
 import os
+import pytest
 from tests.contracts.schemaorg_object import Contract
 from cffconvert import Citation
 from cffconvert.cff_1_2_x.schemaorg import SchemaorgObject
@@ -12,6 +13,7 @@ def schemaorg_object():
         return SchemaorgObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
 
     def test_check_cffobj(self):

@@ -1,4 +1,5 @@
 import os
+import pytest
 from tests.contracts.endnote_object import Contract
 from cffconvert import Citation
 from cffconvert.cff_1_2_x.endnote import EndnoteObject
@@ -12,6 +13,7 @@ def endnote_object():
         return EndnoteObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.endnote
 class TestEndnoteObject(Contract):
 
     def test_as_string(self):

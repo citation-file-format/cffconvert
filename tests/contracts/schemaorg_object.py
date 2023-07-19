@@ -17,6 +17,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def test_contributor(self):
+        pass
+
+    @abstractmethod
     def test_date_published(self):
         pass
 

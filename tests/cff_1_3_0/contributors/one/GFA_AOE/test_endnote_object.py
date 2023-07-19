@@ -16,12 +16,19 @@ def endnote_object():
 @pytest.mark.endnote
 class TestEndnoteObject(Contract):
 
+    def test_as_string(self):
+        actual_endnote = endnote_object().add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_endnote = f.read()
+        assert actual_endnote == expected_endnote
+
+    def test_author(self):
+        assert endnote_object().add_author().author == "%A The author\n"
+
     def test_check_cffobj(self):
         endnote_object().check_cffobj()
         # doesn't need an assert
-
-    def test_author(self):
-        assert endnote_object().add_author().author == '%A von der Spaaks Jr., Jurriaan H.\n'
 
     def test_doi(self):
         assert endnote_object().add_doi().doi is None
@@ -30,14 +37,7 @@ class TestEndnoteObject(Contract):
         assert endnote_object().add_keyword().keyword is None
 
     def test_name(self):
-        assert endnote_object().add_name().name == '%T the title\n'
-
-    def test_as_string(self):
-        actual_endnote = endnote_object().add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_endnote = f.read()
-        assert actual_endnote == expected_endnote
+        assert endnote_object().add_name().name == "%T the title\n"
 
     def test_url(self):
         assert endnote_object().add_url().url is None

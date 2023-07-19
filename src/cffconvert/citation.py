@@ -5,7 +5,6 @@ from cffconvert.cff_1_2_x.citation import Citation_1_2_x
 from cffconvert.cff_1_3_x.citation import Citation_1_3_x
 
 
-# pylint: disable=too-few-public-methods
 class Citation:
 
     _implementations = {

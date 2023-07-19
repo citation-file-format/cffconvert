@@ -12,8 +12,7 @@ from cffconvert.contracts.citation import Contract
 from cffconvert.root import get_package_root
 
 
-# pylint: disable=invalid-name
-class Citation_1_1_x(Contract):  # nopep8
+class Citation_1_1_x(Contract):  # noqa
 
     supported_cff_versions = [
         "1.1.0"

@@ -57,9 +57,11 @@ Repository = "https://github.com/citation-file-format/cffconvert"
 [project.optional-dependencies]
 dev = [
     "build",
-    "isort",
+    "isort == 5.12.0",
     "pre-commit",
-    "prospector[with_pyroma] >= 1.4"
+    "prospector == 1.10.2",
+    "pyroma == 4.2",
+    "ruff == 0.0.278"
 ]
 gcloud = [
     "flask"
@@ -105,3 +107,7 @@ addopts = "--no-cov --verbose --maxfail=1 --strict-markers"
 testpaths = [
     "tests"
 ]
+
+[tool.ruff]
+line-length = 120
+select = ["E", "F", "W", "C901"]

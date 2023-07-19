@@ -1,28 +1,36 @@
 repos:
+
   - repo: https://github.com/citation-file-format/cffconvert
     rev: 054bda51dbe278b3e86f27c890e3f3ac877d616c
     hooks:
       - id: validate-cff
         alias: cffconvert
         name: Validating CITATION.cff using 'cffconvert'
+
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
     hooks:
       - id: isort
         name: Sorting Python import lines using 'isort'
         args:
-          - '--check-only'
-          - '--diff'
+          - "--check-only"
+          - "--diff"
+
+  - repo: https://github.com/regebro/pyroma
+    rev: "4.2"
+    hooks:
+      - id: pyroma
+        name: Assessing the package metadata using 'pyroma'
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.278
+    hooks:
+      - id: ruff
+        name: Linting using 'ruff'
+
   - repo: https://github.com/PyCQA/prospector
     rev: 1.10.2
     hooks:
       - id: prospector
         name: Linting the code base using 'prospector'
-        additional_dependencies:
-          # Not really the right syntax but it kinda works. It installs the dev and testing
-          # dependencies from the default branch of cffconvert on GitHub in the environment
-          # used by prospector
-          #
-          # Issue: https://github.com/citation-file-format/cffconvert/issues/325
-          - "git+https://github.com/citation-file-format/cffconvert#egg=cffconvert[dev,testing]"
         args: ["--profile-path", ".prospector.yml"]

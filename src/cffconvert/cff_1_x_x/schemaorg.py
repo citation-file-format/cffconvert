@@ -1,5 +1,5 @@
-from abc import abstractmethod
 import json
+from abc import abstractmethod
 
 
 # pylint: disable=too-many-instance-attributes

@@ -144,7 +144,7 @@ pre-commit install
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
 identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
 is tailored only to that specific combination of source keys. As an example of this mapping, see the setup in
-https://github.com/citation-file-format/cffconvert/blob/2.0.0/cffconvert/behavior_shared/schemaorg_author_shared.py
+https://github.com/citation-file-format/cffconvert/blob/3.0.0a0/cffconvert/behavior_shared/schemaorg_author_shared.py
 
 Source keys:
 
@@ -439,8 +439,8 @@ The table below lists how the key name is constructed based what information was
 ### Building the docker image
 
 ```shell
-# (requires 2.0.0 to be downloadable from PyPI)
-docker build --tag cffconvert:2.0.0 .
+# (requires 3.0.0a0 to be downloadable from PyPI)
+docker build --tag cffconvert:3.0.0a0 .
 docker build --tag cffconvert:latest .
 ```
 
@@ -464,10 +464,10 @@ docker logout
 docker login
 
 # re-tag existing images
-docker tag cffconvert:2.0.0 citationcff/cffconvert:2.0.0
+docker tag cffconvert:3.0.0a0 citationcff/cffconvert:3.0.0a0
 docker tag cffconvert:latest citationcff/cffconvert:latest
 
 # publish
-docker push citationcff/cffconvert:2.0.0
+docker push citationcff/cffconvert:3.0.0a0
 docker push citationcff/cffconvert:latest
 ```

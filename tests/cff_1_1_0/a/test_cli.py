@@ -30,7 +30,7 @@ def test_printing_of_version():
     with runner.isolated_filesystem():
         result = runner.invoke(cffconvert_cli, ["--version"])
     assert result.exit_code == 0
-    assert result.output == "2.0.0\n"
+    assert result.output == "3.0.0a0\n"
 
 
 def test_printing_on_stdout_as_bibtex():

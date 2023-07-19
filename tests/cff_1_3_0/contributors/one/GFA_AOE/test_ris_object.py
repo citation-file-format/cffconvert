@@ -19,8 +19,15 @@ class TestRisObject(Contract):
     def test_abstract(self):
         assert ris_object().add_abstract().abstract is None
 
+    def test_as_string(self):
+        actual_ris = ris_object().add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "ris.txt")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_ris = f.read()
+        assert actual_ris == expected_ris
+
     def test_author(self):
-        assert ris_object().add_author().author == 'AU  - von der Spaaks Jr., Jurriaan H.\n'
+        assert ris_object().add_author().author == "AU  - The author\n"
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()
@@ -35,15 +42,8 @@ class TestRisObject(Contract):
     def test_keywords(self):
         assert ris_object().add_keywords().keywords is None
 
-    def test_as_string(self):
-        actual_ris = ris_object().add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), "ris.txt")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_ris = f.read()
-        assert actual_ris == expected_ris
-
     def test_title(self):
-        assert ris_object().add_title().title == 'TI  - the title\n'
+        assert ris_object().add_title().title == "TI  - the title\n"
 
     def test_url(self):
         assert ris_object().add_url().url is None

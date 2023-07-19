@@ -1,4 +1,4 @@
 TY  - GEN
-AU  - van der Vaart III, Rafael
+AU  - The author
 TI  - the title
 ER

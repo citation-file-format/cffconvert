@@ -1,4 +1,4 @@
 TY  - GEN
-AU  - von der Spaaks Jr., Jurriaan H.
+AU  - The author
 TI  - the title
 ER

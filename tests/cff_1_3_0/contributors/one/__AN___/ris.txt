@@ -1,4 +1,4 @@
 TY  - GEN
-AU  - The soccer team members
+AU  - The author
 TI  - the title
 ER

@@ -27,6 +27,9 @@ class TestZenodoObject(Contract):
         zenodo_object().check_cffobj()
         # doesn't need an assert
 
+    def test_contributors(self):
+        assert zenodo_object().add_contributors().contributors is None
+
     def test_creators(self):
         assert zenodo_object().add_creators().creators == [{
             "name": "Test author"

@@ -23,6 +23,9 @@ class TestZenodoObject(Contract):
             expected_zenodo = f.read()
         assert actual_zenodo == expected_zenodo
 
+    def test_contributors(self):
+        assert zenodo_object().add_contributors().contributors is None
+
     def test_creators(self):
         assert zenodo_object().add_creators().creators == [
             {

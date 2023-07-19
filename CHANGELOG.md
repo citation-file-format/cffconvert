@@ -1,8 +1,8 @@
-# Unreleased
+# 3.0.0 (Unreleased)
 
 - added pre-commit git hook with id `validate-cff`
 - entity authors get exported as `Organization` when converting to `schema.org` or `codemeta` (was `Person`)
-- CFF key `name` takes precedence over `alias` when converting entity authors  
+- CFF key `name` takes precedence over `alias` when converting entity authors (was the other way around)  
 
 # 2.0.0
 

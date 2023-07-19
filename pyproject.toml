@@ -48,7 +48,7 @@ license = {text = "Apache Software License"}
 name = "cffconvert"
 readme = "README.md"
 requires-python = ">=3.7"
-version = "2.0.0"
+version = "3.0.0a0"
 
 [project.urls]
 Changelog = "https://github.com/citation-file-format/cffconvert/blob/main/CHANGELOG.md"

@@ -1,27 +1,58 @@
 {
+  "contributors": [
+    {
+      "affiliation": "University of Oslo",
+      "name": "Leoncio Netto, Waldir",
+      "type": "Other"
+    },
+    {
+      "affiliation": "Humboldt-Universität zu Berlin",
+      "name": "Druskat, Stephan",
+      "orcid": "0000-0003-4925-7248",
+      "type": "Other"
+    },
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Klaver, Tom",
+      "type": "Other"
+    },
+    {
+      "name": "Moon, Zachary",
+      "type": "Other"
+    },
+    {
+      "name": "Ovaskainen, Nikolas",
+      "type": "Other"
+    },
+    {
+      "name": "Beasley, Ben",
+      "type": "Other"
+    },
+    {
+      "name": "Soares Siqueira, Abel",
+      "orcid": "0000-0003-4451-281X",
+      "type": "Other"
+    },
+    {
+      "name": "Monperrus, Martin",
+      "type": "Other"
+    },
+    {
+      "name": "ots22",
+      "type": "Other"
+    },
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Verhoeven, Stefan",
+      "orcid": "0000-0002-5821-2060",
+      "type": "Other"
+    }
+  ],
   "creators": [
     {
       "affiliation": "Netherlands eScience Center",
       "name": "Spaaks, Jurriaan H.",
       "orcid": "0000-0002-7064-4069"
-    },
-    {
-      "affiliation": "Netherlands eScience Center",
-      "name": "Klaver, Tom"
-    },
-    {
-      "affiliation": "Netherlands eScience Center",
-      "name": "Verhoeven, Stefan",
-      "orcid": "0000-0002-5821-2060"
-    },
-    {
-      "affiliation": "Humboldt-Universität zu Berlin",
-      "name": "Druskat, Stephan",
-      "orcid": "0000-0003-4925-7248"
-    },
-    {
-      "affiliation": "University of Oslo",
-      "name": "Leoncio Netto, Waldir"
     }
   ],
   "description": "Command line program to validate and convert CITATION.cff files.",
@@ -40,6 +71,29 @@
     "id": "Apache-2.0"
   },
   "publication_date": "2021-09-22",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.1162057",
+      "relation": "isPartOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.5521767",
+      "relation": "isIdenticalTo",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/citation-file-format/cffconvert",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://pypi.org/project/cffconvert",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ],
   "title": "cffconvert",
-  "version": "2.0.0"
+  "upload_type": "software",
+  "version": "3.0.0a0"
 }

@@ -78,7 +78,7 @@ Build the Docker container
 
 ```shell
 cd <project root>
-docker build --tag cffconvert:2.0.0 .
+docker build --tag cffconvert:3.0.0a0 .
 docker build --tag cffconvert:latest .
 ```
 

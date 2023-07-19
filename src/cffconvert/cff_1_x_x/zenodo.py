@@ -5,18 +5,6 @@ from abc import abstractmethod
 # pylint: disable=too-many-instance-attributes
 class ZenodoObjectShared:
 
-    supported_zenodo_props = [
-        "contributors",
-        "creators",
-        "description",
-        "keywords",
-        "license",
-        "publication_date",
-        "related_identifiers",
-        "title",
-        "upload_type",
-        "version"
-    ]
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):

@@ -44,6 +44,10 @@ class SchemaorgObjectShared:
         pass
 
     @abstractmethod
+    def add_contributor(self):
+        pass
+
+    @abstractmethod
     def add_date_published(self):
         pass
 

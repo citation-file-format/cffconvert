@@ -4,6 +4,12 @@
   "author": [
     {
       "@type": "Organization",
+      "name": "The author"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Organization",
       "name": "The soccer team members"
     }
   ],

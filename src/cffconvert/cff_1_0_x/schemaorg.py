@@ -61,6 +61,10 @@ class SchemaorgObject(Shared):
         self.author = [a for a in authors_schemaorg if a is not None]
         return self
 
+    def add_contributor(self):
+        # CFF v1.0.x doesn't have contributors
+        pass
+
     def add_date_published(self):
         if "date-released" in self.cffobj.keys():
             year = self.cffobj["date-released"].year

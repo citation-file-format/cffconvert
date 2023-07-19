@@ -11,12 +11,14 @@ class SchemaorgObject(Shared):
     ]
     supported_schemaorg_props = Shared.supported_schemaorg_props + [
         "@context",
-        "@type"
+        "@type",
+        "contributor"
     ]
 
     def __init__(self, cffobj, context="https://schema.org", initialize_empty=False):
         super().__init__(cffobj)
         self.context = context
+        self.contributor = None
         self.type = None
         if initialize_empty:
             # clause for testing purposes
@@ -30,6 +32,7 @@ class SchemaorgObject(Shared):
             "@context": self.context,
             "@type": self.type,
             "author": self.author,
+            "contributor": self.contributor,
             "codeRepository": self.code_repository,
             "datePublished": self.date_published,
             "description": self.description,
@@ -45,6 +48,7 @@ class SchemaorgObject(Shared):
 
     def add_all(self):
         self.add_author()           \
+            .add_contributor()      \
             .add_date_published()   \
             .add_description()      \
             .add_identifier()       \
@@ -60,6 +64,13 @@ class SchemaorgObject(Shared):
         authors_cff = self.cffobj.get("authors", [])
         authors_schemaorg = [SchemaorgAuthor(a).as_dict() for a in authors_cff]
         self.author = [a for a in authors_schemaorg if a is not None]
+        return self
+
+    def add_contributor(self):
+        contributors = [SchemaorgAuthor(c).as_dict() for c in self.cffobj.get("contributors", [])]
+        contributors = [c for c in contributors if c is not None]
+        if len(contributors) > 0:
+            self.contributor = contributors
         return self
 
     def add_date_published(self):

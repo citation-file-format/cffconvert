@@ -3,6 +3,12 @@
   "@type": "SoftwareSourceCode",
   "author": [
     {
+      "@type": "Organization",
+      "name": "The author"
+    }
+  ],
+  "contributor": [
+    {
       "@id": "https://orcid.org/0000-0002-7064-4069",
       "@type": "Person",
       "affiliation": {

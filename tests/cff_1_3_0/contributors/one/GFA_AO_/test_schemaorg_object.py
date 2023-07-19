@@ -22,6 +22,12 @@ class TestSchemaorgObject(Contract):
 
     def test_author(self):
         assert schemaorg_object().add_author().author == [{
+            "@type": "Organization",
+            "name": "The author"
+        }]
+
+    def test_contributor(self):
+        assert schemaorg_object().add_contributor().contributor == [{
             "@id": "https://orcid.org/0000-0002-7064-4069",
             "@type": "Person",
             "affiliation": {

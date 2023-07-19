@@ -28,7 +28,7 @@ class TestCodemetaObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             },
             "familyName": "Spaaks",
             "givenName": "Jurriaan H."
@@ -36,7 +36,7 @@ class TestCodemetaObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             },
             "familyName": "Klaver",
             "givenName": "Tom"
@@ -44,7 +44,7 @@ class TestCodemetaObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             },
             "familyName": "Verhoeven",
             "givenName": "Stefan"

@@ -26,7 +26,7 @@ class TestSchemaorgObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             },
             "alternateName": "jspaaks",
             "familyName": "von der Spaaks Jr.",

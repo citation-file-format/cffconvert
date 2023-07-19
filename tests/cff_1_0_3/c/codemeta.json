@@ -7,7 +7,7 @@
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",
-        "legalName": "Netherlands eScience Center"
+        "name": "Netherlands eScience Center"
       },
       "familyName": "Attema",
       "givenName": "Jisk"
@@ -16,7 +16,7 @@
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",
-        "legalName": "Netherlands eScience Center"
+        "name": "Netherlands eScience Center"
       },
       "familyName": "Diblen",
       "givenName": "Faruk"

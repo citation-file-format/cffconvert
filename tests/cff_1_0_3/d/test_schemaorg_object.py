@@ -28,7 +28,7 @@ class TestSchemaorgObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             },
             "familyName": "Spaaks",
             "givenName": "Jurriaan H."
@@ -36,7 +36,7 @@ class TestSchemaorgObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             },
             "familyName": "Klaver",
             "givenName": "Tom"
@@ -44,7 +44,7 @@ class TestSchemaorgObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             },
             "familyName": "Verhoeven",
             "givenName": "Stefan"
@@ -53,7 +53,7 @@ class TestSchemaorgObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Humboldt-Universität zu Berlin"
+                "name": "Humboldt-Universität zu Berlin"
             },
             "familyName": "Druskat",
             "givenName": "Stephan"

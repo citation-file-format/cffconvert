@@ -31,7 +31,7 @@ class TestSchemaorgObject(Contract):
             "familyName": "Attema",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             }
         }, {
             "@type": "Person",
@@ -39,7 +39,7 @@ class TestSchemaorgObject(Contract):
             "familyName": "Diblen",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Netherlands eScience Center"
+                "name": "Netherlands eScience Center"
             }
         }]
 

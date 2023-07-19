@@ -28,7 +28,7 @@ class TestCodemetaObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "Springsteen"
+                "name": "Springsteen"
             },
             "familyName": "Van Zandt",
             "givenName": "Steven"
@@ -36,7 +36,7 @@ class TestCodemetaObject(Contract):
             "@type": "Person",
             "affiliation": {
                 "@type": "Organization",
-                "legalName": "coverband"
+                "name": "coverband"
             },
             "familyName": "van Zandt",
             "givenName": "Steven"

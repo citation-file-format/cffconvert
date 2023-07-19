@@ -142,7 +142,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'email': self._author.get('email')
         }
@@ -153,7 +153,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'email': self._author.get('email')
         }
@@ -170,7 +170,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'email': self._author.get('email')
@@ -182,7 +182,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'email': self._author.get('email')
@@ -231,7 +231,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'givenName': self._author.get('given-names'),
             'email': self._author.get('email')
@@ -243,7 +243,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'givenName': self._author.get('given-names'),
             'email': self._author.get('email')
@@ -262,7 +262,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'givenName': self._author.get('given-names'),
@@ -275,7 +275,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'givenName': self._author.get('given-names'),
@@ -304,7 +304,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
             'givenName': self._author.get('given-names'),
@@ -317,7 +317,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
             'givenName': self._author.get('given-names'),
@@ -338,7 +338,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
@@ -352,7 +352,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
@@ -399,7 +399,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
             'email': self._author.get('email')
@@ -411,7 +411,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
             'email': self._author.get('email')
@@ -430,7 +430,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
@@ -443,7 +443,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
@@ -494,7 +494,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             }
         }
 
@@ -504,7 +504,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             }
         }
 
@@ -519,7 +519,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
         }
@@ -530,7 +530,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
         }
@@ -568,7 +568,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'givenName': self._author.get('given-names')
         }
@@ -579,7 +579,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'givenName': self._author.get('given-names')
         }
@@ -596,7 +596,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'givenName': self._author.get('given-names')
@@ -608,7 +608,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'givenName': self._author.get('given-names')
@@ -634,7 +634,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
             'givenName': self._author.get('given-names')
@@ -646,7 +646,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name(),
             'givenName': self._author.get('given-names')
@@ -665,7 +665,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
@@ -678,7 +678,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name(),
@@ -720,7 +720,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name()
         }
@@ -731,7 +731,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'familyName': self._get_full_last_name()
         }
@@ -748,7 +748,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name()
@@ -760,7 +760,7 @@ class SchemaorgAuthor(BaseAuthor):
             '@type': 'Person',
             'affiliation': {
                 '@type': 'Organization',
-                'legalName': self._author.get('affiliation')
+                'name': self._author.get('affiliation')
             },
             'alternateName': self._author.get('alias'),
             'familyName': self._get_full_last_name()

@@ -6,7 +6,7 @@
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",
-        "legalName": "Netherlands eScience Center"
+        "name": "Netherlands eScience Center"
       },
       "email": "my@email.notexist",
       "familyName": "Spaaks",
@@ -16,7 +16,7 @@
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",
-        "legalName": "Netherlands eScience Center"
+        "name": "Netherlands eScience Center"
       },
       "familyName": "Klaver",
       "givenName": "Tom"

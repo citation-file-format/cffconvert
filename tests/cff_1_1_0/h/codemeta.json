@@ -6,7 +6,7 @@
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",
-        "legalName": "Springsteen"
+        "name": "Springsteen"
       },
       "familyName": "Van Zandt",
       "givenName": "Steven"
@@ -15,7 +15,7 @@
       "@type": "Person",
       "affiliation": {
         "@type": "Organization",
-        "legalName": "coverband"
+        "name": "coverband"
       },
       "familyName": "van Zandt",
       "givenName": "Steven"

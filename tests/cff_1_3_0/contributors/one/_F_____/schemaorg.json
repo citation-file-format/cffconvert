@@ -1,0 +1,17 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Organization",
+      "name": "The author"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "familyName": "van der Vaart III"
+    }
+  ],
+  "name": "the title"
+}

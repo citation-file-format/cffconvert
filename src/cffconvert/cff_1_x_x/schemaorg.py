@@ -1,46 +1,67 @@
+import json
 from abc import abstractmethod
 
 
 # pylint: disable=too-many-instance-attributes
 class SchemaorgObjectShared:
 
-    supported_schemaorg_props = [
-        "author",
-        "codeRepository",
-        "datePublished",
-        "description",
-        "identifier",
-        "keywords",
-        "license",
-        "name",
-        "url",
-        "version"
-    ]
     supported_cff_versions = None
 
     def __init__(self, cffobj):
         self.cffobj = cffobj
+        self.context = None
         self.author = None
         self.code_repository = None
+        self.contributor = None
         self.date_published = None
         self.description = None
         self.identifier = None
         self.keywords = None
         self.license = None
         self.name = None
+        self.type = None
         self.url = None
         self.version = None
 
-    @abstractmethod
-    def __str__(self):
-        pass
+    def __str__(self, sort_keys=True, indent=2):
+        data = {
+            "@context": self.context,
+            "@type": self.type,
+            "author": self.author,
+            "codeRepository": self.code_repository,
+            "contributor": self.contributor,
+            "datePublished": self.date_published,
+            "description": self.description,
+            "identifier": self.identifier,
+            "keywords": self.keywords,
+            "license": self.license,
+            "name": self.name,
+            "url": self.url,
+            "version": self.version
+        }
+        filtered = [item for item in data.items() if item[1] is not None]
+        return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + "\n"
 
-    @abstractmethod
     def add_all(self):
-        pass
+        self.add_author()           \
+            .add_contributor()      \
+            .add_date_published()   \
+            .add_description()      \
+            .add_identifier()       \
+            .add_keywords()         \
+            .add_license()          \
+            .add_name()             \
+            .add_type()             \
+            .add_urls()             \
+            .add_version()
+        return self
 
     @abstractmethod
     def add_author(self):
+        pass
+
+    @abstractmethod
+    def add_contributor(self):
         pass
 
     @abstractmethod
@@ -70,6 +91,10 @@ class SchemaorgObjectShared:
         if "title" in self.cffobj.keys():
             self.name = self.cffobj["title"]
         return self
+
+    @abstractmethod
+    def add_type(self):
+        pass
 
     @abstractmethod
     def add_urls(self):

@@ -50,6 +50,9 @@ class TestSchemaorgObject(Contract):
     def test_code_repository(self):
         assert schemaorg_object().add_urls().code_repository == 'https://github.com/NLeSC/spot'
 
+    def test_contributor(self):
+        assert schemaorg_object().add_contributor().contributor is None
+
     def test_date_published(self):
         assert schemaorg_object().add_date_published().date_published == '2017-10-07'
 

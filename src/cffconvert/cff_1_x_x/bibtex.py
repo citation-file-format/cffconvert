@@ -3,14 +3,6 @@ from abc import abstractmethod
 
 class BibtexObjectShared:
 
-    supported_bibtex_props = [
-        'author',
-        'doi',
-        'month',
-        'title',
-        'url',
-        'year'
-    ]
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):

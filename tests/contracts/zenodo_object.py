@@ -9,6 +9,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def test_contributors(self):
+        pass
+
+    @abstractmethod
     def test_creators(self):
         pass
 

@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Organization",
+      "name": "The author"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "familyName": "van der Vaart III",
+      "givenName": "Rafael"
+    },
+    {
+      "@type": "Person",
+      "familyName": "dos Santos Aveiro",
+      "givenName": "Cristiano Ronaldo"
+    }
+  ],
+  "name": "the title"
+}

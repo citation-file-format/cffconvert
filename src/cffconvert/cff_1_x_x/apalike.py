@@ -15,14 +15,6 @@ from abc import abstractmethod
 
 class ApalikeObjectShared:
 
-    supported_apalike_props = [
-        'author',
-        'year',
-        'title',
-        'version',
-        'doi',
-        'url'
-    ]
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):

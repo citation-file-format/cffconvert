@@ -4,16 +4,6 @@ from abc import abstractmethod
 # pylint: disable=too-many-instance-attributes
 class RisObjectShared:
 
-    supported_ris_props = [
-        'abstract',
-        'author',
-        'date',
-        'doi',
-        'keywords',
-        'title',
-        'url',
-        'year'
-    ]
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):

@@ -8,6 +8,20 @@ class ZenodoObject(Shared):
         "1.3.0"
     ]
 
+    def add_contributors(self):
+        contributors = []
+        for c in self.cffobj.get("contributors", []):
+            # contributors are generated in the same way as authors, hence just
+            # call ZenodoAuthor's contructor with the cff contributor object
+            contributor = ZenodoAuthor(c).as_dict()
+            contributor.update({"type": "Other"})
+            contributors.append(contributor)
+        # filter out contributors that had no data associated with them
+        contributors = [c for c in contributors if c is not None]
+        if len(contributors) > 0:
+            self.contributors = contributors
+        return self
+
     def add_creators(self):
         authors_cff = self.cffobj.get("authors", [])
         creators_zenodo = [ZenodoAuthor(a).as_dict() for a in authors_cff]

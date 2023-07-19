@@ -3,14 +3,6 @@ from abc import abstractmethod
 
 class EndnoteObjectShared:
 
-    supported_endnote_props = [
-        'author',
-        'year',
-        'keyword',
-        'doi',
-        'name',
-        'url'
-    ]
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):

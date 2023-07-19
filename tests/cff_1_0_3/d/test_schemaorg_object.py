@@ -67,6 +67,9 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_urls().code_repository == 'https://github.com/citation-file-format' + \
                                                                 '/cffconvert'
 
+    def test_contributor(self):
+        assert schemaorg_object().add_contributor().contributor is None
+
     def test_date_published(self):
         assert schemaorg_object().add_date_published().date_published == '2018-07-25'
 

@@ -82,14 +82,15 @@ pytest -m endnote
 
 ## Linting
 
-For linting we use [prospector](https://pypi.org/project/prospector/) and to sort imports we use
-[isort](https://pycqa.github.io/isort/). Running the linters requires that the
-development tools are installed.
+Running the linters requires that the development tools have been installed:
 
 ```shell
-# linter
-prospector
+pip install --editable .[dev]
+```
 
+Sorting Python import lines with '`isort`' (https://pycqa.github.io/isort/):
+
+```shell
 # recursively check import style for the cffconvert module only
 isort --check-only src/cffconvert
 
@@ -99,6 +100,26 @@ isort --check-only --diff src/cffconvert
 
 # recursively fix import style for the cffconvert module only
 isort src/cffconvert
+```
+
+Linting the code base by running a variety of other tools via '`prospector`' (https://github.com/landscapeio/prospector):
+
+```shell
+# linter
+prospector
+```
+
+Assessing the package metadata using '`pyroma`' (https://github.com/regebro/pyroma):
+
+```shell
+# from the project root
+pyroma .
+```
+
+Linting the code base using '`ruff`' (https://github.com/astral-sh/ruff):
+
+```shell
+ruff check path/to/code/
 ```
 
 The linting tools are also usable via [`pre-commit`](https://pre-commit.com/):

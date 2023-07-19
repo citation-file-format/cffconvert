@@ -29,6 +29,13 @@ class TestSchemaorgObject(Contract):
             "name": "The author"
         }]
 
+    def test_check_cffobj(self):
+        schemaorg_object().check_cffobj()
+        # doesn't need an assert
+
+    def test_code_repository(self):
+        assert schemaorg_object().add_urls().code_repository is None
+
     def test_contributor(self):
         assert schemaorg_object().add_contributor().contributor == [{
             "@type": "Person",
@@ -39,13 +46,6 @@ class TestSchemaorgObject(Contract):
             "familyName": "dos Santos Aveiro",
             "givenName": "Cristiano Ronaldo"
         }]
-
-    def test_check_cffobj(self):
-        schemaorg_object().check_cffobj()
-        # doesn't need an assert
-
-    def test_code_repository(self):
-        assert schemaorg_object().add_urls().code_repository is None
 
     def test_date_published(self):
         assert schemaorg_object().add_date_published().date_published is None

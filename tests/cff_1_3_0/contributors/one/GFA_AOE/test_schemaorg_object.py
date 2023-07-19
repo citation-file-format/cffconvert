@@ -16,15 +16,25 @@ def schemaorg_object():
 @pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
 
-    def test_check_cffobj(self):
-        schemaorg_object().check_cffobj()
-        # doesn't need an assert
+    def test_as_string(self):
+        actual_schemaorg = schemaorg_object().add_all().as_string()
+        fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
+        with open(fixture, "rt", encoding="utf-8") as f:
+            expected_schemaorg = f.read()
+        assert actual_schemaorg == expected_schemaorg
 
     def test_author(self):
         assert schemaorg_object().add_author().author == [{
             "@type": "Organization",
             "name": "The author"
         }]
+
+    def test_check_cffobj(self):
+        schemaorg_object().check_cffobj()
+        # doesn't need an assert
+
+    def test_code_repository(self):
+        assert schemaorg_object().add_urls().code_repository is None
 
     def test_contributor(self):
         assert schemaorg_object().add_contributor().contributor == [{
@@ -39,9 +49,6 @@ class TestSchemaorgObject(Contract):
             "familyName": "von der Spaaks Jr.",
             "givenName": "Jurriaan H."
         }]
-
-    def test_code_repository(self):
-        assert schemaorg_object().add_urls().code_repository is None
 
     def test_date_published(self):
         assert schemaorg_object().add_date_published().date_published is None
@@ -66,10 +73,3 @@ class TestSchemaorgObject(Contract):
 
     def test_url(self):
         assert schemaorg_object().add_urls().url is None
-
-    def test_as_string(self):
-        actual_schemaorg = schemaorg_object().add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_schemaorg = f.read()
-        assert actual_schemaorg == expected_schemaorg

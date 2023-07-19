@@ -3,6 +3,7 @@ from cffconvert.cff_1_x_x.schemaorg import SchemaorgObjectShared as Shared
 from cffconvert.cff_1_x_x.urls.schemaorg import SchemaorgUrls
 
 
+# pylint: disable=too-many-instance-attributes
 class SchemaorgObject(Shared):
 
     supported_cff_versions = [

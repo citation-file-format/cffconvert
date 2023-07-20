@@ -6,28 +6,28 @@ from cffconvert.cff_1_x_x.urls.ris import RisUrl
 class RisObject(Shared):
 
     supported_cff_versions = [
-        '1.0.1',
-        '1.0.2',
-        '1.0.3'
+        "1.0.1",
+        "1.0.2",
+        "1.0.3"
     ]
 
     def add_author(self):
-        authors_cff = self.cffobj.get('authors', [])
+        authors_cff = self.cffobj.get("authors", [])
         authors_bibtex = [RisAuthor(a).as_string() for a in authors_cff]
         authors_bibtex_filtered = [a for a in authors_bibtex if a is not None]
-        self.author = ''.join(authors_bibtex_filtered)
+        self.author = "".join(authors_bibtex_filtered)
         return self
 
     def add_date(self):
-        if 'date-released' in self.cffobj.keys():
-            year = self.cffobj['date-released'].year
-            month = self.cffobj['date-released'].month
-            day = self.cffobj['date-released'].day
+        if "date-released" in self.cffobj.keys():
+            year = self.cffobj["date-released"].year
+            month = self.cffobj["date-released"].month
+            day = self.cffobj["date-released"].day
             self.date = f"DA  - {year:d}-{month:02d}-{day:02d}\n"
         return self
 
     def add_doi(self):
-        if 'doi' in self.cffobj.keys():
+        if "doi" in self.cffobj.keys():
             self.doi = f"DO  - {self.cffobj['doi']}\n"
         return self
 
@@ -36,6 +36,6 @@ class RisObject(Shared):
         return self
 
     def add_year(self):
-        if 'date-released' in self.cffobj.keys():
+        if "date-released" in self.cffobj.keys():
             self.year = f"PY  - {self.cffobj['date-released'].year}\n"
         return self

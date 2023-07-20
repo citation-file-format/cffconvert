@@ -48,29 +48,29 @@ class TestCodemetaObject(Contract):
         # doesn't need an assert
 
     def test_code_repository(self):
-        assert codemeta_object().add_urls().code_repository == 'https://github.com/citation-file-format' + \
-                                                               '/cffconvert'
+        assert codemeta_object().add_urls().code_repository == "https://github.com/citation-file-format" + \
+                                                               "/cffconvert"
 
     def test_date_published(self):
-        assert codemeta_object().add_date_published().date_published == '2018-01-16'
+        assert codemeta_object().add_date_published().date_published == "2018-01-16"
 
     def test_description(self):
         assert codemeta_object().add_description().description is None
 
     def test_identifier(self):
-        assert codemeta_object().add_identifier().identifier == 'https://doi.org/10.5281/zenodo.1162057'
+        assert codemeta_object().add_identifier().identifier == "https://doi.org/10.5281/zenodo.1162057"
 
     def test_keywords(self):
-        assert codemeta_object().add_keywords().keywords == ['citation', 'bibliography', 'cff', 'CITATION.cff']
+        assert codemeta_object().add_keywords().keywords == ["citation", "bibliography", "cff", "CITATION.cff"]
 
     def test_license(self):
-        assert codemeta_object().add_license().license == 'https://spdx.org/licenses/Apache-2.0'
+        assert codemeta_object().add_license().license == "https://spdx.org/licenses/Apache-2.0"
 
     def test_name(self):
-        assert codemeta_object().add_name().name == 'cffconvert'
+        assert codemeta_object().add_name().name == "cffconvert"
 
     def test_url(self):
-        assert codemeta_object().add_urls().url == 'https://github.com/citation-file-format/cffconvert'
+        assert codemeta_object().add_urls().url == "https://github.com/citation-file-format/cffconvert"
 
     def test_version(self):
-        assert codemeta_object().add_version().version == '1.0.0'
+        assert codemeta_object().add_version().version == "1.0.0"

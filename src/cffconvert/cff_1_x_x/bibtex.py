@@ -27,8 +27,8 @@ class BibtexObjectShared:
                                    self.title,
                                    self.url,
                                    self.year] if item is not None]
-        joined = ',\n'.join(items)
-        return '@misc{YourReferenceHere,\n' + joined + '\n}\n'
+        joined = ",\n".join(items)
+        return "@misc{YourReferenceHere,\n" + joined + "\n}\n"
 
     def add_all(self):
         self.add_author()   \
@@ -52,8 +52,8 @@ class BibtexObjectShared:
         pass
 
     def add_title(self):
-        if 'title' in self.cffobj.keys():
-            self.title = 'title = {' + self.cffobj['title'] + '}'
+        if "title" in self.cffobj.keys():
+            self.title = "title = {" + self.cffobj["title"] + "}"
         return self
 
     @abstractmethod
@@ -70,7 +70,7 @@ class BibtexObjectShared:
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
             raise ValueError("Expected cffobj to be of type 'dict'.")
-        if 'cff-version' not in self.cffobj.keys():
+        if "cff-version" not in self.cffobj.keys():
             raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
-        if self.cffobj['cff-version'] not in self.supported_cff_versions:
+        if self.cffobj["cff-version"] not in self.supported_cff_versions:
             raise ValueError(f"cff-version: {self.cffobj['cff-version']} isn't a supported version.")

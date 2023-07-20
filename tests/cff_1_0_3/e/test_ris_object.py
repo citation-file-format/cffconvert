@@ -27,28 +27,28 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self):
-        assert ris_object().add_author().author == 'AU  - Spaaks, Jurriaan H.\nAU  - Klaver, Tom\n' + \
-                                                   'AU  - Verhoeven, Stefan\n'
+        assert ris_object().add_author().author == "AU  - Spaaks, Jurriaan H.\nAU  - Klaver, Tom\n" + \
+                                                   "AU  - Verhoeven, Stefan\n"
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()
         # doesn't need an assert
 
     def test_date(self):
-        assert ris_object().add_date().date == 'DA  - 2018-05-09\n'
+        assert ris_object().add_date().date == "DA  - 2018-05-09\n"
 
     def test_doi(self):
-        assert ris_object().add_doi().doi == 'DO  - 10.5281/zenodo.1162057\n'
+        assert ris_object().add_doi().doi == "DO  - 10.5281/zenodo.1162057\n"
 
     def test_keywords(self):
-        assert ris_object().add_keywords().keywords == 'KW  - citation\nKW  - bibliography\n' + \
-                                                       'KW  - cff\nKW  - CITATION.cff\n'
+        assert ris_object().add_keywords().keywords == "KW  - citation\nKW  - bibliography\n" + \
+                                                       "KW  - cff\nKW  - CITATION.cff\n"
 
     def test_title(self):
-        assert ris_object().add_title().title == 'TI  - cffconvert\n'
+        assert ris_object().add_title().title == "TI  - cffconvert\n"
 
     def test_url(self):
-        assert ris_object().add_url().url == 'UR  - https://github.com/citation-file-format/cffconvert\n'
+        assert ris_object().add_url().url == "UR  - https://github.com/citation-file-format/cffconvert\n"
 
     def test_year(self):
-        assert ris_object().add_year().year == 'PY  - 2018\n'
+        assert ris_object().add_year().year == "PY  - 2018\n"

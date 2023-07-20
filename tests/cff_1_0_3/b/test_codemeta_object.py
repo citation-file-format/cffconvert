@@ -53,10 +53,10 @@ class TestCodemetaObject(Contract):
         assert codemeta_object().add_license().license is None
 
     def test_name(self):
-        assert codemeta_object().add_name().name == 'example title'
+        assert codemeta_object().add_name().name == "example title"
 
     def test_url(self):
         assert codemeta_object().add_urls().url is None
 
     def test_version(self):
-        assert codemeta_object().add_version().version == '1.0.0'
+        assert codemeta_object().add_version().version == "1.0.0"

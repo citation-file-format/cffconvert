@@ -101,7 +101,7 @@ class SchemaorgObjectShared:
 
     def add_version(self):
         if "version" in self.cffobj.keys():
-            self.version = self.cffobj['version']
+            self.version = self.cffobj["version"]
         return self
 
     def as_string(self):

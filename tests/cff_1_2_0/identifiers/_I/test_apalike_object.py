@@ -24,17 +24,17 @@ class TestApalikeObject(Contract):
         assert actual_apalike == expected_apalike
 
     def test_author(self):
-        assert apalike_object().add_author().author == 'Test author'
+        assert apalike_object().add_author().author == "Test author"
 
     def test_check_cffobj(self):
         apalike_object().check_cffobj()
         # doesn't need an assert
 
     def test_doi(self):
-        assert apalike_object().add_doi().doi == 'DOI: 10.0000/from-identifiers'
+        assert apalike_object().add_doi().doi == "DOI: 10.0000/from-identifiers"
 
     def test_title(self):
-        assert apalike_object().add_title().title == 'Test title'
+        assert apalike_object().add_title().title == "Test title"
 
     def test_url(self):
         assert apalike_object().add_url().url is None

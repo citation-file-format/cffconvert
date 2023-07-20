@@ -49,16 +49,16 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_license().license is None
 
     def test_publication_date(self):
-        assert zenodo_object().add_publication_date().publication_date == '2018-01-16'
+        assert zenodo_object().add_publication_date().publication_date == "2018-01-16"
 
     def test_related_identifiers(self):
         assert zenodo_object().add_related_identifiers().related_identifiers is None
 
     def test_title(self):
-        assert zenodo_object().add_title().title == 'cffconvert'
+        assert zenodo_object().add_title().title == "cffconvert"
 
     def test_upload_type(self):
-        assert zenodo_object().add_upload_type().upload_type == 'software'
+        assert zenodo_object().add_upload_type().upload_type == "software"
 
     def test_version(self):
-        assert zenodo_object().add_version().version == '1.0.0'
+        assert zenodo_object().add_version().version == "1.0.0"

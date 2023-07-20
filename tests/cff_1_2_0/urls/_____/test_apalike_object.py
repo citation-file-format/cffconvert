@@ -17,7 +17,7 @@ def apalike_object():
 class TestApalikeObject(Contract):
 
     def test_author(self):
-        assert apalike_object().add_author().author == 'Test author'
+        assert apalike_object().add_author().author == "Test author"
 
     def test_check_cffobj(self):
         apalike_object().check_cffobj()
@@ -34,7 +34,7 @@ class TestApalikeObject(Contract):
         assert actual_apalike == expected_apalike
 
     def test_title(self):
-        assert apalike_object().add_title().title == 'Test title'
+        assert apalike_object().add_title().title == "Test title"
 
     def test_url(self):
         assert apalike_object().add_url().url is None

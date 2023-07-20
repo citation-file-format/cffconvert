@@ -31,7 +31,7 @@ class RisObjectShared:
                                    self.year,
                                    self.title,
                                    self.url] if item is not None]
-        return 'TY  - GEN\n' + ''.join(items) + 'ER\n'
+        return "TY  - GEN\n" + "".join(items) + "ER\n"
 
     def add_all(self):
         self.add_abstract() \
@@ -45,7 +45,7 @@ class RisObjectShared:
         return self
 
     def add_abstract(self):
-        if 'abstract' in self.cffobj.keys():
+        if "abstract" in self.cffobj.keys():
             self.abstract = f"AB  - {self.cffobj['abstract']}\n"
         return self
 
@@ -62,13 +62,13 @@ class RisObjectShared:
         pass
 
     def add_keywords(self):
-        if 'keywords' in self.cffobj.keys():
-            keywords = [f"KW  - {keyword}\n" for keyword in self.cffobj['keywords']]
-            self.keywords = ''.join(keywords)
+        if "keywords" in self.cffobj.keys():
+            keywords = [f"KW  - {keyword}\n" for keyword in self.cffobj["keywords"]]
+            self.keywords = "".join(keywords)
         return self
 
     def add_title(self):
-        if 'title' in self.cffobj.keys():
+        if "title" in self.cffobj.keys():
             self.title = f"TI  - {self.cffobj['title']}\n"
         return self
 
@@ -86,7 +86,7 @@ class RisObjectShared:
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
             raise ValueError("Expected cffobj to be of type 'dict'.")
-        if 'cff-version' not in self.cffobj.keys():
+        if "cff-version" not in self.cffobj.keys():
             raise ValueError("Missing key 'cff-version' in CITATION.cff file.")
-        if self.cffobj['cff-version'] not in self.supported_cff_versions:
+        if self.cffobj["cff-version"] not in self.supported_cff_versions:
             raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")

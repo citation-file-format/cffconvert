@@ -29,7 +29,7 @@ class Citation:
             raise ValueError("Unable to identify the schema version. Required key 'cff-version' seems to be missing.")
         cffversion = res.group("cffversion")
         if cffversion not in Citation.supported_cff_versions:
-            raise ValueError("Unrecognized value for key \"cff-version\".")
+            raise ValueError("Unrecognized value for key 'cff-version'.")
         return cffversion
 
     # delegate method calls to the chosen implementation:

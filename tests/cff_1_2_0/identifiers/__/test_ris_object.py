@@ -27,7 +27,7 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self):
-        assert ris_object().add_author().author == 'AU  - Test author\n'
+        assert ris_object().add_author().author == "AU  - Test author\n"
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()
@@ -43,7 +43,7 @@ class TestRisObject(Contract):
         assert ris_object().add_keywords().keywords is None
 
     def test_title(self):
-        assert ris_object().add_title().title == 'TI  - Test title\n'
+        assert ris_object().add_title().title == "TI  - Test title\n"
 
     def test_url(self):
         assert ris_object().add_url().url is None

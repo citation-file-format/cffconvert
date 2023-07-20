@@ -129,7 +129,7 @@ def test_without_arguments():
         result = runner.invoke(cffconvert_cli, [])
     assert result.exit_code == 1
     assert isinstance(result.exception, FileNotFoundError)
-    assert result.exception.strerror == 'No such file or directory'
+    assert result.exception.strerror == "No such file or directory"
 
 
 def test_writing_as_bibtex():

@@ -27,8 +27,8 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self):
-        assert ris_object().add_author().author == 'AU  - van der Vaart III, Rafael\n' + \
-                                                   'AU  - dos Santos Aveiro, Cristiano Ronaldo\n'
+        assert ris_object().add_author().author == "AU  - van der Vaart III, Rafael\n" + \
+                                                   "AU  - dos Santos Aveiro, Cristiano Ronaldo\n"
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()
@@ -44,7 +44,7 @@ class TestRisObject(Contract):
         assert ris_object().add_keywords().keywords is None
 
     def test_title(self):
-        assert ris_object().add_title().title == 'TI  - the title\n'
+        assert ris_object().add_title().title == "TI  - the title\n"
 
     def test_url(self):
         assert ris_object().add_url().url is None

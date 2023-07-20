@@ -15,7 +15,7 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation, ver
         print(f"Ignoring output format. Citation metadata are valid according to schema version {citation.cffversion}.")
     elif condition == (False, False):
         # user hasn't indicated what they want
-        print('Indicate whether you want to validate or convert the citation metadata.')
+        print("Indicate whether you want to validate or convert the citation metadata.")
     elif condition == (False, True):
         # validate the input, then write to target outputformat
         try:
@@ -35,10 +35,10 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation, ver
             "zenodo": citation.as_zenodo
         }[outputformat]()
         if outfile is None:
-            print(outstr, end='')
+            print(outstr, end="")
         else:
             with open(outfile, "w", encoding="utf8") as fid:
                 fid.write(outstr)
     else:
         # shouldn't happen
-        raise ValueError('Something went wrong validating or writing the output')
+        raise ValueError("Something went wrong validating or writing the output")

@@ -35,11 +35,18 @@ class Citation_1_3_x(Contract):  # noqa
         # instantiate the YAML module:
         yaml = YAML(typ="safe")
 
-        # while loading, convert timestamps to string
+        # store the current value of the timestamp parser
+        tmp = yaml.constructor.yaml_constructors.get("tag:yaml.org,2002:timestamp")
+
+        # Configure YAML to load timestamps as strings:
         yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = \
             yaml.constructor.yaml_constructors["tag:yaml.org,2002:str"]
 
-        cffobj = yaml.load(self.cffstr)
+        try:
+            cffobj = yaml.load(self.cffstr)
+        finally:
+            # restore the old value
+            yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = tmp
 
         if not isinstance(cffobj, dict):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")

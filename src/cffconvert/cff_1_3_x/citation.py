@@ -3,6 +3,7 @@ import os
 import jsonschema
 from jsonschema.exceptions import ValidationError
 from ruamel.yaml import YAML
+from ruamel.yaml import SafeConstructor
 from cffconvert.cff_1_3_x.apalike import ApalikeObject
 from cffconvert.cff_1_3_x.bibtex import BibtexObject
 from cffconvert.cff_1_3_x.codemeta import CodemetaObject
@@ -39,8 +40,7 @@ class Citation_1_3_x(Contract):  # noqa
         tmp = yaml.constructor.yaml_constructors.get("tag:yaml.org,2002:timestamp")
 
         # Configure YAML to load timestamps as strings:
-        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = \
-            yaml.constructor.yaml_constructors["tag:yaml.org,2002:str"]
+        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = SafeConstructor.construct_yaml_str
 
         try:
             cffobj = yaml.load(self.cffstr)

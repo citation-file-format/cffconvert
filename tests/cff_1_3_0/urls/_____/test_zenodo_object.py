@@ -48,10 +48,10 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_related_identifiers().related_identifiers is None
 
     def test_title(self):
-        assert zenodo_object().add_title().title == 'Test title'
+        assert zenodo_object().add_title().title == "Test title"
 
     def test_upload_type(self):
-        assert zenodo_object().add_upload_type().upload_type == 'software'
+        assert zenodo_object().add_upload_type().upload_type == "software"
 
     def test_version(self):
         assert zenodo_object().add_version().version is None

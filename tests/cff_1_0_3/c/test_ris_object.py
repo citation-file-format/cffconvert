@@ -27,27 +27,27 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self):
-        assert ris_object().add_author().author == 'AU  - Attema, Jisk\nAU  - Diblen, Faruk\n'
+        assert ris_object().add_author().author == "AU  - Attema, Jisk\nAU  - Diblen, Faruk\n"
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()
         # doesn't need an assert
 
     def test_date(self):
-        assert ris_object().add_date().date == 'DA  - 2017-10-07\n'
+        assert ris_object().add_date().date == "DA  - 2017-10-07\n"
 
     def test_doi(self):
-        assert ris_object().add_doi().doi == 'DO  - 10.5281/zenodo.1003346\n'
+        assert ris_object().add_doi().doi == "DO  - 10.5281/zenodo.1003346\n"
 
     def test_keywords(self):
-        assert ris_object().add_keywords().keywords == 'KW  - visualization\nKW  - big data\n' + \
-                                                       'KW  - visual data analytics\nKW  - multi-dimensional data\n'
+        assert ris_object().add_keywords().keywords == "KW  - visualization\nKW  - big data\n" + \
+                                                       "KW  - visual data analytics\nKW  - multi-dimensional data\n"
 
     def test_title(self):
-        assert ris_object().add_title().title == 'TI  - spot\n'
+        assert ris_object().add_title().title == "TI  - spot\n"
 
     def test_url(self):
-        assert ris_object().add_url().url == 'UR  - https://github.com/NLeSC/spot\n'
+        assert ris_object().add_url().url == "UR  - https://github.com/NLeSC/spot\n"
 
     def test_year(self):
-        assert ris_object().add_year().year == 'PY  - 2017\n'
+        assert ris_object().add_year().year == "PY  - 2017\n"

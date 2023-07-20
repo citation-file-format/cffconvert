@@ -45,17 +45,17 @@ class TestZenodoObject(Contract):
 
     def test_keywords(self):
         assert zenodo_object().add_keywords().keywords == [
-            'visualization',
-            'big data',
-            'visual data analytics',
-            'multi-dimensional data'
+            "visualization",
+            "big data",
+            "visual data analytics",
+            "multi-dimensional data"
         ]
 
     def test_license(self):
         assert zenodo_object().add_license().license == {"id": "Apache-2.0"}
 
     def test_publication_date(self):
-        assert zenodo_object().add_publication_date().publication_date == '2017-10-07'
+        assert zenodo_object().add_publication_date().publication_date == "2017-10-07"
 
     def test_related_identifiers(self):
         assert zenodo_object().add_related_identifiers().related_identifiers == [{
@@ -69,10 +69,10 @@ class TestZenodoObject(Contract):
         }]
 
     def test_title(self):
-        assert zenodo_object().add_title().title == 'spot'
+        assert zenodo_object().add_title().title == "spot"
 
     def test_upload_type(self):
-        assert zenodo_object().add_upload_type().upload_type == 'software'
+        assert zenodo_object().add_upload_type().upload_type == "software"
 
     def test_version(self):
-        assert zenodo_object().add_version().version == '0.1.0'
+        assert zenodo_object().add_version().version == "0.1.0"

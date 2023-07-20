@@ -24,20 +24,20 @@ class TestEndnoteObject(Contract):
         assert actual_endnote == expected_endnote
 
     def test_author(self):
-        assert endnote_object().add_author().author == '%A Test author\n'
+        assert endnote_object().add_author().author == "%A Test author\n"
 
     def test_check_cffobj(self):
         endnote_object().check_cffobj()
         # doesn't need an assert
 
     def test_doi(self):
-        assert endnote_object().add_doi().doi == '%R 10.0000/from-doi\n'
+        assert endnote_object().add_doi().doi == "%R 10.0000/from-doi\n"
 
     def test_keyword(self):
         assert endnote_object().add_keyword().keyword is None
 
     def test_name(self):
-        assert endnote_object().add_name().name == '%T Test title\n'
+        assert endnote_object().add_name().name == "%T Test title\n"
 
     def test_url(self):
         assert endnote_object().add_url().url is None

@@ -24,7 +24,7 @@ class TestApalikeObject(Contract):
         assert actual_apalike == expected_apalike
 
     def test_author(self):
-        assert apalike_object().add_author().author == 'Fernández de Córdoba Jr. G.'
+        assert apalike_object().add_author().author == "Fernández de Córdoba Jr. G."
 
     def test_check_cffobj(self):
         apalike_object().check_cffobj()
@@ -34,13 +34,13 @@ class TestApalikeObject(Contract):
         assert apalike_object().add_doi().doi is None
 
     def test_title(self):
-        assert apalike_object().add_title().title == 'example title'
+        assert apalike_object().add_title().title == "example title"
 
     def test_url(self):
         assert apalike_object().add_url().url is None
 
     def test_version(self):
-        assert apalike_object().add_version().version == '(version 1.0.0).'
+        assert apalike_object().add_version().version == "(version 1.0.0)."
 
     def test_year(self):
-        assert apalike_object().add_year().year == '(1999).'
+        assert apalike_object().add_year().year == "(1999)."

@@ -24,8 +24,8 @@ class TestEndnoteObject(Contract):
         assert actual_endnote == expected_endnote
 
     def test_author(self):
-        assert endnote_object().add_author().author == '%A van der Vaart III, Rafael\n' + \
-                                                       '%A dos Santos Aveiro, Cristiano Ronaldo\n'
+        assert endnote_object().add_author().author == "%A van der Vaart III, Rafael\n" + \
+                                                       "%A dos Santos Aveiro, Cristiano Ronaldo\n"
 
     def test_check_cffobj(self):
         endnote_object().check_cffobj()
@@ -38,7 +38,7 @@ class TestEndnoteObject(Contract):
         assert endnote_object().add_keyword().keyword is None
 
     def test_name(self):
-        assert endnote_object().add_name().name == '%T the title\n'
+        assert endnote_object().add_name().name == "%T the title\n"
 
     def test_url(self):
         assert endnote_object().add_url().url is None

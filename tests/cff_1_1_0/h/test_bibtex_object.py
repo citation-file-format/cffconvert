@@ -24,7 +24,7 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_author(self):
-        assert bibtex_object().add_author().author == 'author = {Van Zandt, Steven and van Zandt, Steven}'
+        assert bibtex_object().add_author().author == "author = {Van Zandt, Steven and van Zandt, Steven}"
 
     def test_check_cffobj(self):
         bibtex_object().check_cffobj()
@@ -34,13 +34,13 @@ class TestBibtexObject(Contract):
         assert bibtex_object().add_doi().doi is None
 
     def test_month(self):
-        assert bibtex_object().add_month().month == 'month = {1}'
+        assert bibtex_object().add_month().month == "month = {1}"
 
     def test_title(self):
-        assert bibtex_object().add_title().title == 'title = {cffconvert}'
+        assert bibtex_object().add_title().title == "title = {cffconvert}"
 
     def test_url(self):
         assert bibtex_object().add_url().url is None
 
     def test_year(self):
-        assert bibtex_object().add_year().year == 'year = {2018}'
+        assert bibtex_object().add_year().year == "year = {2018}"

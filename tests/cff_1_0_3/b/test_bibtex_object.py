@@ -24,7 +24,7 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_author(self):
-        assert bibtex_object().add_author().author == 'author = {Fernández de Córdoba Jr., Gonzalo}'
+        assert bibtex_object().add_author().author == "author = {Fernández de Córdoba Jr., Gonzalo}"
 
     def test_check_cffobj(self):
         bibtex_object().check_cffobj()
@@ -37,7 +37,7 @@ class TestBibtexObject(Contract):
         assert bibtex_object().add_month().month == "month = {12}"
 
     def test_title(self):
-        assert bibtex_object().add_title().title == 'title = {example title}'
+        assert bibtex_object().add_title().title == "title = {example title}"
 
     def test_url(self):
         assert bibtex_object().add_url().url is None

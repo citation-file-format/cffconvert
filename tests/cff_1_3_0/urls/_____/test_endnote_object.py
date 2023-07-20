@@ -21,7 +21,7 @@ class TestEndnoteObject(Contract):
         # doesn't need an assert
 
     def test_author(self):
-        assert endnote_object().add_author().author == '%A Test author\n'
+        assert endnote_object().add_author().author == "%A Test author\n"
 
     def test_doi(self):
         assert endnote_object().add_doi().doi is None
@@ -30,7 +30,7 @@ class TestEndnoteObject(Contract):
         assert endnote_object().add_keyword().keyword is None
 
     def test_name(self):
-        assert endnote_object().add_name().name == '%T Test title\n'
+        assert endnote_object().add_name().name == "%T Test title\n"
 
     def test_as_string(self):
         actual_endnote = endnote_object().add_all().as_string()

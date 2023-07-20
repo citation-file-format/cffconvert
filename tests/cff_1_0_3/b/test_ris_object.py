@@ -27,14 +27,14 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self):
-        assert ris_object().add_author().author == 'AU  - Fernández de Córdoba Jr., Gonzalo\n'
+        assert ris_object().add_author().author == "AU  - Fernández de Córdoba Jr., Gonzalo\n"
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()
         # doesn't need an assert
 
     def test_date(self):
-        assert ris_object().add_date().date == 'DA  - 1999-12-31\n'
+        assert ris_object().add_date().date == "DA  - 1999-12-31\n"
 
     def test_doi(self):
         assert ris_object().add_doi().doi is None
@@ -43,10 +43,10 @@ class TestRisObject(Contract):
         assert ris_object().add_keywords().keywords is None
 
     def test_title(self):
-        assert ris_object().add_title().title == 'TI  - example title\n'
+        assert ris_object().add_title().title == "TI  - example title\n"
 
     def test_url(self):
         assert ris_object().add_url().url is None
 
     def test_year(self):
-        assert ris_object().add_year().year == 'PY  - 1999\n'
+        assert ris_object().add_year().year == "PY  - 1999\n"

@@ -48,33 +48,33 @@ class TestCodemetaObject(Contract):
         # doesn't need an assert
 
     def test_code_repository(self):
-        assert codemeta_object().add_urls().code_repository == 'https://github.com/NLeSC/spot'
+        assert codemeta_object().add_urls().code_repository == "https://github.com/NLeSC/spot"
 
     def test_date_published(self):
-        assert codemeta_object().add_date_published().date_published == '2017-10-07'
+        assert codemeta_object().add_date_published().date_published == "2017-10-07"
 
     def test_description(self):
         assert codemeta_object().add_description().description is None
 
     def test_identifier(self):
-        assert codemeta_object().add_identifier().identifier == 'https://doi.org/10.5281/zenodo.1003346'
+        assert codemeta_object().add_identifier().identifier == "https://doi.org/10.5281/zenodo.1003346"
 
     def test_keywords(self):
         assert codemeta_object().add_keywords().keywords == [
-            'visualization',
-            'big data',
-            'visual data analytics',
-            'multi-dimensional data'
+            "visualization",
+            "big data",
+            "visual data analytics",
+            "multi-dimensional data"
         ]
 
     def test_license(self):
-        assert codemeta_object().add_license().license == 'https://spdx.org/licenses/Apache-2.0'
+        assert codemeta_object().add_license().license == "https://spdx.org/licenses/Apache-2.0"
 
     def test_name(self):
-        assert codemeta_object().add_name().name == 'spot'
+        assert codemeta_object().add_name().name == "spot"
 
     def test_url(self):
-        assert codemeta_object().add_urls().url == 'https://github.com/NLeSC/spot'
+        assert codemeta_object().add_urls().url == "https://github.com/NLeSC/spot"
 
     def test_version(self):
-        assert codemeta_object().add_version().version == '0.1.0'
+        assert codemeta_object().add_version().version == "0.1.0"

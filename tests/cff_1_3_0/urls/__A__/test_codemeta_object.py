@@ -45,7 +45,7 @@ class TestCodemetaObject(Contract):
         assert codemeta_object().add_license().license is None
 
     def test_name(self):
-        assert codemeta_object().add_name().name == 'Test title'
+        assert codemeta_object().add_name().name == "Test title"
 
     def test_upload_type(self):
         assert codemeta_object().add_type().type == "SoftwareSourceCode"

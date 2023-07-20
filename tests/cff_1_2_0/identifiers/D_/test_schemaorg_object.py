@@ -46,7 +46,7 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_description().description is None
 
     def test_identifier(self):
-        assert schemaorg_object().add_identifier().identifier == 'https://doi.org/10.0000/from-doi'
+        assert schemaorg_object().add_identifier().identifier == "https://doi.org/10.0000/from-doi"
 
     def test_keywords(self):
         assert schemaorg_object().add_keywords().keywords is None
@@ -55,7 +55,7 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_license().license is None
 
     def test_name(self):
-        assert schemaorg_object().add_name().name == 'Test title'
+        assert schemaorg_object().add_name().name == "Test title"
 
     def test_upload_type(self):
         assert schemaorg_object().add_type().type == "SoftwareSourceCode"

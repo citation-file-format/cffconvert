@@ -50,7 +50,7 @@ class TestCodemetaObject(Contract):
         assert codemeta_object().add_urls().code_repository is None
 
     def test_date_published(self):
-        assert codemeta_object().add_date_published().date_published == '2018-01-16'
+        assert codemeta_object().add_date_published().date_published == "2018-01-16"
 
     def test_description(self):
         assert codemeta_object().add_description().description is None
@@ -65,10 +65,10 @@ class TestCodemetaObject(Contract):
         assert codemeta_object().add_license().license is None
 
     def test_name(self):
-        assert codemeta_object().add_name().name == 'cffconvert'
+        assert codemeta_object().add_name().name == "cffconvert"
 
     def test_url(self):
         assert codemeta_object().add_urls().url is None
 
     def test_version(self):
-        assert codemeta_object().add_version().version == '1.0.0'
+        assert codemeta_object().add_version().version == "1.0.0"

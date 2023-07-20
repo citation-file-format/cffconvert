@@ -65,9 +65,11 @@ options = {
         "help": "Control output verbosity."
     }
 }
+epilog = """If this program is useful to you, consider giving it a star on GitHub:
+https://github.com/citation-file-format/cffconvert"""
 
 
-@click.command()
+@click.command(epilog=epilog)
 @click.option("-i", "--infile", "infile", **options["infile"])
 @click.option("-o", "--outfile", "outfile", **options["outfile"])
 @click.option("-f", "--format", "outputformat", **options["outputformat"])
@@ -79,6 +81,7 @@ options = {
 @click.option("--verbose", "verbose", **options["verbose"])
 # pylint: disable=too-many-arguments
 def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only, version, verbose):
+    """Command line program to validate and convert CITATION.cff files."""
 
     check_early_exits(show_help, version)
 

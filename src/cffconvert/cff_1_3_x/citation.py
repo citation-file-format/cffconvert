@@ -2,8 +2,8 @@ import json
 import os
 import jsonschema
 from jsonschema.exceptions import ValidationError
-from ruamel.yaml import YAML
 from ruamel.yaml import SafeConstructor
+from ruamel.yaml import YAML
 from cffconvert.cff_1_3_x.apalike import ApalikeObject
 from cffconvert.cff_1_3_x.bibtex import BibtexObject
 from cffconvert.cff_1_3_x.codemeta import CodemetaObject

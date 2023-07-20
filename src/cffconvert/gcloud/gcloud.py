@@ -24,19 +24,19 @@ def cffconvert(request):
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
 
-    mimetype_plain = 'text/plain'
-    mimetype_html = 'text/html'
+    mimetype_plain = "text/plain"
+    mimetype_html = "text/html"
 
-    outstr = ''
+    outstr = ""
 
-    if not request.args or 'help' in request.args.keys():
+    if not request.args or "help" in request.args.keys():
         return Response(get_help_text(), mimetype=mimetype_html)
 
-    cffstr = request.args.get('cffstr', None)
-    outputformat = request.args.get('outputformat', None)
-    url = request.args.get('url', None)
-    validate = 'validate' in request.args.keys()
-    version = 'version' in request.args.keys()
+    cffstr = request.args.get("cffstr", None)
+    outputformat = request.args.get("outputformat", None)
+    url = request.args.get("url", None)
+    validate = "validate" in request.args.keys()
+    version = "version" in request.args.keys()
 
     if version is True:
         outstr += f"{cffconvert_version.__version__}\n"

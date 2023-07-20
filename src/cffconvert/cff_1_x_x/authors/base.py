@@ -14,14 +14,14 @@ class BaseAuthor(ABC):
 
     def _get_full_last_name(self):
         nameparts = [
-            self._author.get('name-particle'),
-            self._author.get('family-names'),
-            self._author.get('name-suffix')
+            self._author.get("name-particle"),
+            self._author.get("family-names"),
+            self._author.get("name-suffix")
         ]
-        return ' '.join([n for n in nameparts if n is not None])
+        return " ".join([n for n in nameparts if n is not None])
 
     def _get_key(self):
-        return ''.join([
+        return "".join([
             self._has_given_name(),
             self._has_family_name(),
             self._has_alias(),
@@ -32,43 +32,43 @@ class BaseAuthor(ABC):
         ])
 
     def _has_affiliation(self):
-        value = self._author.get('affiliation', None)
-        if value is not None and value != '':
-            return 'A'
-        return '_'
+        value = self._author.get("affiliation", None)
+        if value is not None and value != "":
+            return "A"
+        return "_"
 
     def _has_alias(self):
-        value = self._author.get('alias', None)
-        if value is not None and value != '':
-            return 'A'
-        return '_'
+        value = self._author.get("alias", None)
+        if value is not None and value != "":
+            return "A"
+        return "_"
 
     def _has_given_name(self):
-        value = self._author.get('given-names', None)
-        if value is not None and value != '':
-            return 'G'
-        return '_'
+        value = self._author.get("given-names", None)
+        if value is not None and value != "":
+            return "G"
+        return "_"
 
     def _has_family_name(self):
-        value = self._author.get('family-names', None)
-        if value is not None and value != '':
-            return 'F'
-        return '_'
+        value = self._author.get("family-names", None)
+        if value is not None and value != "":
+            return "F"
+        return "_"
 
     def _has_name(self):
-        value = self._author.get('name', None)
-        if value is not None and value != '':
-            return 'N'
-        return '_'
+        value = self._author.get("name", None)
+        if value is not None and value != "":
+            return "N"
+        return "_"
 
     def _has_orcid(self):
-        value = self._author.get('orcid', None)
-        if value is not None and value != '':
-            return 'O'
-        return '_'
+        value = self._author.get("orcid", None)
+        if value is not None and value != "":
+            return "O"
+        return "_"
 
     def _has_email(self):
-        value = self._author.get('email', None)
-        if value is not None and value != '':
-            return 'E'
-        return '_'
+        value = self._author.get("email", None)
+        if value is not None and value != "":
+            return "E"
+        return "_"

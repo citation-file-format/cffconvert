@@ -39,7 +39,7 @@ class ApalikeObjectShared:
                                    self.version,
                                    self.doi,
                                    self.url] if item is not None]
-        return ' '.join(items) + '\n'
+        return " ".join(items) + "\n"
 
     def add_all(self):
         self.add_author()   \
@@ -59,13 +59,13 @@ class ApalikeObjectShared:
         pass
 
     def add_title(self):
-        if 'title' in self.cffobj.keys():
-            self.title = self.cffobj['title']
+        if "title" in self.cffobj.keys():
+            self.title = self.cffobj["title"]
         return self
 
     def add_version(self):
-        if 'version' in self.cffobj.keys():
-            self.version = '(version ' + str(self.cffobj['version']) + ').'
+        if "version" in self.cffobj.keys():
+            self.version = "(version " + str(self.cffobj["version"]) + ")."
         return self
 
     @abstractmethod
@@ -82,7 +82,7 @@ class ApalikeObjectShared:
     def check_cffobj(self):
         if not isinstance(self.cffobj, dict):
             raise ValueError("Expected cffobj to be of type 'dict'.")
-        if 'cff-version' not in self.cffobj.keys():
+        if "cff-version" not in self.cffobj.keys():
             raise ValueError('Missing key "cff-version" in CITATION.cff file.')
-        if self.cffobj['cff-version'] not in self.supported_cff_versions:
+        if self.cffobj["cff-version"] not in self.supported_cff_versions:
             raise ValueError(f"'cff-version': '{self.cffobj['cff-version']}' isn't a supported version.")

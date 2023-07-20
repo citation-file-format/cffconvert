@@ -91,7 +91,7 @@ def cli(infile, outfile, outputformat, url, show_help, show_trace, validate_only
 
     # if user didn't specify a filename or a url, apply default filename
     if infile is None and url is None:
-        infile = 'CITATION.cff'
+        infile = "CITATION.cff"
 
     # load the citation metadata from the specified source and create a Python object representation of it
     citation = create_citation(infile, url)

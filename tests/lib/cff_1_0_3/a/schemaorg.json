@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Netherlands eScience Center"
+      },
+      "email": "my@email.notexist",
+      "familyName": "Spaaks",
+      "givenName": "Jurriaan H."
+    },
+    {
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Netherlands eScience Center"
+      },
+      "familyName": "Klaver",
+      "givenName": "Tom"
+    }
+  ],
+  "codeRepository": "https://github.com/citation-file-format/cffconvert",
+  "datePublished": "2018-01-16",
+  "identifier": "https://doi.org/10.5281/zenodo.1162057",
+  "keywords": [
+    "citation",
+    "bibliography",
+    "cff",
+    "CITATION.cff"
+  ],
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "name": "cffconvert",
+  "url": "https://github.com/citation-file-format/cffconvert",
+  "version": "1.0.0"
+}

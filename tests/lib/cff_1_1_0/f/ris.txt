@@ -1,0 +1,13 @@
+TY  - GEN
+AU  - Spaaks, Jurriaan H.
+AU  - Klaver, Tom
+DA  - 2018-01-16
+DO  - 10.5281/zenodo.1162057
+KW  - citation
+KW  - bibliography
+KW  - cff
+KW  - CITATION.cff
+PY  - 2018
+TI  - cffconvert
+UR  - https://github.com/citation-file-format/cffconvert
+ER

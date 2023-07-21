@@ -1,6 +1,6 @@
-from cffconvert.citation import Citation
 from cffconvert.cli.read_from_file import read_from_file
 from cffconvert.cli.read_from_url import read_from_url
+from cffconvert.lib.citation import Citation
 
 
 def create_citation(infile, url):

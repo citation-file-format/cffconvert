@@ -1,0 +1,25 @@
+# YAML 1.2
+---
+authors:
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Spaaks
+    given-names: Jurriaan H.
+    email: my@email.notexist
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Klaver
+    given-names: Tom
+cff-version: "1.1.0"
+date-released: 2018-01-16
+doi: 10.5281/zenodo.1162057
+keywords:
+  - "citation"
+  - "bibliography"
+  - "cff"
+  - "CITATION.cff"
+license: Apache-2.0
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/citation-file-format/cffconvert"
+title: cffconvert
+version: "1.0.0"

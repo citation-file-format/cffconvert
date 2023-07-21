@@ -1,5 +1,6 @@
 import os
 from pykwalify.core import Core
+from ruamel.yaml import SafeConstructor
 from ruamel.yaml import YAML
 from cffconvert.cff_1_0_x.apalike import ApalikeObject
 from cffconvert.cff_1_0_x.bibtex import BibtexObject
@@ -32,9 +33,24 @@ class Citation_1_0_x(Contract):  # noqa
             return YAML(typ="safe").load(fid.read())
 
     def _parse(self):
-        cffobj = YAML(typ="safe").load(self.cffstr)
+        # instantiate the YAML module:
+        yaml = YAML(typ="safe")
+
+        # store the current value of the timestamp parser
+        tmp = yaml.constructor.yaml_constructors.get("tag:yaml.org,2002:timestamp")
+
+        # Configure YAML to load timestamps as timestamps:
+        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = SafeConstructor.construct_yaml_timestamp
+
+        try:
+            cffobj = yaml.load(self.cffstr)
+        finally:
+            # restore the old value
+            yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = tmp
+
         if not isinstance(cffobj, dict):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")
+
         return cffobj
 
     def as_apalike(self):

@@ -2,6 +2,7 @@ import json
 import os
 import jsonschema
 from jsonschema.exceptions import ValidationError
+from ruamel.yaml import SafeConstructor
 from ruamel.yaml import YAML
 from cffconvert.cff_1_3_x.apalike import ApalikeObject
 from cffconvert.cff_1_3_x.bibtex import BibtexObject
@@ -35,11 +36,17 @@ class Citation_1_3_x(Contract):  # noqa
         # instantiate the YAML module:
         yaml = YAML(typ="safe")
 
-        # while loading, convert timestamps to string
-        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = \
-            yaml.constructor.yaml_constructors["tag:yaml.org,2002:str"]
+        # store the current value of the timestamp parser
+        tmp = yaml.constructor.yaml_constructors.get("tag:yaml.org,2002:timestamp")
 
-        cffobj = yaml.load(self.cffstr)
+        # Configure YAML to load timestamps as strings:
+        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = SafeConstructor.construct_yaml_str
+
+        try:
+            cffobj = yaml.load(self.cffstr)
+        finally:
+            # restore the old value
+            yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = tmp
 
         if not isinstance(cffobj, dict):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")

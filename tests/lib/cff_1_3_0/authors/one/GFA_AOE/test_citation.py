@@ -14,4 +14,4 @@ def test_cffversion():
 
 
 def test_validate():
-    citation().validate()
+    citation().validate(verbose=False)

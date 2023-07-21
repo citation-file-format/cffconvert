@@ -1,8 +1,8 @@
 import os
 import pytest
-from tests.contracts.schemaorg_object import Contract
 from cffconvert import Citation
 from cffconvert.lib.cff_1_3_x.schemaorg import SchemaorgObject
+from tests.contracts.schemaorg_object import Contract
 
 
 def schemaorg_object():

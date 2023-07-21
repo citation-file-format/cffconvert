@@ -1,8 +1,8 @@
 import os
 import pytest
-from tests.contracts.apalike_object import Contract
 from cffconvert import Citation
 from cffconvert.lib.cff_1_3_x.apalike import ApalikeObject
+from tests.contracts.apalike_object import Contract
 
 
 def apalike_object():

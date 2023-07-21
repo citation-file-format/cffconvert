@@ -1,8 +1,8 @@
 import os
 import pytest
-from tests.contracts.bibtex_object import Contract
 from cffconvert import Citation
 from cffconvert.lib.cff_1_0_x.bibtex import BibtexObject
+from tests.contracts.bibtex_object import Contract
 
 
 def bibtex_object():

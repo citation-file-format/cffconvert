@@ -1,8 +1,8 @@
 import os
 import pytest
-from tests.contracts.codemeta_object import Contract
 from cffconvert import Citation
 from cffconvert.lib.cff_1_1_x.codemeta import CodemetaObject
+from tests.contracts.codemeta_object import Contract
 
 
 def codemeta_object():

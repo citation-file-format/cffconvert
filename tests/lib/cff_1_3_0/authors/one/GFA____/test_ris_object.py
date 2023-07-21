@@ -1,8 +1,8 @@
 import os
 import pytest
-from tests.contracts.ris_object import Contract
 from cffconvert import Citation
 from cffconvert.lib.cff_1_3_x.ris import RisObject
+from tests.contracts.ris_object import Contract
 
 
 def ris_object():

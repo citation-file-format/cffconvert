@@ -118,7 +118,10 @@ markers = [
     "zenodo: Tests pertaining to 'zenodo' export behavior",
 ]
 minversion = "7.0"
-pythonpath = "src"
+pythonpath = [
+    "src",
+    "."
+]
 testpaths = [
     "tests"
 ]

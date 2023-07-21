@@ -1,6 +1,6 @@
 import os
 from click.testing import CliRunner
-from cffconvert.cli.cli import cli as cffconvert_cli
+from cffconvert.cli.cli import cli as cffconvert
 
 
 def read_sibling_file(filename):
@@ -12,7 +12,7 @@ def read_sibling_file(filename):
 def test_local_cff_file_does_not_exist():
     runner = CliRunner()
     with runner.isolated_filesystem():
-        result = runner.invoke(cffconvert_cli, ["-f", "bibtex"])
+        result = runner.invoke(cffconvert, ["-f", "bibtex"])
     assert isinstance(result.exception, FileNotFoundError)
     assert result.exit_code == 1
     assert "No such file or directory" in str(result.exception)
@@ -21,7 +21,7 @@ def test_local_cff_file_does_not_exist():
 def test_printing_of_help():
     runner = CliRunner()
     with runner.isolated_filesystem():
-        result = runner.invoke(cffconvert_cli, ["--help"])
+        result = runner.invoke(cffconvert, ["--help"])
     assert result.exit_code == 0
     assert result.output[:6] == "Usage:"
 
@@ -29,7 +29,7 @@ def test_printing_of_help():
 def test_printing_of_version():
     runner = CliRunner()
     with runner.isolated_filesystem():
-        result = runner.invoke(cffconvert_cli, ["--version"])
+        result = runner.invoke(cffconvert, ["--version"])
     assert result.exit_code == 0
     assert result.output == "3.0.0a0\n"
 
@@ -41,7 +41,7 @@ def test_printing_on_stdout_as_bibtex():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "bibtex"])
+        result = runner.invoke(cffconvert, ["-f", "bibtex"])
     assert result.exit_code == 0
     actual = result.output
     assert expected == actual
@@ -54,7 +54,7 @@ def test_printing_on_stdout_as_cff():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "cff"])
+        result = runner.invoke(cffconvert, ["-f", "cff"])
     assert result.exit_code == 0
     actual = result.output
     assert expected == actual
@@ -67,7 +67,7 @@ def test_printing_on_stdout_as_codemeta():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "codemeta"])
+        result = runner.invoke(cffconvert, ["-f", "codemeta"])
     assert result.exit_code == 0
     actual = result.output
     assert expected == actual
@@ -80,7 +80,7 @@ def test_printing_on_stdout_as_endnote():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "endnote"])
+        result = runner.invoke(cffconvert, ["-f", "endnote"])
     assert result.exit_code == 0
     actual = result.output
     assert expected == actual
@@ -93,7 +93,7 @@ def test_printing_on_stdout_as_ris():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "ris"])
+        result = runner.invoke(cffconvert, ["-f", "ris"])
     assert result.exit_code == 0
     actual = result.output
     assert expected == actual
@@ -106,7 +106,7 @@ def test_printing_on_stdout_as_schemaorg():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "schema.org"])
+        result = runner.invoke(cffconvert, ["-f", "schema.org"])
     assert result.exit_code == 0
     actual = result.output
     assert expected == actual
@@ -118,7 +118,7 @@ def test_raising_error_on_unsupported_format():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "unsupported_97491"])
+        result = runner.invoke(cffconvert, ["-f", "unsupported_97491"])
     assert result.exit_code == 2
     assert "Error: Invalid value for '-f'" in str(result.output)
 
@@ -126,7 +126,7 @@ def test_raising_error_on_unsupported_format():
 def test_without_arguments():
     runner = CliRunner()
     with runner.isolated_filesystem():
-        result = runner.invoke(cffconvert_cli, [])
+        result = runner.invoke(cffconvert, [])
     assert result.exit_code == 1
     assert isinstance(result.exception, FileNotFoundError)
     assert result.exception.strerror == "No such file or directory"
@@ -139,8 +139,7 @@ def test_writing_as_bibtex():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "bibtex",
-                                                "-o", "bibtex.bib"])
+        result = runner.invoke(cffconvert, ["-f", "bibtex", "-o", "bibtex.bib"])
         with open("bibtex.bib", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
@@ -154,8 +153,7 @@ def test_writing_as_codemeta():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "codemeta",
-                                                "-o", "codemeta.json"])
+        result = runner.invoke(cffconvert, ["-f", "codemeta", "-o", "codemeta.json"])
         with open("codemeta.json", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
@@ -169,8 +167,7 @@ def test_writing_as_endnote():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "endnote",
-                                                "-o", "endnote.enw"])
+        result = runner.invoke(cffconvert, ["-f", "endnote", "-o", "endnote.enw"])
         with open("endnote.enw", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
@@ -184,8 +181,7 @@ def test_writing_as_ris():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "ris",
-                                                "-o", "ris.txt"])
+        result = runner.invoke(cffconvert, ["-f", "ris", "-o", "ris.txt"])
         with open("ris.txt", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0
@@ -199,8 +195,7 @@ def test_writing_as_schemaorg():
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as f:
             f.write(cffstr)
-        result = runner.invoke(cffconvert_cli, ["-f", "schema.org",
-                                                "-o", "schemaorg.json"])
+        result = runner.invoke(cffconvert, ["-f", "schema.org", "-o", "schemaorg.json"])
         with open("schemaorg.json", "rt", encoding="utf-8") as f:
             actual = f.read()
     assert result.exit_code == 0

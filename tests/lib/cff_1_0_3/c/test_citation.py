@@ -1,6 +1,6 @@
 import datetime
 import os
-from cffconvert.citation import Citation
+from cffconvert.lib.citation import Citation
 
 
 def citation():

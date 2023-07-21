@@ -2,7 +2,7 @@
 import inspect
 import types
 import pytest
-from cffconvert.cff_1_x_x.urls.ris import RisUrl
+from cffconvert.lib.cff_1_x_x.urls.ris import RisUrl
 from .get_every_key import get_every_key
 
 

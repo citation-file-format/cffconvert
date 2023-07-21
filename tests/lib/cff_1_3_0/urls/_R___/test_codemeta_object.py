@@ -2,7 +2,7 @@ import os
 import pytest
 from tests.contracts.codemeta_object import Contract
 from cffconvert import Citation
-from cffconvert.cff_1_3_x.codemeta import CodemetaObject
+from cffconvert.lib.cff_1_3_x.codemeta import CodemetaObject
 
 
 def codemeta_object():

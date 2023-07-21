@@ -1,4 +1,4 @@
-from cffconvert.citation import Citation
+from cffconvert.lib.citation import Citation
 
 
 __all__ = [

@@ -1,6 +1,6 @@
 import sys
 import click
-from cffconvert.version import __version__ as cffconvert_version
+from cffconvert.cli.version import __version__ as cffconvert_version
 
 
 def check_early_exits(show_help, version):

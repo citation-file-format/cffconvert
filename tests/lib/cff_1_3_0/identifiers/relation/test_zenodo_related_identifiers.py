@@ -1,7 +1,7 @@
 import os
 import pytest
 from cffconvert import Citation
-from cffconvert.cff_1_3_x.zenodo import ZenodoObject
+from cffconvert.lib.cff_1_3_x.zenodo import ZenodoObject
 
 
 def get_cffstr():

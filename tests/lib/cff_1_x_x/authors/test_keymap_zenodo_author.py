@@ -2,7 +2,7 @@
 import inspect
 import types
 import pytest
-from cffconvert.cff_1_x_x.authors.zenodo import ZenodoAuthor
+from cffconvert.lib.cff_1_x_x.authors.zenodo import ZenodoAuthor
 from .get_every_key import get_every_key
 
 

@@ -9,8 +9,10 @@ from cffconvert.lib.cff_1_0_x.endnote import EndnoteObject
 from cffconvert.lib.cff_1_0_x.ris import RisObject
 from cffconvert.lib.cff_1_0_x.schemaorg import SchemaorgObject
 from cffconvert.lib.cff_1_0_x.zenodo import ZenodoObject
+from cffconvert.lib.constants import YAML_TIMESTAMP_TYPE
 from cffconvert.lib.contracts.citation import Contract
 from cffconvert.root import get_package_root
+
 
 
 class Citation_1_0_x(Contract):  # noqa
@@ -37,16 +39,16 @@ class Citation_1_0_x(Contract):  # noqa
         yaml = YAML(typ="safe")
 
         # store the current value of the timestamp parser
-        tmp = yaml.constructor.yaml_constructors.get("tag:yaml.org,2002:timestamp")
+        tmp = yaml.constructor.yaml_constructors.get(YAML_TIMESTAMP_TYPE)
 
         # Configure YAML to load timestamps as timestamps:
-        yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = SafeConstructor.construct_yaml_timestamp
+        yaml.constructor.yaml_constructors[YAML_TIMESTAMP_TYPE] = SafeConstructor.construct_yaml_timestamp
 
         try:
             cffobj = yaml.load(self.cffstr)
         finally:
             # restore the old value
-            yaml.constructor.yaml_constructors["tag:yaml.org,2002:timestamp"] = tmp
+            yaml.constructor.yaml_constructors[YAML_TIMESTAMP_TYPE] = tmp
 
         if not isinstance(cffobj, dict):
             raise ValueError("Provided CITATION.cff does not seem valid YAML.")

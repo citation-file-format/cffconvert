@@ -14,7 +14,6 @@ from cffconvert.lib.contracts.citation import Contract
 from cffconvert.root import get_package_root
 
 
-
 class Citation_1_0_x(Contract):  # noqa
 
     supported_cff_versions = [

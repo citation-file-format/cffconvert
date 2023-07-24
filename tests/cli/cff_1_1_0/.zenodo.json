@@ -1,0 +1,37 @@
+{
+  "creators": [
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Spaaks, Jurriaan H."
+    },
+    {
+      "affiliation": "Netherlands eScience Center",
+      "name": "Klaver, Tom"
+    }
+  ],
+  "keywords": [
+    "citation",
+    "bibliography",
+    "cff",
+    "CITATION.cff"
+  ],
+  "license": {
+    "id": "Apache-2.0"
+  },
+  "publication_date": "2018-01-16",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.1162057",
+      "relation": "isSupplementedBy",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/citation-file-format/cffconvert",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    }
+  ],
+  "title": "cffconvert",
+  "upload_type": "software",
+  "version": "1.0.0"
+}

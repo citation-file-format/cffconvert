@@ -1,0 +1,16 @@
+{
+  "creators": [
+    {
+      "name": "Test author"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.0000/from-doi",
+      "relation": "isSupplementedBy",
+      "scheme": "doi"
+    }
+  ],
+  "title": "Test title",
+  "upload_type": "software"
+}

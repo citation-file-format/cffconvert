@@ -17,7 +17,7 @@ def bibtex_object():
 class TestBibtexObject(Contract):
 
     def test_author(self):
-        assert bibtex_object().add_author().author == "author = {Test author}"
+        assert bibtex_object().add_author().author == "author = {{Test author}}"
 
     def test_check_cffobj(self):
         bibtex_object().check_cffobj()

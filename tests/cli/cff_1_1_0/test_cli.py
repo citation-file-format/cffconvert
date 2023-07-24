@@ -48,8 +48,7 @@ def test_printing_on_stdout(fmt, fname, cffstr):
     assert expected == actual
 
 
-def test_raising_error_on_unsupported_format():
-    cffstr = read_sibling_file(__file__, "CITATION.cff")
+def test_raising_error_on_unsupported_format(cffstr):
     runner = CliRunner()
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as fid:

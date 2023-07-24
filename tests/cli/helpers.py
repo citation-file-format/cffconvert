@@ -20,5 +20,3 @@ def read_sibling_file(myfile, filename):
     fixture = os.path.join(mydir, filename)
     with open(fixture, "rt", encoding="utf-8") as fid:
         return fid.read()
-
-

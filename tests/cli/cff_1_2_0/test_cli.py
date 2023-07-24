@@ -1,20 +1,13 @@
-import os
 import pytest
 from click.testing import CliRunner
 from cffconvert.cli.cli import cli as cffconvert
 from tests.cli.helpers import get_formats
+from tests.cli.helpers import read_sibling_file
 
 
 @pytest.fixture(scope="module")
 def cffstr():
-    return read_sibling_file("CITATION.cff")
-
-
-def read_sibling_file(filename):
-    mydir = os.path.dirname(__file__)
-    fixture = os.path.join(mydir, filename)
-    with open(fixture, "rt", encoding="utf-8") as fid:
-        return fid.read()
+    return read_sibling_file(__file__, "CITATION.cff")
 
 
 def test_local_cff_file_does_not_exist():
@@ -44,7 +37,7 @@ def test_printing_of_version():
 
 @pytest.mark.parametrize("fmt, fname", get_formats())
 def test_printing_on_stdout(fmt, fname, cffstr):
-    expected = read_sibling_file(fname)
+    expected = read_sibling_file(__file__, fname)
     runner = CliRunner()
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as fid:
@@ -55,8 +48,7 @@ def test_printing_on_stdout(fmt, fname, cffstr):
     assert expected == actual
 
 
-def test_raising_error_on_unsupported_format():
-    cffstr = read_sibling_file("CITATION.cff")
+def test_raising_error_on_unsupported_format(cffstr):
     runner = CliRunner()
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as fid:
@@ -77,7 +69,7 @@ def test_without_arguments():
 
 @pytest.mark.parametrize("fmt, fname", get_formats())
 def test_writing_to_file(fmt, fname, cffstr):
-    expected = read_sibling_file(fname)
+    expected = read_sibling_file(__file__, fname)
     runner = CliRunner()
     with runner.isolated_filesystem():
         with open("CITATION.cff", "wt", encoding="utf-8") as fid:

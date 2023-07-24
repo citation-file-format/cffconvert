@@ -92,6 +92,8 @@ Shows:
 ```shell
 Usage: cffconvert [OPTIONS]
 
+  Command line program to validate and convert CITATION.cff files.
+
 Options:
   -i, --infile PATH               Path to the CITATION.cff input file. If this
                                   option is omitted, './CITATION.cff' is used.
@@ -103,6 +105,10 @@ Options:
   --show-trace                    Show error trace.
   --validate                      Validate the CITATION.cff file and exit.
   --version                       Print version and exit.
+  --verbose                       Control output verbosity.
+
+  If this program is useful to you, consider giving it a star on GitHub:
+  https://github.com/citation-file-format/cffconvert
 ```
 
 ## Example usage

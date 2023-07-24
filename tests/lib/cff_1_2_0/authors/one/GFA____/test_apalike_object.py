@@ -2,7 +2,7 @@ import os
 import pytest
 from cffconvert import Citation
 from cffconvert.lib.cff_1_2_x.apalike import ApalikeObject
-from tests.contracts.apalike_object import Contract
+from tests.lib.contracts.apalike_object import Contract
 
 
 def apalike_object():

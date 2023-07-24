@@ -24,7 +24,7 @@ class TestApalikeObject(Contract):
         assert actual_apalike == expected_apalike
 
     def test_author(self):
-        assert apalike_object().add_author().author == "van der Vaart III R., dos Santos Aveiro C.R."
+        assert apalike_object().add_author().author == "van der Vaart III R. and dos Santos Aveiro C.R."
 
     def test_check_cffobj(self):
         apalike_object().check_cffobj()

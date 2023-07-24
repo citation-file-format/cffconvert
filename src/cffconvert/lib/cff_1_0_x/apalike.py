@@ -15,7 +15,12 @@ class ApalikeObject(Shared):
         authors_cff = self.cffobj.get("authors", [])
         authors_apalike = [ApalikeAuthor(a).as_string() for a in authors_cff]
         authors_apalike_filtered = [a for a in authors_apalike if a is not None]
-        if len(authors_apalike_filtered) > 0:
+        n_authors = len(authors_apalike_filtered)
+        if n_authors > 2:
+            self.author = ", ".join(authors_apalike_filtered[:-1]) + ", and " + authors_apalike_filtered[-1]
+        if n_authors == 2:
+            self.author = ", ".join(authors_apalike_filtered[:-1]) + " and " + authors_apalike_filtered[-1]
+        if n_authors == 1:
             self.author = ", ".join(authors_apalike_filtered)
         return self
 

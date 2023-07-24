@@ -24,7 +24,8 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_author(self):
-        assert bibtex_object().add_author().author == "author = {Spaaks, Jurriaan H. and Klaver, Tom and mysteryauthor}"
+        assert bibtex_object().add_author().author == "author = {Spaaks, Jurriaan H. and " + \
+            "Klaver, Tom and {mysteryauthor}}"
 
     def test_check_cffobj(self):
         bibtex_object().check_cffobj()

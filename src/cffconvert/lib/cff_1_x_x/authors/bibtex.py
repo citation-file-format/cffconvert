@@ -138,7 +138,7 @@ class BibtexAuthor(BaseAuthor):
         }
 
     def _from_alias(self):
-        return self._author.get("alias")
+        return "{" + self._author.get("alias") + "}"
 
     def _from_given_and_last(self):
         return self._from_last() + ", " + self._from_given()
@@ -155,7 +155,7 @@ class BibtexAuthor(BaseAuthor):
         return " ".join([n for n in nameparts if n is not None])
 
     def _from_name(self):
-        return self._author.get("name")
+        return "{" + self._author.get("name") + "}"
 
     def as_string(self):
         key = self._get_key()

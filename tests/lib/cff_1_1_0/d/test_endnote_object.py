@@ -2,7 +2,7 @@ import os
 import pytest
 from cffconvert import Citation
 from cffconvert.lib.cff_1_1_x.endnote import EndnoteObject
-from tests.contracts.endnote_object import Contract
+from tests.lib.contracts.endnote_object import Contract
 
 
 def endnote_object():

@@ -16,7 +16,7 @@ def rawify_url(url):
                 repos_api = f"https://api.github.com/repos/{ownername}/{reponame}"
                 headers = github_api_version_header
                 headers.update({"Accept": "application/vnd.github+json"})
-                token = os.environ.get("CFFCONVERT_GITHUB_API_TOKEN")
+                token = os.environ.get("CFFCONVERT_API_TOKEN")
                 if token is None:
                     # Proceed with making the call without authenticating -- stricter rate limits apply
                     pass

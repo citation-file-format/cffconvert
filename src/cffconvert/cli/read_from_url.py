@@ -10,7 +10,7 @@ def read_from_url(url):
     url_raw = rawify(url)
     headers = github_api_version_header
     headers.update({"Accept": "text/plain"})
-    token = os.environ.get("CFFCONVERT_GITHUB_API_TOKEN")
+    token = os.environ.get("CFFCONVERT_API_TOKEN")
     if token is None:
         # Proceed with making the call without authenticating -- stricter rate limits apply
         pass

@@ -1,0 +1,17 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "van der Vaart III",
+      "givenName": "Rafael"
+    },
+    {
+      "@type": "Person",
+      "familyName": "dos Santos Aveiro",
+      "givenName": "Cristiano Ronaldo"
+    }
+  ],
+  "name": "the title"
+}

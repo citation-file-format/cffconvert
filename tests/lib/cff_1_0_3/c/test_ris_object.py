@@ -2,7 +2,7 @@ import os
 import pytest
 from cffconvert import Citation
 from cffconvert.lib.cff_1_0_x.ris import RisObject
-from tests.lib.contracts.ris_object import Contract
+from tests.lib.contracts.ris import Contract
 
 
 def ris_object():

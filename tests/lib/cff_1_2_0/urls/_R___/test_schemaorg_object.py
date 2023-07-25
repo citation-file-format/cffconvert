@@ -2,7 +2,7 @@ import os
 import pytest
 from cffconvert import Citation
 from cffconvert.lib.cff_1_2_x.schemaorg import SchemaorgObject
-from tests.lib.contracts.schemaorg_object import Contract
+from tests.lib.contracts.schemaorg import Contract
 
 
 def schemaorg_object():

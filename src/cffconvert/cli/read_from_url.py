@@ -1,7 +1,7 @@
 import os
 import requests
-from cffconvert.cli.rawify_url import rawify_url as rawify
 from cffconvert.cli.constants import github_api_version_header
+from cffconvert.cli.rawify_url import rawify_url as rawify
 
 
 def read_from_url(url):

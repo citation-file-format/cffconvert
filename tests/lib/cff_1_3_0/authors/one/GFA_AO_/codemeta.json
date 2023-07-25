@@ -1,0 +1,18 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@id": "https://orcid.org/0000-0002-7064-4069",
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Netherlands eScience Center"
+      },
+      "alternateName": "jspaaks",
+      "familyName": "von der Spaaks Jr.",
+      "givenName": "Jurriaan H."
+    }
+  ],
+  "name": "the title"
+}

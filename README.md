@@ -11,6 +11,8 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/citationcff/cffconvert)](https://hub.docker.com/r/citationcff/cffconvert)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/cffconvert)](https://pypistats.org/packages/cffconvert)
 [![PePy](https://pepy.tech/badge/cffconvert)](https://pepy.tech/project/cffconvert)
+![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/citation-file-format/cffconvert/2.0.0)
+
 
 Command line program to validate and convert [`CITATION.cff`](https://github.com/citation-file-format/citation-file-format) files.
 

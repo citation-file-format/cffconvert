@@ -25,25 +25,25 @@
 
 ## Development
 
-1. Changed the repo name from `cff-converter-python` to just `cffconvert`
-1. Moved to a `src/` directory layout
-1. Clearer separation between `cli` parts and `lib` parts
-1. Replaced `setup.cfg` and `setup.py` with `pyproject.toml`
-1. Added `pytest` markers for `apalike`, `bibtex`, `codemeta`, `endnote`, `ris`, `schemaorg`, `zenodo` tests
-1. Refactored testing directory layout/naming to facilitate testing subparts of the test tree
-1. Consistent styling now enforced with ruff
-1. Added linting via `pre-commit` (`cffconvert`, `isort`, `pyroma`, `ruff`, `prospector`)
-1. Updated `jsonschema` dependency to a wider range, now includes 4.x
-1. Updated python versions used in CI
+1. Changed the repo name from `cff-converter-python` to just `cffconvert` [https://github.com/citation-file-format/cffconvert/issues/283](https://github.com/citation-file-format/cffconvert/issues/283)
+1. Moved to a `src/` directory layout [https://github.com/citation-file-format/cffconvert/issues/311](https://github.com/citation-file-format/cffconvert/issues/311)
+1. Clearer separation between `cli` parts and `lib` parts [https://github.com/citation-file-format/cffconvert/issues/276](https://github.com/citation-file-format/cffconvert/issues/276)
+1. Replaced `setup.cfg` and `setup.py` with `pyproject.toml` [https://github.com/citation-file-format/cffconvert/issues/312](https://github.com/citation-file-format/cffconvert/issues/312)
+1. Added `pytest` markers for `apalike`, `bibtex`, `codemeta`, `endnote`, `ris`, `schemaorg`, `zenodo` tests [https://github.com/citation-file-format/cffconvert/pull/330](https://github.com/citation-file-format/cffconvert/pull/330)
+1. Refactored testing directory layout/naming to facilitate testing subparts of the test tree [https://github.com/citation-file-format/cffconvert/pull/315](https://github.com/citation-file-format/cffconvert/pull/315)
+1. Consistent styling now enforced with ruff [https://github.com/citation-file-format/cffconvert/pull/339](https://github.com/citation-file-format/cffconvert/pull/339)
+1. Added linting via `pre-commit` (`cffconvert`, `isort`, `pyroma`, `ruff`, `prospector`) [https://github.com/citation-file-format/cffconvert/pull/324](https://github.com/citation-file-format/cffconvert/pull/324)
+1. Updated `jsonschema` dependency to a wider range, now includes 4.x [https://github.com/citation-file-format/cffconvert/issues/292](https://github.com/citation-file-format/cffconvert/issues/292)
+1. Updated python versions used in CI [https://github.com/citation-file-format/cffconvert/pull/295](https://github.com/citation-file-format/cffconvert/pull/295)
 1. Added tests to verify that behavior maps such as those for authors or URLs implement all possible keys, that there are no extra keys, and that there are no extra methods. [https://github.com/citation-file-format/cffconvert/issues/300](https://github.com/citation-file-format/cffconvert/issues/300)
-1. Added missing `codemeta` tests to `1.2.0/author-creators`
+1. Added missing `codemeta` tests to `1.2.0/author-creators` [https://github.com/citation-file-format/cffconvert/pull/355](https://github.com/citation-file-format/cffconvert/pull/355)
 1. Fixed bug with YAML parsing related to testing order [https://github.com/citation-file-format/cffconvert/issues/343](https://github.com/citation-file-format/cffconvert/issues/343)
 1. Fixed invalid CFF in one of the tests [https://github.com/citation-file-format/cffconvert/issues/297](https://github.com/citation-file-format/cffconvert/issues/297)
 
 ## Other 
 
-1. `cffconvert` is now available as a `pre-commit` hook with id `validate-cff`
-1. Updated the Dockerfile to use latest version of cffconvert and recent version of Alpine
+1. `cffconvert` is now available as a `pre-commit` hook with id `validate-cff` [https://github.com/citation-file-format/cffconvert/pull/269](https://github.com/citation-file-format/cffconvert/pull/269)
+1. Updated the Dockerfile to use latest version of cffconvert and recent version of Alpine [https://github.com/citation-file-format/cffconvert/pull/340](https://github.com/citation-file-format/cffconvert/pull/340)
 
 # 2.0.0
 

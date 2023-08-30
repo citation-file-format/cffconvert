@@ -2,26 +2,26 @@
 
 ## CLI
 
-1. Long outputs, for example those resulting from validation errors, are now truncated by default, but this behavior can be disabled using `--verbose` flag
-1. `cffconvert` exits with non zero code when something went wrong converting or validating
+1. Long outputs, for example those resulting from validation errors, are now truncated by default, but this behavior can be disabled using `--verbose` flag [https://github.com/citation-file-format/cffconvert/issues/278](https://github.com/citation-file-format/cffconvert/issues/278)
+1. `cffconvert` exits with non zero code when something went wrong converting or validating [https://github.com/citation-file-format/cffconvert/issues/266](https://github.com/citation-file-format/cffconvert/issues/266)
 1. Added "Star on GitHub" footnote in CLI
 
 ## Library
 
 1. Added conversion and validation behavior for CFF 1.3
-1. Converted metadata now includes information from CFF 1.3 key `contributors` for target formats that support it
-1. Converted metadata now includes relation type such as `citedBy`, `compiles`, `isSupplementTo` etc using CFF 1.3 key `relation` on elements in `identifiers` for target formats that support it
+1. Converted metadata now includes information from CFF 1.3 key `contributors` for target formats that support it [https://github.com/citation-file-format/cffconvert/issues/333](https://github.com/citation-file-format/cffconvert/issues/333), [https://github.com/citation-file-format/cffconvert/issues/334](https://github.com/citation-file-format/cffconvert/issues/334)
+1. Zenodo metadata now includes `related_identifiers` and optionally `relation_type` such as `citedBy`, `compiles`, `isSupplementTo` etc using CFF 1.3 key `relation` on elements in `identifiers` [https://github.com/citation-file-format/cffconvert/pull/327](https://github.com/citation-file-format/cffconvert/pull/327), [https://github.com/citation-file-format/cffconvert/pull/329](https://github.com/citation-file-format/cffconvert/pull/329)
 1. Converted metadata now uses author `email` for target formats that support it [https://github.com/citation-file-format/cffconvert/issues/285](https://github.com/citation-file-format/cffconvert/issues/285)
-1. `entity` authors get exported as `Organization` when converting to `schema.org` or `codemeta` (was `Person`)
-1. CFF key `name` takes precedence over `alias` when converting entity authors (was the other way around)  
+1. `entity` authors get exported as `Organization` when converting to `schema.org` or `codemeta` (was `Person`) [https://github.com/citation-file-format/cffconvert/issues/239](https://github.com/citation-file-format/cffconvert/issues/239)
+1. CFF key `name` takes precedence over `alias` when converting entity authors (was the other way around) [https://github.com/citation-file-format/cffconvert/issues/308](https://github.com/citation-file-format/cffconvert/issues/308)
 1. `schema.org` and `codemeta` conversion export an affiliation name as `name` (was `legalName`) [https://github.com/citation-file-format/cffconvert/issues/272](https://github.com/citation-file-format/cffconvert/issues/272)
-1. Added `"upload_type": "software"` when exporting to Zenodo from CFF files that use schema versions 1.0.x or 1.1.x
-1. Apalike conversion now uses "and" or ", and" to concatenate author names when there are 2 or more authors
-1. Bibtex conversion now uses braces to protect names of entity authors
+1. Added `"upload_type": "software"` when exporting to Zenodo from CFF files that use schema versions 1.0.x or 1.1.x [https://github.com/citation-file-format/cffconvert/issues/306](https://github.com/citation-file-format/cffconvert/issues/306)
+1. Apalike conversion now uses "and" or ", and" to concatenate author names when there are 2 or more authors [https://github.com/citation-file-format/cffconvert/issues/226](https://github.com/citation-file-format/cffconvert/issues/226)
+1. Bibtex conversion now uses braces to protect names of entity authors [https://github.com/citation-file-format/cffconvert/issues/156](https://github.com/citation-file-format/cffconvert/issues/156)
 1. Library now explicitly exports Citation and nothing else
-1. Requests to GitHub now use versioned API
-1. Requests to GitHub can now be authenticated via environment variable CFFCONVERT_API_TOKEN for higher rate limit
-1. Requests to GitHub now use the target repo's default branch if user leaves branch unspecified
+1. Requests to GitHub now use versioned API 
+1. Requests to GitHub can now be authenticated via environment variable CFFCONVERT_API_TOKEN for higher rate limit [https://github.com/citation-file-format/cffconvert/issues/353](https://github.com/citation-file-format/cffconvert/issues/353)
+1. Requests to GitHub now use the target repo's default branch if user leaves branch unspecified [https://github.com/citation-file-format/cffconvert/issues/263](https://github.com/citation-file-format/cffconvert/issues/263)
 
 ## Development
 

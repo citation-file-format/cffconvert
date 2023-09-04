@@ -42,7 +42,7 @@ jobs:
       - name: Check sorting of imports
         # isort returns zero even when there are problems, explicitly check there is no output 
         run: |
-          output=$(isort --check-only --diff src/cffconvert test/)
+          output=$(isort --check-only --diff src/cffconvert tests/)
           if [[ -n "$output" ]]; then
             exit 1
           else

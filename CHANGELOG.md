@@ -1,8 +1,49 @@
 # 3.0.0 (Unreleased)
 
-- added pre-commit git hook with id `validate-cff`
-- entity authors get exported as `Organization` when converting to `schema.org` or `codemeta` (was `Person`)
-- CFF key `name` takes precedence over `alias` when converting entity authors (was the other way around)  
+## CLI
+
+1. Long outputs, for example those resulting from validation errors, are now truncated by default, but this behavior can be disabled using `--verbose` flag [https://github.com/citation-file-format/cffconvert/issues/278](https://github.com/citation-file-format/cffconvert/issues/278)
+1. `cffconvert` exits with non zero code when something went wrong converting or validating [https://github.com/citation-file-format/cffconvert/issues/266](https://github.com/citation-file-format/cffconvert/issues/266)
+1. Added "Star on GitHub" footnote in CLI
+
+## Library
+
+1. Added conversion and validation behavior for CFF 1.3
+1. Converted metadata now includes information from CFF 1.3 key `contributors` for target formats that support it [https://github.com/citation-file-format/cffconvert/issues/333](https://github.com/citation-file-format/cffconvert/issues/333), [https://github.com/citation-file-format/cffconvert/issues/334](https://github.com/citation-file-format/cffconvert/issues/334)
+1. Zenodo metadata now includes `related_identifiers` and optionally `relation_type` such as `citedBy`, `compiles`, `isSupplementTo` etc using CFF 1.3 key `relation` on elements in `identifiers` [https://github.com/citation-file-format/cffconvert/pull/327](https://github.com/citation-file-format/cffconvert/pull/327), [https://github.com/citation-file-format/cffconvert/pull/329](https://github.com/citation-file-format/cffconvert/pull/329)
+1. Converted metadata now uses author `email` for target formats that support it [https://github.com/citation-file-format/cffconvert/issues/285](https://github.com/citation-file-format/cffconvert/issues/285)
+1. `entity` authors get exported as `Organization` when converting to `schema.org` or `codemeta` (was `Person`) [https://github.com/citation-file-format/cffconvert/issues/239](https://github.com/citation-file-format/cffconvert/issues/239)
+1. CFF key `name` takes precedence over `alias` when converting entity authors (was the other way around) [https://github.com/citation-file-format/cffconvert/issues/308](https://github.com/citation-file-format/cffconvert/issues/308)
+1. `schema.org` and `codemeta` conversion export an affiliation name as `name` (was `legalName`) [https://github.com/citation-file-format/cffconvert/issues/272](https://github.com/citation-file-format/cffconvert/issues/272)
+1. Added `"upload_type": "software"` when exporting to Zenodo from CFF files that use schema versions 1.0.x or 1.1.x [https://github.com/citation-file-format/cffconvert/issues/306](https://github.com/citation-file-format/cffconvert/issues/306)
+1. Apalike conversion now uses "and" or ", and" to concatenate author names when there are 2 or more authors [https://github.com/citation-file-format/cffconvert/issues/226](https://github.com/citation-file-format/cffconvert/issues/226)
+1. Bibtex conversion now uses braces to protect names of entity authors [https://github.com/citation-file-format/cffconvert/issues/156](https://github.com/citation-file-format/cffconvert/issues/156)
+1. Library now explicitly exports Citation and nothing else
+1. Requests to GitHub now use versioned API 
+1. Requests to GitHub can now be authenticated via environment variable CFFCONVERT_API_TOKEN for higher rate limit [https://github.com/citation-file-format/cffconvert/issues/353](https://github.com/citation-file-format/cffconvert/issues/353)
+1. Requests to GitHub now use the target repo's default branch if user leaves branch unspecified [https://github.com/citation-file-format/cffconvert/issues/263](https://github.com/citation-file-format/cffconvert/issues/263)
+
+## Development
+
+1. Changed the repo name from `cff-converter-python` to just `cffconvert` [https://github.com/citation-file-format/cffconvert/issues/283](https://github.com/citation-file-format/cffconvert/issues/283)
+1. Moved to a `src/` directory layout [https://github.com/citation-file-format/cffconvert/issues/311](https://github.com/citation-file-format/cffconvert/issues/311)
+1. Clearer separation between `cli` parts and `lib` parts [https://github.com/citation-file-format/cffconvert/issues/276](https://github.com/citation-file-format/cffconvert/issues/276)
+1. Replaced `setup.cfg` and `setup.py` with `pyproject.toml` [https://github.com/citation-file-format/cffconvert/issues/312](https://github.com/citation-file-format/cffconvert/issues/312)
+1. Added `pytest` markers for `apalike`, `bibtex`, `codemeta`, `endnote`, `ris`, `schemaorg`, `zenodo` tests [https://github.com/citation-file-format/cffconvert/pull/330](https://github.com/citation-file-format/cffconvert/pull/330)
+1. Refactored testing directory layout/naming to facilitate testing subparts of the test tree [https://github.com/citation-file-format/cffconvert/pull/315](https://github.com/citation-file-format/cffconvert/pull/315)
+1. Consistent styling now enforced with ruff [https://github.com/citation-file-format/cffconvert/pull/339](https://github.com/citation-file-format/cffconvert/pull/339)
+1. Added linting via `pre-commit` (`cffconvert`, `isort`, `pyroma`, `ruff`, `prospector`) [https://github.com/citation-file-format/cffconvert/pull/324](https://github.com/citation-file-format/cffconvert/pull/324)
+1. Updated `jsonschema` dependency to a wider range, now includes 4.x [https://github.com/citation-file-format/cffconvert/issues/292](https://github.com/citation-file-format/cffconvert/issues/292)
+1. Updated python versions used in CI [https://github.com/citation-file-format/cffconvert/pull/295](https://github.com/citation-file-format/cffconvert/pull/295)
+1. Added tests to verify that behavior maps such as those for authors or URLs implement all possible keys, that there are no extra keys, and that there are no extra methods. [https://github.com/citation-file-format/cffconvert/issues/300](https://github.com/citation-file-format/cffconvert/issues/300)
+1. Added missing `codemeta` tests to `1.2.0/author-creators` [https://github.com/citation-file-format/cffconvert/pull/355](https://github.com/citation-file-format/cffconvert/pull/355)
+1. Fixed bug with YAML parsing related to testing order [https://github.com/citation-file-format/cffconvert/issues/343](https://github.com/citation-file-format/cffconvert/issues/343)
+1. Fixed invalid CFF in one of the tests [https://github.com/citation-file-format/cffconvert/issues/297](https://github.com/citation-file-format/cffconvert/issues/297)
+
+## Other 
+
+1. `cffconvert` is now available as a `pre-commit` hook with id `validate-cff` [https://github.com/citation-file-format/cffconvert/pull/269](https://github.com/citation-file-format/cffconvert/pull/269)
+1. Updated the Dockerfile to use latest version of cffconvert and recent version of Alpine [https://github.com/citation-file-format/cffconvert/pull/340](https://github.com/citation-file-format/cffconvert/pull/340)
 
 # 2.0.0
 

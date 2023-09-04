@@ -59,7 +59,7 @@ pytest tests/
 pytest tests/test_consistent_versioning.py
 
 # run pytest on a subset of the files, e.g.
-cd tests/cff_1_2_0/ && pytest .
+cd tests/lib/cff_1_2_0/ && pytest .
 ```
 
 Tests pertaining to a specific exporter have been marked accordingly with one of the following markers (see also

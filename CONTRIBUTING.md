@@ -46,7 +46,7 @@ The sections below outline the steps in each case.
 3. if needed, fork the repository to your own Github profile and create your own
    feature branch off of the latest master commit. While working on your feature
    branch, make sure to stay up to date with the master branch by pulling in changes, possibly from the 'upstream' repository (follow the instructions [here](https://help.github.com/articles/configuring-a-remote-for-a-fork/) and [here](https://help.github.com/articles/syncing-a-fork/));
-4. make sure the existing tests still work by running `pytest test/`;
+4. make sure the existing tests still work by running `pytest tests/`;
 5. add your own tests (if applicable);
 6. update or expand the documentation;
 7. [push](http://rogerdudler.github.io/git-guide/) your feature branch to (your

@@ -40,7 +40,14 @@ jobs:
         run: python3 -m pip install .[dev,gcloud,testing]
 
       - name: Check sorting of imports
-        run: isort --check-only --diff src/cffconvert test/
+        # isort returns zero even when there are problems, explicitly check there is no output 
+        run: |
+          output=$(isort --check-only --diff src/cffconvert test/)
+          if [[ -n "$output" ]]; then
+            exit 1
+          else
+            exit 0
+          fi
 
       - name: Run prospector
         run: prospector --profile-path .prospector.yml

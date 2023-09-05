@@ -1,5 +1,13 @@
 # 3.0.0 (Unreleased)
 
+## Schema
+
+The schema changes are preliminary and temporary, since they are developed in another repository. I only included them here to keep track of changes.
+
+1. Added `contributors` key, which are currently exactly the same type as `authors`.
+2. Added key `relation` to `identifiers`. Its value is an `enum` same as Zenodo's `related_identifiers.relation` (`cites`, `isNewVersionOf`, `isCitedBy`, etc).
+3. Updated ISBN regex pattern 
+
 ## CLI
 
 1. Long outputs, for example those resulting from validation errors, are now truncated by default, but this behavior can be disabled using `--verbose` flag [https://github.com/citation-file-format/cffconvert/issues/278](https://github.com/citation-file-format/cffconvert/issues/278)

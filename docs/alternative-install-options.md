@@ -79,7 +79,7 @@ docker build --tag cffconvert:3.0.0a0 .
 docker build --tag cffconvert:latest .
 ```
 
-Build the Docker container 
+Run the Docker container 
 
 ```shell
 cd <where your CITATION.cff is>

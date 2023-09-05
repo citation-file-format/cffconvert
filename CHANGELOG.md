@@ -32,7 +32,9 @@
 1. Added `pytest` markers for `apalike`, `bibtex`, `codemeta`, `endnote`, `ris`, `schemaorg`, `zenodo` tests [https://github.com/citation-file-format/cffconvert/pull/330](https://github.com/citation-file-format/cffconvert/pull/330)
 1. Refactored testing directory layout/naming to facilitate testing subparts of the test tree [https://github.com/citation-file-format/cffconvert/pull/315](https://github.com/citation-file-format/cffconvert/pull/315)
 1. Consistent styling now enforced with ruff [https://github.com/citation-file-format/cffconvert/pull/339](https://github.com/citation-file-format/cffconvert/pull/339)
-1. Added linting via `pre-commit` (`cffconvert`, `isort`, `pyroma`, `ruff`, `prospector`) [https://github.com/citation-file-format/cffconvert/pull/324](https://github.com/citation-file-format/cffconvert/pull/324)
+1. Added linting via `pre-commit` (`isort`, `pyroma`, `ruff`, `prospector`) [https://github.com/citation-file-format/cffconvert/pull/324](https://github.com/citation-file-format/cffconvert/pull/324)
+1. Added Markdown link checker pre-commit hook
+1. Added `cffconvert` metadata validation checker via `pre-commit`
 1. Updated `jsonschema` dependency to a wider range, now includes 4.x [https://github.com/citation-file-format/cffconvert/issues/292](https://github.com/citation-file-format/cffconvert/issues/292)
 1. Updated python versions used in CI [https://github.com/citation-file-format/cffconvert/pull/295](https://github.com/citation-file-format/cffconvert/pull/295)
 1. Added tests to verify that behavior maps such as those for authors or URLs implement all possible keys, that there are no extra keys, and that there are no extra methods. [https://github.com/citation-file-format/cffconvert/issues/300](https://github.com/citation-file-format/cffconvert/issues/300)

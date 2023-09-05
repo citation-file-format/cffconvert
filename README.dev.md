@@ -73,11 +73,25 @@ Tests pertaining to a specific exporter have been marked accordingly with one of
 6. `schemaorg`
 7. `zenodo`
 
+Additionally, there are markers for CLI tests and for library tests:
+
+1. `cli`
+2. `lib`
+
 You can instruct `pytest` to run only the tests for one or some of these marked sets. As an example, if you want to run
 only the tests related to exporting as Endnote, you should call `pytest` with the `-m` flag as follows:
 
 ```shell
 pytest -m endnote
+```
+
+Markers can also be combined with `or` and `and` and `not`, e.g.
+
+```shell
+pytest -m 'endnote and lib'
+pytest -m 'cli and not zenodo'
+pytest -m 'schemaorg or codemeta'
+# etc
 ```
 
 ## Linting

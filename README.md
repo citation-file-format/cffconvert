@@ -10,7 +10,7 @@
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 [![Docker Pulls](https://img.shields.io/docker/pulls/citationcff/cffconvert)](https://hub.docker.com/r/citationcff/cffconvert)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/cffconvert)](https://pypistats.org/packages/cffconvert)
-[![PePy](https://pepy.tech/badge/cffconvert)](https://pepy.tech/project/cffconvert)
+[![PePy](https://static.pepy.tech/badge/cffconvert)](https://pepy.tech/project/cffconvert)
 [![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/citation-file-format/cffconvert/2.0.0)](https://github.com/citation-file-format/cffconvert/compare/2.0.0...HEAD)
 
 

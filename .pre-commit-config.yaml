@@ -34,3 +34,9 @@ repos:
       - id: prospector
         name: Linting the code base using 'prospector'
         args: ["--profile-path", ".prospector.yml"]
+
+  - repo: https://github.com/tcort/markdown-link-check
+    rev: bde6fd2675901c55f8a356a67475257d44af51ae # 3.11.2
+    hooks:
+      - id: markdown-link-check
+        args: [-q]

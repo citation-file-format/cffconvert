@@ -47,15 +47,12 @@ conda activate venv
 
 ### Using `cffconvert` as a Google Cloud Function
 
-`cffconvert` comes with [an interface](/cffconvert/gcloud.py) for
-running as a Google Cloud Function. We set it up here
-<https://bit.ly/cffconvert> for the time being / as long as we have
-enough credits on the Google Cloud Function platform.
+`cffconvert` comes with [an interface](../src/cffconvert/gcloud/gcloud.py) for
+running as a Google Cloud Function.
 
 Really, all the Google Cloud interface does is get any supplied URL
 parameters, and use them as if they had been entered as command line
-arguments. For more detailed explanation and examples, see
-<https://bit.ly/cffconvert>.
+arguments.
 
 On Google Cloud Function, set `requirements.txt` to:
 

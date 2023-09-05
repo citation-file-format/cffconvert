@@ -12,23 +12,26 @@ def rawify_url(url):
         assert reponame is not None, "URL should include the name of the repository."
         if refvalue is None:
             default_branch = None
+            repos_api = f"https://api.github.com/repos/{ownername}/{reponame}"
+            headers = github_api_version_header
+            headers.update({"Accept": "application/vnd.github+json"})
+            token = os.environ.get("CFFCONVERT_API_TOKEN")
+            if token is None:
+                # Proceed with making the call without authenticating -- stricter rate limits apply
+                pass
+            else:
+                headers.update({"Authorization": f"Bearer { token }"})
+
             try:
-                repos_api = f"https://api.github.com/repos/{ownername}/{reponame}"
-                headers = github_api_version_header
-                headers.update({"Accept": "application/vnd.github+json"})
-                token = os.environ.get("CFFCONVERT_API_TOKEN")
-                if token is None:
-                    # Proceed with making the call without authenticating -- stricter rate limits apply
-                    pass
-                else:
-                    headers.update({"Authorization": f"Bearer { token }"})
                 response = requests.get(repos_api, headers=headers, timeout=10)
                 if response.ok:
                     default_branch = response.json().get("default_branch")
             finally:
                 refvalue = default_branch or "main"
+
         if filename == "":
             filename = "CITATION.cff"
+
         return f"https://raw.githubusercontent.com/{ownername}/{reponame}/{refvalue}/{filename}"
 
     # return unrecognized URLs as-is

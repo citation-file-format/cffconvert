@@ -1,6 +1,6 @@
 import os
 import requests
-from cffconvert.cli.constants import github_api_version_header
+from cffconvert.cli.constants import GITHUB_API_VERSION_HEADER
 
 
 def rawify_url(url):
@@ -13,7 +13,7 @@ def rawify_url(url):
         if refvalue is None:
             default_branch = None
             repos_api = f"https://api.github.com/repos/{ownername}/{reponame}"
-            headers = github_api_version_header
+            headers = GITHUB_API_VERSION_HEADER
             headers.update({"Accept": "application/vnd.github+json"})
             token = os.environ.get("CFFCONVERT_API_TOKEN")
             if token is None:

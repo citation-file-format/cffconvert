@@ -1,6 +1,6 @@
 import os
 import requests
-from cffconvert.cli.constants import github_api_version_header
+from cffconvert.cli.constants import GITHUB_API_VERSION_HEADER
 from cffconvert.cli.rawify_url import rawify_url as rawify
 
 
@@ -8,7 +8,7 @@ def read_from_url(url):
     if not url.startswith("https://"):
         raise AssertionError("URL should be an https:// link")
     url_raw = rawify(url)
-    headers = github_api_version_header
+    headers = GITHUB_API_VERSION_HEADER
     headers.update({"Accept": "text/plain"})
     token = os.environ.get("CFFCONVERT_API_TOKEN")
     if token is None:

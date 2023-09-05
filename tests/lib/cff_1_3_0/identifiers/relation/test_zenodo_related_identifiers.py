@@ -1,9 +1,11 @@
 import os
+from functools import lru_cache
 import pytest
 from cffconvert import Citation
 from cffconvert.lib.cff_1_3_x.zenodo import ZenodoObject
 
 
+@lru_cache
 def get_cffstr():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "rt", encoding="utf-8") as f:

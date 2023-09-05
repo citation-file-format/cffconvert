@@ -1,10 +1,12 @@
 import os
+from functools import lru_cache
 import pytest
 from cffconvert import Citation
 from cffconvert.lib.cff_1_3_x.zenodo import ZenodoObject
 from tests.lib.contracts.zenodo import Contract
 
 
+@lru_cache
 def zenodo_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "rt", encoding="utf-8") as f:

@@ -39,6 +39,7 @@ The schema changes are preliminary and temporary, since they are developed in an
 1. Clearer separation between `cli` parts and `lib` parts [https://github.com/citation-file-format/cffconvert/issues/276](https://github.com/citation-file-format/cffconvert/issues/276)
 1. Replaced `setup.cfg` and `setup.py` with `pyproject.toml` [https://github.com/citation-file-format/cffconvert/issues/312](https://github.com/citation-file-format/cffconvert/issues/312)
 1. Added `pytest` markers for `apalike`, `bibtex`, `codemeta`, `endnote`, `ris`, `schemaorg`, `zenodo` tests [https://github.com/citation-file-format/cffconvert/pull/330](https://github.com/citation-file-format/cffconvert/pull/330)
+1. Added `pytest` marker `lib` for library tests and `cli` for command line interface tests
 1. Refactored testing directory layout/naming to facilitate testing subparts of the test tree [https://github.com/citation-file-format/cffconvert/pull/315](https://github.com/citation-file-format/cffconvert/pull/315)
 1. Consistent styling now enforced with ruff [https://github.com/citation-file-format/cffconvert/pull/339](https://github.com/citation-file-format/cffconvert/pull/339)
 1. Added linting via `pre-commit` (`isort`, `pyroma`, `ruff`, `prospector`) [https://github.com/citation-file-format/cffconvert/pull/324](https://github.com/citation-file-format/cffconvert/pull/324)

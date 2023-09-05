@@ -44,6 +44,7 @@ def get_relation_types():
     ]
 
 
+@pytest.mark.lib
 @pytest.mark.parametrize("expected", get_relation_types())
 def test_with_relation(expected):
     cffstr = get_cffstr().replace("isCompiledBy", expected)
@@ -60,6 +61,7 @@ def test_with_relation(expected):
     assert actual == expected
 
 
+@pytest.mark.lib
 def test_without_relation():
     cffstr = get_cffstr().replace("relation: isCompiledBy\n    ", "")
     citation = Citation(cffstr)

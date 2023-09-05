@@ -13,6 +13,7 @@ def zenodo_object():
         return ZenodoObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.lib
 @pytest.mark.zenodo
 class TestZenodoObject(Contract):
 

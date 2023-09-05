@@ -13,6 +13,7 @@ def codemeta_object():
         return CodemetaObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.lib
 @pytest.mark.codemeta
 class TestCodemetaObject(Contract):
 

@@ -10,6 +10,7 @@ def cffstr():
     return read_sibling_file(__file__, "CITATION.cff")
 
 
+@pytest.mark.cli
 def test_local_cff_file_does_not_exist():
     runner = CliRunner()
     with runner.isolated_filesystem():
@@ -19,6 +20,7 @@ def test_local_cff_file_does_not_exist():
     assert "No such file or directory" in str(result.exception)
 
 
+@pytest.mark.cli
 def test_printing_of_help():
     runner = CliRunner()
     with runner.isolated_filesystem():
@@ -27,6 +29,7 @@ def test_printing_of_help():
     assert result.output.startswith("Usage:")
 
 
+@pytest.mark.cli
 def test_printing_of_version():
     runner = CliRunner()
     with runner.isolated_filesystem():
@@ -35,6 +38,7 @@ def test_printing_of_version():
     assert result.output == "3.0.0a0\n"
 
 
+@pytest.mark.cli
 @pytest.mark.parametrize("fmt, fname", get_formats())
 def test_printing_on_stdout(fmt, fname, cffstr):
     expected = read_sibling_file(__file__, fname)
@@ -48,6 +52,7 @@ def test_printing_on_stdout(fmt, fname, cffstr):
     assert expected == actual
 
 
+@pytest.mark.cli
 def test_raising_error_on_unsupported_format(cffstr):
     runner = CliRunner()
     with runner.isolated_filesystem():
@@ -58,6 +63,7 @@ def test_raising_error_on_unsupported_format(cffstr):
     assert "Error: Invalid value for '-f'" in str(result.output)
 
 
+@pytest.mark.cli
 def test_without_arguments():
     runner = CliRunner()
     with runner.isolated_filesystem():
@@ -67,6 +73,7 @@ def test_without_arguments():
     assert result.exception.strerror == "No such file or directory"
 
 
+@pytest.mark.cli
 @pytest.mark.parametrize("fmt, fname", get_formats())
 def test_writing_to_file(fmt, fname, cffstr):
     expected = read_sibling_file(__file__, fname)

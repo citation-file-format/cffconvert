@@ -13,6 +13,7 @@ def bibtex_object():
         return BibtexObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.lib
 @pytest.mark.bibtex
 class TestBibtexObject(Contract):
 

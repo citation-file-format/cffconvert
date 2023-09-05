@@ -13,6 +13,7 @@ def apalike_object():
         return ApalikeObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.lib
 @pytest.mark.apalike
 class TestApalikeObject(Contract):
 

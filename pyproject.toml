@@ -110,8 +110,10 @@ addopts = "--no-cov --verbose --maxfail=1 --strict-markers --import-mode=importl
 markers = [
     "apalike: Tests pertaining to 'apalike' export behavior",
     "bibtex: Tests pertaining to 'bibtex' export behavior",
+    "cli: Tests pertaining to cffconvert's command line interface",
     "codemeta: Tests pertaining to 'codemeta' export behavior",
     "endnote: Tests pertaining to 'endnote' export behavior",
+    "lib: Tests pertaining to cffconvert's library",
     "ris: Tests pertaining to 'ris' export behavior",
     "schemaorg: Tests pertaining to 'schema.org' export behavior",
     "zenodo: Tests pertaining to 'zenodo' export behavior",

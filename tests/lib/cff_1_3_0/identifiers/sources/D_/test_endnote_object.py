@@ -13,6 +13,7 @@ def endnote_object():
         return EndnoteObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.lib
 @pytest.mark.endnote
 class TestEndnoteObject(Contract):
 

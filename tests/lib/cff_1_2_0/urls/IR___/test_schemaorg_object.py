@@ -13,6 +13,7 @@ def schemaorg_object():
         return SchemaorgObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.lib
 @pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
 

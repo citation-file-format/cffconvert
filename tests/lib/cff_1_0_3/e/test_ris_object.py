@@ -13,6 +13,7 @@ def ris_object():
         return RisObject(citation.cffobj, initialize_empty=True)
 
 
+@pytest.mark.lib
 @pytest.mark.ris
 class TestRisObject(Contract):
 

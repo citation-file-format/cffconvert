@@ -6,7 +6,8 @@ The schema changes are preliminary and temporary, since they are developed in an
 
 1. Added `contributors` key, which are currently exactly the same type as `authors`.
 2. Added key `relation` to `identifiers`. Its value is an `enum` same as Zenodo's `related_identifiers.relation` (`cites`, `isNewVersionOf`, `isCitedBy`, etc).
-3. Updated ISBN regex pattern 
+3. Updated ISBN regex pattern
+4. Updated the schema with new licenses from SPDX license list
 
 ## CLI
 

@@ -1,10 +1,12 @@
 import os
+from functools import lru_cache
 import pytest
 from cffconvert import Citation
 from cffconvert.lib.cff_1_1_x.ris import RisObject
 from tests.lib.contracts.ris import Contract
 
 
+@lru_cache
 def ris_object():
     fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
     with open(fixture, "rt", encoding="utf-8") as f:

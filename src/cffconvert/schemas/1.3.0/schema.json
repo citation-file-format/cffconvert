@@ -495,7 +495,7 @@
             "type": "string"
         },
         "identifier-relation": {
-            "description": "A relation type between the root document and an item from the identifiers",
+            "description": "How an item from the identifiers is related to the root document",
             "enum": [
                 "cites",
                 "compiles",

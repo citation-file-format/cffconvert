@@ -172,7 +172,7 @@ Source keys:
 
 The table below lists how the key name is constructed based what information was provided in the `CITATION.cff` file:
 
-| subdirectory | has_given_name | has_family_name | has_alias | has_name | has_affiliation | has_orcid | has_email |
+| key          | has given name | has family name | has alias | has name | has affiliation | has orcid | has email |
 |--------------|----------------|-----------------|-----------|----------|-----------------|-----------|-----------|
 | `GFANAOE`    | True           | True            | True      | True     | True            | True      | True      |
 | `GFANA_E`    | True           | True            | True      | True     | True            | False     | True      |
@@ -316,12 +316,12 @@ Source keys:
 
 The table below lists how the key name is constructed based what information was provided in the `CITATION.cff` file:
 
-| subdirectory | has_doi | has_identifiers_doi |
-|--------------|---------|---------------------|
-| `__`         | False   | False               |
-| `_I`         | False   | True                |
-| `D_`         | True    | False               |
-| `DI`         | True    | True                |
+| key  | has doi | has identifiers doi |
+|------|---------|---------------------|
+| `__` | False   | False               |
+| `_I` | False   | True                |
+| `D_` | True    | False               |
+| `DI` | True    | True                |
 
 ## Construction of URL keys
 

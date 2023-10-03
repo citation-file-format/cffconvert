@@ -80,6 +80,17 @@ class ZenodoObjectShared:
         pass
 
     def add_related_identifiers(self):
+        def map_relation_type(rel):
+            condition = rel is None or rel in [
+                "HasMetadata",
+                "HasVersion",
+                "IsMetadataFor",
+                "IsOriginalFormOf",
+                "IsVariantFormOf",
+                "IsVersionOf"
+            ]
+            return None if condition else rel[0].lower() + rel[1:]
+
         seen = []
         related_identifiers = []
         # add from identifiers
@@ -90,7 +101,7 @@ class ZenodoObjectShared:
                 continue
             related_identifiers.append({
                 "identifier": identifier.get("value"),
-                "relation": identifier.get("relation") or "isSupplementedBy",
+                "relation": map_relation_type(identifier.get("relation")) or "isSupplementedBy",
                 "scheme": identifier.get("type")
             })
             seen.append(identifier.get("value"))

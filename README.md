@@ -8,10 +8,10 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1811/badge)](https://bestpractices.coreinfrastructure.org/projects/1811)
 [![Research Software Directory](https://img.shields.io/badge/rsd-cffconvert-00a3e3.svg)](https://research-software.nl/software/cffconvert)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
+[![FAIR checklist badge](https://ardc-fair-checklist.github.io/badge.svg)](https://ardc-fair-checklist.github.io/v0.2?f=31&a=32113&i=32100&r=113)
 [![Docker Pulls](https://img.shields.io/docker/pulls/citationcff/cffconvert)](https://hub.docker.com/r/citationcff/cffconvert)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/cffconvert)](https://pypistats.org/packages/cffconvert)
 [![PePy](https://static.pepy.tech/badge/cffconvert)](https://pepy.tech/project/cffconvert)
-[![FAIR checklist badge](https://ardc-fair-checklist.github.io/badge.svg)](https://ardc-fair-checklist.github.io/v0.2?f=31&a=32113&i=32100&r=113)
 [![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/citation-file-format/cffconvert/2.0.0)](https://github.com/citation-file-format/cffconvert/compare/2.0.0...HEAD)
 
 

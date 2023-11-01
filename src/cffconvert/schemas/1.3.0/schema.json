@@ -391,9 +391,7 @@
                             "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
-                            "enum": [
-                                "doi"
-                            ],
+                            "const": "doi",
                             "type": "string"
                         },
                         "value": {
@@ -416,9 +414,7 @@
                             "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
-                            "enum": [
-                                "url"
-                            ],
+                            "const": "url",
                             "type": "string"
                         },
                         "value": {
@@ -441,9 +437,7 @@
                             "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
-                            "enum": [
-                                "swh"
-                            ],
+                            "const": "swh",
                             "type": "string"
                         },
                         "value": {
@@ -466,9 +460,7 @@
                             "$ref": "#/definitions/identifier-relation"
                         },
                         "type": {
-                            "enum": [
-                                "other"
-                            ],
+                            "const": "other",
                             "type": "string"
                         },
                         "value": {

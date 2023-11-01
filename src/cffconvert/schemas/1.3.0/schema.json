@@ -522,6 +522,8 @@
                 "Reviews"
             ],
             "examples": [
+                "Documents",
+                "IsPartOf"
             ],
             "type": "string"
         },

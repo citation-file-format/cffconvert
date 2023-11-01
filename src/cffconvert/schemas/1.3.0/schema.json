@@ -1,5 +1,5 @@
 {
-    "definitions": {
+    "$defs": {
         "address": {
             "description": "An address.",
             "minLength": 1,

@@ -1894,6 +1894,12 @@
             "minLength": 1,
             "type": "string"
         },
+        "strictish-string": {
+            "description": "String of length greater than 1 character, with a regular expression to avoid leading spaces, trailing spaces, or middle double spaces",
+            "minLength": 1,
+            "pattern": "^(\\S+)( \\S+)*$",
+            "type": "string"
+        },
         "swh-identifier": {
             "$comment": "Software Heritage identifiers are documented here: https://docs.softwareheritage.org/devel/swh-model/persistent-identifiers.html.",
             "description": "The Software Heritage identifier (without further qualifiers such as origin, visit, anchor, path).",

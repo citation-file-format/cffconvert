@@ -377,6 +377,7 @@
             "type": "string"
         },
         "identifier": {
+            "description": "An identifier for a work.",
             "oneOf": [
                 {
                     "additionalProperties": false,
@@ -484,7 +485,7 @@
             "type": "string"
         },
         "identifier-relation": {
-            "description": "How an item from the identifiers is related to the root document",
+            "description": "How an item from the identifiers is related to the root document using DataCite 4.4 terminology",
             "enum": [
                 "Cites",
                 "Compiles",
@@ -1275,6 +1276,7 @@
             "type": "object"
         },
         "post-code": {
+            "description": "A post code.",
             "oneOf": [
                 {
                     "minLength": 1,
@@ -1435,6 +1437,7 @@
                     "uniqueItems": true
                 },
                 "end": {
+                    "description": "The end page of the work.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1485,6 +1488,7 @@
                     "type": "string"
                 },
                 "issue": {
+                    "description": "The issue of a periodical in which a work appeared.",
                     "oneOf": [
                         {
                             "minLength": 1,
@@ -1541,6 +1545,7 @@
                     "description": "The URL of the license text under which the work is licensed (only for non-standard licenses not included in the SPDX License List)."
                 },
                 "loc-end": {
+                    "description": "The line of code in the file where the work ends.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1553,6 +1558,7 @@
                     "description": "The line of code in the file where the work ends."
                 },
                 "loc-start": {
+                    "description": "The line of code in the file where the work starts.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1574,6 +1580,7 @@
                     "type": "string"
                 },
                 "month": {
+                    "description": "The month in which a work has been published.",
                     "oneOf": [
                         {
                             "maximum": 12,
@@ -1611,6 +1618,7 @@
                     "type": "string"
                 },
                 "number": {
+                    "description": "The accession number for a work.",
                     "oneOf": [
                         {
                             "minLength": 1,
@@ -1623,6 +1631,7 @@
                     "description": "The accession number for a work."
                 },
                 "number-volumes": {
+                    "description": "The number of volumes making up the collection in which the work has been published.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1635,6 +1644,7 @@
                     "description": "The number of volumes making up the collection in which the work has been published."
                 },
                 "pages": {
+                    "description": "The number of pages of the work.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1699,6 +1709,7 @@
                     "type": "string"
                 },
                 "section": {
+                    "description": "The section of a work that is referenced.",
                     "oneOf": [
                         {
                             "minLength": 1,
@@ -1727,6 +1738,7 @@
                     "uniqueItems": true
                 },
                 "start": {
+                    "description": "The start page of the work.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1843,6 +1855,7 @@
                     "description": "The version of the work."
                 },
                 "volume": {
+                    "description": "The volume of the periodical in which a work appeared.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1860,6 +1873,7 @@
                     "type": "string"
                 },
                 "year": {
+                    "description": "The year in which a work has been published.",
                     "oneOf": [
                         {
                             "type": "integer"
@@ -1872,6 +1886,7 @@
                     "description": "The year in which a work has been published."
                 },
                 "year-original": {
+                    "description": "The year of the original publication.",
                     "oneOf": [
                         {
                             "type": "integer"

@@ -10,7 +10,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout the contents of your repository
-          uses: actions/checkout@v2
+          uses: actions/checkout@v4
         - name: Create a draft snapshot of your repository contents as a new
                 version in collection 1162057 on Zenodo using metadata
                 from repository file .zenodo.json

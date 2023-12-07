@@ -86,3 +86,20 @@ cd <where your CITATION.cff is>
 docker run --rm -ti -v ${PWD}:/app cffconvert
 ```
 
+### Platform-specific packages
+
+#### Alpine Linux
+
+To install cffconvert on Alpine Linux, use:
+
+```sh
+apk add cffconvert
+```
+
+#### Fedora Linux
+
+To install cffconvert on Fedora Linux, use:
+
+```sh
+dnf install cffconvert
+```

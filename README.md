@@ -156,13 +156,13 @@ cffconvert -f apalike
 ```shell
 # with i/o redirection:
 cffconvert -f bibtex > bibtex.bib
-cffconvert -f zenodo > zenodo.json
+cffconvert -f zenodo > .zenodo.json
 cffconvert -f endnote > ${PWD}/endnote.enw
 # etc
 
 # without i/o redirection
 cffconvert -f bibtex -o bibtex.bib
-cffconvert -f zenodo -o zenodo.json
+cffconvert -f zenodo -o .zenodo.json
 cffconvert -f endnote -o ${PWD}/endnote.enw
 # etc
 ```

@@ -123,11 +123,15 @@ class ZenodoObjectShared:
             if url is None or url in seen:
                 # url not available or seen already
                 continue
-            related_identifiers.append({
+            identifier_dict = {
                 "identifier": url,
                 "relation": "isSupplementedBy",
                 "scheme": "url"
-            })
+            }
+            if cffkey in ["repository-artifact", "repository-code"]:
+                # add resource_type
+                identifier_dict["resource_type"] = "software"
+            related_identifiers.append(identifier_dict)
             seen.append(url)
         self.related_identifiers = related_identifiers if len(related_identifiers) > 0 else None
         return self

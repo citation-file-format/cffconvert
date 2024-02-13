@@ -59,10 +59,12 @@ class TestZenodoObject(Contract):
         }, {
             "identifier": "https://github.com/the-url-from-repository-artifact",
             "relation": "isSupplementedBy",
+            "resource_type": "software",
             "scheme": "url"
         }, {
             "identifier": "https://github.com/the-url-from-repository-code",
             "relation": "isSupplementedBy",
+            "resource_type": "software",
             "scheme": "url"
         }]
 

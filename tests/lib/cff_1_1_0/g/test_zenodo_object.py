@@ -70,6 +70,7 @@ class TestZenodoObject(Contract):
         }, {
             "identifier": "https://github.com/citation-file-format/cffconvert",
             "relation": "isSupplementedBy",
+            "resource_type": "software",
             "scheme": "url"
         }]
 

@@ -68,6 +68,7 @@ class TestZenodoObject(Contract):
         }, {
             "identifier": "https://github.com/NLeSC/spot",
             "relation": "isSupplementedBy",
+            "resource_type": "software",
             "scheme": "url"
         }]
 

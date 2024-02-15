@@ -1,4 +1,10 @@
 {
+  "additional_descriptions": {
+    "description": "test for constructing dois",
+    "type": {
+      "id": "notes"
+    }
+  },
   "creators": [
     {
       "name": "Test author"

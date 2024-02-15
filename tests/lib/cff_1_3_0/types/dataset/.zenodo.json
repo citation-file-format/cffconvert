@@ -1,4 +1,10 @@
 {
+  "additional_descriptions": {
+    "description": "The message",
+    "type": {
+      "id": "notes"
+    }
+  },
   "creators": [
     {
       "name": "The name"

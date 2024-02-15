@@ -1,16 +1,22 @@
 {
+  "additional_descriptions": {
+    "description": "Test for relation type",
+    "type": {
+      "id": "notes"
+    }
+  },
   "creators": [
     {
-      "name": "Test author"
+      "name": "The author name"
     }
   ],
   "related_identifiers": [
     {
-      "identifier": "10.0000/from-identifiers",
+      "identifier": "10.0000/some-identifier",
       "relation": "isCompiledBy",
       "scheme": "doi"
     }
   ],
-  "title": "Test title",
+  "title": "The title",
   "upload_type": "software"
 }

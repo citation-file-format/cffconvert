@@ -1,4 +1,10 @@
 {
+  "additional_descriptions": {
+    "description": "test of author inputs",
+    "type": {
+      "id": "notes"
+    }
+  },
   "creators": [
     {
       "name": "Rafa"

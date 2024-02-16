@@ -1,4 +1,12 @@
 {
+  "additional_descriptions": [
+    {
+      "description": "Example data from the CITATION.cff spec 1.0.3",
+      "type": {
+        "id": "notes"
+      }
+    }
+  ],
   "creators": [
     {
       "name": "Fernández de Córdoba Jr., Gonzalo"

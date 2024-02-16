@@ -11,6 +11,7 @@ class ZenodoObjectShared:
         self.contributors = None
         self.creators = None
         self.description = None
+        self.additional_descriptions = None
         self.keywords = None
         self.license = None
         self.publication_date = None
@@ -30,6 +31,7 @@ class ZenodoObjectShared:
             "contributors": self.contributors,
             "creators": self.creators,
             "description": self.description,
+            "additional_descriptions": self.additional_descriptions,
             "keywords": self.keywords,
             "license": self.license,
             "publication_date": self.publication_date,
@@ -45,6 +47,7 @@ class ZenodoObjectShared:
         self.add_contributors()        \
             .add_creators()            \
             .add_description()         \
+            .add_additional_descriptions()         \
             .add_keywords()            \
             .add_license()             \
             .add_publication_date()    \
@@ -66,6 +69,11 @@ class ZenodoObjectShared:
         self.description = self.cffobj.get("abstract")
         return self
 
+    def add_additional_descriptions(self):
+        if "message" in self.cffobj:
+            self.additional_descriptions = [ { "type": { "id": "notes"} , "description": self.cffobj.get("message") } ]
+        return self
+    
     def add_keywords(self):
         self.keywords = self.cffobj.get("keywords")
         return self

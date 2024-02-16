@@ -13,6 +13,7 @@ class BibtexObjectShared:
         self.title = None
         self.url = None
         self.year = None
+        self.note = None
         if initialize_empty:
             # clause for testing purposes
             pass
@@ -26,7 +27,8 @@ class BibtexObjectShared:
                                    self.month,
                                    self.title,
                                    self.url,
-                                   self.year] if item is not None]
+                                   self.year,
+                                   self.note] if item is not None]
         joined = ",\n".join(items)
         return "@misc{YourReferenceHere,\n" + joined + "\n}\n"
 
@@ -36,7 +38,8 @@ class BibtexObjectShared:
             .add_month()    \
             .add_title()    \
             .add_url()      \
-            .add_year()
+            .add_year()     \
+            .add_note()
         return self
 
     @abstractmethod
@@ -64,6 +67,11 @@ class BibtexObjectShared:
     def add_year(self):
         pass
 
+    def add_note(self):
+        if "message" in self.cffobj:
+            self.note = "note = {" + self.cffobj["message"] + "}"
+        return self
+    
     def as_string(self):
         return str(self)
 

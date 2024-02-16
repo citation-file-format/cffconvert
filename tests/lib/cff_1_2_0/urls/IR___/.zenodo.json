@@ -1,10 +1,12 @@
 {
-  "additional_descriptions": {
-    "description": "Test message",
-    "type": {
-      "id": "notes"
+  "additional_descriptions": [
+    {
+      "description": "Test message",
+      "type": {
+        "id": "notes"
+      }
     }
-  },
+  ],
   "creators": [
     {
       "name": "Test author"

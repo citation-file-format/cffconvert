@@ -71,7 +71,7 @@ class ZenodoObjectShared:
 
     def add_additional_descriptions(self):
         if "message" in self.cffobj:
-            self.additional_descriptions = { "type": { "id": "notes"} , "description": self.cffobj.get("message") }
+            self.additional_descriptions = [ { "type": { "id": "notes"} , "description": self.cffobj.get("message") } ]
         return self
     
     def add_keywords(self):

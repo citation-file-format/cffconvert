@@ -1,10 +1,12 @@
 {
-  "additional_descriptions": {
-    "description": "test of author inputs",
-    "type": {
-      "id": "notes"
+  "additional_descriptions": [
+    {
+      "description": "test of author inputs",
+      "type": {
+        "id": "notes"
+      }
     }
-  },
+  ],
   "creators": [
     {
       "name": "Rafael"

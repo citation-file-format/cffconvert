@@ -1,10 +1,12 @@
 {
-  "additional_descriptions": {
-    "description": "test for constructing urls",
-    "type": {
-      "id": "notes"
+  "additional_descriptions": [
+    {
+      "description": "test for constructing urls",
+      "type": {
+        "id": "notes"
+      }
     }
-  },
+  ],
   "creators": [
     {
       "name": "Test author"

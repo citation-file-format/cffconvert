@@ -1,10 +1,12 @@
 {
-  "additional_descriptions": {
-    "description": "Test for relation type",
-    "type": {
-      "id": "notes"
+  "additional_descriptions": [
+    {
+      "description": "Test for relation type",
+      "type": {
+        "id": "notes"
+      }
     }
-  },
+  ],
   "creators": [
     {
       "name": "The author name"

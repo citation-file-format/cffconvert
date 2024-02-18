@@ -1,4 +1,3 @@
-#from cffconvert.lib.cff_1_x_x.authors.zenodo import ZenodoAuthor
 from cffconvert.lib.cff_1_3_x.authors.zenodo import ZenodoAuthorAffiliation
 from cffconvert.lib.cff_1_x_x.zenodo import ZenodoObjectShared as Shared
 

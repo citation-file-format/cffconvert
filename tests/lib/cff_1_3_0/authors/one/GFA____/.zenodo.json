@@ -1,4 +1,12 @@
 {
+  "additional_descriptions": [
+    {
+      "description": "test of author inputs",
+      "type": {
+        "id": "notes"
+      }
+    }
+  ],
   "creators": [
     {
       "name": "van der Vaart III, Rafael"

@@ -17,7 +17,7 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
-          uses: zenodraft/action@0.13.2
+          uses: zenodraft/action@0.13.3
           with:
             compression: zip
             collection: 1162057

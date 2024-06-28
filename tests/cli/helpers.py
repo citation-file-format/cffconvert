@@ -6,6 +6,7 @@ def get_formats():
     return [
         pytest.param("apalike", "apalike.txt", id="apalike", marks=pytest.mark.apalike),
         pytest.param("bibtex", "bibtex.bib", id="bibtex", marks=pytest.mark.bibtex),
+        pytest.param("biblatex", "biblatex.bib", id="biblatex", marks=pytest.mark.biblatex),
         pytest.param("cff", "CITATION.cff", id="cff"),
         pytest.param("codemeta", "codemeta.json", id="codemeta", marks=pytest.mark.codemeta),
         pytest.param("endnote", "endnote.enw", id="endnote", marks=pytest.mark.endnote),

@@ -66,12 +66,13 @@ Tests pertaining to a specific exporter have been marked accordingly with one of
 `pytest` configuration section in `pyproject.toml`):
 
 1. `apalike`
-2. `bibtex`
-3. `codemeta`
-4. `endnote`
-5. `ris`
-6. `schemaorg`
-7. `zenodo`
+2. `biblatex`
+3. `bibtex`
+4. `codemeta`
+5. `endnote`
+6. `ris`
+7. `schemaorg`
+8. `zenodo`
 
 Additionally, there are markers for CLI tests and for library tests:
 

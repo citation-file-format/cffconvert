@@ -105,3 +105,6 @@ ENV/
 # IDE
 .idea
 .vscode
+
+# Vim temp files
+*.swp

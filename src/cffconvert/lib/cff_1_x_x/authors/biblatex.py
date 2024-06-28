@@ -2,7 +2,7 @@ from cffconvert.lib.cff_1_x_x.authors.base import BaseAuthor
 
 
 # pylint: disable=too-few-public-methods
-class BibtexAuthor(BaseAuthor):
+class BiblatexAuthor(BaseAuthor):
 
     def __init__(self, author):
         super().__init__(author)

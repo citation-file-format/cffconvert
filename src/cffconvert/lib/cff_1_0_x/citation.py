@@ -3,6 +3,7 @@ from pykwalify.core import Core
 from ruamel.yaml import SafeConstructor
 from ruamel.yaml import YAML
 from cffconvert.lib.cff_1_0_x.apalike import ApalikeObject
+from cffconvert.lib.cff_1_0_x.biblatex import BiblatexObject
 from cffconvert.lib.cff_1_0_x.bibtex import BibtexObject
 from cffconvert.lib.cff_1_0_x.codemeta import CodemetaObject
 from cffconvert.lib.cff_1_0_x.endnote import EndnoteObject
@@ -56,6 +57,9 @@ class Citation_1_0_x(Contract):  # noqa
 
     def as_apalike(self):
         return ApalikeObject(self.cffobj).as_string()
+
+    def as_biblatex(self):
+        return BiblatexObject(self.cffobj).as_string()
 
     def as_bibtex(self):
         return BibtexObject(self.cffobj).as_string()

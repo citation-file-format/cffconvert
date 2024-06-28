@@ -41,3 +41,8 @@ class BiblatexObject(Shared):
         if "date-released" in self.cffobj.keys():
             self.year = "year = {" + self.cffobj["date-released"][:4] + "}"
         return self
+
+    def add_date(self):
+        if "date-released" in self.cffobj.keys():
+            self.date = "date = {" + self.cffobj["date-released"] + "}"
+        return self

@@ -127,14 +127,14 @@ class BibtexAuthor(BaseAuthor):
             "___N_O_": self._from_name,
             "___N__E": self._from_name,
             "___N___": self._from_name,
-            "____AOE": BiblatexAuthor._from_thin_air,
-            "____AO_": BiblatexAuthor._from_thin_air,
-            "____A_E": BiblatexAuthor._from_thin_air,
-            "____A__": BiblatexAuthor._from_thin_air,
-            "_____OE": BiblatexAuthor._from_thin_air,
-            "_____O_": BiblatexAuthor._from_thin_air,
-            "______E": BiblatexAuthor._from_thin_air,
-            "_______": BiblatexAuthor._from_thin_air
+            "____AOE": BibtexAuthor._from_thin_air,
+            "____AO_": BibtexAuthor._from_thin_air,
+            "____A_E": BibtexAuthor._from_thin_air,
+            "____A__": BibtexAuthor._from_thin_air,
+            "_____OE": BibtexAuthor._from_thin_air,
+            "_____O_": BibtexAuthor._from_thin_air,
+            "______E": BibtexAuthor._from_thin_air,
+            "_______": BibtexAuthor._from_thin_air
         }
 
     def _from_alias(self):

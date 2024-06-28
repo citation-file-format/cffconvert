@@ -103,6 +103,8 @@ class BiblatexObjectShared:
         pass
 
     def add_repository(self):
+        if "repository-code" in self.cffobj.keys():
+            self.repository = "repository = {" + self.cffobj["repository-code"] + "}"
         if "repository" in self.cffobj.keys():
             self.repository = "repository = {" + self.cffobj["repository"] + "}"
         return self

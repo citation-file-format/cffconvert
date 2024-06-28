@@ -21,6 +21,7 @@ options = {
     "outputformat": {
         "type": click.Choice([
             "apalike",
+            "biblatex",
             "bibtex",
             "cff",
             "codemeta",

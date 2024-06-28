@@ -64,13 +64,14 @@ def cffconvert(request):
         outstr += f"Data passes validation according to Citation File Format schema version {citation.cffversion}."
         return Response(outstr, mimetype=mimetype_plain)
 
-    acceptable_output_formats = ["apalike", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
+    acceptable_output_formats = ["apalike", "biblatex", "bibtex", "cff", "codemeta", "endnote", "schema.org", "ris", "zenodo"]
     if outputformat not in acceptable_output_formats:
         outstr += f"\n\n'outputformat' should be one of [{', '.join(acceptable_output_formats)}]"
         return Response(outstr, mimetype=mimetype_plain)
 
     outstr += {
         "apalike": citation.as_apalike,
+        "biblatex": citation.as_biblatex,
         "bibtex": citation.as_bibtex,
         "cff": citation.as_cff,
         "codemeta": citation.as_codemeta,

@@ -26,6 +26,7 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation, ver
             ctx.exit(1)
         outstr = {
             "apalike": citation.as_apalike,
+            "biblatex": citation.as_biblatex,
             "bibtex": citation.as_bibtex,
             "cff": citation.as_cff,
             "codemeta": citation.as_codemeta,

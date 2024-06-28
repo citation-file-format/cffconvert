@@ -17,6 +17,10 @@ class Contract(ABC):
         pass
 
     @abstractmethod
+    def as_biblatex(self):
+        pass
+
+    @abstractmethod
     def as_bibtex(self):
         pass
 

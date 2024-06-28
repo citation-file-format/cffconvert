@@ -110,6 +110,7 @@ src_paths = ["src", "tests"]
 addopts = "--no-cov --verbose --maxfail=1 --strict-markers --import-mode=importlib --cache-clear --strict-config"
 markers = [
     "apalike: Tests pertaining to 'apalike' export behavior",
+    "biblatex: Tests pertaining to 'biblatex' export behavior",
     "bibtex: Tests pertaining to 'bibtex' export behavior",
     "cli: Tests pertaining to cffconvert's command line interface",
     "codemeta: Tests pertaining to 'codemeta' export behavior",

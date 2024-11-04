@@ -1,4 +1,12 @@
 {
+  "additional_descriptions": [
+    {
+      "description": "test of author inputs",
+      "type": {
+        "id": "notes"
+      }
+    }
+  ],
   "contributors": [
     {
       "name": "van der Vaart III",

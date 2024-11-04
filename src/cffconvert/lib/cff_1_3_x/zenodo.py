@@ -1,4 +1,4 @@
-from cffconvert.lib.cff_1_x_x.authors.zenodo import ZenodoAuthor
+from cffconvert.lib.cff_1_3_x.authors.zenodo import ZenodoAuthorAffiliation
 from cffconvert.lib.cff_1_x_x.zenodo import ZenodoObjectShared as Shared
 
 
@@ -13,7 +13,7 @@ class ZenodoObject(Shared):
         for c in self.cffobj.get("contributors", []):
             # contributors are generated in the same way as authors, hence just
             # call ZenodoAuthor's contructor with the cff contributor object
-            contributor = ZenodoAuthor(c).as_dict()
+            contributor = ZenodoAuthorAffiliation(c).as_dict()
             contributor.update({"type": "Other"})
             contributors.append(contributor)
         # filter out contributors that had no data associated with them
@@ -24,7 +24,7 @@ class ZenodoObject(Shared):
 
     def add_creators(self):
         authors_cff = self.cffobj.get("authors", [])
-        creators_zenodo = [ZenodoAuthor(a).as_dict() for a in authors_cff]
+        creators_zenodo = [ZenodoAuthorAffiliation(a).as_dict() for a in authors_cff]
         self.creators = [c for c in creators_zenodo if c is not None]
         return self
 

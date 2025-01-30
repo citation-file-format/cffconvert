@@ -9,16 +9,17 @@ git clone https://github.com/citation-file-format/cffconvert.git
 # change directory into cffconvert
 cd cffconvert
 
-# make a virtual environment named venv
-python3 -m venv venv
+# make a virtual environment with the selected Python version in a subdirectory named venv
+py -3.12 -m venv venv
 
 # activate the virtual environment
-source venv/bin/activate
+source venv/Scripts/activate
+# or venv\Scripts\activate.bat
 
-# upgrade pip, wheel, setuptools
-pip install --upgrade pip wheel setuptools
+# upgrade pip, setuptools
+py -m pip install --upgrade pip setuptools
 
-# install cffconvert  in editable mode
+# install cffconvert in editable mode
 pip install --editable .
 ```
 
@@ -102,7 +103,7 @@ Running the linters requires that the development tools have been installed:
 pip install --editable .[dev]
 ```
 
-Sorting Python import lines with '`isort`' (https://pycqa.github.io/isort/):
+Sorting Python import lines with '`isort`' (<https://pycqa.github.io/isort/>):
 
 ```shell
 # recursively check import style for the cffconvert module only
@@ -116,21 +117,21 @@ isort --check-only --diff src/cffconvert
 isort src/cffconvert
 ```
 
-Linting the code base by running a variety of other tools via '`prospector`' (https://github.com/landscapeio/prospector):
+Linting the code base by running a variety of other tools via '`prospector`' (<https://github.com/landscapeio/prospector>):
 
 ```shell
 # linter
 prospector
 ```
 
-Assessing the package metadata using '`pyroma`' (https://github.com/regebro/pyroma):
+Assessing the package metadata using '`pyroma`' (<https://github.com/regebro/pyroma>):
 
 ```shell
 # from the project root
 pyroma .
 ```
 
-Linting the code base using '`ruff`' (https://github.com/astral-sh/ruff):
+Linting the code base using '`ruff`' (<https://github.com/astral-sh/ruff>):
 
 ```shell
 ruff check path/to/code/
@@ -148,7 +149,7 @@ pre-commit run --all-files <ID of the task>
 
 Alternatively, the linting tools can be set up to run automatically whenever you issue a `git commit` command, as
 follows:
- 
+
 ```shell
 pre-commit install
 ```
@@ -156,9 +157,9 @@ pre-commit install
 ## Construction of author keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which
 is tailored only to that specific combination of source keys. As an example of this mapping, see the setup in
-https://github.com/citation-file-format/cffconvert/blob/3.0.0a0/cffconvert/behavior_shared/schemaorg_author_shared.py
+<https://github.com/citation-file-format/cffconvert/blob/3.0.0a0/cffconvert/behavior_shared/schemaorg_author_shared.py>
 
 Source keys:
 
@@ -306,10 +307,10 @@ The table below lists how the key name is constructed based what information was
 ## Construction of identifier keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
-is tailored only to that specific combination of source keys. 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which
+is tailored only to that specific combination of source keys.
 
-Source keys: 
+Source keys:
 
 - `doi`
 - `identifiers[i].type==doi`
@@ -326,8 +327,8 @@ The table below lists how the key name is constructed based what information was
 ## Construction of URL keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
-is tailored only to that specific combination of source keys. 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which
+is tailored only to that specific combination of source keys.
 
 Source keys:
 
@@ -339,7 +340,7 @@ Source keys:
 
 The table below lists how the key name is constructed based what information was provided in the `CITATION.cff` file:
 
-| key     | has indentifiers url | has repository | has repository-artifact | has repository-code | has url |
+| key     | has identifiers url | has repository | has repository-artifact | has repository-code | has url |
 |---------|----------------------|----------------|-------------------------|---------------------|---------|
 | `IRACU` | True                 | True           | True                    | True                | True    |
 | `IRAC_` | True                 | True           | True                    | True                | False   |
@@ -378,7 +379,6 @@ The table below lists how the key name is constructed based what information was
 
 ### Making a release
 
-
 1. make sure the release notes are up to date
 2. preparation
 
@@ -394,13 +394,13 @@ The table below lists how the key name is constructed based what information was
 
     # check if cffconvert works, e.g.
     cffconvert --version
-    
+
     # run the tests, make sure they pass
     python3 -m pip pytest tests
 
     # git push everything, merge into main as appropriate
     ```
-    
+
 3. publishing on test instance of PyPI
 
     ```shell
@@ -420,18 +420,18 @@ The table below lists how the key name is constructed based what information was
     # make a source distribution:
     python setup.py sdist
     # make a wheel
-    python setup.py bdist_wheel 
+    python setup.py bdist_wheel
     # install the 'upload to pypi/testpypi tool' aka twine
     pip install .[publishing]
     # upload the contents of the source distribution we just made (requires credentials for test.pypi.org)
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
     ```
-    
+
 4. Checking the package
 
     Open another shell but keep the other one. We'll return to the first shell momentarily.
-    
-    Verify that there is a new version of the package on Test PyPI https://test.pypi.org/project/cffconvert/
+
+    Verify that there is a new version of the package on Test PyPI <https://test.pypi.org/project/cffconvert/>
 
     ```shell
     python3 -m pip -v install --user --no-cache-dir \
@@ -440,6 +440,7 @@ The table below lists how the key name is constructed based what information was
 
     # check that the package works as it should when installed from pypitest
     ```
+
 5. FINAL STEP: upload to PyPI
 
     Go back to the first shell, then (requires credentials for pypi.org)
@@ -447,6 +448,7 @@ The table below lists how the key name is constructed based what information was
     ```shell
     twine upload dist/*
     ```
+
 6. Make the release on GitHub
 7. Go to Zenodo, log in to inspect the draft. Then click `Publish` to finalize it.
 
@@ -459,6 +461,7 @@ docker build --tag cffconvert:latest .
 ```
 
 See if the Docker image works as expected:
+
 ```shell
 docker run --rm -v $PWD:/app cffconvert --validate
 docker run --rm -v $PWD:/app cffconvert --version

@@ -14,7 +14,6 @@
 [![PePy](https://static.pepy.tech/badge/cffconvert)](https://pepy.tech/project/cffconvert)
 [![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/citation-file-format/cffconvert/2.0.0)](https://github.com/citation-file-format/cffconvert/compare/2.0.0...HEAD)
 
-
 Command line program to validate and convert [`CITATION.cff`](https://github.com/citation-file-format/citation-file-format) files.
 
 ## Supported input versions of the Citation File Format
@@ -42,23 +41,25 @@ Command line program to validate and convert [`CITATION.cff`](https://github.com
 
 ## Installing
 
-To install in user space, 
+To install in user space,
 
 ```shell
 python3 -m pip install --user cffconvert
 ```
+
 Ensure that the user space directory `~/.local/bin/` is on the `PATH`.
 
 ```shell
 which cffconvert
 ```
+
 should now return the location of the program.
 
 See [docs/alternative-install-options.md](docs/alternative-install-options.md) for alternative install options.
 
 ## Docker
 
-`cffconvert` is available from DockerHub: https://hub.docker.com/r/citationcff/cffconvert
+`cffconvert` is available from DockerHub: <https://hub.docker.com/r/citationcff/cffconvert>
 
 Example usage:
 
@@ -135,10 +136,9 @@ cffconvert --validate --url https://github.com/<org>/<repo>/tree/<tag>
 cffconvert --validate --url https://github.com/<org>/<repo>/tree/<branch>
 ```
 
-
 ### Converting metadata to other formats
 
-If there is a valid `CITATION.cff` file in the current directory, you can convert to various other formats and 
+If there is a valid `CITATION.cff` file in the current directory, you can convert to various other formats and
 print the result on standard out with:
 
 ```shell

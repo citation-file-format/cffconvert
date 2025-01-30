@@ -77,7 +77,7 @@ publishing = [
     "wheel"
 ]
 testing = [
-    "pytest >= 6",
+    "pytest >= 7.0",
     "pytest-cov"
 ]
 
@@ -105,9 +105,10 @@ src_paths = ["src", "tests"]
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 [tool.pytest.ini_options]
-# Note that visual debugger in some editors like pycharm gets confused by coverage calculation.
-# As a workaround, configure the test configuration in pycharm et al with a --no-cov argument
-addopts = "--no-cov --verbose --maxfail=1 --strict-markers --import-mode=importlib --cache-clear --strict-config"
+# IDE debuggers, such as PyCharm, may conflict with Pytest coverage reporting.
+# If your IDE has problems, add --no-cov to the test configuration.
+# addopts = "--no-cov --verbose --maxfail=1 --strict-markers --import-mode=importlib --cache-clear --strict-config"
+addopts = "--verbose --maxfail=1 --strict-markers --import-mode=importlib --cache-clear --strict-config"
 markers = [
     "apalike: Tests pertaining to 'apalike' export behavior",
     "bibtex: Tests pertaining to 'bibtex' export behavior",

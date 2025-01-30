@@ -59,4 +59,3 @@ how to write or run tests for it, or how to create the documentation: don't
 let this discourage you from making the pull request; we can help you! Just go
 ahead and submit the pull request, but keep in mind that you might be asked to
 append additional commits to your pull request.
-

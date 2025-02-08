@@ -1,9 +1,9 @@
 import click
 from jsonschema.exceptions import ValidationError as JsonschemaSchemaError
 from pykwalify.errors import SchemaError as PykwalifySchemaError
+from cffconvert.lib.citation import Citation
 
-
-def validate_or_write_output(outfile, outputformat, validate_only, citation, verbose=True):
+def validate_or_write_output(outfile, outputformat, validate_only, citation: Citation, verbose=True):
     condition = (validate_only, outputformat is not None)
     if condition == (True, False):
         # just validate, there is no target outputformat

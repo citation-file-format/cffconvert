@@ -50,7 +50,7 @@ class Citation_1_2_x(Contract):  # noqa
             yaml.constructor.yaml_constructors[YAML_TIMESTAMP_TYPE] = tmp
 
         if not isinstance(cffobj, dict):
-            raise ValueError("Provided CITATION.cff does not seem valid YAML.")
+            raise ValueError("Provided CITATION.cff does not seem to be valid YAML.")
 
         return cffobj
 

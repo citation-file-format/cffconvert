@@ -1,6 +1,6 @@
 name: linting
 
-on: 
+on:
   pull_request:
   push:
     branches:
@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu-latest']
-        python-version: ['3.11']
+        python-version: ['3.13']
     steps:
       - uses: actions/checkout@v4
 
@@ -40,7 +40,7 @@ jobs:
         run: python3 -m pip install .[dev,gcloud,testing]
 
       - name: Check sorting of imports
-        # isort returns zero even when there are problems, explicitly check there is no output 
+        # isort returns zero even when there are problems, explicitly check there is no output
         run: |
           output=$(isort --check-only --diff src/cffconvert tests/)
           if [[ -n "$output" ]]; then

@@ -148,7 +148,7 @@ pre-commit run --all-files <ID of the task>
 
 Alternatively, the linting tools can be set up to run automatically whenever you issue a `git commit` command, as
 follows:
- 
+
 ```shell
 pre-commit install
 ```
@@ -156,7 +156,7 @@ pre-commit install
 ## Construction of author keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which
 is tailored only to that specific combination of source keys. As an example of this mapping, see the setup in
 https://github.com/citation-file-format/cffconvert/blob/3.0.0a0/cffconvert/behavior_shared/schemaorg_author_shared.py
 
@@ -306,10 +306,10 @@ The table below lists how the key name is constructed based what information was
 ## Construction of identifier keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
-is tailored only to that specific combination of source keys. 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which
+is tailored only to that specific combination of source keys.
 
-Source keys: 
+Source keys:
 
 - `doi`
 - `identifiers[i].type==doi`
@@ -326,8 +326,8 @@ The table below lists how the key name is constructed based what information was
 ## Construction of URL keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
-is tailored only to that specific combination of source keys. 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which
+is tailored only to that specific combination of source keys.
 
 Source keys:
 
@@ -339,7 +339,7 @@ Source keys:
 
 The table below lists how the key name is constructed based what information was provided in the `CITATION.cff` file:
 
-| key     | has indentifiers url | has repository | has repository-artifact | has repository-code | has url |
+| key     | has identifiers url | has repository | has repository-artifact | has repository-code | has url |
 |---------|----------------------|----------------|-------------------------|---------------------|---------|
 | `IRACU` | True                 | True           | True                    | True                | True    |
 | `IRAC_` | True                 | True           | True                    | True                | False   |
@@ -394,13 +394,13 @@ The table below lists how the key name is constructed based what information was
 
     # check if cffconvert works, e.g.
     cffconvert --version
-    
+
     # run the tests, make sure they pass
     python3 -m pip pytest tests
 
     # git push everything, merge into main as appropriate
     ```
-    
+
 3. publishing on test instance of PyPI
 
     ```shell
@@ -420,17 +420,17 @@ The table below lists how the key name is constructed based what information was
     # make a source distribution:
     python setup.py sdist
     # make a wheel
-    python setup.py bdist_wheel 
+    python setup.py bdist_wheel
     # install the 'upload to pypi/testpypi tool' aka twine
     pip install .[publishing]
     # upload the contents of the source distribution we just made (requires credentials for test.pypi.org)
     twine upload --repository-url https://test.pypi.org/legacy/ dist/*
     ```
-    
+
 4. Checking the package
 
     Open another shell but keep the other one. We'll return to the first shell momentarily.
-    
+
     Verify that there is a new version of the package on Test PyPI https://test.pypi.org/project/cffconvert/
 
     ```shell

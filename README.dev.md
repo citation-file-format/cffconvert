@@ -156,7 +156,7 @@ pre-commit install
 ## Construction of author keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
 is tailored only to that specific combination of source keys. As an example of this mapping, see the setup in
 https://github.com/citation-file-format/cffconvert/blob/3.0.0a0/cffconvert/behavior_shared/schemaorg_author_shared.py
 
@@ -306,7 +306,7 @@ The table below lists how the key name is constructed based what information was
 ## Construction of identifier keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
 is tailored only to that specific combination of source keys. 
 
 Source keys: 
@@ -326,7 +326,7 @@ The table below lists how the key name is constructed based what information was
 ## Construction of URL keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
 is tailored only to that specific combination of source keys. 
 
 Source keys:

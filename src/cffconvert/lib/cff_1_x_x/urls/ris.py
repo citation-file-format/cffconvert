@@ -44,24 +44,24 @@ class RisUrl(BaseUrl):
     def _from_identifiers_url(self):
         urls = self._get_urls_from_identifiers()
         if len(urls) > 0:
-            return f"UR  - { urls[0].get('value') }\n"
+            return f"UR  - {urls[0].get('value')}\n"
         return None
 
     def _from_repository(self):
-        return f"UR  - { self._cffobj.get('repository') }\n"
+        return f"UR  - {self._cffobj.get('repository')}\n"
 
     def _from_repository_artifact(self):
-        return f"UR  - { self._cffobj.get('repository-artifact') }\n"
+        return f"UR  - {self._cffobj.get('repository-artifact')}\n"
 
     def _from_repository_code(self):
-        return f"UR  - { self._cffobj.get('repository-code') }\n"
+        return f"UR  - {self._cffobj.get('repository-code')}\n"
 
     @staticmethod
     def _from_thin_air():
         return None
 
     def _from_url(self):
-        return f"UR  - { self._cffobj.get('url') }\n"
+        return f"UR  - {self._cffobj.get('url')}\n"
 
     def as_string(self):
         key = "".join([

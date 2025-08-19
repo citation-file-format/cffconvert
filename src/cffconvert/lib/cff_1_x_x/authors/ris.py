@@ -138,19 +138,19 @@ class RisAuthor(BaseAuthor):
         }
 
     def _from_alias(self):
-        return f"AU  - { self._author.get('alias') }\n"
+        return f"AU  - {self._author.get('alias')}\n"
 
     def _from_given_and_last(self):
-        return f"AU  - { self._get_full_last_name() }, { self._author.get('given-names') }\n"
+        return f"AU  - {self._get_full_last_name()}, {self._author.get('given-names')}\n"
 
     def _from_given(self):
-        return f"AU  - { self._author.get('given-names') }\n"
+        return f"AU  - {self._author.get('given-names')}\n"
 
     def _from_last(self):
-        return f"AU  - { self._get_full_last_name() }\n"
+        return f"AU  - {self._get_full_last_name()}\n"
 
     def _from_name(self):
-        return f"AU  - { self._author.get('name') }\n"
+        return f"AU  - {self._author.get('name')}\n"
 
     def as_string(self):
         key = self._get_key()

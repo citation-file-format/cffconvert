@@ -44,24 +44,24 @@ class BibtexUrl(BaseUrl):
     def _from_identifiers_url(self):
         urls = self._get_urls_from_identifiers()
         if len(urls) > 0:
-            return f"url = { '{' + urls[0].get('value') + '}' }"
+            return f"url = {{{urls[0].get('value')}}}"
         return None
 
     def _from_repository(self):
-        return f"url = { '{' + self._cffobj.get('repository') + '}' }"
+        return f"url = {{{self._cffobj.get('repository')}}}"
 
     def _from_repository_artifact(self):
-        return f"url = { '{' + self._cffobj.get('repository-artifact') + '}' }"
+        return f"url = {{{self._cffobj.get('repository-artifact')}}}"
 
     def _from_repository_code(self):
-        return f"url = { '{' + self._cffobj.get('repository-code') + '}' }"
+        return f"url = {{{self._cffobj.get('repository-code')}}}"
 
     @staticmethod
     def _from_thin_air():
         return None
 
     def _from_url(self):
-        return f"url = { '{' + self._cffobj.get('url') + '}' }"
+        return f"url = {{{self._cffobj.get('url')}}}"
 
     def as_string(self):
         key = "".join([

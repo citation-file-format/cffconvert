@@ -20,7 +20,7 @@ def rawify_url(url):
                 # Proceed with making the call without authenticating -- stricter rate limits apply
                 pass
             else:
-                headers.update({"Authorization": f"Bearer { token }"})
+                headers.update({"Authorization": f"Bearer {token}"})
 
             try:
                 response = requests.get(repos_api, headers=headers, timeout=10)

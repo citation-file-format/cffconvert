@@ -15,7 +15,7 @@ def read_from_url(url):
         # Proceed with making the call without authenticating -- stricter rate limits apply
         pass
     else:
-        headers.update({"Authorization": f"Bearer { token }"})
+        headers.update({"Authorization": f"Bearer {token}"})
     response = requests.get(url_raw, headers=headers, timeout=30)
     if response.ok:
         return response.text

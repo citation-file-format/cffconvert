@@ -29,9 +29,5 @@ class Contract(ABC):
         pass
 
     @abstractmethod
-    def test_version(self):
-        pass
-
-    @abstractmethod
     def test_year(self):
         pass

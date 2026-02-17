@@ -141,7 +141,7 @@ class ApalikeAuthor(BaseAuthor):
         return self._author.get("alias")
 
     def _from_given_and_last(self):
-        return self._get_full_last_name() + " " + self._get_initials()
+        return self._get_full_last_name() + ", " + self._get_initials()
 
     def _from_given(self):
         return self._author.get("given-names")
@@ -154,7 +154,14 @@ class ApalikeAuthor(BaseAuthor):
 
     def _get_initials(self):
         given_names = self._author.get("given-names").split(" ")
-        return "".join([given_name[0] + "." for given_name in given_names])
+        initials = []
+        for given_name in given_names:
+            if "-" in given_name:
+                name_parts = given_name.split("-")
+                initials.append("-".join([name_part[0] + "." for name_part in name_parts]))
+            else:
+                initials.append(given_name[0] + ".")
+        return " ".join(initials)
 
     def as_string(self):
         key = self._get_key()

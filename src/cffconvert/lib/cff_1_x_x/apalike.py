@@ -22,7 +22,6 @@ class ApalikeObjectShared:
         self.author = None
         self.year = None
         self.title = None
-        self.version = None
         self.doi = None
         self.url = None
         if initialize_empty:
@@ -36,7 +35,6 @@ class ApalikeObjectShared:
         items = [item for item in [self.author,
                                    self.year,
                                    self.title,
-                                   self.version,
                                    self.doi,
                                    self.url] if item is not None]
         return " ".join(items) + "\n"
@@ -45,7 +43,6 @@ class ApalikeObjectShared:
         self.add_author()   \
             .add_year()     \
             .add_title()    \
-            .add_version()  \
             .add_doi()      \
             .add_url()
         return self
@@ -61,11 +58,16 @@ class ApalikeObjectShared:
     def add_title(self):
         if "title" in self.cffobj.keys():
             self.title = self.cffobj["title"]
-        return self
-
-    def add_version(self):
         if "version" in self.cffobj.keys():
-            self.version = "(version " + str(self.cffobj["version"]) + ")."
+            self.title += " (version " + str(self.cffobj["version"]) + ")"
+        if "type" in self.cffobj.keys():
+            type_cff = self.cffobj.get("type")
+            if type_cff == "dataset":
+                self.title += " [Data set]"
+            elif type_cff == "software":
+                self.title += " [Computer software]"
+        if self.title[-1] != ".":
+            self.title += "."
         return self
 
     @abstractmethod

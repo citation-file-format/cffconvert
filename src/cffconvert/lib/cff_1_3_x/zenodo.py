@@ -12,7 +12,7 @@ class ZenodoObject(Shared):
         contributors = []
         for c in self.cffobj.get("contributors", []):
             # contributors are generated in the same way as authors, hence just
-            # call ZenodoAuthor's contructor with the cff contributor object
+            # call ZenodoAuthor's constructor with the cff contributor object
             contributor = ZenodoAuthor(c).as_dict()
             contributor.update({"type": "Other"})
             contributors.append(contributor)

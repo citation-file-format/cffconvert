@@ -42,7 +42,9 @@ repos:
         args: [-q]
   
   - repo: https://github.com/codespell-project/codespell
-    # Configuration for codespell is in .pre-commit-config.yaml
+    # Configuration for codespell is in pyproject.toml
     rev: v2.4.3
     hooks:
     - id: codespell
+      additional_dependencies:
+      - tomli; python_version<'3.11'

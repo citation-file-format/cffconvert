@@ -139,3 +139,10 @@ select = ["E", "F", "W", "C901", "Q"]
 [tool.ruff.flake8-quotes]
 docstring-quotes = "double"
 inline-quotes = "double"
+
+[tool.codespell]
+# Ref: https://github.com/codespell-project/codespell#using-a-config-file
+skip = '.git,.gitignore,.gitattributes'
+check-hidden = true
+# ignore-regex = ''
+# ignore-words-list = ''

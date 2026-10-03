@@ -156,7 +156,7 @@ pre-commit install
 ## Construction of author keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
 is tailored only to that specific combination of source keys. As an example of this mapping, see the setup in
 https://github.com/citation-file-format/cffconvert/blob/3.0.0a0/cffconvert/behavior_shared/schemaorg_author_shared.py
 
@@ -306,7 +306,7 @@ The table below lists how the key name is constructed based what information was
 ## Construction of identifier keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
 is tailored only to that specific combination of source keys. 
 
 Source keys: 
@@ -326,7 +326,7 @@ The table below lists how the key name is constructed based what information was
 ## Construction of URL keys
 
 There are various source keys in CFF that can be used to convert to a target format. The code uses a pattern of first
-identifiying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
+identifying what information is present, then summarizing this as a key, then using that key to retrieve a method which 
 is tailored only to that specific combination of source keys. 
 
 Source keys:
@@ -339,40 +339,40 @@ Source keys:
 
 The table below lists how the key name is constructed based what information was provided in the `CITATION.cff` file:
 
-| key     | has indentifiers url | has repository | has repository-artifact | has repository-code | has url |
-|---------|----------------------|----------------|-------------------------|---------------------|---------|
-| `IRACU` | True                 | True           | True                    | True                | True    |
-| `IRAC_` | True                 | True           | True                    | True                | False   |
-| `IRA_U` | True                 | True           | True                    | False               | True    |
-| `IRA__` | True                 | True           | True                    | False               | False   |
-| `IR_CU` | True                 | True           | False                   | True                | True    |
-| `IR_C_` | True                 | True           | False                   | True                | False   |
-| `IR__U` | True                 | True           | False                   | False               | True    |
-| `IR___` | True                 | True           | False                   | False               | False   |
-| `I_ACU` | True                 | False          | True                    | True                | True    |
-| `I_AC_` | True                 | False          | True                    | True                | False   |
-| `I_A_U` | True                 | False          | True                    | False               | True    |
-| `I_A__` | True                 | False          | True                    | False               | False   |
-| `I__CU` | True                 | False          | False                   | True                | True    |
-| `I__C_` | True                 | False          | False                   | True                | False   |
-| `I___U` | True                 | False          | False                   | False               | True    |
-| `I____` | True                 | False          | False                   | False               | False   |
-| `_RACU` | False                | True           | True                    | True                | True    |
-| `_RAC_` | False                | True           | True                    | True                | False   |
-| `_RA_U` | False                | True           | True                    | False               | True    |
-| `_RA__` | False                | True           | True                    | False               | False   |
-| `_R_CU` | False                | True           | False                   | True                | True    |
-| `_R_C_` | False                | True           | False                   | True                | False   |
-| `_R__U` | False                | True           | False                   | False               | True    |
-| `_R___` | False                | True           | False                   | False               | False   |
-| `__ACU` | False                | False          | True                    | True                | True    |
-| `__AC_` | False                | False          | True                    | True                | False   |
-| `__A_U` | False                | False          | True                    | False               | True    |
-| `__A__` | False                | False          | True                    | False               | False   |
-| `___CU` | False                | False          | False                   | True                | True    |
-| `___C_` | False                | False          | False                   | True                | False   |
-| `____U` | False                | False          | False                   | False               | True    |
-| `_____` | False                | False          | False                   | False               | False   |
+| key     | has identifiers url | has repository | has repository-artifact | has repository-code | has url |
+| ------- | ------------------- | -------------- | ----------------------- | ------------------- | ------- |
+| `IRACU` | True                | True           | True                    | True                | True    |
+| `IRAC_` | True                | True           | True                    | True                | False   |
+| `IRA_U` | True                | True           | True                    | False               | True    |
+| `IRA__` | True                | True           | True                    | False               | False   |
+| `IR_CU` | True                | True           | False                   | True                | True    |
+| `IR_C_` | True                | True           | False                   | True                | False   |
+| `IR__U` | True                | True           | False                   | False               | True    |
+| `IR___` | True                | True           | False                   | False               | False   |
+| `I_ACU` | True                | False          | True                    | True                | True    |
+| `I_AC_` | True                | False          | True                    | True                | False   |
+| `I_A_U` | True                | False          | True                    | False               | True    |
+| `I_A__` | True                | False          | True                    | False               | False   |
+| `I__CU` | True                | False          | False                   | True                | True    |
+| `I__C_` | True                | False          | False                   | True                | False   |
+| `I___U` | True                | False          | False                   | False               | True    |
+| `I____` | True                | False          | False                   | False               | False   |
+| `_RACU` | False               | True           | True                    | True                | True    |
+| `_RAC_` | False               | True           | True                    | True                | False   |
+| `_RA_U` | False               | True           | True                    | False               | True    |
+| `_RA__` | False               | True           | True                    | False               | False   |
+| `_R_CU` | False               | True           | False                   | True                | True    |
+| `_R_C_` | False               | True           | False                   | True                | False   |
+| `_R__U` | False               | True           | False                   | False               | True    |
+| `_R___` | False               | True           | False                   | False               | False   |
+| `__ACU` | False               | False          | True                    | True                | True    |
+| `__AC_` | False               | False          | True                    | True                | False   |
+| `__A_U` | False               | False          | True                    | False               | True    |
+| `__A__` | False               | False          | True                    | False               | False   |
+| `___CU` | False               | False          | False                   | True                | True    |
+| `___C_` | False               | False          | False                   | True                | False   |
+| `____U` | False               | False          | False                   | False               | True    |
+| `_____` | False               | False          | False                   | False               | False   |
 
 ## For maintainers
 

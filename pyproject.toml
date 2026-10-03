@@ -139,3 +139,12 @@ select = ["E", "F", "W", "C901", "Q"]
 [tool.ruff.flake8-quotes]
 docstring-quotes = "double"
 inline-quotes = "double"
+
+[tool.codespell]
+# Ref: https://github.com/codespell-project/codespell#using-a-config-file
+skip = '.git,.git-meta,.gitignore,.gitattributes'
+check-hidden = true
+# ignore-regex = ''
+# fo - ISO 3166-1 alpha-2 country code for Faroe Islands, appears in CFF
+#      schema's country-code enum (src/cffconvert/schemas/*/schema.json)
+ignore-words-list = 'fo'

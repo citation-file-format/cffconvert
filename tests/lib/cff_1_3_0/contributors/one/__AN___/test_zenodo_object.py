@@ -18,7 +18,6 @@ def zenodo_object():
 @pytest.mark.lib
 @pytest.mark.zenodo
 class TestZenodoObject(Contract):
-
     def test_as_string(self):
         actual_zenodo = zenodo_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
@@ -31,19 +30,10 @@ class TestZenodoObject(Contract):
         # doesn't need an assert
 
     def test_contributors(self):
-        assert zenodo_object().add_contributors().contributors == [
-            {
-                "name": "The soccer team members",
-                "type": "Other"
-            }
-        ]
+        assert zenodo_object().add_contributors().contributors == [{"name": "The soccer team members", "type": "Other"}]
 
     def test_creators(self):
-        assert zenodo_object().add_creators().creators == [
-            {
-                "name": "The author"
-            }
-        ]
+        assert zenodo_object().add_creators().creators == [{"name": "The author"}]
 
     def test_keywords(self):
         assert zenodo_object().add_keywords().keywords is None

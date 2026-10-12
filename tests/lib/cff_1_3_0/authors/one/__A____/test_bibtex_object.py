@@ -18,7 +18,6 @@ def bibtex_object():
 @pytest.mark.lib
 @pytest.mark.bibtex
 class TestBibtexObject(Contract):
-
     def test_as_string(self):
         actual_bibtex = bibtex_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")

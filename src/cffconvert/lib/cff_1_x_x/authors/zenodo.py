@@ -3,7 +3,6 @@ from cffconvert.lib.cff_1_x_x.authors.base import BaseAuthor
 
 # pylint: disable=too-few-public-methods
 class ZenodoAuthor(BaseAuthor):
-
     def __init__(self, author):
         super().__init__(author)
         self._behaviors = {
@@ -134,144 +133,103 @@ class ZenodoAuthor(BaseAuthor):
             "_____OE": self._from_orcid,
             "_____O_": self._from_orcid,
             "______E": ZenodoAuthor._from_thin_air,
-            "_______": ZenodoAuthor._from_thin_air
+            "_______": ZenodoAuthor._from_thin_air,
         }
 
     def _from_affiliation(self):
-        return {
-            "affiliation": self._author.get("affiliation")
-        }
+        return {"affiliation": self._author.get("affiliation")}
 
     def _from_affiliation_and_orcid(self):
-        return {
-            "affiliation": self._author.get("affiliation"),
-            "orcid": self._get_id_from_orcid_url()
-        }
+        return {"affiliation": self._author.get("affiliation"), "orcid": self._get_id_from_orcid_url()}
 
     def _from_alias(self):
-        return {
-            "name": self._author.get("alias")
-        }
+        return {"name": self._author.get("alias")}
 
     def _from_alias_and_affiliation(self):
-        return {
-            "affiliation": self._author.get("affiliation"),
-            "name": self._author.get("alias")
-        }
+        return {"affiliation": self._author.get("affiliation"), "name": self._author.get("alias")}
 
     def _from_alias_and_affiliation_and_orcid(self):
         return {
             "affiliation": self._author.get("affiliation"),
             "name": self._author.get("alias"),
-            "orcid": self._get_id_from_orcid_url()
+            "orcid": self._get_id_from_orcid_url(),
         }
 
     def _from_alias_and_orcid(self):
-        return {
-            "name": self._author.get("alias"),
-            "orcid": self._get_id_from_orcid_url()
-        }
+        return {"name": self._author.get("alias"), "orcid": self._get_id_from_orcid_url()}
 
     def _from_given(self):
-        return {
-            "name": self._author.get("given-names")
-        }
+        return {"name": self._author.get("given-names")}
 
     def _from_given_and_affiliation(self):
-        return {
-            "affiliation": self._author.get("affiliation"),
-            "name": self._author.get("given-names")
-        }
+        return {"affiliation": self._author.get("affiliation"), "name": self._author.get("given-names")}
 
     def _from_given_and_affiliation_and_orcid(self):
         return {
             "affiliation": self._author.get("affiliation"),
             "name": self._author.get("given-names"),
-            "orcid": self._get_id_from_orcid_url()
+            "orcid": self._get_id_from_orcid_url(),
         }
 
     def _from_given_and_last(self):
-        return {
-            "name": self._get_full_last_name() + ", " + self._author.get("given-names")
-        }
+        return {"name": self._get_full_last_name() + ", " + self._author.get("given-names")}
 
     def _from_given_and_last_and_affiliation(self):
         return {
             "affiliation": self._author.get("affiliation"),
-            "name": self._get_full_last_name() + ", " + self._author.get("given-names")
+            "name": self._get_full_last_name() + ", " + self._author.get("given-names"),
         }
 
     def _from_given_and_last_and_affiliation_and_orcid(self):
         return {
             "affiliation": self._author.get("affiliation"),
             "name": self._get_full_last_name() + ", " + self._author.get("given-names"),
-            "orcid": self._get_id_from_orcid_url()
+            "orcid": self._get_id_from_orcid_url(),
         }
 
     def _from_given_and_last_and_orcid(self):
         return {
             "name": self._get_full_last_name() + ", " + self._author.get("given-names"),
-            "orcid": self._get_id_from_orcid_url()
+            "orcid": self._get_id_from_orcid_url(),
         }
 
     def _from_given_and_orcid(self):
-        return {
-            "name": self._author.get("given-names"),
-            "orcid": self._get_id_from_orcid_url()
-        }
+        return {"name": self._author.get("given-names"), "orcid": self._get_id_from_orcid_url()}
 
     def _from_last(self):
-        return {
-            "name": self._get_full_last_name()
-        }
+        return {"name": self._get_full_last_name()}
 
     def _from_last_and_affiliation(self):
-        return {
-            "affiliation": self._author.get("affiliation"),
-            "name": self._get_full_last_name()
-        }
+        return {"affiliation": self._author.get("affiliation"), "name": self._get_full_last_name()}
 
     def _from_last_and_affiliation_and_orcid(self):
         return {
             "affiliation": self._author.get("affiliation"),
             "name": self._get_full_last_name(),
-            "orcid": self._get_id_from_orcid_url()
+            "orcid": self._get_id_from_orcid_url(),
         }
 
     def _from_last_and_orcid(self):
-        return {
-            "name": self._get_full_last_name(),
-            "orcid": self._get_id_from_orcid_url()
-        }
+        return {"name": self._get_full_last_name(), "orcid": self._get_id_from_orcid_url()}
 
     def _from_name(self):
-        return {
-            "name": self._author.get("name")
-        }
+        return {"name": self._author.get("name")}
 
     def _from_name_and_affiliation(self):
-        return {
-            "affiliation": self._author.get("affiliation"),
-            "name": self._author.get("name")
-        }
+        return {"affiliation": self._author.get("affiliation"), "name": self._author.get("name")}
 
     def _from_name_and_affiliation_and_orcid(self):
         return {
             "affiliation": self._author.get("affiliation"),
             "name": self._author.get("name"),
-            "orcid": self._get_id_from_orcid_url()
+            "orcid": self._get_id_from_orcid_url(),
         }
 
     def _from_name_and_orcid(self):
-        return {
-            "name": self._author.get("name"),
-            "orcid": self._get_id_from_orcid_url()
-        }
+        return {"name": self._author.get("name"), "orcid": self._get_id_from_orcid_url()}
 
     def _from_orcid(self):
-        return {
-            "orcid": self._get_id_from_orcid_url()
-        }
+        return {"orcid": self._get_id_from_orcid_url()}
 
     def _get_id_from_orcid_url(self):
         return self._author.get("orcid").replace("https://orcid.org/", "")

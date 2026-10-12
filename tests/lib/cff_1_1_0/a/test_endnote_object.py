@@ -18,7 +18,6 @@ def endnote_object():
 @pytest.mark.lib
 @pytest.mark.endnote
 class TestEndnoteObject(Contract):
-
     def test_as_string(self):
         actual_endnote = endnote_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")

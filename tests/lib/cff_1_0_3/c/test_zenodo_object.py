@@ -18,7 +18,6 @@ def zenodo_object():
 @pytest.mark.lib
 @pytest.mark.zenodo
 class TestZenodoObject(Contract):
-
     def test_as_string(self):
         actual_zenodo = zenodo_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
@@ -35,15 +34,8 @@ class TestZenodoObject(Contract):
 
     def test_creators(self):
         assert zenodo_object().add_creators().creators == [
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Attema, Jisk",
-                "orcid": "0000-0002-0948-1176"
-            },
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Diblen, Faruk"
-            }
+            {"affiliation": "Netherlands eScience Center", "name": "Attema, Jisk", "orcid": "0000-0002-0948-1176"},
+            {"affiliation": "Netherlands eScience Center", "name": "Diblen, Faruk"},
         ]
 
     def test_keywords(self):
@@ -51,7 +43,7 @@ class TestZenodoObject(Contract):
             "visualization",
             "big data",
             "visual data analytics",
-            "multi-dimensional data"
+            "multi-dimensional data",
         ]
 
     def test_license(self):
@@ -61,15 +53,10 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_publication_date().publication_date == "2017-10-07"
 
     def test_related_identifiers(self):
-        assert zenodo_object().add_related_identifiers().related_identifiers == [{
-            "identifier": "10.5281/zenodo.1003346",
-            "relation": "isSupplementedBy",
-            "scheme": "doi"
-        }, {
-            "identifier": "https://github.com/NLeSC/spot",
-            "relation": "isSupplementedBy",
-            "scheme": "url"
-        }]
+        assert zenodo_object().add_related_identifiers().related_identifiers == [
+            {"identifier": "10.5281/zenodo.1003346", "relation": "isSupplementedBy", "scheme": "doi"},
+            {"identifier": "https://github.com/NLeSC/spot", "relation": "isSupplementedBy", "scheme": "url"},
+        ]
 
     def test_title(self):
         assert zenodo_object().add_title().title == "spot"

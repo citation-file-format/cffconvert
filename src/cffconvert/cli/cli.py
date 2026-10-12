@@ -10,60 +10,21 @@ options = {
     "infile": {
         "type": click.Path(),
         "default": None,
-        "help": "Path to the CITATION.cff input file. If this option is omitted" +
-                f", '.{os.sep}CITATION.cff' is used."
+        "help": "Path to the CITATION.cff input file. If this option is omitted"
+        + f", '.{os.sep}CITATION.cff' is used.",
     },
-    "outfile": {
-        "type": click.Path(),
-        "default": None,
-        "help": "Path to the output file."
-    },
+    "outfile": {"type": click.Path(), "default": None, "help": "Path to the output file."},
     "outputformat": {
-        "type": click.Choice([
-            "apalike",
-            "bibtex",
-            "cff",
-            "codemeta",
-            "endnote",
-            "ris",
-            "schema.org",
-            "zenodo"
-        ]),
+        "type": click.Choice(["apalike", "bibtex", "cff", "codemeta", "endnote", "ris", "schema.org", "zenodo"]),
         "default": None,
-        "help": "Output format."
+        "help": "Output format.",
     },
-    "url": {
-        "type": str,
-        "default": None,
-        "help": "URL to the CITATION.cff input file."
-    },
-    "show_help": {
-        "is_flag": True,
-        "flag_value": True,
-        "default": False,
-        "help": "Show help and exit."
-    },
-    "show_trace": {
-        "is_flag": True,
-        "flag_value": True,
-        "default": False,
-        "help": "Show error trace."
-    },
-    "validate_only": {
-        "is_flag": True,
-        "default": False,
-        "help": "Validate the CITATION.cff file and exit."
-    },
-    "version": {
-        "is_flag": True,
-        "default": False,
-        "help": "Print version and exit."
-    },
-    "verbose": {
-        "is_flag": True,
-        "default": False,
-        "help": "Control output verbosity."
-    }
+    "url": {"type": str, "default": None, "help": "URL to the CITATION.cff input file."},
+    "show_help": {"is_flag": True, "flag_value": True, "default": False, "help": "Show help and exit."},
+    "show_trace": {"is_flag": True, "flag_value": True, "default": False, "help": "Show error trace."},
+    "validate_only": {"is_flag": True, "default": False, "help": "Validate the CITATION.cff file and exit."},
+    "version": {"is_flag": True, "default": False, "help": "Print version and exit."},
+    "verbose": {"is_flag": True, "default": False, "help": "Control output verbosity."},
 }
 epilog = """If this program is useful to you, consider giving it a star on GitHub:
 https://github.com/citation-file-format/cffconvert"""

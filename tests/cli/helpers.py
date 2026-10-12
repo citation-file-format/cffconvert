@@ -11,7 +11,7 @@ def get_formats():
         pytest.param("endnote", "endnote.enw", id="endnote", marks=pytest.mark.endnote),
         pytest.param("ris", "ris.txt", id="ris", marks=pytest.mark.ris),
         pytest.param("schema.org", "schemaorg.json", id="schema.org", marks=pytest.mark.schemaorg),
-        pytest.param("zenodo", ".zenodo.json", id="zenodo", marks=pytest.mark.zenodo)
+        pytest.param("zenodo", ".zenodo.json", id="zenodo", marks=pytest.mark.zenodo),
     ]
 
 

@@ -3,7 +3,6 @@ from abc import abstractmethod
 
 
 class Contract(ABC):
-
     @abstractmethod
     def test_check_cffobj(self):
         pass

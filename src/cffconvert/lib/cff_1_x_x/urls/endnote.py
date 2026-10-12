@@ -3,7 +3,6 @@ from cffconvert.lib.cff_1_x_x.urls.base import BaseUrl
 
 # pylint: disable=too-few-public-methods
 class EndnoteUrl(BaseUrl):
-
     def __init__(self, cffobj):
         super().__init__(cffobj)
         self._behaviors = {
@@ -38,7 +37,7 @@ class EndnoteUrl(BaseUrl):
             "___CU": self._from_url,
             "___C_": self._from_repository_code,
             "____U": self._from_url,
-            "_____": EndnoteUrl._from_thin_air
+            "_____": EndnoteUrl._from_thin_air,
         }
 
     def _from_identifiers_url(self):
@@ -64,11 +63,13 @@ class EndnoteUrl(BaseUrl):
         return "%U " + self._cffobj.get("url") + "\n"
 
     def as_string(self):
-        key = "".join([
-            self._has_identifiers_url(),
-            self._has_repository(),
-            self._has_repository_artifact(),
-            self._has_repository_code(),
-            self._has_url()
-        ])
+        key = "".join(
+            [
+                self._has_identifiers_url(),
+                self._has_repository(),
+                self._has_repository_artifact(),
+                self._has_repository_code(),
+                self._has_url(),
+            ]
+        )
         return self._behaviors[key]()

@@ -18,7 +18,6 @@ def bibtex_object():
 @pytest.mark.lib
 @pytest.mark.bibtex
 class TestBibtexObject(Contract):
-
     def test_author(self):
         assert bibtex_object().add_author().author == "author = {von der Spaaks Jr., Jurriaan H.}"
 

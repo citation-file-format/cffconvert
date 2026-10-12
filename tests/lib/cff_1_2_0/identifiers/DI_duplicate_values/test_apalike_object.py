@@ -18,7 +18,6 @@ def apalike_object():
 @pytest.mark.lib
 @pytest.mark.apalike
 class TestApalikeObject(Contract):
-
     def test_as_string(self):
         actual_apalike = apalike_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "apalike.txt")

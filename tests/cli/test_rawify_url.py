@@ -26,8 +26,12 @@ def test_github_url_with_owner_repo_blob_branchname_filename():
 
 @pytest.mark.cli
 def test_github_url_with_owner_repo_blob_branchname_filename_deep():
-    actual = rawify_url("https://github.com/theownername/thereponame/blob/thebranchname/somedir/someotherdir/thefilename")
-    expected = "https://raw.githubusercontent.com/theownername/thereponame/thebranchname/somedir/someotherdir/thefilename"
+    actual = rawify_url(
+        "https://github.com/theownername/thereponame/blob/thebranchname/somedir/someotherdir/thefilename"
+    )
+    expected = (
+        "https://raw.githubusercontent.com/theownername/thereponame/thebranchname/somedir/someotherdir/thefilename"
+    )
     assert actual == expected
 
 
@@ -40,7 +44,9 @@ def test_github_url_with_owner_repo_blob_sha():
 
 @pytest.mark.cli
 def test_github_url_with_owner_repo_blob_sha_filename():
-    actual = rawify_url("https://github.com/theownername/thereponame/blob/0123456789abcdef0123456789abcdef01234567/thefilename")
+    actual = rawify_url(
+        "https://github.com/theownername/thereponame/blob/0123456789abcdef0123456789abcdef01234567/thefilename"
+    )
     expected = "https://raw.githubusercontent.com/theownername/thereponame/0123456789abcdef0123456789abcdef01234567/thefilename"
     assert actual == expected
 
@@ -68,7 +74,9 @@ def test_github_url_with_owner_repo_commit_sha():
 
 @pytest.mark.cli
 def test_github_url_with_owner_repo_commit_sha_filename():
-    actual = rawify_url("https://github.com/theownername/thereponame/commit/0123456789abcdef0123456789abcdef01234567/thefilename")
+    actual = rawify_url(
+        "https://github.com/theownername/thereponame/commit/0123456789abcdef0123456789abcdef01234567/thefilename"
+    )
     expected = "https://raw.githubusercontent.com/theownername/thereponame/0123456789abcdef0123456789abcdef01234567/thefilename"
     assert actual == expected
 
@@ -96,7 +104,9 @@ def test_github_url_with_owner_repo_tree_sha():
 
 @pytest.mark.cli
 def test_github_url_with_owner_repo_tree_sha_filename():
-    actual = rawify_url("https://github.com/theownername/thereponame/tree/0123456789abcdef0123456789abcdef01234567/thefilename")
+    actual = rawify_url(
+        "https://github.com/theownername/thereponame/tree/0123456789abcdef0123456789abcdef01234567/thefilename"
+    )
     expected = "https://raw.githubusercontent.com/theownername/thereponame/0123456789abcdef0123456789abcdef01234567/thefilename"
     assert actual == expected
 

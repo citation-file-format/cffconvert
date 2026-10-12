@@ -77,7 +77,7 @@ def cffconvert(request):
         "endnote": citation.as_endnote,
         "ris": citation.as_ris,
         "schema.org": citation.as_schemaorg,
-        "zenodo": citation.as_zenodo
+        "zenodo": citation.as_zenodo,
     }[outputformat]()
 
     return Response(outstr, mimetype=mimetype_plain)

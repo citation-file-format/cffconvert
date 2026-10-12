@@ -2,7 +2,6 @@ from abc import abstractmethod
 
 
 class RisObjectShared:
-
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):
@@ -23,25 +22,24 @@ class RisObjectShared:
             self.add_all()
 
     def __str__(self):
-        items = [item for item in [self.abstract,
-                                   self.author,
-                                   self.date,
-                                   self.doi,
-                                   self.keywords,
-                                   self.year,
-                                   self.title,
-                                   self.url] if item is not None]
+        items = [
+            item
+            for item in [
+                self.abstract,
+                self.author,
+                self.date,
+                self.doi,
+                self.keywords,
+                self.year,
+                self.title,
+                self.url,
+            ]
+            if item is not None
+        ]
         return "TY  - GEN\n" + "".join(items) + "ER\n"
 
     def add_all(self):
-        self.add_abstract() \
-            .add_author()   \
-            .add_date()     \
-            .add_doi()      \
-            .add_keywords()  \
-            .add_title()    \
-            .add_url()      \
-            .add_year()
+        self.add_abstract().add_author().add_date().add_doi().add_keywords().add_title().add_url().add_year()
         return self
 
     def add_abstract(self):

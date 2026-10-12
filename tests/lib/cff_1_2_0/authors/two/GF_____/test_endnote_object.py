@@ -18,7 +18,6 @@ def endnote_object():
 @pytest.mark.lib
 @pytest.mark.endnote
 class TestEndnoteObject(Contract):
-
     def test_as_string(self):
         actual_endnote = endnote_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
@@ -27,8 +26,10 @@ class TestEndnoteObject(Contract):
         assert actual_endnote == expected_endnote
 
     def test_author(self):
-        assert endnote_object().add_author().author == "%A van der Vaart III, Rafael\n" + \
-                                                       "%A dos Santos Aveiro, Cristiano Ronaldo\n"
+        assert (
+            endnote_object().add_author().author
+            == "%A van der Vaart III, Rafael\n" + "%A dos Santos Aveiro, Cristiano Ronaldo\n"
+        )
 
     def test_check_cffobj(self):
         endnote_object().check_cffobj()

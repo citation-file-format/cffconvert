@@ -16,6 +16,6 @@ def get_every_key():
         name_values,
         affiliation_values,
         orcid_values,
-        email_values
+        email_values,
     ]
     return ["".join(combo) for combo in itertools.product(*combined)]

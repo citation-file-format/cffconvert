@@ -3,7 +3,6 @@ from cffconvert.lib.cff_1_x_x.authors.base import BaseAuthor
 
 # pylint: disable=too-few-public-methods
 class RisAuthor(BaseAuthor):
-
     def __init__(self, author):
         super().__init__(author)
         self._behaviors = {
@@ -134,23 +133,23 @@ class RisAuthor(BaseAuthor):
             "_____OE": RisAuthor._from_thin_air,
             "_____O_": RisAuthor._from_thin_air,
             "______E": RisAuthor._from_thin_air,
-            "_______": RisAuthor._from_thin_air
+            "_______": RisAuthor._from_thin_air,
         }
 
     def _from_alias(self):
-        return f"AU  - { self._author.get('alias') }\n"
+        return f"AU  - {self._author.get('alias')}\n"
 
     def _from_given_and_last(self):
-        return f"AU  - { self._get_full_last_name() }, { self._author.get('given-names') }\n"
+        return f"AU  - {self._get_full_last_name()}, {self._author.get('given-names')}\n"
 
     def _from_given(self):
-        return f"AU  - { self._author.get('given-names') }\n"
+        return f"AU  - {self._author.get('given-names')}\n"
 
     def _from_last(self):
-        return f"AU  - { self._get_full_last_name() }\n"
+        return f"AU  - {self._get_full_last_name()}\n"
 
     def _from_name(self):
-        return f"AU  - { self._author.get('name') }\n"
+        return f"AU  - {self._author.get('name')}\n"
 
     def as_string(self):
         key = self._get_key()

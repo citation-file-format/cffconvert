@@ -18,7 +18,6 @@ def codemeta_object():
 @pytest.mark.lib
 @pytest.mark.codemeta
 class TestCodemetaObject(Contract):
-
     def test_as_string(self):
         actual_codemeta = codemeta_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "codemeta.json")
@@ -27,11 +26,9 @@ class TestCodemetaObject(Contract):
         assert actual_codemeta == expected_codemeta
 
     def test_author(self):
-        assert codemeta_object().add_author().author == [{
-            "@type": "Person",
-            "familyName": "van der Vaart III",
-            "givenName": "Rafael"
-        }]
+        assert codemeta_object().add_author().author == [
+            {"@type": "Person", "familyName": "van der Vaart III", "givenName": "Rafael"}
+        ]
 
     def test_check_cffobj(self):
         codemeta_object().check_cffobj()

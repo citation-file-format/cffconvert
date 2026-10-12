@@ -18,7 +18,6 @@ def schemaorg_object():
 @pytest.mark.lib
 @pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
-
     def test_as_string(self):
         actual_schemaorg = schemaorg_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
@@ -27,23 +26,20 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self):
-        assert schemaorg_object().add_author().author == [{
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Springsteen"
+        assert schemaorg_object().add_author().author == [
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Springsteen"},
+                "familyName": "Van Zandt",
+                "givenName": "Steven",
             },
-            "familyName": "Van Zandt",
-            "givenName": "Steven"
-        }, {
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "coverband"
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "coverband"},
+                "familyName": "van Zandt",
+                "givenName": "Steven",
             },
-            "familyName": "van Zandt",
-            "givenName": "Steven"
-        }]
+        ]
 
     def test_check_cffobj(self):
         schemaorg_object().check_cffobj()

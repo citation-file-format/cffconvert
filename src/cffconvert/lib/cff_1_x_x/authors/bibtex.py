@@ -3,7 +3,6 @@ from cffconvert.lib.cff_1_x_x.authors.base import BaseAuthor
 
 # pylint: disable=too-few-public-methods
 class BibtexAuthor(BaseAuthor):
-
     def __init__(self, author):
         super().__init__(author)
         self._behaviors = {
@@ -134,7 +133,7 @@ class BibtexAuthor(BaseAuthor):
             "_____OE": BibtexAuthor._from_thin_air,
             "_____O_": BibtexAuthor._from_thin_air,
             "______E": BibtexAuthor._from_thin_air,
-            "_______": BibtexAuthor._from_thin_air
+            "_______": BibtexAuthor._from_thin_air,
         }
 
     def _from_alias(self):
@@ -150,7 +149,7 @@ class BibtexAuthor(BaseAuthor):
         nameparts = [
             self._author.get("name-particle"),
             self._author.get("family-names"),
-            self._author.get("name-suffix")
+            self._author.get("name-suffix"),
         ]
         return " ".join([n for n in nameparts if n is not None])
 

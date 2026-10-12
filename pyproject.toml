@@ -63,11 +63,11 @@ Repository = "https://github.com/citation-file-format/cffconvert"
 [project.optional-dependencies]
 dev = [
     "build",
-    "isort == 5.12.0",
+    "isort == 6.0.1",
     "pre-commit",
     "prospector == 1.10.2",
     "pyroma == 4.2",
-    "ruff == 0.0.278"
+    "ruff == 0.11.11"
 ]
 gcloud = [
     "flask"
@@ -132,10 +132,10 @@ testpaths = [
 
 [tool.ruff]
 line-length = 120
-select = ["E", "F", "W", "C901", "Q"]
+lint.select = ["E", "F", "W", "C901", "Q"]
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-[tool.ruff.flake8-quotes]
+[tool.ruff.lint.flake8-quotes]
 docstring-quotes = "double"
 inline-quotes = "double"

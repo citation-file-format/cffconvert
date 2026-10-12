@@ -18,7 +18,6 @@ def ris_object():
 @pytest.mark.lib
 @pytest.mark.ris
 class TestRisObject(Contract):
-
     def test_abstract(self):
         assert ris_object().add_abstract().abstract is None
 
@@ -43,8 +42,10 @@ class TestRisObject(Contract):
         assert ris_object().add_doi().doi == "DO  - 10.5281/zenodo.1003346\n"
 
     def test_keywords(self):
-        assert ris_object().add_keywords().keywords == "KW  - visualization\nKW  - big data\n" + \
-                                                       "KW  - visual data analytics\nKW  - multi-dimensional data\n"
+        assert (
+            ris_object().add_keywords().keywords
+            == "KW  - visualization\nKW  - big data\n" + "KW  - visual data analytics\nKW  - multi-dimensional data\n"
+        )
 
     def test_title(self):
         assert ris_object().add_title().title == "TI  - spot\n"

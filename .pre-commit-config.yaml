@@ -8,7 +8,7 @@ repos:
         name: Validating CITATION.cff using 'cffconvert'
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 6.0.1
     hooks:
       - id: isort
         name: Sorting Python import lines using 'isort'
@@ -23,20 +23,20 @@ repos:
         name: Assessing the package metadata using 'pyroma'
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.278
+    rev: 44b5042edab9382aba712eed4f9c7bab7a3d6a3e # 0.17.0
     hooks:
       - id: ruff
         name: Linting using 'ruff'
 
   - repo: https://github.com/PyCQA/prospector
-    rev: 1.10.2
+    rev: 051d8abf6401a5dd4f4f01922ac569a48a4ab45c # 1.19.1
     hooks:
       - id: prospector
         name: Linting the code base using 'prospector'
         args: ["--profile-path", ".prospector.yml"]
 
   - repo: https://github.com/tcort/markdown-link-check
-    rev: bde6fd2675901c55f8a356a67475257d44af51ae # 3.11.2
+    rev: 275c27c5035a5b4a656fe0e21a4c1403c118c767 # 3.15.0
     hooks:
       - id: markdown-link-check
         args: [-q]

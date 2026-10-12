@@ -18,16 +18,12 @@ def codemeta_object():
 @pytest.mark.lib
 @pytest.mark.codemeta
 class TestCodemetaObject(Contract):
-
     def test_check_cffobj(self):
         codemeta_object().check_cffobj()
         # doesn't need an assert
 
     def test_author(self):
-        assert codemeta_object().add_author().author == [{
-            "@type": "Organization",
-            "name": "Test author"
-        }]
+        assert codemeta_object().add_author().author == [{"@type": "Organization", "name": "Test author"}]
 
     def test_code_repository(self):
         assert codemeta_object().add_urls().code_repository is None

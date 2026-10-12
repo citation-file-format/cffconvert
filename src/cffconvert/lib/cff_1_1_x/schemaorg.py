@@ -4,10 +4,7 @@ from cffconvert.lib.cff_1_x_x.urls.schemaorg import SchemaorgUrls
 
 
 class SchemaorgObject(Shared):
-
-    supported_cff_versions = [
-        "1.1.0"
-    ]
+    supported_cff_versions = ["1.1.0"]
 
     def __init__(self, cffobj, context="https://schema.org", initialize_empty=False):
         super().__init__(cffobj)

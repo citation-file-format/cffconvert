@@ -4,12 +4,7 @@ from cffconvert.lib.cff_1_x_x.urls.ris import RisUrl
 
 
 class RisObject(Shared):
-
-    supported_cff_versions = [
-        "1.0.1",
-        "1.0.2",
-        "1.0.3"
-    ]
+    supported_cff_versions = ["1.0.1", "1.0.2", "1.0.3"]
 
     def add_author(self):
         authors_cff = self.cffobj.get("authors", [])

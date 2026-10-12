@@ -3,7 +3,6 @@ from abc import abstractmethod
 
 
 class SchemaorgObjectShared:
-
     supported_cff_versions = None
 
     def __init__(self, cffobj):
@@ -36,23 +35,13 @@ class SchemaorgObjectShared:
             "license": self.license,
             "name": self.name,
             "url": self.url,
-            "version": self.version
+            "version": self.version,
         }
         filtered = [item for item in data.items() if item[1] is not None]
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + "\n"
 
     def add_all(self):
-        self.add_author()           \
-            .add_contributor()      \
-            .add_date_published()   \
-            .add_description()      \
-            .add_identifier()       \
-            .add_keywords()         \
-            .add_license()          \
-            .add_name()             \
-            .add_type()             \
-            .add_urls()             \
-            .add_version()
+        self.add_author().add_contributor().add_date_published().add_description().add_identifier().add_keywords().add_license().add_name().add_type().add_urls().add_version()
         return self
 
     @abstractmethod

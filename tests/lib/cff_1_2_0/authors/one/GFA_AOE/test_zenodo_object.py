@@ -18,7 +18,6 @@ def zenodo_object():
 @pytest.mark.lib
 @pytest.mark.zenodo
 class TestZenodoObject(Contract):
-
     def test_as_string(self):
         actual_zenodo = zenodo_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
@@ -38,7 +37,7 @@ class TestZenodoObject(Contract):
             {
                 "affiliation": "Netherlands eScience Center",
                 "name": "von der Spaaks Jr., Jurriaan H.",
-                "orcid": "0000-0002-7064-4069"
+                "orcid": "0000-0002-7064-4069",
             }
         ]
 

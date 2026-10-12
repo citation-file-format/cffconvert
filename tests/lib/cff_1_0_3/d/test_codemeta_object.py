@@ -18,7 +18,6 @@ def codemeta_object():
 @pytest.mark.lib
 @pytest.mark.codemeta
 class TestCodemetaObject(Contract):
-
     def test_as_string(self):
         actual_codemeta = codemeta_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "codemeta.json")
@@ -27,48 +26,40 @@ class TestCodemetaObject(Contract):
         assert actual_codemeta == expected_codemeta
 
     def test_author(self):
-        assert codemeta_object().add_author().author == [{
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
+        assert codemeta_object().add_author().author == [
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "familyName": "Spaaks",
+                "givenName": "Jurriaan H.",
             },
-            "familyName": "Spaaks",
-            "givenName": "Jurriaan H."
-        }, {
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "familyName": "Klaver",
+                "givenName": "Tom",
             },
-            "familyName": "Klaver",
-            "givenName": "Tom"
-        }, {
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "familyName": "Verhoeven",
+                "givenName": "Stefan",
             },
-            "familyName": "Verhoeven",
-            "givenName": "Stefan"
-        }, {
-            "@id": "https://orcid.org/0000-0003-4925-7248",
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Humboldt-Universität zu Berlin"
+            {
+                "@id": "https://orcid.org/0000-0003-4925-7248",
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Humboldt-Universität zu Berlin"},
+                "familyName": "Druskat",
+                "givenName": "Stephan",
             },
-            "familyName": "Druskat",
-            "givenName": "Stephan"
-        }]
+        ]
 
     def test_check_cffobj(self):
         codemeta_object().check_cffobj()
         # doesn't need an assert
 
     def test_code_repository(self):
-        assert codemeta_object().add_urls().code_repository == "https://github.com/citation-file-format" + \
-                                                               "/cffconvert"
+        assert codemeta_object().add_urls().code_repository == "https://github.com/citation-file-format" + "/cffconvert"
 
     def test_date_published(self):
         assert codemeta_object().add_date_published().date_published == "2018-07-25"

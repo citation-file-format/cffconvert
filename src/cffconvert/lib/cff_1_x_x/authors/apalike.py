@@ -3,7 +3,6 @@ from cffconvert.lib.cff_1_x_x.authors.base import BaseAuthor
 
 # pylint: disable=too-few-public-methods
 class ApalikeAuthor(BaseAuthor):
-
     def __init__(self, author):
         super().__init__(author)
         self._behaviors = {
@@ -134,7 +133,7 @@ class ApalikeAuthor(BaseAuthor):
             "_____OE": ApalikeAuthor._from_thin_air,
             "_____O_": ApalikeAuthor._from_thin_air,
             "______E": ApalikeAuthor._from_thin_air,
-            "_______": ApalikeAuthor._from_thin_air
+            "_______": ApalikeAuthor._from_thin_air,
         }
 
     def _from_alias(self):

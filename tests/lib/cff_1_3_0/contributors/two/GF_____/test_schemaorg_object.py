@@ -18,7 +18,6 @@ def schemaorg_object():
 @pytest.mark.lib
 @pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
-
     def test_as_string(self):
         actual_schemaorg = schemaorg_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
@@ -27,10 +26,7 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self):
-        assert schemaorg_object().add_author().author == [{
-            "@type": "Organization",
-            "name": "The author"
-        }]
+        assert schemaorg_object().add_author().author == [{"@type": "Organization", "name": "The author"}]
 
     def test_check_cffobj(self):
         schemaorg_object().check_cffobj()
@@ -40,15 +36,10 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_urls().code_repository is None
 
     def test_contributor(self):
-        assert schemaorg_object().add_contributor().contributor == [{
-            "@type": "Person",
-            "familyName": "van der Vaart III",
-            "givenName": "Rafael"
-        }, {
-            "@type": "Person",
-            "familyName": "dos Santos Aveiro",
-            "givenName": "Cristiano Ronaldo"
-        }]
+        assert schemaorg_object().add_contributor().contributor == [
+            {"@type": "Person", "familyName": "van der Vaart III", "givenName": "Rafael"},
+            {"@type": "Person", "familyName": "dos Santos Aveiro", "givenName": "Cristiano Ronaldo"},
+        ]
 
     def test_date_published(self):
         assert schemaorg_object().add_date_published().date_published is None

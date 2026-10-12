@@ -18,16 +18,12 @@ def schemaorg_object():
 @pytest.mark.lib
 @pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
-
     def test_check_cffobj(self):
         schemaorg_object().check_cffobj()
         # doesn't need an assert
 
     def test_author(self):
-        assert schemaorg_object().add_author().author == [{
-            "@type": "Organization",
-            "name": "Test author"
-        }]
+        assert schemaorg_object().add_author().author == [{"@type": "Organization", "name": "Test author"}]
 
     def test_code_repository(self):
         assert schemaorg_object().add_urls().code_repository == "https://github.com/the-url-from-repository-code"

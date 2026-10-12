@@ -15,12 +15,7 @@ from cffconvert.root import get_package_root
 
 
 class Citation_1_0_x(Contract):  # noqa
-
-    supported_cff_versions = [
-        "1.0.1",
-        "1.0.2",
-        "1.0.3"
-    ]
+    supported_cff_versions = ["1.0.1", "1.0.2", "1.0.3"]
 
     def __init__(self, cffstr, cffversion):
         self.cffstr = cffstr

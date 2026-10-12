@@ -2,7 +2,6 @@ from abc import abstractmethod
 
 
 class EndnoteObjectShared:
-
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):
@@ -21,21 +20,13 @@ class EndnoteObjectShared:
             self.add_all()
 
     def __str__(self):
-        items = [item for item in [self.author,
-                                   self.year,
-                                   self.keyword,
-                                   self.doi,
-                                   self.name,
-                                   self.url] if item is not None]
+        items = [
+            item for item in [self.author, self.year, self.keyword, self.doi, self.name, self.url] if item is not None
+        ]
         return "%0 Generic\n" + "".join(items)
 
     def add_all(self):
-        self.add_author() \
-            .add_doi() \
-            .add_keyword() \
-            .add_name() \
-            .add_url() \
-            .add_year()
+        self.add_author().add_doi().add_keyword().add_name().add_url().add_year()
         return self
 
     @abstractmethod

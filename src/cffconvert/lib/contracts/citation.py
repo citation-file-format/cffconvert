@@ -3,7 +3,6 @@ from abc import abstractmethod
 
 
 class Contract(ABC):
-
     @abstractmethod
     def _get_schema(self):
         pass

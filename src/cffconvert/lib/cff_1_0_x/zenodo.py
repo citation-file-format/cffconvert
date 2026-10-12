@@ -3,12 +3,7 @@ from cffconvert.lib.cff_1_x_x.zenodo import ZenodoObjectShared as Shared
 
 
 class ZenodoObject(Shared):
-
-    supported_cff_versions = [
-        "1.0.1",
-        "1.0.2",
-        "1.0.3"
-    ]
+    supported_cff_versions = ["1.0.1", "1.0.2", "1.0.3"]
 
     def add_contributors(self):
         # contributors doesn't exist in CFF v1.0.x

@@ -18,7 +18,6 @@ def bibtex_object():
 @pytest.mark.lib
 @pytest.mark.bibtex
 class TestBibtexObject(Contract):
-
     def test_as_string(self):
         actual_bibtex = bibtex_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "bibtex.bib")
@@ -27,8 +26,10 @@ class TestBibtexObject(Contract):
         assert actual_bibtex == expected_bibtex
 
     def test_author(self):
-        assert bibtex_object().add_author().author == "author = {Spaaks, Jurriaan H. and Klaver" + \
-                                                      ", Tom and Verhoeven, Stefan}"
+        assert (
+            bibtex_object().add_author().author
+            == "author = {Spaaks, Jurriaan H. and Klaver" + ", Tom and Verhoeven, Stefan}"
+        )
 
     def test_check_cffobj(self):
         bibtex_object().check_cffobj()

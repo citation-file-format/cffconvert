@@ -18,7 +18,6 @@ def zenodo_object():
 @pytest.mark.lib
 @pytest.mark.zenodo
 class TestZenodoObject(Contract):
-
     def test_as_string(self):
         actual_zenodo = zenodo_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
@@ -35,18 +34,9 @@ class TestZenodoObject(Contract):
 
     def test_creators(self):
         assert zenodo_object().add_creators().creators == [
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Spaaks, Jurriaan H."
-            },
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Klaver, Tom"
-            },
-            {
-                "affiliation": "Netherlands eScience Center",
-                "name": "Verhoeven, Stefan"
-            }
+            {"affiliation": "Netherlands eScience Center", "name": "Spaaks, Jurriaan H."},
+            {"affiliation": "Netherlands eScience Center", "name": "Klaver, Tom"},
+            {"affiliation": "Netherlands eScience Center", "name": "Verhoeven, Stefan"},
         ]
 
     def test_keywords(self):
@@ -59,15 +49,14 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_publication_date().publication_date == "2018-05-09"
 
     def test_related_identifiers(self):
-        assert zenodo_object().add_related_identifiers().related_identifiers == [{
-            "identifier": "10.5281/zenodo.1162057",
-            "relation": "isSupplementedBy",
-            "scheme": "doi"
-        }, {
-            "identifier": "https://github.com/citation-file-format/cffconvert",
-            "relation": "isSupplementedBy",
-            "scheme": "url"
-        }]
+        assert zenodo_object().add_related_identifiers().related_identifiers == [
+            {"identifier": "10.5281/zenodo.1162057", "relation": "isSupplementedBy", "scheme": "doi"},
+            {
+                "identifier": "https://github.com/citation-file-format/cffconvert",
+                "relation": "isSupplementedBy",
+                "scheme": "url",
+            },
+        ]
 
     def test_title(self):
         assert zenodo_object().add_title().title == "cffconvert"

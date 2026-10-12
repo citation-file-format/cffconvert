@@ -3,7 +3,6 @@ from cffconvert.lib.cff_1_x_x.urls.base import BaseUrl
 
 # pylint: disable=too-few-public-methods
 class RisUrl(BaseUrl):
-
     def __init__(self, cffobj):
         super().__init__(cffobj)
         self._behaviors = {
@@ -38,37 +37,39 @@ class RisUrl(BaseUrl):
             "___CU": self._from_url,
             "___C_": self._from_repository_code,
             "____U": self._from_url,
-            "_____": RisUrl._from_thin_air
+            "_____": RisUrl._from_thin_air,
         }
 
     def _from_identifiers_url(self):
         urls = self._get_urls_from_identifiers()
         if len(urls) > 0:
-            return f"UR  - { urls[0].get('value') }\n"
+            return f"UR  - {urls[0].get('value')}\n"
         return None
 
     def _from_repository(self):
-        return f"UR  - { self._cffobj.get('repository') }\n"
+        return f"UR  - {self._cffobj.get('repository')}\n"
 
     def _from_repository_artifact(self):
-        return f"UR  - { self._cffobj.get('repository-artifact') }\n"
+        return f"UR  - {self._cffobj.get('repository-artifact')}\n"
 
     def _from_repository_code(self):
-        return f"UR  - { self._cffobj.get('repository-code') }\n"
+        return f"UR  - {self._cffobj.get('repository-code')}\n"
 
     @staticmethod
     def _from_thin_air():
         return None
 
     def _from_url(self):
-        return f"UR  - { self._cffobj.get('url') }\n"
+        return f"UR  - {self._cffobj.get('url')}\n"
 
     def as_string(self):
-        key = "".join([
-            self._has_identifiers_url(),
-            self._has_repository(),
-            self._has_repository_artifact(),
-            self._has_repository_code(),
-            self._has_url()
-        ])
+        key = "".join(
+            [
+                self._has_identifiers_url(),
+                self._has_repository(),
+                self._has_repository_artifact(),
+                self._has_repository_code(),
+                self._has_url(),
+            ]
+        )
         return self._behaviors[key]()

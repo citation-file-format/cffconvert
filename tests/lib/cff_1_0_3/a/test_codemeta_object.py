@@ -18,7 +18,6 @@ def codemeta_object():
 @pytest.mark.lib
 @pytest.mark.codemeta
 class TestCodemetaObject(Contract):
-
     def test_as_string(self):
         actual_codemeta = codemeta_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "codemeta.json")
@@ -27,32 +26,28 @@ class TestCodemetaObject(Contract):
         assert actual_codemeta == expected_codemeta
 
     def test_author(self):
-        assert codemeta_object().add_author().author == [{
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
+        assert codemeta_object().add_author().author == [
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "familyName": "Spaaks",
+                "givenName": "Jurriaan H.",
+                "email": "my@email.notexist",
             },
-            "familyName": "Spaaks",
-            "givenName": "Jurriaan H.",
-            "email": "my@email.notexist"
-        }, {
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "familyName": "Klaver",
+                "givenName": "Tom",
             },
-            "familyName": "Klaver",
-            "givenName": "Tom"
-        }]
+        ]
 
     def test_check_cffobj(self):
         codemeta_object().check_cffobj()
         # doesn't need an assert
 
     def test_code_repository(self):
-        assert codemeta_object().add_urls().code_repository == "https://github.com/citation-file-format" + \
-                                                               "/cffconvert"
+        assert codemeta_object().add_urls().code_repository == "https://github.com/citation-file-format" + "/cffconvert"
 
     def test_date_published(self):
         assert codemeta_object().add_date_published().date_published == "2018-01-16"

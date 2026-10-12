@@ -18,23 +18,21 @@ def codemeta_object():
 @pytest.mark.lib
 @pytest.mark.codemeta
 class TestCodemetaObject(Contract):
-
     def test_check_cffobj(self):
         codemeta_object().check_cffobj()
         # doesn't need an assert
 
     def test_author(self):
-        assert codemeta_object().add_author().author == [{
-            "@id": "https://orcid.org/0000-0002-7064-4069",
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
-            },
-            "alternateName": "jspaaks",
-            "familyName": "von der Spaaks Jr.",
-            "givenName": "Jurriaan H."
-        }]
+        assert codemeta_object().add_author().author == [
+            {
+                "@id": "https://orcid.org/0000-0002-7064-4069",
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "alternateName": "jspaaks",
+                "familyName": "von der Spaaks Jr.",
+                "givenName": "Jurriaan H.",
+            }
+        ]
 
     def test_code_repository(self):
         assert codemeta_object().add_urls().code_repository is None

@@ -18,7 +18,6 @@ def endnote_object():
 @pytest.mark.lib
 @pytest.mark.endnote
 class TestEndnoteObject(Contract):
-
     def test_check_cffobj(self):
         endnote_object().check_cffobj()
         # doesn't need an assert

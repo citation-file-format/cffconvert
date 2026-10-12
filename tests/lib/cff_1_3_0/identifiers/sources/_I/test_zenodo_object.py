@@ -18,7 +18,6 @@ def zenodo_object():
 @pytest.mark.lib
 @pytest.mark.zenodo
 class TestZenodoObject(Contract):
-
     def test_as_string(self):
         actual_zenodo = zenodo_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), ".zenodo.json")
@@ -34,11 +33,7 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_contributors().contributors is None
 
     def test_creators(self):
-        assert zenodo_object().add_creators().creators == [
-            {
-                "name": "Test author"
-            }
-        ]
+        assert zenodo_object().add_creators().creators == [{"name": "Test author"}]
 
     def test_keywords(self):
         assert zenodo_object().add_keywords().keywords is None
@@ -50,11 +45,9 @@ class TestZenodoObject(Contract):
         assert zenodo_object().add_publication_date().publication_date is None
 
     def test_related_identifiers(self):
-        assert zenodo_object().add_related_identifiers().related_identifiers == [{
-            "identifier": "10.0000/from-identifiers",
-            "relation": "isSupplementedBy",
-            "scheme": "doi"
-        }]
+        assert zenodo_object().add_related_identifiers().related_identifiers == [
+            {"identifier": "10.0000/from-identifiers", "relation": "isSupplementedBy", "scheme": "doi"}
+        ]
 
     def test_title(self):
         assert zenodo_object().add_title().title == "Test title"

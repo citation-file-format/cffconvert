@@ -3,7 +3,6 @@ from abc import abstractmethod
 
 
 class ZenodoObjectShared:
-
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):
@@ -36,22 +35,13 @@ class ZenodoObjectShared:
             "related_identifiers": self.related_identifiers,
             "title": self.title,
             "upload_type": self.upload_type,
-            "version": self.version
+            "version": self.version,
         }
         filtered = [item for item in data.items() if item[1] is not None]
         return json.dumps(dict(filtered), sort_keys=sort_keys, indent=indent, ensure_ascii=False) + "\n"
 
     def add_all(self):
-        self.add_contributors()        \
-            .add_creators()            \
-            .add_description()         \
-            .add_keywords()            \
-            .add_license()             \
-            .add_publication_date()    \
-            .add_related_identifiers() \
-            .add_title()               \
-            .add_upload_type()         \
-            .add_version()
+        self.add_contributors().add_creators().add_description().add_keywords().add_license().add_publication_date().add_related_identifiers().add_title().add_upload_type().add_version()
         return self
 
     @abstractmethod
@@ -87,7 +77,7 @@ class ZenodoObjectShared:
                 "IsMetadataFor",
                 "IsOriginalFormOf",
                 "IsVariantFormOf",
-                "IsVersionOf"
+                "IsVersionOf",
             ]
             return None if condition else rel[0].lower() + rel[1:]
 
@@ -99,11 +89,13 @@ class ZenodoObjectShared:
             if identifier.get("type") == "other" or identifier.get("value") in seen:
                 # identifier type unsupported or identifier value seen already
                 continue
-            related_identifiers.append({
-                "identifier": identifier.get("value"),
-                "relation": map_relation_type(identifier.get("relation")) or "isSupplementedBy",
-                "scheme": identifier.get("type")
-            })
+            related_identifiers.append(
+                {
+                    "identifier": identifier.get("value"),
+                    "relation": map_relation_type(identifier.get("relation")) or "isSupplementedBy",
+                    "scheme": identifier.get("type"),
+                }
+            )
             seen.append(identifier.get("value"))
         # add from doi
         doi = self.cffobj.get("doi")
@@ -111,11 +103,7 @@ class ZenodoObjectShared:
             # doi not available or seen already
             pass
         else:
-            related_identifiers.append({
-                "identifier": doi,
-                "relation": "isSupplementedBy",
-                "scheme": "doi"
-            })
+            related_identifiers.append({"identifier": doi, "relation": "isSupplementedBy", "scheme": "doi"})
             seen.append(doi)
         # add from url sources
         for cffkey in ["repository", "repository-artifact", "repository-code", "url"]:
@@ -123,11 +111,7 @@ class ZenodoObjectShared:
             if url is None or url in seen:
                 # url not available or seen already
                 continue
-            related_identifiers.append({
-                "identifier": url,
-                "relation": "isSupplementedBy",
-                "scheme": "url"
-            })
+            related_identifiers.append({"identifier": url, "relation": "isSupplementedBy", "scheme": "url"})
             seen.append(url)
         self.related_identifiers = related_identifiers if len(related_identifiers) > 0 else None
         return self

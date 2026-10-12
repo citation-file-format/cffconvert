@@ -2,7 +2,6 @@ from abc import abstractmethod
 
 
 class BibtexObjectShared:
-
     supported_cff_versions = None
 
     def __init__(self, cffobj, initialize_empty=False):
@@ -21,22 +20,14 @@ class BibtexObjectShared:
             self.add_all()
 
     def __str__(self):
-        items = [item for item in [self.author,
-                                   self.doi,
-                                   self.month,
-                                   self.title,
-                                   self.url,
-                                   self.year] if item is not None]
+        items = [
+            item for item in [self.author, self.doi, self.month, self.title, self.url, self.year] if item is not None
+        ]
         joined = ",\n".join(items)
         return "@misc{YourReferenceHere,\n" + joined + "\n}\n"
 
     def add_all(self):
-        self.add_author()   \
-            .add_doi()      \
-            .add_month()    \
-            .add_title()    \
-            .add_url()      \
-            .add_year()
+        self.add_author().add_doi().add_month().add_title().add_url().add_year()
         return self
 
     @abstractmethod

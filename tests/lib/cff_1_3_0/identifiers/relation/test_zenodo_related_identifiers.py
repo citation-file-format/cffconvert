@@ -41,19 +41,12 @@ def get_relation_types():
         "Obsoletes",
         "References",
         "Requires",
-        "Reviews"
+        "Reviews",
     ]
 
 
 def get_relation_types_skip():
-    return [
-        "HasMetadata",
-        "HasVersion",
-        "IsMetadataFor",
-        "IsOriginalFormOf",
-        "IsVariantFormOf",
-        "IsVersionOf"
-    ]
+    return ["HasMetadata", "HasVersion", "IsMetadataFor", "IsOriginalFormOf", "IsVariantFormOf", "IsVersionOf"]
 
 
 @pytest.mark.lib

@@ -17,10 +17,7 @@ from cffconvert.root import get_package_root
 
 
 class Citation_1_2_x(Contract):  # noqa
-
-    supported_cff_versions = [
-        "1.2.0"
-    ]
+    supported_cff_versions = ["1.2.0"]
 
     def __init__(self, cffstr, cffversion):
         self.cffstr = cffstr
@@ -86,12 +83,9 @@ class Citation_1_2_x(Contract):  # noqa
             n_lines_max = 15
             is_long = len(error_lines) > n_lines_max
             if is_long and not verbose:
-                truncated_message = "\n".join([
-                    *error_lines[:n_lines_max],
-                    "",
-                    "...truncated output...",
-                    "Add --verbose flag for full output."
-                ])
+                truncated_message = "\n".join(
+                    [*error_lines[:n_lines_max], "", "...truncated output...", "Add --verbose flag for full output."]
+                )
                 # pylint:disable = raise-missing-from
                 raise ValidationError(truncated_message)
             raise

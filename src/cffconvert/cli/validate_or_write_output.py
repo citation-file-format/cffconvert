@@ -32,7 +32,7 @@ def validate_or_write_output(outfile, outputformat, validate_only, citation, ver
             "endnote": citation.as_endnote,
             "ris": citation.as_ris,
             "schema.org": citation.as_schemaorg,
-            "zenodo": citation.as_zenodo
+            "zenodo": citation.as_zenodo,
         }[outputformat]()
         if outfile is None:
             print(outstr, end="")

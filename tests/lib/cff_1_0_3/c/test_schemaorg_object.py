@@ -18,7 +18,6 @@ def schemaorg_object():
 @pytest.mark.lib
 @pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
-
     def test_as_string(self):
         actual_schemaorg = schemaorg_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
@@ -27,24 +26,21 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self):
-        assert schemaorg_object().add_author().author == [{
-            "@id": "https://orcid.org/0000-0002-0948-1176",
-            "@type": "Person",
-            "givenName": "Jisk",
-            "familyName": "Attema",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
-            }
-        }, {
-            "@type": "Person",
-            "givenName": "Faruk",
-            "familyName": "Diblen",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
-            }
-        }]
+        assert schemaorg_object().add_author().author == [
+            {
+                "@id": "https://orcid.org/0000-0002-0948-1176",
+                "@type": "Person",
+                "givenName": "Jisk",
+                "familyName": "Attema",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+            },
+            {
+                "@type": "Person",
+                "givenName": "Faruk",
+                "familyName": "Diblen",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+            },
+        ]
 
     def test_check_cffobj(self):
         schemaorg_object().check_cffobj()
@@ -70,7 +66,7 @@ class TestSchemaorgObject(Contract):
             "visualization",
             "big data",
             "visual data analytics",
-            "multi-dimensional data"
+            "multi-dimensional data",
         ]
 
     def test_license(self):

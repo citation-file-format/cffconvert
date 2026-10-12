@@ -18,7 +18,6 @@ def schemaorg_object():
 @pytest.mark.lib
 @pytest.mark.schemaorg
 class TestSchemaorgObject(Contract):
-
     def test_as_string(self):
         actual_schemaorg = schemaorg_object().add_all().as_string()
         fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
@@ -27,32 +26,30 @@ class TestSchemaorgObject(Contract):
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self):
-        assert schemaorg_object().add_author().author == [{
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
+        assert schemaorg_object().add_author().author == [
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "alternateName": "jspaaks",
+                "familyName": "Spaaks",
+                "givenName": "Jurriaan H.",
             },
-            "alternateName": "jspaaks",
-            "familyName": "Spaaks",
-            "givenName": "Jurriaan H."
-        }, {
-            "@type": "Person",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Netherlands eScience Center"
+            {
+                "@type": "Person",
+                "affiliation": {"@type": "Organization", "name": "Netherlands eScience Center"},
+                "familyName": "Klaver",
+                "givenName": "Tom",
             },
-            "familyName": "Klaver",
-            "givenName": "Tom"
-        }]
+        ]
 
     def test_check_cffobj(self):
         schemaorg_object().check_cffobj()
         # doesn't need an assert
 
     def test_code_repository(self):
-        assert schemaorg_object().add_urls().code_repository == "https://github.com/citation-file-format" + \
-                                                                "/cffconvert"
+        assert (
+            schemaorg_object().add_urls().code_repository == "https://github.com/citation-file-format" + "/cffconvert"
+        )
 
     def test_contributor(self):
         assert schemaorg_object().add_contributor().contributor is None
@@ -76,8 +73,7 @@ class TestSchemaorgObject(Contract):
         assert schemaorg_object().add_name().name == "cffconvert"
 
     def test_url(self):
-        assert schemaorg_object().add_urls().url == "https://github.com/citation-file-format" + \
-                                                    "/cffconvert"
+        assert schemaorg_object().add_urls().url == "https://github.com/citation-file-format" + "/cffconvert"
 
     def test_version(self):
         assert schemaorg_object().add_version().version == "1.0.0"

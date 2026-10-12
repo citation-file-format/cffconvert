@@ -5,10 +5,7 @@ from cffconvert.lib.cff_1_x_x.urls.schemaorg import SchemaorgUrls
 
 # pylint: disable=too-many-instance-attributes
 class SchemaorgObject(Shared):
-
-    supported_cff_versions = [
-        "1.3.0"
-    ]
+    supported_cff_versions = ["1.3.0"]
 
     def __init__(self, cffobj, context="https://schema.org", initialize_empty=False):
         super().__init__(cffobj)

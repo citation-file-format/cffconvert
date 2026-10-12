@@ -18,7 +18,6 @@ def apalike_object():
 @pytest.mark.lib
 @pytest.mark.apalike
 class TestApalikeObject(Contract):
-
     def test_author(self):
         assert apalike_object().add_author().author == "von der Spaaks Jr. J.H."
 

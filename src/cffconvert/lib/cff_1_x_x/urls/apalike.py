@@ -3,7 +3,6 @@ from cffconvert.lib.cff_1_x_x.urls.base import BaseUrl
 
 # pylint: disable=too-few-public-methods
 class ApalikeUrl(BaseUrl):
-
     def __init__(self, cffobj):
         super().__init__(cffobj)
         self._behaviors = {
@@ -38,7 +37,7 @@ class ApalikeUrl(BaseUrl):
             "___CU": self._from_url,
             "___C_": self._from_repository_code,
             "____U": self._from_url,
-            "_____": ApalikeUrl._from_thin_air
+            "_____": ApalikeUrl._from_thin_air,
         }
 
     def _from_identifiers_url(self):
@@ -64,11 +63,13 @@ class ApalikeUrl(BaseUrl):
         return "URL: " + self._cffobj.get("url")
 
     def as_string(self):
-        key = "".join([
-            self._has_identifiers_url(),
-            self._has_repository(),
-            self._has_repository_artifact(),
-            self._has_repository_code(),
-            self._has_url()
-        ])
+        key = "".join(
+            [
+                self._has_identifiers_url(),
+                self._has_repository(),
+                self._has_repository_artifact(),
+                self._has_repository_code(),
+                self._has_url(),
+            ]
+        )
         return self._behaviors[key]()

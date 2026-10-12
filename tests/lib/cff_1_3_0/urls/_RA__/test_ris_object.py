@@ -18,7 +18,6 @@ def ris_object():
 @pytest.mark.lib
 @pytest.mark.ris
 class TestRisObject(Contract):
-
     def test_abstract(self):
         assert ris_object().add_abstract().abstract is None
 

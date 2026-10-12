@@ -12,6 +12,6 @@ def get_every_key():
         repository_values,
         repository_artifact_values,
         repository_code_values,
-        url_values
+        url_values,
     ]
     return ["".join(combo) for combo in itertools.product(*combined)]

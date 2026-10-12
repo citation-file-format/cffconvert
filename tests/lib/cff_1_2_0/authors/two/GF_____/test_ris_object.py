@@ -18,7 +18,6 @@ def ris_object():
 @pytest.mark.lib
 @pytest.mark.ris
 class TestRisObject(Contract):
-
     def test_abstract(self):
         assert ris_object().add_abstract().abstract is None
 
@@ -30,8 +29,10 @@ class TestRisObject(Contract):
         assert actual_ris == expected_ris
 
     def test_author(self):
-        assert ris_object().add_author().author == "AU  - van der Vaart III, Rafael\n" + \
-                                                   "AU  - dos Santos Aveiro, Cristiano Ronaldo\n"
+        assert (
+            ris_object().add_author().author
+            == "AU  - van der Vaart III, Rafael\n" + "AU  - dos Santos Aveiro, Cristiano Ronaldo\n"
+        )
 
     def test_check_cffobj(self):
         ris_object().check_cffobj()

@@ -1,0 +1,12 @@
+{
+  "creators": [
+    {
+      "name": "Real Family Name, Real Given Name"
+    }
+  ],
+  "license": {
+    "id": "Apache-2.0"
+  },
+  "title": "Title",
+  "upload_type": "software"
+}

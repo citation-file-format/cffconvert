@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Real Family Name",
+      "givenName": "Real Given Name"
+    }
+  ],
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "name": "Title"
+}

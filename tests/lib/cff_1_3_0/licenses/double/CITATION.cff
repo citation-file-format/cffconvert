@@ -1,0 +1,9 @@
+cff-version: "1.3.0"
+message: From CFF with love
+title: Title
+authors:
+  - family-names: Real Family Name
+    given-names: Real Given Name
+license:
+  - Apache-2.0
+  - MIT

@@ -82,8 +82,11 @@ class SchemaorgObjectShared:
         return self
 
     def add_license(self):
-        if "license" in self.cffobj.keys():
+        license_cff = self.cffobj.get("license")
+        if isinstance(license_cff, str):
             self.license = f"https://spdx.org/licenses/{self.cffobj['license']}"
+        elif isinstance(license_cff, list):
+            self.license = [f"https://spdx.org/licenses/{val}" for val in license_cff]
         return self
 
     def add_name(self):

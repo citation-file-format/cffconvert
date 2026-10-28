@@ -1,7 +1,8 @@
-import os
+from pathlib import Path
+
 from pykwalify.core import Core
-from ruamel.yaml import SafeConstructor
-from ruamel.yaml import YAML
+from ruamel.yaml import YAML, SafeConstructor
+
 from cffconvert.lib.cff_1_1_x.apalike import ApalikeObject
 from cffconvert.lib.cff_1_1_x.bibtex import BibtexObject
 from cffconvert.lib.cff_1_1_x.codemeta import CodemetaObject
@@ -27,9 +28,8 @@ class Citation_1_1_x(Contract):  # noqa
         self.schema = self._get_schema()
 
     def _get_schema(self):
-        schema_path = os.path.join(get_package_root(), "schemas", self.cffversion, "schema.yaml")
-        with open(schema_path, "rt", encoding="utf-8") as fid:
-            return YAML(typ="safe").load(fid.read())
+        schema_path = Path(get_package_root()) / "schemas" / self.cffversion / "schema.yaml"
+        return YAML(typ="safe").load(schema_path.read_text(encoding="utf-8"))
 
     def _parse(self):
         # instantiate the YAML module:

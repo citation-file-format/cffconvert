@@ -1,15 +1,16 @@
-import os
 from functools import lru_cache
+from pathlib import Path
+
 import pytest
+
 from cffconvert import Citation
 from cffconvert.lib.cff_1_3_x.zenodo import ZenodoObject
 
 
 @lru_cache
 def get_cffstr():
-    fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "rt", encoding="utf-8") as f:
-        return f.read()
+    fixture = Path(__file__).parent / "CITATION.cff"
+    return fixture.read_text(encoding="utf-8")
 
 
 def get_relation_types():

@@ -1,5 +1,7 @@
 import os
+
 import requests
+
 from cffconvert.cli.constants import GITHUB_API_VERSION_HEADER
 
 

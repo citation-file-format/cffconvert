@@ -1,5 +1,7 @@
 import sys
+
 import click
+
 from cffconvert.cli.version import __version__ as cffconvert_version
 
 

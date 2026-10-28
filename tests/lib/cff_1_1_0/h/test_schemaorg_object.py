@@ -1,6 +1,8 @@
-import os
 from functools import lru_cache
+from pathlib import Path
+
 import pytest
+
 from cffconvert import Citation
 from cffconvert.lib.cff_1_1_x.schemaorg import SchemaorgObject
 from tests.lib.contracts.schemaorg import Contract
@@ -8,11 +10,10 @@ from tests.lib.contracts.schemaorg import Contract
 
 @lru_cache
 def schemaorg_object():
-    fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "rt", encoding="utf-8") as f:
-        cffstr = f.read()
-        citation = Citation(cffstr)
-        return SchemaorgObject(citation.cffobj, initialize_empty=True)
+    fixture = Path(__file__).parent / "CITATION.cff"
+    cffstr = fixture.read_text(encoding="utf-8")
+    citation = Citation(cffstr)
+    return SchemaorgObject(citation.cffobj, initialize_empty=True)
 
 
 @pytest.mark.lib
@@ -21,9 +22,8 @@ class TestSchemaorgObject(Contract):
 
     def test_as_string(self):
         actual_schemaorg = schemaorg_object().add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), "schemaorg.json")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_schemaorg = f.read()
+        fixture = Path(__file__).parent / "schemaorg.json"
+        expected_schemaorg = fixture.read_text(encoding="utf-8")
         assert actual_schemaorg == expected_schemaorg
 
     def test_author(self):

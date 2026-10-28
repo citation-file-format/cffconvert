@@ -1,6 +1,8 @@
-import os
 from functools import lru_cache
+from pathlib import Path
+
 import pytest
+
 from cffconvert import Citation
 from cffconvert.lib.cff_1_2_x.endnote import EndnoteObject
 from tests.lib.contracts.endnote import Contract
@@ -8,11 +10,10 @@ from tests.lib.contracts.endnote import Contract
 
 @lru_cache
 def endnote_object():
-    fixture = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(fixture, "rt", encoding="utf-8") as f:
-        cffstr = f.read()
-        citation = Citation(cffstr)
-        return EndnoteObject(citation.cffobj, initialize_empty=True)
+    fixture = Path(__file__).parent / "CITATION.cff"
+    cffstr = fixture.read_text(encoding="utf-8")
+    citation = Citation(cffstr)
+    return EndnoteObject(citation.cffobj, initialize_empty=True)
 
 
 @pytest.mark.lib
@@ -37,9 +38,8 @@ class TestEndnoteObject(Contract):
 
     def test_as_string(self):
         actual_endnote = endnote_object().add_all().as_string()
-        fixture = os.path.join(os.path.dirname(__file__), "endnote.enw")
-        with open(fixture, "rt", encoding="utf-8") as f:
-            expected_endnote = f.read()
+        fixture = Path(__file__).parent / "endnote.enw"
+        expected_endnote = fixture.read_text(encoding="utf-8")
         assert actual_endnote == expected_endnote
 
     def test_url(self):

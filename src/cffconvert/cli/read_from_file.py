@@ -1,3 +1,5 @@
+from pathlib import Path
+
+
 def read_from_file(infile):
-    with open(infile, "r", encoding="utf8") as fid:
-        return fid.read()
+    return Path(infile).read_text(encoding="utf-8")

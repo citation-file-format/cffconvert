@@ -67,7 +67,8 @@ dev = [
     "pre-commit",
     "prospector == 1.10.2",
     "pyroma == 4.2",
-    "ruff == 0.0.278"
+    "ruff == 0.0.278",
+    "setuptools < 70"
 ]
 gcloud = [
     "flask"

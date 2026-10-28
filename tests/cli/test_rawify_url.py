@@ -1,5 +1,6 @@
 # pylint: disable=line-too-long
 import pytest
+
 from cffconvert.cli.rawify_url import rawify_url
 
 

@@ -1,12 +1,12 @@
-import os
+from pathlib import Path
+
 from cffconvert.lib.citation import Citation
 
 
 def citation():
-    p = os.path.join(os.path.dirname(__file__), "CITATION.cff")
-    with open(p, "rt", encoding="utf-8") as fid:
-        cffstr = fid.read()
-        return Citation(cffstr)
+    p = Path(__file__).parent / "CITATION.cff"
+    cffstr = p.read_text(encoding="utf-8")
+    return Citation(cffstr)
 
 
 def test_cffversion():

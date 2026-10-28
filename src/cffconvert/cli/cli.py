@@ -1,10 +1,11 @@
 import os
 import sys
+
 import click
+
 from cffconvert.cli.check_early_exits import check_early_exits
 from cffconvert.cli.create_citation import create_citation
 from cffconvert.cli.validate_or_write_output import validate_or_write_output
-
 
 options = {
     "infile": {

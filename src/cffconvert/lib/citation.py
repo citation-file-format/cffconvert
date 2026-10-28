@@ -1,4 +1,5 @@
 import re
+
 from cffconvert.lib.cff_1_0_x.citation import Citation_1_0_x
 from cffconvert.lib.cff_1_1_x.citation import Citation_1_1_x
 from cffconvert.lib.cff_1_2_x.citation import Citation_1_2_x

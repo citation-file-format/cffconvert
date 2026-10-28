@@ -1,8 +1,11 @@
 # pylint:disable = protected-access
 import inspect
 import types
+
 import pytest
+
 from cffconvert.lib.cff_1_x_x.authors.endnote import EndnoteAuthor
+
 from .get_every_key import get_every_key
 
 

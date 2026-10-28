@@ -16,14 +16,14 @@ classifiers = [
     "Intended Audience :: Information Technology",
     "Intended Audience :: Science/Research",
     "Intended Audience :: System Administrators",
-    "License :: OSI Approved :: Apache Software License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Topic :: Scientific/Engineering",
     "Topic :: Software Development",
     "Topic :: Utilities"
@@ -46,7 +46,7 @@ keywords = [
     "CodeMeta",
     "Zenodo"
 ]
-license = {text = "Apache Software License"}
+license = "Apache-2.0"
 name = "cffconvert"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -132,10 +132,12 @@ testpaths = [
 
 [tool.ruff]
 line-length = 120
+
+[tool.ruff.lint]
 select = ["E", "F", "W", "C901", "Q"]
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-[tool.ruff.flake8-quotes]
+[tool.ruff.lint.flake8-quotes]
 docstring-quotes = "double"
 inline-quotes = "double"

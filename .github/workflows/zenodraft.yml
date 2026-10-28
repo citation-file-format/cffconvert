@@ -10,9 +10,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout the contents of your repository
-          uses: actions/checkout@v4
+          uses: actions/checkout@v7
         - name: Create a draft snapshot of your repository contents as a new
-                version in collection 1162057 on Zenodo using metadata
+                version in concept 1162057 on Zenodo using metadata
                 from repository file .zenodo.json
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,7 +20,7 @@ jobs:
           uses: zenodraft/action@0.13.3
           with:
             compression: zip
-            collection: 1162057
+            concept: 1162057
             metadata: .zenodo.json
             publish: false
             sandbox: false
